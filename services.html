@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خدمات آزمایشگاهی | آزمایشگاه تخصصی آلفا</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #f5fbfd;
+      color: #123247;
+      line-height: 1.8;
+    }
+
+    header {
+      background: #063b57;
+      color: white;
+      padding: 18px 7%;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #32d1d8;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      font-size: 14px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #063b57, #087d99);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero h1 {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #dff6f8;
+      font-size: 17px;
+    }
+
+    .section {
+      padding: 70px 7%;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .title h2 {
+      color: #063b57;
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .title p {
+      color: #657b85;
+    }
+
+    .tests {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .test {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      border: 1px solid #dfedf1;
+      box-shadow: 0 8px 25px rgba(0, 50, 70, .07);
+      transition: .3s;
+    }
+
+    .test:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .test h3 {
+      color: #075675;
+      margin-bottom: 10px;
+    }
+
+    .test p {
+      color: #687e89;
+      font-size: 14px;
+    }
+
+    .cta {
+      background: #e9f9fb;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .cta h2 {
+      color: #063b57;
+      margin-bottom: 15px;
+      font-size: 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #063b57;
+      color: white;
+      padding: 13px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #032638;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    footer span {
+      color: #32d1d8;
+    }
+
+    @media (max-width: 800px) {
+      nav a {
+        display: none;
+      }
+
+      .tests {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      آزمایشگاه تخصصی <span>آلفا</span>
+    </div>
+
+    <div>
+      <a href="index.html">خانه</a>
+      <a href="services.html">خدمات</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>خدمات آزمایشگاهی آلفا</h1>
+
+  <p>
+    ارائه خدمات آزمایشگاهی روتین و تخصصی
+    با تمرکز بر دقت، کیفیت و پاسخ‌گویی حرفه‌ای
+  </p>
+</section>
+
+<section class="section">
+
+  <div class="title">
+    <h2>بخش‌های آزمایشگاهی</h2>
+    <p>برای مشاهده خدمات هر بخش، دسته مورد نظر را انتخاب کنید.</p>
+  </div>
+
+  <div class="tests">
+
+    <div class="test">
+      <div class="icon">🩸</div>
+      <h3>هماتولوژی</h3>
+      <p>
+        CBC، شمارش سلول‌های خونی، بررسی کم‌خونی،
+        شاخص‌های RBC و سایر بررسی‌های هماتولوژیک.
+      </p>
+    </div>
+
+    <div class="test">
+      <div class="icon">🧪</div>
+      <h3>بیوشیمی</h3>
+      <p>
+        قند خون، چربی‌ها، آنزیم‌های کبدی،
+        کلیه، الکترولیت‌ها و سایر آزمایش‌های بیوشیمی.
+      </p>
+    </div>
+
+    <div class="test">
+      <div class="icon">🦠</div>
+      <h3>میکروب‌شناسی</h3>
+      <p>
+        کشت ادرار، کشت خون، کشت ترشحات،
+        شناسایی باکتری‌ها و آنتی‌بیوگرام.
+      </p>
+    </div>
+
+    <div class="test">
+      <div class="icon">🧬</div>
+      <h3>ایمونولوژی و سرولوژی</h3>
+      <p>
+        بررسی آنتی‌بادی‌ها، تست‌های سرولوژیک
+        و آزمایش‌های مرتبط با سیستم ایمنی.
+      </p>
+    </div>
+
+    <div class="test">
+      <div class="icon">⚗️</div>
+      <h3>هورمون‌ها</h3>
+      <p>
+        TSH، Free T4، Free T3، کورتیزول،
+        پرولاکتین و سایر آزمایش‌های هورمونی.
+      </p>
+    </div>
+
+    <div class="test">
+      <div class="icon">🔬</div>
+      <h3>آزمایش‌های تخصصی</h3>
+      <p>
+        مجموعه‌ای از آزمایش‌های تخصصی و بررسی‌های
+        تکمیلی بر اساس نیاز مراجعه‌کننده.
+      </p>
+    </div>
+
+    <div class="test">
+      <div class="icon">🧫</div>
+      <h3>آنالیز ادرار</h3>
+      <p>
+        بررسی فیزیکی، شیمیایی و میکروسکوپی نمونه ادرار
+        و آزمایش‌های مرتبط.
+      </p>
+    </div>
+
+    <div class="test">
+      <div class="icon">🧬</div>
+      <h3>آزمایش‌های انعقادی</h3>
+      <p>
+        PT، INR، aPTT و سایر بررسی‌های مربوط
+        به سیستم انعقادی خون.
+      </p>
+    </div>
+
+    <div class="test">
+      <div class="icon">🩺</div>
+      <h3>آزمایش‌های عمومی</h3>
+      <p>
+        ارائه مجموعه‌ای از آزمایش‌های عمومی
+        و روتین مورد نیاز مراجعه‌کنندگان.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="cta">
+
+  <h2>نیاز به راهنمایی دارید؟</h2>
+
+  <p>
+    برای اطلاعات بیشتر درباره آزمایش‌ها و خدمات
+    با آزمایشگاه تخصصی آلفا تماس بگیرید.
+  </p>
+
+  <a class="btn" href="tel:0796961816">
+    📞 تماس با آزمایشگاه
+  </a>
+
+</section>
+
+<footer>
+
+  <strong>
+    آزمایشگاه تخصصی <span>آلفا</span>
+  </strong>
+
+  <p>Alpha Specialized Laboratory</p>
+
+  <small>
+    © 2026 تمامی حقوق محفوظ است.
+  </small>
+
+</footer>
+
+</body>
+</html>
