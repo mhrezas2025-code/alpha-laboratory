@@ -42,14 +42,6 @@
       margin: auto;
     }
 
-    .site-logo {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      display: block;
-      border-radius: 10px;
-    }
-
     nav ul {
       list-style: none;
       display: flex;
@@ -60,21 +52,26 @@
       color: white;
       text-decoration: none;
       font-size: 14px;
-      transition: .3s;
     }
 
     nav a:hover {
       color: #32d1d8;
     }
 
+    .site-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
     .hero {
-      min-height: 620px;
+      min-height: 650px;
       display: flex;
       align-items: center;
       background:
-        linear-gradient(135deg, rgba(3,58,85,.96), rgba(9,128,157,.86)),
-        url("https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1600&q=80")
-        center/cover;
+        linear-gradient(135deg, rgba(3,58,85,.92), rgba(9,128,157,.78)),
+        url("lab.jpg") center/cover;
       color: white;
     }
 
@@ -113,11 +110,6 @@
       text-decoration: none;
       font-weight: bold;
       display: inline-block;
-      transition: .3s;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
     }
 
     .primary {
@@ -220,12 +212,32 @@
     }
 
     .about-box {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 45px;
     }
 
-    .about-box p {
+    .about-image {
+      width: 320px;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,.15);
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      color: #063b57;
+      font-size: 35px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
       color: #637983;
       font-size: 16px;
     }
@@ -289,13 +301,19 @@
         grid-template-columns: 1fr;
       }
 
-      .home-box {
+      .home-box,
+      .about-box {
         flex-direction: column;
         text-align: center;
       }
 
       .contact-grid {
         grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        width: 250px;
+        height: 300px;
       }
 
       section {
@@ -359,13 +377,10 @@
 <section id="services">
 
   <div class="title">
-
     <h2>خدمات آزمایشگاهی</h2>
-
     <p>
       مجموعه‌ای از خدمات آزمایشگاهی برای بررسی دقیق‌تر وضعیت سلامت
     </p>
-
   </div>
 
   <div class="services">
@@ -453,18 +468,26 @@
 
   <div class="about-box">
 
-    <div class="title">
+    <img src="me.jpg" alt="کارشناس آزمایشگاه آلفا" class="about-image">
+
+    <div class="about-text">
 
       <h2>درباره آزمایشگاه آلفا</h2>
 
-    </div>
+      <p>
+        آزمایشگاه تخصصی آلفا با تمرکز بر کیفیت،
+        دقت علمی و ارائه خدمات حرفه‌ای آزمایشگاهی
+        تلاش می‌کند خدمات مناسب و قابل اعتماد را
+        برای مراجعه‌کنندگان فراهم کند.
+      </p>
 
-    <p>
-      آزمایشگاه تخصصی آلفا با تمرکز بر کیفیت،
-      دقت علمی و ارائه خدمات حرفه‌ای آزمایشگاهی
-      تلاش می‌کند خدمات مناسب و قابل اعتماد را
-      برای مراجعه‌کنندگان فراهم کند.
-    </p>
+      <p>
+        ما با بهره‌گیری از تجهیزات آزمایشگاهی و
+        رعایت اصول علمی و کیفیتی، در مسیر تشخیص
+        دقیق‌تر و ارائه خدمات بهتر به مراجعین تلاش می‌کنیم.
+      </p>
+
+    </div>
 
   </div>
 
@@ -490,9 +513,7 @@
 
       <h3>تماس اول</h3>
 
-      <p>
-        0796961816
-      </p>
+      <p>0796961816</p>
 
     </div>
 
@@ -502,9 +523,7 @@
 
       <h3>تماس دوم</h3>
 
-      <p>
-        0780072616
-      </p>
+      <p>0780072616</p>
 
     </div>
 
