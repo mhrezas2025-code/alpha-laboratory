@@ -13,8 +13,12 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, Tahoma, sans-serif;
+      font-family: Tahoma, Arial, sans-serif;
       background: #f5fbfd;
       color: #123247;
       line-height: 1.8;
@@ -23,7 +27,7 @@
     header {
       background: #063b57;
       color: white;
-      padding: 18px 7%;
+      padding: 15px 7%;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -39,15 +43,11 @@
     }
 
     .site-logo {
-  width: 55px;
-  height: 55px;
-  object-fit: contain;
-  display: block;
-}
-    
-
-    .logo span {
-      color: #32d1d8;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      display: block;
+      border-radius: 10px;
     }
 
     nav ul {
@@ -60,6 +60,7 @@
       color: white;
       text-decoration: none;
       font-size: 14px;
+      transition: .3s;
     }
 
     nav a:hover {
@@ -112,6 +113,11 @@
       text-decoration: none;
       font-weight: bold;
       display: inline-block;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
     }
 
     .primary {
@@ -303,8 +309,9 @@
 
 <header>
   <nav>
+
     <div class="logo">
-      <img src="logo.png" alt="لوگوی آزمایشگاه آلفا" class="site-logo">
+      <img src="لوگو.jfif" alt="لوگوی آزمایشگاه آلفا" class="site-logo">
     </div>
 
     <ul>
@@ -314,14 +321,17 @@
       <li><a href="#about">درباره ما</a></li>
       <li><a href="#contact">تماس با ما</a></li>
     </ul>
+
   </nav>
 </header>
 
 <section class="hero" id="home">
+
   <div class="hero-content">
 
     <h1>
-      سلامت شما،<br>
+      سلامت شما،
+      <br>
       <span>اولویت ماست.</span>
     </h1>
 
@@ -331,6 +341,7 @@
     </p>
 
     <div class="buttons">
+
       <a href="services.html" class="btn primary">
         مشاهده خدمات
       </a>
@@ -338,18 +349,23 @@
       <a href="tel:0796961816" class="btn secondary">
         تماس با ما
       </a>
+
     </div>
 
   </div>
+
 </section>
 
 <section id="services">
 
   <div class="title">
+
     <h2>خدمات آزمایشگاهی</h2>
+
     <p>
       مجموعه‌ای از خدمات آزمایشگاهی برای بررسی دقیق‌تر وضعیت سلامت
     </p>
+
   </div>
 
   <div class="services">
@@ -403,6 +419,7 @@
     </div>
 
   </div>
+
 </section>
 
 <section class="home" id="home-sampling">
@@ -410,6 +427,7 @@
   <div class="home-box">
 
     <div>
+
       <h2>نمونه‌گیری در منزل 🏠</h2>
 
       <p>
@@ -420,6 +438,7 @@
       <a href="tel:0796961816" class="btn primary">
         درخواست نمونه‌گیری
       </a>
+
     </div>
 
     <div class="home-icon">
@@ -435,7 +454,9 @@
   <div class="about-box">
 
     <div class="title">
+
       <h2>درباره آزمایشگاه آلفا</h2>
+
     </div>
 
     <p>
@@ -452,33 +473,52 @@
 <section class="contact" id="contact">
 
   <div class="title">
+
     <h2>تماس با ما</h2>
+
     <p>
       برای دریافت اطلاعات بیشتر با ما در تماس باشید.
     </p>
+
   </div>
 
   <div class="contact-grid">
 
     <div class="contact-card">
+
       <div class="icon">📞</div>
+
       <h3>تماس اول</h3>
-      <p>0796961816</p>
+
+      <p>
+        0796961816
+      </p>
+
     </div>
 
     <div class="contact-card">
+
       <div class="icon">📱</div>
+
       <h3>تماس دوم</h3>
-      <p>0780072616</p>
+
+      <p>
+        0780072616
+      </p>
+
     </div>
 
     <div class="contact-card">
+
       <div class="icon">📍</div>
+
       <h3>آدرس</h3>
+
       <p>
         هرات، مقابل شفاخانه حوزوی،
         در جوار افغان MRI
       </p>
+
     </div>
 
   </div>
