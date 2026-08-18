@@ -709,76 +709,67 @@ function normalizeText(text){
 
 }
 
-function searchTests(){
+<script>
+function normalizeText(text) {
+  return text
+    .toLowerCase()
+    .replace(/ي/g, "ی")
+    .replace(/ك/g, "ک")
+    .trim();
+}
 
-  const input =
-    document.getElementById("testSearch");
+document.addEventListener("DOMContentLoaded", function () {
 
-  const result =
-    document.getElementById("searchResult");
+  const input = document.getElementById("testSearch");
+  const result = document.getElementById("searchResult");
 
-  const searchValue =
-    normalizeText(input.value);
+  if (!input || !result) return;
 
-  const tests =
-    document.querySelectorAll(".test");
+  input.addEventListener("input", function () {
 
-  let found = 0;
+    const searchValue = normalizeText(this.value);
+    const tests = document.querySelectorAll(".test");
 
-  tests.forEach(function(test){
+    let found = 0;
 
-    const text =
-      normalizeText(test.textContent);
+    tests.forEach(function (test) {
 
-    if(
-      searchValue === "" ||
-      text.includes(searchValue)
-    ){
+      const text = normalizeText(test.textContent);
 
-      test.style.display = "";
+      if (searchValue === "" || text.includes(searchValue)) {
+        test.style.display = "";
+        
+        if (searchValue !== "") {
+          found++;
+        }
 
-      if(searchValue !== ""){
-        found++;
+      } else {
+        test.style.display = "none";
       }
 
-    }else{
+    });
 
-      test.style.display = "none";
+    if (searchValue === "") {
 
+      result.innerHTML = "نمایش همه آزمایش‌ها";
+
+    } else if (found > 0) {
+
+      result.innerHTML =
+        "✅ تعداد آزمایش‌های یافت‌شده: <strong>" +
+        found +
+        "</strong>";
+
+    } else {
+
+      result.innerHTML =
+        "❌ آزمایش مورد نظر یافت نشد";
     }
 
   });
 
-  if(searchValue === ""){
-
-    result.innerHTML =
-      "نمایش همه آزمایش‌ها";
-
-  }else if(found > 0){
-
-    result.innerHTML =
-      "✅ تعداد آزمایش‌های یافت‌شده: <strong>"
-      + found +
-      "</strong>";
-
-  }else{
-
-    result.innerHTML =
-      "❌ آزمایش مورد نظر یافت نشد";
-
-  }
-
-}
-
-document
-  .getElementById("testSearch")
-  .addEventListener(
-    "input",
-    searchTests
-  );
-
+});
 </script>
-
 
 <!-- =========================
      HERO
