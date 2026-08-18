@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>آزمایش‌های تخصصی | آزمایشگاه آلفا</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+آزمایش‌های تخصصی | آزمایشگاه تخصصی آلفا
+</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -24,10 +35,15 @@ body{
   line-height:1.9;
 }
 
+
+/* =========================
+   HEADER
+========================= */
+
 header{
   background:#063b57;
   color:white;
-  padding:12px 7%;
+  padding:10px 7%;
   position:sticky;
   top:0;
   z-index:1000;
@@ -37,10 +53,11 @@ header{
 nav{
   max-width:1200px;
   margin:auto;
+  min-height:85px;
+
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  min-height:80px;
+  justify-content:space-between;
 }
 
 .logo{
@@ -49,8 +66,8 @@ nav{
 }
 
 .site-logo{
-  width:80px;
-  height:80px;
+  width:75px;
+  height:75px;
   object-fit:contain;
   border-radius:10px;
 }
@@ -65,21 +82,38 @@ nav a{
   color:white;
   text-decoration:none;
   font-size:14px;
+  transition:.3s;
 }
 
 nav a:hover{
-  color:#32d1d8;
+  color:#52e2e2;
 }
 
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
-  background:linear-gradient(135deg,#063b57,#087d99);
+  background:
+  linear-gradient(
+    135deg,
+    #063b57,
+    #087d99
+  );
+
   color:white;
+
   text-align:center;
-  padding:75px 7%;
+
+  padding:
+  70px 7% 100px;
 }
 
 .hero h1{
-  font-size:clamp(32px,5vw,55px);
+  font-size:
+  clamp(32px,5vw,55px);
+
   margin-bottom:15px;
 }
 
@@ -90,583 +124,783 @@ nav a:hover{
 .hero p{
   max-width:850px;
   margin:auto;
+
   color:#e3f6f8;
+
   font-size:17px;
 }
 
-.search-box{
-  max-width:850px;
-  margin:-30px auto 40px;
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-area{
+
+  width:90%;
+  max-width:900px;
+
+  margin:-35px auto 45px;
+
   position:relative;
-  z-index:5;
+
+  z-index:10;
+}
+
+.search-box{
+
+  background:white;
+
+  border-radius:20px;
+
+  padding:10px;
+
+  box-shadow:
+  0 15px 40px
+  rgba(0,0,0,.15);
+
+  display:flex;
+  align-items:center;
+}
+
+.search-icon{
+
+  font-size:25px;
+
+  padding:
+  0 15px;
+
+  color:#087d99;
 }
 
 .search-box input{
+
   width:100%;
-  padding:18px 25px;
+
   border:none;
-  border-radius:18px;
-  font-size:16px;
-  font-family:Tahoma;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
   outline:none;
+
+  padding:15px;
+
+  font-family:Tahoma;
+
+  font-size:16px;
+
+  background:transparent;
 }
 
-.search-box input:focus{
-  box-shadow:0 10px 30px rgba(0,100,130,.25);
-}
+
+/* =========================
+   MAIN
+========================= */
 
 .container{
+
   width:90%;
+
   max-width:1250px;
+
   margin:auto;
+
   padding-bottom:80px;
 }
 
+
+/* =========================
+   INTRO
+========================= */
+
 .intro{
+
   text-align:center;
-  margin-bottom:40px;
+
+  margin-bottom:45px;
 }
 
 .intro h2{
+
   color:#063b57;
+
   font-size:32px;
+
   margin-bottom:10px;
 }
 
 .intro p{
+
   color:#687e89;
+
+  max-width:800px;
+
+  margin:auto;
 }
 
+
+/* =========================
+   STATISTICS
+========================= */
+
+.statistics{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:20px;
+
+  margin-bottom:55px;
+}
+
+.stat{
+
+  background:white;
+
+  border-radius:18px;
+
+  padding:25px;
+
+  text-align:center;
+
+  border:1px solid #dfedf1;
+
+  box-shadow:
+  0 8px 25px
+  rgba(4,55,75,.06);
+}
+
+.stat-icon{
+
+  font-size:35px;
+
+  margin-bottom:5px;
+}
+
+.stat-number{
+
+  font-size:30px;
+
+  font-weight:bold;
+
+  color:#087d99;
+}
+
+.stat-title{
+
+  color:#687e89;
+
+  font-size:14px;
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
 .category{
+
   margin-bottom:50px;
 }
 
-.category-title{
-  background:linear-gradient(135deg,#063b57,#087d99);
+.category-header{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #063b57,
+    #087d99
+  );
+
   color:white;
+
   padding:18px 25px;
-  border-radius:16px;
+
+  border-radius:17px;
+
   margin-bottom:20px;
-  font-size:23px;
 }
 
+.category-title{
+
+  font-size:22px;
+
+  font-weight:bold;
+}
+
+.category-count{
+
+  background:
+  rgba(255,255,255,.18);
+
+  padding:
+  5px 12px;
+
+  border-radius:20px;
+
+  font-size:13px;
+}
+
+
+/* =========================
+   TEST GRID
+========================= */
+
 .tests{
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+  repeat(4,1fr);
+
   gap:15px;
 }
 
 .test{
+
   background:white;
+
   border:1px solid #dfedf1;
-  border-radius:14px;
-  padding:17px;
-  box-shadow:0 5px 18px rgba(4,55,75,.06);
+
+  border-radius:15px;
+
+  padding:18px;
+
+  min-height:90px;
+
+  box-shadow:
+  0 5px 18px
+  rgba(4,55,75,.06);
+
   transition:.25s;
 }
 
 .test:hover{
-  transform:translateY(-4px);
-  box-shadow:0 10px 25px rgba(4,55,75,.12);
+
+  transform:
+  translateY(-5px);
+
+  box-shadow:
+  0 12px 28px
+  rgba(4,55,75,.12);
+
+  border-color:#52d8dd;
 }
 
 .test strong{
-  color:#075675;
+
   display:block;
-  margin-bottom:3px;
+
+  color:#075675;
+
+  font-size:15px;
+
+  margin-bottom:4px;
 }
 
 .test span{
+
   color:#7a8b92;
+
   font-size:12px;
 }
 
+
+/* =========================
+   NO RESULT
+========================= */
+
 .no-result{
+
   display:none;
-  text-align:center;
+
   background:white;
-  padding:30px;
-  border-radius:15px;
+
+  text-align:center;
+
+  padding:35px;
+
+  border-radius:18px;
+
   color:#687e89;
-  margin:30px 0;
+
+  margin-bottom:40px;
+
+  box-shadow:
+  0 8px 25px
+  rgba(0,0,0,.06);
 }
 
+
+/* =========================
+   BACK BUTTON
+========================= */
+
 .back{
+
   text-align:center;
-  margin-top:50px;
+
+  margin-top:60px;
 }
 
 .back a{
+
   display:inline-block;
+
   background:#32cbd0;
+
   color:#063b57;
+
   text-decoration:none;
+
   font-weight:bold;
-  padding:13px 28px;
+
+  padding:
+  14px 30px;
+
   border-radius:12px;
+
+  transition:.3s;
 }
 
-footer{
-  background:#032638;
+.back a:hover{
+
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 8px 20px
+  rgba(0,0,0,.12);
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp-button{
+
+  position:fixed;
+
+  bottom:25px;
+
+  left:25px;
+
+  background:#25D366;
+
   color:white;
+
+  padding:
+  13px 20px;
+
+  border-radius:30px;
+
+  text-decoration:none;
+
+  font-weight:bold;
+
+  z-index:999;
+
+  box-shadow:
+  0 5px 20px
+  rgba(0,0,0,.2);
+
+  transition:.3s;
+}
+
+.whatsapp-button:hover{
+
+  transform:
+  translateY(-4px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+  background:#032638;
+
+  color:white;
+
   text-align:center;
+
   padding:30px;
 }
 
 footer span{
+
   color:#32d1d8;
 }
 
-.whatsapp-button{
-  position:fixed;
-  bottom:25px;
-  left:25px;
-  background:#25D366;
-  color:white;
-  padding:13px 20px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:bold;
-  z-index:999;
-  box-shadow:0 5px 20px rgba(0,0,0,.2);
-}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:1000px){
+
   .tests{
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+    repeat(3,1fr);
   }
+
 }
 
 @media(max-width:700px){
+
   nav ul{
+
     display:none;
   }
 
+  .statistics{
+
+    grid-template-columns:
+    1fr;
+  }
+
   .tests{
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+    repeat(2,1fr);
   }
 
   .hero{
-    padding:55px 5%;
+
+    padding:
+    55px 5% 85px;
   }
+
 }
 
 @media(max-width:450px){
+
   .tests{
-    grid-template-columns:1fr;
+
+    grid-template-columns:
+    1fr;
   }
 
   .site-logo{
+
     width:65px;
     height:65px;
   }
+
+  .category-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+  }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
 <nav>
 
 <div class="logo">
-<img src="لوگو.jfif" alt="لوگوی آزمایشگاه آلفا" class="site-logo">
+
+<img
+src="لوگو.jfif"
+alt="لوگوی آزمایشگاه تخصصی آلفا"
+class="site-logo">
+
 </div>
 
+
 <ul>
-<li><a href="index.html#home">خانه</a></li>
-<li><a href="services.html">خدمات</a></li>
-<li><a href="index.html#home-sampling">نمونه‌گیری در منزل</a></li>
-<li><a href="index.html#about">درباره ما</a></li>
-<li><a href="index.html#contact">تماس با ما</a></li>
+
+<li>
+<a href="index.html#home">
+خانه
+</a>
+</li>
+
+<li>
+<a href="services.html">
+خدمات
+</a>
+</li>
+
+<li>
+<a href="index.html#home-sampling">
+نمونه‌گیری در منزل
+</a>
+</li>
+
+<li>
+<a href="index.html#about">
+درباره ما
+</a>
+</li>
+
+<li>
+<a href="index.html#contact">
+تماس با ما
+</a>
+</li>
+
 </ul>
 
 </nav>
+
 </header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
 <h1>
-آزمایش‌های <span>تخصصی و قابل ارائه</span>
+
+فهرست
+<span>
+آزمایش‌های تخصصی
+</span>
+
 </h1>
 
 <p>
-آزمایشگاه تخصصی آلفا مجموعه‌ای گسترده از آزمایش‌های
-روتین، تخصصی و تشخیصی را ارائه می‌کند.
+
+آزمایشگاه تخصصی آلفا مجموعه‌ای گسترده
+از آزمایش‌های روتین، تخصصی و تشخیصی
+را برای بررسی وضعیت سلامت مراجعین ارائه می‌کند.
+
 </p>
 
 </section>
 
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search-area">
+
 <div class="search-box">
+
+<div class="search-icon">
+🔍
+</div>
+
 <input
 type="text"
 id="searchInput"
-placeholder="🔍 جستجوی نام آزمایش...">
+placeholder="نام آزمایش را جستجو کنید؛ مثال: CBC، TSH، Ferritin، فریتین ...">
+
 </div>
+
+</div>
+
+
 
 <div class="container">
 
+
+<!-- =========================
+     INTRO
+========================= -->
+
 <div class="intro">
 
-<h2>آزمایش‌های قابل انجام در آزمایشگاه تخصصی آلفا</h2>
+<h2>
+آزمایش‌های قابل ارائه
+در آزمایشگاه تخصصی آلفا
+</h2>
 
 <p>
-برای مشاهده آزمایش‌ها، دسته مورد نظر را انتخاب کنید
-یا نام آزمایش را در قسمت جستجو وارد نمایید.
+
+برای پیدا کردن آزمایش مورد نظر،
+نام فارسی، انگلیسی یا مخفف آزمایش
+را در قسمت جستجو وارد کنید.
+
 </p>
 
 </div>
 
-<div id="noResult" class="no-result">
+
+
+<!-- =========================
+     STATISTICS
+========================= -->
+
+<div class="statistics">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+🧪
+</div>
+
+<div
+class="stat-number"
+id="totalTests">
+0
+</div>
+
+<div class="stat-title">
+تعداد آزمایش‌ها
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+🔬
+</div>
+
+<div
+class="stat-number"
+id="totalCategories">
+0
+</div>
+
+<div class="stat-title">
+بخش‌های آزمایشگاهی
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+🏠
+</div>
+
+<div class="stat-number">
+24/7
+</div>
+
+<div class="stat-title">
+پاسخگویی و هماهنگی
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     NO RESULT
+========================= -->
+
+<div
+id="noResult"
+class="no-result">
+
+🔍
+
 آزمایش مورد نظر پیدا نشد.
-</div>
-
-<!-- هماتولوژی -->
-
-<section class="category">
-
-<h2 class="category-title">🩸 هماتولوژی</h2>
-
-<div class="tests">
-
-<div class="test"><strong>CBC</strong><span>شمارش کامل سلول‌های خون</span></div>
-<div class="test"><strong>WBC Count</strong><span>شمارش گلبول سفید</span></div>
-<div class="test"><strong>RBC Count</strong><span>شمارش گلبول قرمز</span></div>
-<div class="test"><strong>Hemoglobin</strong><span>هموگلوبین</span></div>
-<div class="test"><strong>Hematocrit</strong><span>هماتوکریت</span></div>
-<div class="test"><strong>MCV</strong><span>حجم متوسط گلبول قرمز</span></div>
-<div class="test"><strong>MCH</strong><span>مقدار متوسط هموگلوبین</span></div>
-<div class="test"><strong>MCHC</strong><span>غلظت متوسط هموگلوبین</span></div>
-<div class="test"><strong>RDW-CV</strong><span>پراکندگی گلبول‌های قرمز</span></div>
-<div class="test"><strong>RDW-SD</strong><span>پراکندگی گلبول‌های قرمز</span></div>
-<div class="test"><strong>Platelet Count</strong><span>شمارش پلاکت</span></div>
-<div class="test"><strong>MPV</strong><span>حجم متوسط پلاکت</span></div>
-<div class="test"><strong>PDW</strong><span>پراکندگی پلاکت</span></div>
-<div class="test"><strong>ESR</strong><span>سرعت رسوب گلبول قرمز</span></div>
-<div class="test"><strong>Reticulocyte Count</strong><span>شمارش رتیکولوسیت</span></div>
-<div class="test"><strong>Peripheral Blood Smear</strong><span>اسمیر خون محیطی</span></div>
-<div class="test"><strong>Absolute Neutrophil Count</strong><span>شمارش مطلق نوتروفیل</span></div>
-<div class="test"><strong>Absolute Lymphocyte Count</strong><span>شمارش مطلق لنفوسیت</span></div>
-<div class="test"><strong>Absolute Eosinophil Count</strong><span>شمارش مطلق ائوزینوفیل</span></div>
-<div class="test"><strong>Absolute Monocyte Count</strong><span>شمارش مطلق مونوسیت</span></div>
 
 </div>
-</section>
 
-<!-- بیوشیمی -->
 
-<section class="category">
 
-<h2 class="category-title">🧪 بیوشیمی</h2>
+<!-- =========================
+     TEST CATEGORIES
+========================= -->
 
-<div class="tests">
+<!--
 
-<div class="test"><strong>Glucose</strong><span>قند خون</span></div>
-<div class="test"><strong>Fasting Blood Sugar</strong><span>قند خون ناشتا</span></div>
-<div class="test"><strong>HbA1c</strong><span>هموگلوبین گلیکوزیله</span></div>
-<div class="test"><strong>Urea</strong><span>اوره</span></div>
-<div class="test"><strong>Creatinine</strong><span>کراتینین</span></div>
-<div class="test"><strong>Uric Acid</strong><span>اسید اوریک</span></div>
-<div class="test"><strong>Total Cholesterol</strong><span>کلسترول تام</span></div>
-<div class="test"><strong>Triglyceride</strong><span>تری‌گلیسرید</span></div>
-<div class="test"><strong>HDL Cholesterol</strong><span>کلسترول خوب</span></div>
-<div class="test"><strong>LDL Cholesterol</strong><span>کلسترول بد</span></div>
-<div class="test"><strong>VLDL</strong><span>لیپوپروتئین با چگالی بسیار کم</span></div>
-<div class="test"><strong>Total Protein</strong><span>پروتئین تام</span></div>
-<div class="test"><strong>Albumin</strong><span>آلبومین</span></div>
-<div class="test"><strong>Total Bilirubin</strong><span>بیلی‌روبین تام</span></div>
-<div class="test"><strong>Direct Bilirubin</strong><span>بیلی‌روبین مستقیم</span></div>
-<div class="test"><strong>AST</strong><span>آنزیم کبدی</span></div>
-<div class="test"><strong>ALT</strong><span>آنزیم کبدی</span></div>
-<div class="test"><strong>ALP</strong><span>آلکالین فسفاتاز</span></div>
-<div class="test"><strong>GGT</strong><span>گاما گلوتامیل ترانسفراز</span></div>
-<div class="test"><strong>LDH</strong><span>لاکتات دهیدروژناز</span></div>
-<div class="test"><strong>CK</strong><span>کراتین کیناز</span></div>
-<div class="test"><strong>CK-MB</strong><span>ایزوآنزیم قلبی</span></div>
-<div class="test"><strong>Amylase</strong><span>آمیلاز</span></div>
-<div class="test"><strong>Lipase</strong><span>لیپاز</span></div>
-<div class="test"><strong>Calcium</strong><span>کلسیم</span></div>
-<div class="test"><strong>Phosphorus</strong><span>فسفر</span></div>
-<div class="test"><strong>Magnesium</strong><span>منیزیم</span></div>
-<div class="test"><strong>Sodium</strong><span>سدیم</span></div>
-<div class="test"><strong>Potassium</strong><span>پتاسیم</span></div>
-<div class="test"><strong>Chloride</strong><span>کلراید</span></div>
+تست‌های ۳۰۰ گانه
+در بخش‌های بعدی
+داخل همین قسمت قرار می‌گیرند.
+
+-->
+
+<div id="testContainer">
 
 </div>
-</section>
 
-<!-- آهن و ویتامین -->
 
-<section class="category">
 
-<h2 class="category-title">🧠 آهن، ویتامین‌ها و مواد معدنی</h2>
-
-<div class="tests">
-
-<div class="test"><strong>Serum Iron</strong><span>آهن سرم</span></div>
-<div class="test"><strong>TIBC</strong><span>ظرفیت اتصال آهن</span></div>
-<div class="test"><strong>Transferrin</strong><span>ترانسفرین</span></div>
-<div class="test"><strong>Ferritin</strong><span>فریتین</span></div>
-<div class="test"><strong>Vitamin B12</strong><span>ویتامین B12</span></div>
-<div class="test"><strong>Folate</strong><span>فولات</span></div>
-<div class="test"><strong>Vitamin D</strong><span>ویتامین D</span></div>
-<div class="test"><strong>Vitamin D3</strong><span>ویتامین D3</span></div>
-<div class="test"><strong>Vitamin A</strong><span>ویتامین A</span></div>
-<div class="test"><strong>Vitamin E</strong><span>ویتامین E</span></div>
-<div class="test"><strong>Zinc</strong><span>روی</span></div>
-<div class="test"><strong>Copper</strong><span>مس</span></div>
-<div class="test"><strong>Calcium</strong><span>کلسیم</span></div>
-<div class="test"><strong>Magnesium</strong><span>منیزیم</span></div>
-<div class="test"><strong>Phosphorus</strong><span>فسفر</span></div>
-
-</div>
-</section>
-
-<!-- هورمون -->
-
-<section class="category">
-
-<h2 class="category-title">⚗️ هورمون‌شناسی و غدد</h2>
-
-<div class="tests">
-
-<div class="test"><strong>TSH</strong><span>هورمون محرک تیروئید</span></div>
-<div class="test"><strong>Free T4</strong><span>تیروکسین آزاد</span></div>
-<div class="test"><strong>Free T3</strong><span>تری‌یودوتیرونین آزاد</span></div>
-<div class="test"><strong>Total T4</strong><span>تیروکسین تام</span></div>
-<div class="test"><strong>Total T3</strong><span>تری‌یودوتیرونین تام</span></div>
-<div class="test"><strong>Anti-TPO</strong><span>آنتی‌بادی تیروئید</span></div>
-<div class="test"><strong>Anti-TG</strong><span>آنتی‌بادی تیروگلوبولین</span></div>
-<div class="test"><strong>FSH</strong><span>هورمون محرک فولیکول</span></div>
-<div class="test"><strong>LH</strong><span>هورمون لوتئینایزینگ</span></div>
-<div class="test"><strong>Prolactin</strong><span>پرولاکتین</span></div>
-<div class="test"><strong>Estradiol</strong><span>استرادیول</span></div>
-<div class="test"><strong>Progesterone</strong><span>پروژسترون</span></div>
-<div class="test"><strong>Testosterone</strong><span>تستوسترون</span></div>
-<div class="test"><strong>Free Testosterone</strong><span>تستوسترون آزاد</span></div>
-<div class="test"><strong>SHBG</strong><span>گلوبولین متصل‌شونده به هورمون جنسی</span></div>
-<div class="test"><strong>DHEA-S</strong><span>هورمون آدرنال</span></div>
-<div class="test"><strong>Cortisol</strong><span>کورتیزول</span></div>
-<div class="test"><strong>ACTH</strong><span>هورمون آدرنوکورتیکوتروپیک</span></div>
-<div class="test"><strong>Insulin</strong><span>انسولین</span></div>
-<div class="test"><strong>C-Peptide</strong><span>سی پپتاید</span></div>
-<div class="test"><strong>PTH</strong><span>هورمون پاراتیروئید</span></div>
-<div class="test"><strong>AMH</strong><span>هورمون ضد مولرین</span></div>
-<div class="test"><strong>hCG</strong><span>هورمون بارداری</span></div>
-<div class="test"><strong>Free β-hCG</strong><span>بتا اچ‌سی‌جی آزاد</span></div>
-
-</div>
-</section>
-
-<!-- تومور مارکر -->
-
-<section class="category">
-
-<h2 class="category-title">🎗️ تومور مارکرها</h2>
-
-<div class="tests">
-
-<div class="test"><strong>AFP</strong><span>آلفا فتوپروتئین</span></div>
-<div class="test"><strong>CEA</strong><span>آنتی‌ژن کارسینوامبریونیک</span></div>
-<div class="test"><strong>CA 125</strong><span>تومور مارکر مرتبط با تخمدان</span></div>
-<div class="test"><strong>CA 15-3</strong><span>تومور مارکر پستان</span></div>
-<div class="test"><strong>CA 19-9</strong><span>تومور مارکر گوارشی</span></div>
-<div class="test"><strong>CA 72-4</strong><span>تومور مارکر گوارشی</span></div>
-<div class="test"><strong>PSA Total</strong><span>آنتی‌ژن اختصاصی پروستات</span></div>
-<div class="test"><strong>Free PSA</strong><span>PSA آزاد</span></div>
-<div class="test"><strong>PSA Ratio</strong><span>نسبت PSA آزاد به تام</span></div>
-<div class="test"><strong>β2-Microglobulin</strong><span>بتا دو میکروگلوبولین</span></div>
-<div class="test"><strong>Chromogranin A</strong><span>کروموگرانین A</span></div>
-<div class="test"><strong>NSE</strong><span>نورون اختصاصی انولاز</span></div>
-
-</div>
-</section>
-
-<!-- ایمونولوژی -->
-
-<section class="category">
-
-<h2 class="category-title">🧬 ایمونولوژی و خودایمنی</h2>
-
-<div class="tests">
-
-<div class="test"><strong>CRP</strong><span>پروتئین واکنشی C</span></div>
-<div class="test"><strong>hs-CRP</strong><span>CRP با حساسیت بالا</span></div>
-<div class="test"><strong>ASO</strong><span>آنتی‌استرپتولیزین O</span></div>
-<div class="test"><strong>RF</strong><span>فاکتور روماتوئید</span></div>
-<div class="test"><strong>ANA</strong><span>آنتی‌بادی ضد هسته</span></div>
-<div class="test"><strong>Anti-dsDNA</strong><span>آنتی‌بادی ضد DNA دو رشته‌ای</span></div>
-<div class="test"><strong>Anti-CCP</strong><span>آنتی‌بادی اختصاصی روماتوئید</span></div>
-<div class="test"><strong>Complement C3</strong><span>کمپلمان C3</span></div>
-<div class="test"><strong>Complement C4</strong><span>کمپلمان C4</span></div>
-<div class="test"><strong>IgG</strong><span>ایمونوگلوبولین G</span></div>
-<div class="test"><strong>IgA</strong><span>ایمونوگلوبولین A</span></div>
-<div class="test"><strong>IgM</strong><span>ایمونوگلوبولین M</span></div>
-<div class="test"><strong>IgE</strong><span>ایمونوگلوبولین E</span></div>
-<div class="test"><strong>Anti-TTG IgA</strong><span>آنتی‌بادی سلیاک</span></div>
-<div class="test"><strong>Anti-TTG IgG</strong><span>آنتی‌بادی سلیاک</span></div>
-
-</div>
-</section>
-
-<!-- عفونی -->
-
-<section class="category">
-
-<h2 class="category-title">🦠 آزمایش‌های عفونی و سرولوژی</h2>
-
-<div class="tests">
-
-<div class="test"><strong>HBsAg</strong><span>آنتی‌ژن هپاتیت B</span></div>
-<div class="test"><strong>Anti-HBs</strong><span>آنتی‌بادی هپاتیت B</span></div>
-<div class="test"><strong>Anti-HBc Total</strong><span>آنتی‌بادی هسته هپاتیت B</span></div>
-<div class="test"><strong>Anti-HBc IgM</strong><span>آنتی‌بادی IgM هپاتیت B</span></div>
-<div class="test"><strong>HBeAg</strong><span>آنتی‌ژن e هپاتیت B</span></div>
-<div class="test"><strong>Anti-HBe</strong><span>آنتی‌بادی e هپاتیت B</span></div>
-<div class="test"><strong>Anti-HCV</strong><span>آنتی‌بادی هپاتیت C</span></div>
-<div class="test"><strong>HIV 1/2</strong><span>آزمایش غربالگری HIV</span></div>
-<div class="test"><strong>VDRL</strong><span>غربالگری سفلیس</span></div>
-<div class="test"><strong>RPR</strong><span>غربالگری سفلیس</span></div>
-<div class="test"><strong>Widal</strong><span>آزمایش تب تیفوئید</span></div>
-<div class="test"><strong>2ME</strong><span>بررسی آنتی‌بادی بروسلا</span></div>
-<div class="test"><strong>Brucella Wright</strong><span>تب مالت</span></div>
-<div class="test"><strong>H. pylori IgG</strong><span>هلیکوباکتر پیلوری</span></div>
-<div class="test"><strong>H. pylori Ag</strong><span>آنتی‌ژن هلیکوباکتر</span></div>
-<div class="test"><strong>CMV IgG</strong><span>سیتومگالوویروس</span></div>
-<div class="test"><strong>CMV IgM</strong><span>سیتومگالوویروس</span></div>
-<div class="test"><strong>Toxoplasma IgG</strong><span>توکسوپلاسما</span></div>
-<div class="test"><strong>Toxoplasma IgM</strong><span>توکسوپلاسما</span></div>
-<div class="test"><strong>Rubella IgG</strong><span>سرخجه</span></div>
-<div class="test"><strong>Rubella IgM</strong><span>سرخجه</span></div>
-
-</div>
-</section>
-
-<!-- انعقادی -->
-
-<section class="category">
-
-<h2 class="category-title">🩸 انعقاد خون</h2>
-
-<div class="tests">
-
-<div class="test"><strong>PT</strong><span>زمان پروترومبین</span></div>
-<div class="test"><strong>INR</strong><span>نسبت نرمال‌شده بین‌المللی</span></div>
-<div class="test"><strong>aPTT</strong><span>زمان ترومبوپلاستین نسبی</span></div>
-<div class="test"><strong>Fibrinogen</strong><span>فیبرینوژن</span></div>
-<div class="test"><strong>D-Dimer</strong><span>دی‌دایمر</span></div>
-<div class="test"><strong>Bleeding Time</strong><span>زمان خونریزی</span></div>
-<div class="test"><strong>Clotting Time</strong><span>زمان انعقاد</span></div>
-
-</div>
-</section>
-
-<!-- ادرار -->
-
-<section class="category">
-
-<h2 class="category-title">🧫 ادرار و مایعات بدن</h2>
-
-<div class="tests">
-
-<div class="test"><strong>Urinalysis</strong><span>آنالیز کامل ادرار</span></div>
-<div class="test"><strong>Urine Protein</strong><span>پروتئین ادرار</span></div>
-<div class="test"><strong>Urine Albumin</strong><span>آلبومین ادرار</span></div>
-<div class="test"><strong>Microalbumin</strong><span>میکروآلبومین ادرار</span></div>
-<div class="test"><strong>UACR</strong><span>نسبت آلبومین به کراتینین ادرار</span></div>
-<div class="test"><strong>Urine Creatinine</strong><span>کراتینین ادرار</span></div>
-<div class="test"><strong>24 Hour Urine Protein</strong><span>پروتئین ادرار ۲۴ ساعته</span></div>
-<div class="test"><strong>Urine Culture</strong><span>کشت ادرار</span></div>
-<div class="test"><strong>Stool Examination</strong><span>بررسی مدفوع</span></div>
-<div class="test"><strong>Stool Occult Blood</strong><span>خون مخفی در مدفوع</span></div>
-<div class="test"><strong>Body Fluid Analysis</strong><span>آنالیز مایعات بدن</span></div>
-
-</div>
-</section>
-
-<!-- میکروب -->
-
-<section class="category">
-
-<h2 class="category-title">🦠 میکروب‌شناسی و کشت</h2>
-
-<div class="tests">
-
-<div class="test"><strong>Urine Culture</strong><span>کشت ادرار</span></div>
-<div class="test"><strong>Blood Culture</strong><span>کشت خون</span></div>
-<div class="test"><strong>Stool Culture</strong><span>کشت مدفوع</span></div>
-<div class="test"><strong>Sputum Culture</strong><span>کشت خلط</span></div>
-<div class="test"><strong>Throat Culture</strong><span>کشت گلو</span></div>
-<div class="test"><strong>Wound Culture</strong><span>کشت زخم</span></div>
-<div class="test"><strong>Vaginal Culture</strong><span>کشت واژینال</span></div>
-<div class="test"><strong>Urethral Culture</strong><span>کشت ترشحات مجرای ادرار</span></div>
-<div class="test"><strong>Antibiogram</strong><span>آزمایش حساسیت آنتی‌بیوتیکی</span></div>
-<div class="test"><strong>Gram Stain</strong><span>رنگ‌آمیزی گرم</span></div>
-<div class="test"><strong>KOH Test</strong><span>بررسی قارچ</span></div>
-
-</div>
-</section>
-
-<!-- PCR -->
-
-<section class="category">
-
-<h2 class="category-title">🧬 آزمایش‌های مولکولی و PCR</h2>
-
-<div class="tests">
-
-<div class="test"><strong>HBV DNA PCR</strong><span>تشخیص DNA هپاتیت B</span></div>
-<div class="test"><strong>HCV RNA PCR</strong><span>تشخیص RNA هپاتیت C</span></div>
-<div class="test"><strong>HIV RNA PCR</strong><span>تشخیص مولکولی HIV</span></div>
-<div class="test"><strong>HPV PCR</strong><span>تشخیص HPV</span></div>
-<div class="test"><strong>TB PCR</strong><span>تشخیص مولکولی سل</span></div>
-<div class="test"><strong>COVID-19 PCR</strong><span>تشخیص مولکولی کرونا</span></div>
-<div class="test"><strong>H. pylori PCR</strong><span>تشخیص مولکولی هلیکوباکتر</span></div>
-
-</div>
-</section>
-
-<!-- آزمایش های زنان و مردان -->
-
-<section class="category">
-
-<h2 class="category-title">👩‍⚕️👨‍⚕️ آزمایش‌های تخصصی زنان و مردان</h2>
-
-<div class="tests">
-
-<div class="test"><strong>Pregnancy Test</strong><span>تست بارداری</span></div>
-<div class="test"><strong>β-hCG</strong><span>تشخیص بارداری</span></div>
-<div class="test"><strong>AMH</strong><span>ذخیره تخمدان</span></div>
-<div class="test"><strong>FSH</strong><span>عملکرد تخمدان</span></div>
-<div class="test"><strong>LH</strong><span>عملکرد هورمونی</span></div>
-<div class="test"><strong>Prolactin</strong><span>پرولاکتین</span></div>
-<div class="test"><strong>Testosterone</strong><span>تستوسترون</span></div>
-<div class="test"><strong>PSA</strong><span>بررسی پروستات</span></div>
-<div class="test"><strong>Free PSA</strong><span>PSA آزاد</span></div>
-
-</div>
-</section>
+<!-- =========================
+     BACK
+========================= -->
 
 <div class="back">
-<a href="index.html">⬅ بازگشت به صفحه اصلی</a>
-</div>
+
+<a href="index.html">
+
+⬅ بازگشت به صفحه اصلی
+
+</a>
 
 </div>
 
-<a href="https://wa.me/93796961814"
+
+</div>
+
+
+
+<!-- =========================
+     WHATSAPP
+========================= -->
+
+<a
+href="https://wa.me/93796961814"
 class="whatsapp-button"
 target="_blank">
+
 💬 تماس در واتساپ
+
 </a>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
 <strong>
-آزمایشگاه تخصصی <span>آلفا</span>
+
+آزمایشگاه تخصصی
+<span>
+آلفا
+</span>
+
 </strong>
 
-<p>Alpha Specialized Laboratory</p>
+<p>
+Alpha Specialized Laboratory
+</p>
 
 <small>
 © 2026 تمامی حقوق محفوظ است.
@@ -674,66 +908,106 @@ target="_blank">
 
 </footer>
 
+
+
 <script>
+
+/* تعداد تست‌ها و دسته‌ها
+   بعد از اضافه شدن تست‌ها
+   به صورت خودکار محاسبه می‌شود */
+
+const totalTests =
+document.querySelectorAll(".test").length;
+
+const totalCategories =
+document.querySelectorAll(".category").length;
+
+document.getElementById("totalTests")
+.innerText = totalTests;
+
+document.getElementById("totalCategories")
+.innerText = totalCategories;
+
+
+/* جستجوی آزمایش‌ها */
 
 const searchInput =
 document.getElementById("searchInput");
 
-const categories =
-document.querySelectorAll(".category");
-
 const noResult =
 document.getElementById("noResult");
 
-searchInput.addEventListener("input",function(){
+
+searchInput.addEventListener(
+"input",
+function(){
 
 const search =
-this.value.trim().toLowerCase();
+this.value
+.trim()
+.toLowerCase();
 
 let found = false;
 
-categories.forEach(category => {
+
+document
+.querySelectorAll(".category")
+.forEach(category => {
 
 let categoryFound = false;
 
-const tests =
-category.querySelectorAll(".test");
 
-tests.forEach(test => {
+category
+.querySelectorAll(".test")
+.forEach(test => {
 
 const text =
-test.innerText.toLowerCase();
+test.innerText
+.toLowerCase();
 
-if(text.includes(search)){
 
-test.style.display = "";
+if(
+text.includes(search)
+){
 
-categoryFound = true;
-found = true;
+test.style.display =
+"";
+
+categoryFound =
+true;
+
+found =
+true;
 
 }else{
 
-test.style.display = "none";
+test.style.display =
+"none";
 
 }
 
 });
 
+
 if(search === ""){
 
-category.style.display = "";
+category.style.display =
+"";
 
 }else{
 
 category.style.display =
-categoryFound ? "" : "none";
+categoryFound
+? ""
+: "none";
 
 }
 
 });
 
+
 noResult.style.display =
-(search !== "" && !found)
+search !== "" && !found
 ? "block"
 : "none";
 
@@ -741,5 +1015,7 @@ noResult.style.display =
 
 </script>
 
+
 </body>
+
 </html>
