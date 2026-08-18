@@ -606,7 +606,28 @@ footer span{
   }
 
 }
+.search-box {
+    width: 100%;
+    max-width: 600px;
+    margin: 25px auto;
+    text-align: center;
+}
 
+.search-box input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #0b7fab;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    text-align: right;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.search-box input:focus {
+    border-color: #075f82;
+    box-shadow: 0 0 10px rgba(11,127,171,0.25);
+}
 </style>
 
 </head>
@@ -1020,7 +1041,34 @@ search !== "" && !found
 
 
 <!-- ==================== بیوشیمی ==================== -->
+<!-- جستجوی آزمایش‌ها -->
 
+<div class="search-box">
+    <input
+        type="text"
+        id="testSearch"
+        placeholder="🔍 جستجوی نام آزمایش..."
+        onkeyup="searchTests()"
+    >
+</div>
+
+<script>
+function searchTests() {
+    const input = document.getElementById("testSearch");
+    const filter = input.value.toLowerCase();
+    const tests = document.querySelectorAll(".test");
+
+    tests.forEach(function(test) {
+        const text = test.textContent.toLowerCase();
+
+        if (text.includes(filter)) {
+            test.style.display = "";
+        } else {
+            test.style.display = "none";
+        }
+    });
+}
+</script>
 <section class="category">
 
 <h2 class="category-title">🧪 بیوشیمی و متابولیسم</h2>
