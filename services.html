@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>خدمات آزمایشگاهی | آزمایشگاه تخصصی آلفا</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>
+    فهرست آزمایش‌ها | آزمایشگاه تخصصی آلفا
+  </title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -30,17 +37,17 @@
       padding: 10px 7%;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       box-shadow: 0 3px 15px rgba(0,0,0,.15);
     }
 
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       max-width: 1200px;
       margin: auto;
       min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .site-logo {
@@ -53,7 +60,7 @@
     nav ul {
       list-style: none;
       display: flex;
-      gap: 25px;
+      gap: 22px;
     }
 
     nav a {
@@ -67,7 +74,13 @@
     }
 
     .hero {
-      background: linear-gradient(135deg,#063b57,#087d99);
+      background:
+        linear-gradient(
+          135deg,
+          #063b57,
+          #087d99
+        );
+
       color: white;
       text-align: center;
       padding: 80px 7%;
@@ -79,15 +92,32 @@
     }
 
     .hero p {
-      max-width: 750px;
+      max-width: 800px;
       margin: auto;
       color: #dff7fa;
       font-size: 17px;
     }
 
+    .intro {
+      text-align: center;
+      max-width: 850px;
+      margin: 50px auto 20px;
+      padding: 0 7%;
+    }
+
+    .intro h2 {
+      color: #063b57;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      color: #687e89;
+    }
+
     .services {
       max-width: 1200px;
-      margin: 60px auto;
+      margin: 40px auto 70px;
       padding: 0 7%;
       display: grid;
       grid-template-columns: repeat(2,1fr);
@@ -96,55 +126,61 @@
 
     .card {
       background: white;
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 30px;
-      border: 1px solid #e0edf1;
+      border: 1px solid #dfedf1;
       box-shadow: 0 10px 30px rgba(4,55,75,.07);
       transition: .3s;
     }
 
     .card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       box-shadow: 0 15px 35px rgba(4,55,75,.12);
     }
 
     .icon {
       font-size: 45px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .card h2 {
       color: #063b57;
-      margin-bottom: 15px;
       font-size: 25px;
+      margin-bottom: 10px;
     }
 
-    .card p {
-      color: #637983;
-      margin-bottom: 12px;
+    .description {
+      color: #687e89;
+      font-size: 14px;
+      margin-bottom: 18px;
     }
 
-    .tests {
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid #e3eef1;
+    .test-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .tests span {
-      display: inline-block;
+    .test {
       background: #eef9fb;
       color: #075675;
+      border: 1px solid #d7edf1;
       padding: 6px 12px;
-      margin: 4px;
       border-radius: 20px;
       font-size: 13px;
     }
 
     .home-service {
       max-width: 1100px;
-      margin: 20px auto 70px;
-      padding: 45px;
-      background: linear-gradient(135deg,#063b57,#087d99);
+      margin: 0 auto 60px;
+      padding: 45px 30px;
+      background:
+        linear-gradient(
+          135deg,
+          #063b57,
+          #087d99
+        );
+
       color: white;
       border-radius: 25px;
       text-align: center;
@@ -201,7 +237,11 @@
       font-weight: bold;
       font-size: 15px;
       box-shadow: 0 5px 20px rgba(0,0,0,.20);
-      z-index: 999;
+      z-index: 9999;
+    }
+
+    .whatsapp-button:hover {
+      transform: translateY(-3px);
     }
 
     @media(max-width:800px) {
@@ -227,306 +267,561 @@
       }
 
       .home-service {
-        margin: 20px 5% 50px;
-        padding: 30px 20px;
+        margin: 0 5% 50px;
       }
+
     }
+
   </style>
+
 </head>
 
 <body>
 
+
 <header>
+
   <nav>
 
     <a href="index.html">
-      <img src="لوگو.jfif"
-           alt="لوگوی آزمایشگاه تخصصی آلفا"
-           class="site-logo">
+
+      <img
+        src="لوگو.jfif"
+        alt="لوگوی آزمایشگاه تخصصی آلفا"
+        class="site-logo">
+
     </a>
 
     <ul>
-      <li><a href="index.html">خانه</a></li>
-      <li><a href="services.html">خدمات</a></li>
-      <li><a href="index.html#home-sampling">نمونه‌گیری در منزل</a></li>
-      <li><a href="index.html#about">درباره ما</a></li>
-      <li><a href="index.html#contact">تماس با ما</a></li>
+
+      <li>
+        <a href="index.html">
+          خانه
+        </a>
+      </li>
+
+      <li>
+        <a href="services.html">
+          خدمات
+        </a>
+      </li>
+
+      <li>
+        <a href="index.html#home-sampling">
+          نمونه‌گیری در منزل
+        </a>
+      </li>
+
+      <li>
+        <a href="index.html#about">
+          درباره ما
+        </a>
+      </li>
+
+      <li>
+        <a href="index.html#contact">
+          تماس با ما
+        </a>
+      </li>
+
     </ul>
 
   </nav>
+
 </header>
 
 
 <section class="hero">
 
-  <h1>خدمات آزمایشگاهی</h1>
+  <h1>
+    فهرست آزمایش‌ها
+  </h1>
 
   <p>
-    ارائه خدمات آزمایشگاهی دقیق، حرفه‌ای و قابل اعتماد
-    در آزمایشگاه تخصصی آلفا
+    آزمایشگاه تخصصی آلفا با ارائه مجموعه‌ای از
+    آزمایش‌های روتین و تخصصی، در مسیر تشخیص دقیق‌تر
+    و مراقبت بهتر از سلامت شما همراه شماست.
   </p>
 
 </section>
+
+
+<div class="intro">
+
+  <h2>
+    خدمات و آزمایش‌های آزمایشگاه آلفا
+  </h2>
+
+  <p>
+    آزمایش‌ها بر اساس بخش‌های تخصصی آزمایشگاه
+    دسته‌بندی شده‌اند.
+  </p>
+
+</div>
 
 
 <section class="services">
 
 
-  <!-- هماتولوژی -->
+<!-- ========================= -->
+<!-- هماتولوژی -->
+<!-- ========================= -->
 
-  <div class="card">
+<div class="card">
 
-    <div class="icon">🩸</div>
+  <div class="icon">
+    🩸
+  </div>
 
-    <h2>هماتولوژی</h2>
+  <h2>
+    هماتولوژی
+  </h2>
 
-    <p>
-      بررسی سلول‌های خونی و شاخص‌های مهم خونی
-      برای کمک به تشخیص کم‌خونی، عفونت‌ها و اختلالات خونی.
-    </p>
+  <p class="description">
+    بررسی سلول‌های خونی، کم‌خونی، عفونت‌ها،
+    اختلالات انعقادی و بیماری‌های خونی.
+  </p>
 
-    <div class="tests">
+  <div class="test-list">
 
-      <span>CBC</span>
-      <span>ESR</span>
-      <span>PT / INR</span>
-      <span>aPTT</span>
-      <span>Blood Group</span>
-      <span>Reticulocyte</span>
-      <span>Hb Electrophoresis</span>
-
-    </div>
+    <span class="test">CBC</span>
+    <span class="test">ESR</span>
+    <span class="test">Reticulocyte Count</span>
+    <span class="test">Peripheral Blood Smear</span>
+    <span class="test">Platelet Count</span>
+    <span class="test">Hb</span>
+    <span class="test">Hct</span>
+    <span class="test">RBC Indices</span>
+    <span class="test">PT</span>
+    <span class="test">INR</span>
+    <span class="test">aPTT</span>
+    <span class="test">Blood Group</span>
+    <span class="test">Rh</span>
+    <span class="test">Hb Electrophoresis</span>
 
   </div>
 
+</div>
 
-  <!-- بیوشیمی -->
 
-  <div class="card">
+<!-- ========================= -->
+<!-- بیوشیمی -->
+<!-- ========================= -->
 
-    <div class="icon">🧪</div>
+<div class="card">
 
-    <h2>بیوشیمی</h2>
+  <div class="icon">
+    🧪
+  </div>
 
-    <p>
-      بررسی عملکرد اندام‌ها و پارامترهای مهم
-      متابولیک و بیوشیمیایی بدن.
-    </p>
+  <h2>
+    بیوشیمی
+  </h2>
 
-    <div class="tests">
+  <p class="description">
+    بررسی قند خون، عملکرد کلیه، کبد، چربی‌ها،
+    الکترولیت‌ها و سایر شاخص‌های متابولیک.
+  </p>
 
-      <span>Glucose</span>
-      <span>HbA1c</span>
-      <span>Urea</span>
-      <span>Creatinine</span>
-      <span>AST</span>
-      <span>ALT</span>
-      <span>ALP</span>
-      <span>Bilirubin</span>
-      <span>Lipid Profile</span>
-      <span>Electrolytes</span>
+  <div class="test-list">
 
-    </div>
+    <span class="test">Glucose</span>
+    <span class="test">FBS</span>
+    <span class="test">Random Blood Sugar</span>
+    <span class="test">HbA1c</span>
+    <span class="test">Urea</span>
+    <span class="test">Creatinine</span>
+    <span class="test">Uric Acid</span>
+    <span class="test">AST (SGOT)</span>
+    <span class="test">ALT (SGPT)</span>
+    <span class="test">ALP</span>
+    <span class="test">GGT</span>
+    <span class="test">Total Bilirubin</span>
+    <span class="test">Direct Bilirubin</span>
+    <span class="test">Total Protein</span>
+    <span class="test">Albumin</span>
+    <span class="test">Cholesterol</span>
+    <span class="test">Triglycerides</span>
+    <span class="test">HDL</span>
+    <span class="test">LDL</span>
+    <span class="test">Calcium</span>
+    <span class="test">Phosphorus</span>
+    <span class="test">Magnesium</span>
+    <span class="test">Sodium</span>
+    <span class="test">Potassium</span>
 
   </div>
 
+</div>
 
-  <!-- میکروب شناسی -->
 
-  <div class="card">
+<!-- ========================= -->
+<!-- میکروب شناسی -->
+<!-- ========================= -->
 
-    <div class="icon">🦠</div>
+<div class="card">
 
-    <h2>میکروب‌شناسی</h2>
+  <div class="icon">
+    🦠
+  </div>
 
-    <p>
-      کشت و شناسایی میکروارگانیسم‌ها و بررسی
-      حساسیت آنتی‌بیوتیکی.
-    </p>
+  <h2>
+    میکروب‌شناسی
+  </h2>
 
-    <div class="tests">
+  <p class="description">
+    کشت، شناسایی میکروارگانیسم‌ها و بررسی
+    حساسیت آنتی‌بیوتیکی.
+  </p>
 
-      <span>Urine Culture</span>
-      <span>Stool Culture</span>
-      <span>Wound Culture</span>
-      <span>Sputum Culture</span>
-      <span>Throat Culture</span>
-      <span>Antibiogram</span>
+  <div class="test-list">
 
-    </div>
+    <span class="test">Urine Culture</span>
+    <span class="test">Stool Culture</span>
+    <span class="test">Sputum Culture</span>
+    <span class="test">Wound Culture</span>
+    <span class="test">Throat Culture</span>
+    <span class="test">Blood Culture</span>
+    <span class="test">Vaginal Culture</span>
+    <span class="test">Semen Culture</span>
+    <span class="test">Bacterial Identification</span>
+    <span class="test">Antibiogram</span>
 
   </div>
 
+</div>
 
-  <!-- ایمونولوژی -->
 
-  <div class="card">
+<!-- ========================= -->
+<!-- ایمونولوژی و سرولوژی -->
+<!-- ========================= -->
 
-    <div class="icon">🧬</div>
+<div class="card">
 
-    <h2>ایمونولوژی و سرولوژی</h2>
+  <div class="icon">
+    🧬
+  </div>
 
-    <p>
-      بررسی سیستم ایمنی، آنتی‌بادی‌ها و آزمایش‌های
-      تخصصی سرولوژیک.
-    </p>
+  <h2>
+    ایمونولوژی و سرولوژی
+  </h2>
 
-    <div class="tests">
+  <p class="description">
+    بررسی آنتی‌بادی‌ها، بیماری‌های التهابی،
+    عفونی و اختلالات سیستم ایمنی.
+  </p>
 
-      <span>CRP</span>
-      <span>RF</span>
-      <span>ASO</span>
-      <span>ANA</span>
-      <span>Anti-TPO</span>
-      <span>Anti-TTG</span>
-      <span>HBsAg</span>
-      <span>HBeAg</span>
+  <div class="test-list">
 
-    </div>
+    <span class="test">CRP</span>
+    <span class="test">RF</span>
+    <span class="test">ASO</span>
+    <span class="test">ANA</span>
+    <span class="test">Anti-TPO</span>
+    <span class="test">Anti-TTG</span>
+    <span class="test">HBsAg</span>
+    <span class="test">Anti-HBs</span>
+    <span class="test">HBeAg</span>
+    <span class="test">Anti-HCV</span>
+    <span class="test">HIV Screening</span>
+    <span class="test">Widal Test</span>
+    <span class="test">2ME</span>
+    <span class="test">Coombs Direct</span>
+    <span class="test">Coombs Indirect</span>
 
   </div>
 
+</div>
 
-  <!-- هورمون -->
 
-  <div class="card">
+<!-- ========================= -->
+<!-- هورمون شناسی -->
+<!-- ========================= -->
 
-    <div class="icon">⚗️</div>
+<div class="card">
 
-    <h2>هورمون‌شناسی</h2>
+  <div class="icon">
+    ⚗️
+  </div>
 
-    <p>
-      بررسی هورمون‌های تیروئیدی، جنسی و هورمون‌های
-      مرتبط با عملکرد غدد.
-    </p>
+  <h2>
+    هورمون‌شناسی
+  </h2>
 
-    <div class="tests">
+  <p class="description">
+    بررسی عملکرد تیروئید، غدد، هورمون‌های جنسی
+    و سایر هورمون‌های مهم بدن.
+  </p>
 
-      <span>TSH</span>
-      <span>FT4</span>
-      <span>FT3</span>
-      <span>Prolactin</span>
-      <span>Testosterone</span>
-      <span>FSH</span>
-      <span>LH</span>
-      <span>Cortisol</span>
-      <span>PTH</span>
+  <div class="test-list">
 
-    </div>
+    <span class="test">TSH</span>
+    <span class="test">Free T4</span>
+    <span class="test">Free T3</span>
+    <span class="test">T4</span>
+    <span class="test">T3</span>
+    <span class="test">Prolactin</span>
+    <span class="test">Testosterone</span>
+    <span class="test">Free Testosterone</span>
+    <span class="test">FSH</span>
+    <span class="test">LH</span>
+    <span class="test">Estradiol</span>
+    <span class="test">Progesterone</span>
+    <span class="test">Cortisol</span>
+    <span class="test">PTH</span>
+    <span class="test">SHBG</span>
 
   </div>
 
+</div>
 
-  <!-- ادرار -->
 
-  <div class="card">
+<!-- ========================= -->
+<!-- آنالیز ادرار -->
+<!-- ========================= -->
 
-    <div class="icon">🔬</div>
+<div class="card">
 
-    <h2>آنالیز ادرار و مایعات بدن</h2>
+  <div class="icon">
+    🔬
+  </div>
 
-    <p>
-      بررسی فیزیکی، شیمیایی و میکروسکوپی ادرار
-      و سایر مایعات بدن.
-    </p>
+  <h2>
+    آنالیز ادرار و مایعات بدن
+  </h2>
 
-    <div class="tests">
+  <p class="description">
+    بررسی فیزیکی، شیمیایی و میکروسکوپی ادرار
+    و بررسی پروتئین و آلبومین ادرار.
+  </p>
 
-      <span>Urinalysis</span>
-      <span>Urine Protein</span>
-      <span>Urine Albumin</span>
-      <span>UACR</span>
-      <span>Urine Creatinine</span>
-      <span>Urine Sediment</span>
+  <div class="test-list">
 
-    </div>
+    <span class="test">Urinalysis</span>
+    <span class="test">Urine Sediment</span>
+    <span class="test">Urine Protein</span>
+    <span class="test">Urine Albumin</span>
+    <span class="test">Urine Creatinine</span>
+    <span class="test">UACR</span>
+    <span class="test">24 Hour Urine Protein</span>
+    <span class="test">Pregnancy Test</span>
 
   </div>
 
+</div>
 
-  <!-- تست های تخصصی -->
 
-  <div class="card">
+<!-- ========================= -->
+<!-- آزمایش اسپرم -->
+<!-- ========================= -->
 
-    <div class="icon">🧫</div>
+<div class="card">
 
-    <h2>آزمایش‌های تخصصی</h2>
+  <div class="icon">
+    🧫
+  </div>
 
-    <p>
-      ارائه طیف متنوعی از آزمایش‌های تخصصی
-      برای کمک به بررسی دقیق‌تر وضعیت سلامت.
-    </p>
+  <h2>
+    آنالیز اسپرم
+  </h2>
 
-    <div class="tests">
+  <p class="description">
+    بررسی پارامترهای اصلی مایع منی و ارزیابی
+    وضعیت اسپرم.
+  </p>
 
-      <span>Ferritin</span>
-      <span>Iron</span>
-      <span>TIBC</span>
-      <span>Vitamin D</span>
-      <span>Vitamin B12</span>
-      <span>Folate</span>
-      <span>CA-125</span>
-      <span>CA 19-9</span>
-      <span>CEA</span>
+  <div class="test-list">
 
-    </div>
+    <span class="test">Semen Analysis</span>
+    <span class="test">Sperm Count</span>
+    <span class="test">Sperm Motility</span>
+    <span class="test">Sperm Morphology</span>
+    <span class="test">Vitality</span>
+    <span class="test">MAR Test</span>
+    <span class="test">Semen Culture</span>
 
   </div>
 
+</div>
 
-  <!-- نمونه گیری -->
 
-  <div class="card">
+<!-- ========================= -->
+<!-- آزمایش های آهن -->
+<!-- ========================= -->
 
-    <div class="icon">🏠</div>
+<div class="card">
 
-    <h2>نمونه‌گیری در منزل</h2>
+  <div class="icon">
+    🩸
+  </div>
 
-    <p>
-      امکان هماهنگی نمونه‌گیری در منزل برای افرادی
-      که امکان مراجعه مستقیم به آزمایشگاه را ندارند.
-    </p>
+  <h2>
+    بررسی آهن و کم‌خونی
+  </h2>
 
-    <div class="tests">
+  <p class="description">
+    بررسی وضعیت آهن بدن و کمک به ارزیابی
+    انواع کم‌خونی.
+  </p>
 
-      <span>نمونه خون</span>
-      <span>نمونه ادرار</span>
-      <span>نمونه‌های آزمایشگاهی</span>
+  <div class="test-list">
 
-    </div>
+    <span class="test">Serum Iron</span>
+    <span class="test">Ferritin</span>
+    <span class="test">TIBC</span>
+    <span class="test">Transferrin</span>
+    <span class="test">Vitamin B12</span>
+    <span class="test">Folate</span>
 
   </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- ویتامین ها -->
+<!-- ========================= -->
+
+<div class="card">
+
+  <div class="icon">
+    💊
+  </div>
+
+  <h2>
+    ویتامین‌ها و مواد معدنی
+  </h2>
+
+  <p class="description">
+    بررسی برخی ویتامین‌ها و مواد معدنی مهم
+    مورد نیاز بدن.
+  </p>
+
+  <div class="test-list">
+
+    <span class="test">Vitamin D</span>
+    <span class="test">Vitamin B12</span>
+    <span class="test">Folate</span>
+    <span class="test">Calcium</span>
+    <span class="test">Phosphorus</span>
+    <span class="test">Magnesium</span>
+    <span class="test">Iron</span>
+
+  </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- تومورمارکرها -->
+<!-- ========================= -->
+
+<div class="card">
+
+  <div class="icon">
+    🎯
+  </div>
+
+  <h2>
+    تومورمارکرها
+  </h2>
+
+  <p class="description">
+    انجام برخی آزمایش‌های نشانگر تومور
+    بر اساس درخواست پزشک.
+  </p>
+
+  <div class="test-list">
+
+    <span class="test">AFP</span>
+    <span class="test">CEA</span>
+    <span class="test">CA 19-9</span>
+    <span class="test">CA 125</span>
+    <span class="test">PSA</span>
+    <span class="test">CA 15-3</span>
+
+  </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- سایر آزمایش ها -->
+<!-- ========================= -->
+
+<div class="card">
+
+  <div class="icon">
+    🔎
+  </div>
+
+  <h2>
+    آزمایش‌های تخصصی و سایر خدمات
+  </h2>
+
+  <p class="description">
+    سایر آزمایش‌های روتین و تخصصی بر اساس
+    امکانات آزمایشگاه و درخواست پزشک.
+  </p>
+
+  <div class="test-list">
+
+    <span class="test">D-Dimer</span>
+    <span class="test">HbA1c</span>
+    <span class="test">eGFR</span>
+    <span class="test">UACR</span>
+    <span class="test">PTH</span>
+    <span class="test">VMA</span>
+    <span class="test">BCR-ABL</span>
+    <span class="test">TB-IGRA</span>
+
+  </div>
+
+</div>
+
 
 </section>
 
 
-<div class="home-service">
+<section class="home-service">
 
-  <h2>🏠 نمونه‌گیری در منزل</h2>
+  <h2>
+    🏠 نمونه‌گیری در منزل
+  </h2>
 
   <p>
-    برای هماهنگی نمونه‌گیری در منزل با آزمایشگاه آلفا تماس بگیرید.
+    برای هماهنگی نمونه‌گیری در منزل با آزمایشگاه آلفا
+    تماس بگیرید.
   </p>
 
-  <a href="tel:0796961814" class="btn primary">
+  <a
+    href="tel:0796961814"
+    class="btn primary">
+
     📞 تماس برای هماهنگی
+
   </a>
 
-</div>
+</section>
 
 
 <div class="back">
 
-  <a href="index.html" class="btn primary">
+  <a
+    href="index.html"
+    class="btn primary">
+
     ← بازگشت به صفحه اصلی
+
   </a>
 
 </div>
 
 
-<a href="https://wa.me/93796961814"
-   class="whatsapp-button"
-   target="_blank">
+<a
+  href="https://wa.me/93796961814"
+  class="whatsapp-button"
+  target="_blank">
 
   💬 تماس در واتساپ
 
@@ -549,5 +844,7 @@
 
 </footer>
 
+
 </body>
+
 </html>
