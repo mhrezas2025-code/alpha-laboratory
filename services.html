@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>آزمایش‌های تخصصی | آزمایشگاه تخصصی آلفا</title>
+<title>آزمایش‌های تخصصی | آزمایشگاه آلفا</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -20,15 +19,15 @@ html{
 
 body{
   font-family:Tahoma,Arial,sans-serif;
-  background:#f5fbfd;
+  background:#f4fafc;
   color:#123247;
-  line-height:1.8;
+  line-height:1.9;
 }
 
 header{
   background:#063b57;
   color:white;
-  padding:10px 7%;
+  padding:12px 7%;
   position:sticky;
   top:0;
   z-index:1000;
@@ -38,16 +37,20 @@ header{
 nav{
   max-width:1200px;
   margin:auto;
-  min-height:90px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:25px;
+  min-height:80px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
 }
 
 .site-logo{
-  width:90px;
-  height:90px;
+  width:80px;
+  height:80px;
   object-fit:contain;
   border-radius:10px;
 }
@@ -55,7 +58,7 @@ nav{
 nav ul{
   list-style:none;
   display:flex;
-  gap:25px;
+  gap:22px;
 }
 
 nav a{
@@ -80,180 +83,128 @@ nav a:hover{
   margin-bottom:15px;
 }
 
+.hero h1 span{
+  color:#52e2e2;
+}
+
 .hero p{
-  max-width:800px;
+  max-width:850px;
   margin:auto;
-  color:#e4f7fa;
+  color:#e3f6f8;
   font-size:17px;
 }
 
-.search-area{
-  max-width:1100px;
-  margin:-35px auto 40px;
-  padding:0 20px;
-  position:relative;
-}
-
 .search-box{
-  background:white;
-  padding:25px;
-  border-radius:20px;
-  box-shadow:0 10px 35px rgba(0,0,0,.12);
+  max-width:850px;
+  margin:-30px auto 40px;
+  position:relative;
+  z-index:5;
 }
 
-.search-box label{
-  display:block;
-  font-weight:bold;
-  color:#063b57;
-  margin-bottom:10px;
-}
-
-#searchInput{
+.search-box input{
   width:100%;
-  padding:17px 20px;
-  border:2px solid #dcecf0;
-  border-radius:14px;
-  font-family:Tahoma;
+  padding:18px 25px;
+  border:none;
+  border-radius:18px;
   font-size:16px;
+  font-family:Tahoma;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
   outline:none;
 }
 
-#searchInput:focus{
-  border-color:#32cbd0;
+.search-box input:focus{
+  box-shadow:0 10px 30px rgba(0,100,130,.25);
 }
 
-.counter{
+.container{
+  width:90%;
+  max-width:1250px;
+  margin:auto;
+  padding-bottom:80px;
+}
+
+.intro{
   text-align:center;
-  margin-top:15px;
+  margin-bottom:40px;
+}
+
+.intro h2{
+  color:#063b57;
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.intro p{
   color:#687e89;
 }
 
-.filters{
-  max-width:1100px;
-  margin:0 auto 35px;
-  padding:0 20px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-.filter-btn{
-  border:none;
-  background:white;
-  color:#075675;
-  padding:10px 17px;
-  border-radius:25px;
-  cursor:pointer;
-  font-family:Tahoma;
-  font-weight:bold;
-  border:1px solid #dcecf0;
-  transition:.3s;
-}
-
-.filter-btn:hover,
-.filter-btn.active{
-  background:#063b57;
-  color:white;
-}
-
-.tests-section{
-  max-width:1200px;
-  margin:auto;
-  padding:20px 20px 80px;
-}
-
 .category{
-  margin-bottom:55px;
+  margin-bottom:50px;
 }
 
 .category-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:#063b57;
-  border-bottom:2px solid #dcecf0;
-  padding-bottom:12px;
+  background:linear-gradient(135deg,#063b57,#087d99);
+  color:white;
+  padding:18px 25px;
+  border-radius:16px;
   margin-bottom:20px;
+  font-size:23px;
 }
 
-.category-title span{
-  font-size:32px;
-}
-
-.category-title h2{
-  font-size:27px;
-}
-
-.tests-grid{
+.tests{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:15px;
 }
 
-.test-card{
+.test{
   background:white;
-  padding:17px 20px;
+  border:1px solid #dfedf1;
   border-radius:14px;
-  border:1px solid #e0edf1;
-  box-shadow:0 5px 18px rgba(4,55,75,.05);
+  padding:17px;
+  box-shadow:0 5px 18px rgba(4,55,75,.06);
   transition:.25s;
 }
 
-.test-card:hover{
+.test:hover{
   transform:translateY(-4px);
-  box-shadow:0 10px 25px rgba(4,55,75,.10);
+  box-shadow:0 10px 25px rgba(4,55,75,.12);
 }
 
-.test-fa{
-  font-weight:bold;
+.test strong{
   color:#075675;
+  display:block;
+  margin-bottom:3px;
 }
 
-.test-en{
-  display:block;
-  color:#7a8d96;
+.test span{
+  color:#7a8b92;
   font-size:12px;
-  direction:ltr;
-  text-align:right;
-  margin-top:3px;
 }
 
 .no-result{
   display:none;
   text-align:center;
   background:white;
-  padding:40px;
-  border-radius:18px;
+  padding:30px;
+  border-radius:15px;
   color:#687e89;
-  margin-bottom:50px;
+  margin:30px 0;
 }
 
-.contact{
-  background:#063b57;
-  color:white;
+.back{
   text-align:center;
-  padding:60px 7%;
+  margin-top:50px;
 }
 
-.contact h2{
-  font-size:32px;
-  margin-bottom:15px;
-}
-
-.contact p{
-  color:#d8f2f5;
-  margin-bottom:20px;
-}
-
-.btn{
+.back a{
   display:inline-block;
-  padding:13px 25px;
   background:#32cbd0;
   color:#063b57;
   text-decoration:none;
-  border-radius:12px;
   font-weight:bold;
+  padding:13px 28px;
+  border-radius:12px;
 }
 
 footer{
@@ -267,54 +218,60 @@ footer span{
   color:#32d1d8;
 }
 
-@media(max-width:900px){
-
-  .tests-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
+.whatsapp-button{
+  position:fixed;
+  bottom:25px;
+  left:25px;
+  background:#25D366;
+  color:white;
+  padding:13px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  z-index:999;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
 }
 
-@media(max-width:650px){
-
-  nav{
-    min-height:70px;
+@media(max-width:1000px){
+  .tests{
+    grid-template-columns:repeat(3,1fr);
   }
+}
 
-  .site-logo{
-    width:70px;
-    height:70px;
-  }
-
+@media(max-width:700px){
   nav ul{
     display:none;
   }
 
-  .tests-grid{
-    grid-template-columns:1fr;
+  .tests{
+    grid-template-columns:repeat(2,1fr);
   }
 
   .hero{
     padding:55px 5%;
   }
-
-  .hero h1{
-    font-size:35px;
-  }
-
 }
 
+@media(max-width:450px){
+  .tests{
+    grid-template-columns:1fr;
+  }
+
+  .site-logo{
+    width:65px;
+    height:65px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-
 <nav>
 
-<div>
-<img src="لوگو.jfif" alt="لوگوی آزمایشگاه تخصصی آلفا" class="site-logo">
+<div class="logo">
+<img src="لوگو.jfif" alt="لوگوی آزمایشگاه آلفا" class="site-logo">
 </div>
 
 <ul>
@@ -326,122 +283,382 @@ footer span{
 </ul>
 
 </nav>
-
 </header>
-
 
 <section class="hero">
 
-<h1>آزمایش‌های تخصصی و قابل ارائه</h1>
+<h1>
+آزمایش‌های <span>تخصصی و قابل ارائه</span>
+</h1>
 
 <p>
-فهرست جامع آزمایش‌های روتین و تخصصی آزمایشگاه تخصصی آلفا
+آزمایشگاه تخصصی آلفا مجموعه‌ای گسترده از آزمایش‌های
+روتین، تخصصی و تشخیصی را ارائه می‌کند.
 </p>
 
 </section>
-
-
-<div class="search-area">
 
 <div class="search-box">
-
-<label for="searchInput">
-🔎 جستجوی نام آزمایش
-</label>
-
 <input
-type="search"
+type="text"
 id="searchInput"
-placeholder="نام آزمایش را وارد کنید؛ مثال: CBC، Ferritin، TSH..."
-aria-label="جستجوی آزمایش"
->
-
-<div class="counter">
-تعداد آزمایش‌های نمایش داده شده:
-<strong id="resultCount">0</strong>
+placeholder="🔍 جستجوی نام آزمایش...">
 </div>
 
-</div>
+<div class="container">
 
-</div>
+<div class="intro">
 
-
-<div class="filters">
-
-<button class="filter-btn active" data-category="all">
-همه
-</button>
-
-<button class="filter-btn" data-category="hematology">
-🩸 هماتولوژی
-</button>
-
-<button class="filter-btn" data-category="chemistry">
-🧪 بیوشیمی
-</button>
-
-<button class="filter-btn" data-category="hormone">
-⚗️ هورمون
-</button>
-
-<button class="filter-btn" data-category="immunology">
-🧬 ایمونولوژی
-</button>
-
-<button class="filter-btn" data-category="microbiology">
-🦠 میکروب‌شناسی
-</button>
-
-<button class="filter-btn" data-category="tumor">
-🎗️ تومورمارکر
-</button>
-
-<button class="filter-btn" data-category="urine">
-🧫 ادرار و مایعات
-</button>
-
-<button class="filter-btn" data-category="coagulation">
-🩸 انعقادی
-</button>
-
-<button class="filter-btn" data-category="vitamin">
-💊 ویتامین و مواد معدنی
-</button>
-
-</div>
-
-
-<section class="tests-section">
-
-<div id="testsContainer"></div>
-
-<div class="no-result" id="noResult">
-
-<h2>آزمایش مورد نظر پیدا نشد 🔍</h2>
+<h2>آزمایش‌های قابل انجام در آزمایشگاه تخصصی آلفا</h2>
 
 <p>
-لطفاً نام آزمایش را به شکل دیگری جستجو کنید.
+برای مشاهده آزمایش‌ها، دسته مورد نظر را انتخاب کنید
+یا نام آزمایش را در قسمت جستجو وارد نمایید.
 </p>
 
 </div>
 
+<div id="noResult" class="no-result">
+آزمایش مورد نظر پیدا نشد.
+</div>
+
+<!-- هماتولوژی -->
+
+<section class="category">
+
+<h2 class="category-title">🩸 هماتولوژی</h2>
+
+<div class="tests">
+
+<div class="test"><strong>CBC</strong><span>شمارش کامل سلول‌های خون</span></div>
+<div class="test"><strong>WBC Count</strong><span>شمارش گلبول سفید</span></div>
+<div class="test"><strong>RBC Count</strong><span>شمارش گلبول قرمز</span></div>
+<div class="test"><strong>Hemoglobin</strong><span>هموگلوبین</span></div>
+<div class="test"><strong>Hematocrit</strong><span>هماتوکریت</span></div>
+<div class="test"><strong>MCV</strong><span>حجم متوسط گلبول قرمز</span></div>
+<div class="test"><strong>MCH</strong><span>مقدار متوسط هموگلوبین</span></div>
+<div class="test"><strong>MCHC</strong><span>غلظت متوسط هموگلوبین</span></div>
+<div class="test"><strong>RDW-CV</strong><span>پراکندگی گلبول‌های قرمز</span></div>
+<div class="test"><strong>RDW-SD</strong><span>پراکندگی گلبول‌های قرمز</span></div>
+<div class="test"><strong>Platelet Count</strong><span>شمارش پلاکت</span></div>
+<div class="test"><strong>MPV</strong><span>حجم متوسط پلاکت</span></div>
+<div class="test"><strong>PDW</strong><span>پراکندگی پلاکت</span></div>
+<div class="test"><strong>ESR</strong><span>سرعت رسوب گلبول قرمز</span></div>
+<div class="test"><strong>Reticulocyte Count</strong><span>شمارش رتیکولوسیت</span></div>
+<div class="test"><strong>Peripheral Blood Smear</strong><span>اسمیر خون محیطی</span></div>
+<div class="test"><strong>Absolute Neutrophil Count</strong><span>شمارش مطلق نوتروفیل</span></div>
+<div class="test"><strong>Absolute Lymphocyte Count</strong><span>شمارش مطلق لنفوسیت</span></div>
+<div class="test"><strong>Absolute Eosinophil Count</strong><span>شمارش مطلق ائوزینوفیل</span></div>
+<div class="test"><strong>Absolute Monocyte Count</strong><span>شمارش مطلق مونوسیت</span></div>
+
+</div>
 </section>
 
+<!-- بیوشیمی -->
 
-<section class="contact">
+<section class="category">
 
-<h2>برای دریافت اطلاعات بیشتر</h2>
+<h2 class="category-title">🧪 بیوشیمی</h2>
 
-<p>
-برای اطلاع از شرایط انجام آزمایش‌ها و هماهنگی نمونه‌گیری با آزمایشگاه آلفا تماس بگیرید.
-</p>
+<div class="tests">
 
-<a href="tel:0796961814" class="btn">
-📞 تماس با آزمایشگاه
+<div class="test"><strong>Glucose</strong><span>قند خون</span></div>
+<div class="test"><strong>Fasting Blood Sugar</strong><span>قند خون ناشتا</span></div>
+<div class="test"><strong>HbA1c</strong><span>هموگلوبین گلیکوزیله</span></div>
+<div class="test"><strong>Urea</strong><span>اوره</span></div>
+<div class="test"><strong>Creatinine</strong><span>کراتینین</span></div>
+<div class="test"><strong>Uric Acid</strong><span>اسید اوریک</span></div>
+<div class="test"><strong>Total Cholesterol</strong><span>کلسترول تام</span></div>
+<div class="test"><strong>Triglyceride</strong><span>تری‌گلیسرید</span></div>
+<div class="test"><strong>HDL Cholesterol</strong><span>کلسترول خوب</span></div>
+<div class="test"><strong>LDL Cholesterol</strong><span>کلسترول بد</span></div>
+<div class="test"><strong>VLDL</strong><span>لیپوپروتئین با چگالی بسیار کم</span></div>
+<div class="test"><strong>Total Protein</strong><span>پروتئین تام</span></div>
+<div class="test"><strong>Albumin</strong><span>آلبومین</span></div>
+<div class="test"><strong>Total Bilirubin</strong><span>بیلی‌روبین تام</span></div>
+<div class="test"><strong>Direct Bilirubin</strong><span>بیلی‌روبین مستقیم</span></div>
+<div class="test"><strong>AST</strong><span>آنزیم کبدی</span></div>
+<div class="test"><strong>ALT</strong><span>آنزیم کبدی</span></div>
+<div class="test"><strong>ALP</strong><span>آلکالین فسفاتاز</span></div>
+<div class="test"><strong>GGT</strong><span>گاما گلوتامیل ترانسفراز</span></div>
+<div class="test"><strong>LDH</strong><span>لاکتات دهیدروژناز</span></div>
+<div class="test"><strong>CK</strong><span>کراتین کیناز</span></div>
+<div class="test"><strong>CK-MB</strong><span>ایزوآنزیم قلبی</span></div>
+<div class="test"><strong>Amylase</strong><span>آمیلاز</span></div>
+<div class="test"><strong>Lipase</strong><span>لیپاز</span></div>
+<div class="test"><strong>Calcium</strong><span>کلسیم</span></div>
+<div class="test"><strong>Phosphorus</strong><span>فسفر</span></div>
+<div class="test"><strong>Magnesium</strong><span>منیزیم</span></div>
+<div class="test"><strong>Sodium</strong><span>سدیم</span></div>
+<div class="test"><strong>Potassium</strong><span>پتاسیم</span></div>
+<div class="test"><strong>Chloride</strong><span>کلراید</span></div>
+
+</div>
+</section>
+
+<!-- آهن و ویتامین -->
+
+<section class="category">
+
+<h2 class="category-title">🧠 آهن، ویتامین‌ها و مواد معدنی</h2>
+
+<div class="tests">
+
+<div class="test"><strong>Serum Iron</strong><span>آهن سرم</span></div>
+<div class="test"><strong>TIBC</strong><span>ظرفیت اتصال آهن</span></div>
+<div class="test"><strong>Transferrin</strong><span>ترانسفرین</span></div>
+<div class="test"><strong>Ferritin</strong><span>فریتین</span></div>
+<div class="test"><strong>Vitamin B12</strong><span>ویتامین B12</span></div>
+<div class="test"><strong>Folate</strong><span>فولات</span></div>
+<div class="test"><strong>Vitamin D</strong><span>ویتامین D</span></div>
+<div class="test"><strong>Vitamin D3</strong><span>ویتامین D3</span></div>
+<div class="test"><strong>Vitamin A</strong><span>ویتامین A</span></div>
+<div class="test"><strong>Vitamin E</strong><span>ویتامین E</span></div>
+<div class="test"><strong>Zinc</strong><span>روی</span></div>
+<div class="test"><strong>Copper</strong><span>مس</span></div>
+<div class="test"><strong>Calcium</strong><span>کلسیم</span></div>
+<div class="test"><strong>Magnesium</strong><span>منیزیم</span></div>
+<div class="test"><strong>Phosphorus</strong><span>فسفر</span></div>
+
+</div>
+</section>
+
+<!-- هورمون -->
+
+<section class="category">
+
+<h2 class="category-title">⚗️ هورمون‌شناسی و غدد</h2>
+
+<div class="tests">
+
+<div class="test"><strong>TSH</strong><span>هورمون محرک تیروئید</span></div>
+<div class="test"><strong>Free T4</strong><span>تیروکسین آزاد</span></div>
+<div class="test"><strong>Free T3</strong><span>تری‌یودوتیرونین آزاد</span></div>
+<div class="test"><strong>Total T4</strong><span>تیروکسین تام</span></div>
+<div class="test"><strong>Total T3</strong><span>تری‌یودوتیرونین تام</span></div>
+<div class="test"><strong>Anti-TPO</strong><span>آنتی‌بادی تیروئید</span></div>
+<div class="test"><strong>Anti-TG</strong><span>آنتی‌بادی تیروگلوبولین</span></div>
+<div class="test"><strong>FSH</strong><span>هورمون محرک فولیکول</span></div>
+<div class="test"><strong>LH</strong><span>هورمون لوتئینایزینگ</span></div>
+<div class="test"><strong>Prolactin</strong><span>پرولاکتین</span></div>
+<div class="test"><strong>Estradiol</strong><span>استرادیول</span></div>
+<div class="test"><strong>Progesterone</strong><span>پروژسترون</span></div>
+<div class="test"><strong>Testosterone</strong><span>تستوسترون</span></div>
+<div class="test"><strong>Free Testosterone</strong><span>تستوسترون آزاد</span></div>
+<div class="test"><strong>SHBG</strong><span>گلوبولین متصل‌شونده به هورمون جنسی</span></div>
+<div class="test"><strong>DHEA-S</strong><span>هورمون آدرنال</span></div>
+<div class="test"><strong>Cortisol</strong><span>کورتیزول</span></div>
+<div class="test"><strong>ACTH</strong><span>هورمون آدرنوکورتیکوتروپیک</span></div>
+<div class="test"><strong>Insulin</strong><span>انسولین</span></div>
+<div class="test"><strong>C-Peptide</strong><span>سی پپتاید</span></div>
+<div class="test"><strong>PTH</strong><span>هورمون پاراتیروئید</span></div>
+<div class="test"><strong>AMH</strong><span>هورمون ضد مولرین</span></div>
+<div class="test"><strong>hCG</strong><span>هورمون بارداری</span></div>
+<div class="test"><strong>Free β-hCG</strong><span>بتا اچ‌سی‌جی آزاد</span></div>
+
+</div>
+</section>
+
+<!-- تومور مارکر -->
+
+<section class="category">
+
+<h2 class="category-title">🎗️ تومور مارکرها</h2>
+
+<div class="tests">
+
+<div class="test"><strong>AFP</strong><span>آلفا فتوپروتئین</span></div>
+<div class="test"><strong>CEA</strong><span>آنتی‌ژن کارسینوامبریونیک</span></div>
+<div class="test"><strong>CA 125</strong><span>تومور مارکر مرتبط با تخمدان</span></div>
+<div class="test"><strong>CA 15-3</strong><span>تومور مارکر پستان</span></div>
+<div class="test"><strong>CA 19-9</strong><span>تومور مارکر گوارشی</span></div>
+<div class="test"><strong>CA 72-4</strong><span>تومور مارکر گوارشی</span></div>
+<div class="test"><strong>PSA Total</strong><span>آنتی‌ژن اختصاصی پروستات</span></div>
+<div class="test"><strong>Free PSA</strong><span>PSA آزاد</span></div>
+<div class="test"><strong>PSA Ratio</strong><span>نسبت PSA آزاد به تام</span></div>
+<div class="test"><strong>β2-Microglobulin</strong><span>بتا دو میکروگلوبولین</span></div>
+<div class="test"><strong>Chromogranin A</strong><span>کروموگرانین A</span></div>
+<div class="test"><strong>NSE</strong><span>نورون اختصاصی انولاز</span></div>
+
+</div>
+</section>
+
+<!-- ایمونولوژی -->
+
+<section class="category">
+
+<h2 class="category-title">🧬 ایمونولوژی و خودایمنی</h2>
+
+<div class="tests">
+
+<div class="test"><strong>CRP</strong><span>پروتئین واکنشی C</span></div>
+<div class="test"><strong>hs-CRP</strong><span>CRP با حساسیت بالا</span></div>
+<div class="test"><strong>ASO</strong><span>آنتی‌استرپتولیزین O</span></div>
+<div class="test"><strong>RF</strong><span>فاکتور روماتوئید</span></div>
+<div class="test"><strong>ANA</strong><span>آنتی‌بادی ضد هسته</span></div>
+<div class="test"><strong>Anti-dsDNA</strong><span>آنتی‌بادی ضد DNA دو رشته‌ای</span></div>
+<div class="test"><strong>Anti-CCP</strong><span>آنتی‌بادی اختصاصی روماتوئید</span></div>
+<div class="test"><strong>Complement C3</strong><span>کمپلمان C3</span></div>
+<div class="test"><strong>Complement C4</strong><span>کمپلمان C4</span></div>
+<div class="test"><strong>IgG</strong><span>ایمونوگلوبولین G</span></div>
+<div class="test"><strong>IgA</strong><span>ایمونوگلوبولین A</span></div>
+<div class="test"><strong>IgM</strong><span>ایمونوگلوبولین M</span></div>
+<div class="test"><strong>IgE</strong><span>ایمونوگلوبولین E</span></div>
+<div class="test"><strong>Anti-TTG IgA</strong><span>آنتی‌بادی سلیاک</span></div>
+<div class="test"><strong>Anti-TTG IgG</strong><span>آنتی‌بادی سلیاک</span></div>
+
+</div>
+</section>
+
+<!-- عفونی -->
+
+<section class="category">
+
+<h2 class="category-title">🦠 آزمایش‌های عفونی و سرولوژی</h2>
+
+<div class="tests">
+
+<div class="test"><strong>HBsAg</strong><span>آنتی‌ژن هپاتیت B</span></div>
+<div class="test"><strong>Anti-HBs</strong><span>آنتی‌بادی هپاتیت B</span></div>
+<div class="test"><strong>Anti-HBc Total</strong><span>آنتی‌بادی هسته هپاتیت B</span></div>
+<div class="test"><strong>Anti-HBc IgM</strong><span>آنتی‌بادی IgM هپاتیت B</span></div>
+<div class="test"><strong>HBeAg</strong><span>آنتی‌ژن e هپاتیت B</span></div>
+<div class="test"><strong>Anti-HBe</strong><span>آنتی‌بادی e هپاتیت B</span></div>
+<div class="test"><strong>Anti-HCV</strong><span>آنتی‌بادی هپاتیت C</span></div>
+<div class="test"><strong>HIV 1/2</strong><span>آزمایش غربالگری HIV</span></div>
+<div class="test"><strong>VDRL</strong><span>غربالگری سفلیس</span></div>
+<div class="test"><strong>RPR</strong><span>غربالگری سفلیس</span></div>
+<div class="test"><strong>Widal</strong><span>آزمایش تب تیفوئید</span></div>
+<div class="test"><strong>2ME</strong><span>بررسی آنتی‌بادی بروسلا</span></div>
+<div class="test"><strong>Brucella Wright</strong><span>تب مالت</span></div>
+<div class="test"><strong>H. pylori IgG</strong><span>هلیکوباکتر پیلوری</span></div>
+<div class="test"><strong>H. pylori Ag</strong><span>آنتی‌ژن هلیکوباکتر</span></div>
+<div class="test"><strong>CMV IgG</strong><span>سیتومگالوویروس</span></div>
+<div class="test"><strong>CMV IgM</strong><span>سیتومگالوویروس</span></div>
+<div class="test"><strong>Toxoplasma IgG</strong><span>توکسوپلاسما</span></div>
+<div class="test"><strong>Toxoplasma IgM</strong><span>توکسوپلاسما</span></div>
+<div class="test"><strong>Rubella IgG</strong><span>سرخجه</span></div>
+<div class="test"><strong>Rubella IgM</strong><span>سرخجه</span></div>
+
+</div>
+</section>
+
+<!-- انعقادی -->
+
+<section class="category">
+
+<h2 class="category-title">🩸 انعقاد خون</h2>
+
+<div class="tests">
+
+<div class="test"><strong>PT</strong><span>زمان پروترومبین</span></div>
+<div class="test"><strong>INR</strong><span>نسبت نرمال‌شده بین‌المللی</span></div>
+<div class="test"><strong>aPTT</strong><span>زمان ترومبوپلاستین نسبی</span></div>
+<div class="test"><strong>Fibrinogen</strong><span>فیبرینوژن</span></div>
+<div class="test"><strong>D-Dimer</strong><span>دی‌دایمر</span></div>
+<div class="test"><strong>Bleeding Time</strong><span>زمان خونریزی</span></div>
+<div class="test"><strong>Clotting Time</strong><span>زمان انعقاد</span></div>
+
+</div>
+</section>
+
+<!-- ادرار -->
+
+<section class="category">
+
+<h2 class="category-title">🧫 ادرار و مایعات بدن</h2>
+
+<div class="tests">
+
+<div class="test"><strong>Urinalysis</strong><span>آنالیز کامل ادرار</span></div>
+<div class="test"><strong>Urine Protein</strong><span>پروتئین ادرار</span></div>
+<div class="test"><strong>Urine Albumin</strong><span>آلبومین ادرار</span></div>
+<div class="test"><strong>Microalbumin</strong><span>میکروآلبومین ادرار</span></div>
+<div class="test"><strong>UACR</strong><span>نسبت آلبومین به کراتینین ادرار</span></div>
+<div class="test"><strong>Urine Creatinine</strong><span>کراتینین ادرار</span></div>
+<div class="test"><strong>24 Hour Urine Protein</strong><span>پروتئین ادرار ۲۴ ساعته</span></div>
+<div class="test"><strong>Urine Culture</strong><span>کشت ادرار</span></div>
+<div class="test"><strong>Stool Examination</strong><span>بررسی مدفوع</span></div>
+<div class="test"><strong>Stool Occult Blood</strong><span>خون مخفی در مدفوع</span></div>
+<div class="test"><strong>Body Fluid Analysis</strong><span>آنالیز مایعات بدن</span></div>
+
+</div>
+</section>
+
+<!-- میکروب -->
+
+<section class="category">
+
+<h2 class="category-title">🦠 میکروب‌شناسی و کشت</h2>
+
+<div class="tests">
+
+<div class="test"><strong>Urine Culture</strong><span>کشت ادرار</span></div>
+<div class="test"><strong>Blood Culture</strong><span>کشت خون</span></div>
+<div class="test"><strong>Stool Culture</strong><span>کشت مدفوع</span></div>
+<div class="test"><strong>Sputum Culture</strong><span>کشت خلط</span></div>
+<div class="test"><strong>Throat Culture</strong><span>کشت گلو</span></div>
+<div class="test"><strong>Wound Culture</strong><span>کشت زخم</span></div>
+<div class="test"><strong>Vaginal Culture</strong><span>کشت واژینال</span></div>
+<div class="test"><strong>Urethral Culture</strong><span>کشت ترشحات مجرای ادرار</span></div>
+<div class="test"><strong>Antibiogram</strong><span>آزمایش حساسیت آنتی‌بیوتیکی</span></div>
+<div class="test"><strong>Gram Stain</strong><span>رنگ‌آمیزی گرم</span></div>
+<div class="test"><strong>KOH Test</strong><span>بررسی قارچ</span></div>
+
+</div>
+</section>
+
+<!-- PCR -->
+
+<section class="category">
+
+<h2 class="category-title">🧬 آزمایش‌های مولکولی و PCR</h2>
+
+<div class="tests">
+
+<div class="test"><strong>HBV DNA PCR</strong><span>تشخیص DNA هپاتیت B</span></div>
+<div class="test"><strong>HCV RNA PCR</strong><span>تشخیص RNA هپاتیت C</span></div>
+<div class="test"><strong>HIV RNA PCR</strong><span>تشخیص مولکولی HIV</span></div>
+<div class="test"><strong>HPV PCR</strong><span>تشخیص HPV</span></div>
+<div class="test"><strong>TB PCR</strong><span>تشخیص مولکولی سل</span></div>
+<div class="test"><strong>COVID-19 PCR</strong><span>تشخیص مولکولی کرونا</span></div>
+<div class="test"><strong>H. pylori PCR</strong><span>تشخیص مولکولی هلیکوباکتر</span></div>
+
+</div>
+</section>
+
+<!-- آزمایش های زنان و مردان -->
+
+<section class="category">
+
+<h2 class="category-title">👩‍⚕️👨‍⚕️ آزمایش‌های تخصصی زنان و مردان</h2>
+
+<div class="tests">
+
+<div class="test"><strong>Pregnancy Test</strong><span>تست بارداری</span></div>
+<div class="test"><strong>β-hCG</strong><span>تشخیص بارداری</span></div>
+<div class="test"><strong>AMH</strong><span>ذخیره تخمدان</span></div>
+<div class="test"><strong>FSH</strong><span>عملکرد تخمدان</span></div>
+<div class="test"><strong>LH</strong><span>عملکرد هورمونی</span></div>
+<div class="test"><strong>Prolactin</strong><span>پرولاکتین</span></div>
+<div class="test"><strong>Testosterone</strong><span>تستوسترون</span></div>
+<div class="test"><strong>PSA</strong><span>بررسی پروستات</span></div>
+<div class="test"><strong>Free PSA</strong><span>PSA آزاد</span></div>
+
+</div>
+</section>
+
+<div class="back">
+<a href="index.html">⬅ بازگشت به صفحه اصلی</a>
+</div>
+
+</div>
+
+<a href="https://wa.me/93796961814"
+class="whatsapp-button"
+target="_blank">
+💬 تماس در واتساپ
 </a>
-
-</section>
-
 
 <footer>
 
@@ -449,9 +666,7 @@ aria-label="جستجوی آزمایش"
 آزمایشگاه تخصصی <span>آلفا</span>
 </strong>
 
-<p>
-Alpha Specialized Laboratory
-</p>
+<p>Alpha Specialized Laboratory</p>
 
 <small>
 © 2026 تمامی حقوق محفوظ است.
@@ -459,506 +674,70 @@ Alpha Specialized Laboratory
 
 </footer>
 
-
 <script>
-
-const tests = [
-
-/* =========================
-   HEMATOLOGY
-========================= */
-
-{c:"hematology",i:"🩸",f:"شمارش کامل سلول‌های خون",e:"CBC"},
-{c:"hematology",i:"🩸",f:"CBC همراه با دیفرانسیل",e:"CBC + Diff"},
-{c:"hematology",i:"🩸",f:"هموگلوبین",e:"Hemoglobin / Hb"},
-{c:"hematology",i:"🩸",f:"هماتوکریت",e:"Hematocrit / HCT"},
-{c:"hematology",i:"🩸",f:"شمارش گلبول قرمز",e:"RBC Count"},
-{c:"hematology",i:"🩸",f:"شمارش گلبول سفید",e:"WBC Count"},
-{c:"hematology",i:"🩸",f:"شمارش پلاکت",e:"Platelet Count"},
-{c:"hematology",i:"🩸",f:"MCV",e:"Mean Corpuscular Volume"},
-{c:"hematology",i:"🩸",f:"MCH",e:"Mean Corpuscular Hemoglobin"},
-{c:"hematology",i:"🩸",f:"MCHC",e:"Mean Corpuscular Hb Concentration"},
-{c:"hematology",i:"🩸",f:"RDW-CV",e:"RDW-CV"},
-{c:"hematology",i:"🩸",f:"RDW-SD",e:"RDW-SD"},
-{c:"hematology",i:"🩸",f:"ESR",e:"Erythrocyte Sedimentation Rate"},
-{c:"hematology",i:"🩸",f:"Reticulocyte Count",e:"Reticulocyte"},
-{c:"hematology",i:"🩸",f:"Peripheral Blood Smear",e:"PBS"},
-{c:"hematology",i:"🩸",f:"Absolute Neutrophil Count",e:"ANC"},
-{c:"hematology",i:"🩸",f:"Absolute Lymphocyte Count",e:"ALC"},
-{c:"hematology",i:"🩸",f:"Absolute Eosinophil Count",e:"AEC"},
-{c:"hematology",i:"🩸",f:"Absolute Monocyte Count",e:"AMC"},
-{c:"hematology",i:"🩸",f:"Absolute Basophil Count",e:"ABC"},
-{c:"hematology",i:"🩸",f:"HbA1c",e:"Glycated Hemoglobin"},
-{c:"hematology",i:"🩸",f:"Hb Electrophoresis",e:"Hemoglobin Electrophoresis"},
-{c:"hematology",i:"🩸",f:"HbF",e:"Fetal Hemoglobin"},
-{c:"hematology",i:"🩸",f:"HbA2",e:"Hemoglobin A2"},
-{c:"hematology",i:"🩸",f:"G6PD",e:"Glucose-6-Phosphate Dehydrogenase"},
-{c:"hematology",i:"🩸",f:"Sickle Cell Screening",e:"Sickle Cell Test"},
-
-/* =========================
-   COAGULATION
-========================= */
-
-{c:"coagulation",i:"🩸",f:"PT",e:"Prothrombin Time"},
-{c:"coagulation",i:"🩸",f:"INR",e:"International Normalized Ratio"},
-{c:"coagulation",i:"🩸",f:"aPTT",e:"Activated Partial Thromboplastin Time"},
-{c:"coagulation",i:"🩸",f:"Fibrinogen",e:"Fibrinogen"},
-{c:"coagulation",i:"🩸",f:"D-Dimer",e:"D-Dimer"},
-{c:"coagulation",i:"🩸",f:"Thrombin Time",e:"TT"},
-{c:"coagulation",i:"🩸",f:"Bleeding Time",e:"BT"},
-{c:"coagulation",i:"🩸",f:"Clotting Time",e:"CT"},
-{c:"coagulation",i:"🩸",f:"Protein C",e:"Protein C"},
-{c:"coagulation",i:"🩸",f:"Protein S",e:"Protein S"},
-{c:"coagulation",i:"🩸",f:"Antithrombin III",e:"AT III"},
-
-/* =========================
-   BIOCHEMISTRY
-========================= */
-
-{c:"chemistry",i:"🧪",f:"قند خون ناشتا",e:"FBS"},
-{c:"chemistry",i:"🧪",f:"قند خون تصادفی",e:"RBS"},
-{c:"chemistry",i:"🧪",f:"قند دو ساعت بعد از غذا",e:"2HPP"},
-{c:"chemistry",i:"🧪",f:"اوره",e:"Urea"},
-{c:"chemistry",i:"🧪",f:"کراتینین",e:"Creatinine"},
-{c:"chemistry",i:"🧪",f:"اسید اوریک",e:"Uric Acid"},
-{c:"chemistry",i:"🧪",f:"سدیم",e:"Sodium / Na"},
-{c:"chemistry",i:"🧪",f:"پتاسیم",e:"Potassium / K"},
-{c:"chemistry",i:"🧪",f:"کلر",e:"Chloride / Cl"},
-{c:"chemistry",i:"🧪",f:"کلسیم",e:"Calcium"},
-{c:"chemistry",i:"🧪",f:"فسفر",e:"Phosphorus"},
-{c:"chemistry",i:"🧪",f:"منیزیم",e:"Magnesium"},
-{c:"chemistry",i:"🧪",f:"آهن",e:"Serum Iron"},
-{c:"chemistry",i:"🧪",f:"TIBC",e:"Total Iron Binding Capacity"},
-{c:"chemistry",i:"🧪",f:"Transferrin",e:"Transferrin"},
-{c:"chemistry",i:"🧪",f:"Ferritin",e:"Ferritin"},
-{c:"chemistry",i:"🧪",f:"Total Protein",e:"Total Protein"},
-{c:"chemistry",i:"🧪",f:"Albumin",e:"Albumin"},
-{c:"chemistry",i:"🧪",f:"Bilirubin Total",e:"Total Bilirubin"},
-{c:"chemistry",i:"🧪",f:"Bilirubin Direct",e:"Direct Bilirubin"},
-{c:"chemistry",i:"🧪",f:"ALT",e:"Alanine Aminotransferase"},
-{c:"chemistry",i:"🧪",f:"AST",e:"Aspartate Aminotransferase"},
-{c:"chemistry",i:"🧪",f:"ALP",e:"Alkaline Phosphatase"},
-{c:"chemistry",i:"🧪",f:"GGT",e:"Gamma GT"},
-{c:"chemistry",i:"🧪",f:"LDH",e:"Lactate Dehydrogenase"},
-{c:"chemistry",i:"🧪",f:"Amylase",e:"Amylase"},
-{c:"chemistry",i:"🧪",f:"Lipase",e:"Lipase"},
-{c:"chemistry",i:"🧪",f:"CK",e:"Creatine Kinase"},
-{c:"chemistry",i:"🧪",f:"CK-MB",e:"Creatine Kinase-MB"},
-{c:"chemistry",i:"🧪",f:"LDL Cholesterol",e:"LDL-C"},
-{c:"chemistry",i:"🧪",f:"HDL Cholesterol",e:"HDL-C"},
-{c:"chemistry",i:"🧪",f:"Total Cholesterol",e:"Total Cholesterol"},
-{c:"chemistry",i:"🧪",f:"Triglyceride",e:"TG"},
-{c:"chemistry",i:"🧪",f:"VLDL",e:"VLDL"},
-{c:"chemistry",i:"🧪",f:"Lipid Profile",e:"Lipid Profile"},
-{c:"chemistry",i:"🧪",f:"CRP",e:"C-Reactive Protein"},
-{c:"chemistry",i:"🧪",f:"hs-CRP",e:"High Sensitivity CRP"},
-{c:"chemistry",i:"🧪",f:"eGFR",e:"Estimated GFR"},
-{c:"chemistry",i:"🧪",f:"Osmolality",e:"Serum Osmolality"},
-
-/* =========================
-   HORMONES
-========================= */
-
-{c:"hormone",i:"⚗️",f:"TSH",e:"Thyroid Stimulating Hormone"},
-{c:"hormone",i:"⚗️",f:"Free T4",e:"Free Thyroxine"},
-{c:"hormone",i:"⚗️",f:"Total T4",e:"Total Thyroxine"},
-{c:"hormone",i:"⚗️",f:"Free T3",e:"Free Triiodothyronine"},
-{c:"hormone",i:"⚗️",f:"Total T3",e:"Total Triiodothyronine"},
-{c:"hormone",i:"⚗️",f:"Anti-TPO",e:"Thyroid Peroxidase Antibody"},
-{c:"hormone",i:"⚗️",f:"Anti-TG",e:"Thyroglobulin Antibody"},
-{c:"hormone",i:"⚗️",f:"Thyroglobulin",e:"Tg"},
-{c:"hormone",i:"⚗️",f:"FSH",e:"Follicle Stimulating Hormone"},
-{c:"hormone",i:"⚗️",f:"LH",e:"Luteinizing Hormone"},
-{c:"hormone",i:"⚗️",f:"Prolactin",e:"PRL"},
-{c:"hormone",i:"⚗️",f:"Estradiol",e:"E2"},
-{c:"hormone",i:"⚗️",f:"Progesterone",e:"Progesterone"},
-{c:"hormone",i:"⚗️",f:"Testosterone Total",e:"Total Testosterone"},
-{c:"hormone",i:"⚗️",f:"Free Testosterone",e:"Free Testosterone"},
-{c:"hormone",i:"⚗️",f:"SHBG",e:"Sex Hormone Binding Globulin"},
-{c:"hormone",i:"⚗️",f:"DHEA-S",e:"DHEA Sulfate"},
-{c:"hormone",i:"⚗️",f:"Cortisol",e:"Cortisol"},
-{c:"hormone",i:"⚗️",f:"ACTH",e:"Adrenocorticotropic Hormone"},
-{c:"hormone",i:"⚗️",f:"Insulin",e:"Insulin"},
-{c:"hormone",i:"⚗️",f:"C-Peptide",e:"C-Peptide"},
-{c:"hormone",i:"⚗️",f:"PTH",e:"Parathyroid Hormone"},
-{c:"hormone",i:"⚗️",f:"Growth Hormone",e:"GH"},
-{c:"hormone",i:"⚗️",f:"IGF-1",e:"Insulin-like Growth Factor 1"},
-{c:"hormone",i:"⚗️",f:"AMH",e:"Anti-Müllerian Hormone"},
-{c:"hormone",i:"⚗️",f:"β-hCG",e:"Beta Human Chorionic Gonadotropin"},
-
-/* =========================
-   IMMUNOLOGY
-========================= */
-
-{c:"immunology",i:"🧬",f:"ANA",e:"Antinuclear Antibody"},
-{c:"immunology",i:"🧬",f:"ANA Profile",e:"ANA Profile"},
-{c:"immunology",i:"🧬",f:"Anti-dsDNA",e:"Anti Double Stranded DNA"},
-{c:"immunology",i:"🧬",f:"Rheumatoid Factor",e:"RF"},
-{c:"immunology",i:"🧬",f:"Anti-CCP",e:"Anti-Cyclic Citrullinated Peptide"},
-{c:"immunology",i:"🧬",f:"C3",e:"Complement C3"},
-{c:"immunology",i:"🧬",f:"C4",e:"Complement C4"},
-{c:"immunology",i:"🧬",f:"IgG",e:"Immunoglobulin G"},
-{c:"immunology",i:"🧬",f:"IgA",e:"Immunoglobulin A"},
-{c:"immunology",i:"🧬",f:"IgM",e:"Immunoglobulin M"},
-{c:"immunology",i:"🧬",f:"IgE Total",e:"Total IgE"},
-{c:"immunology",i:"🧬",f:"Anti-TTG IgA",e:"Anti Tissue Transglutaminase IgA"},
-{c:"immunology",i:"🧬",f:"Anti-TTG IgG",e:"Anti Tissue Transglutaminase IgG"},
-{c:"immunology",i:"🧬",f:"Anti-CCP IgG",e:"Anti-CCP IgG"},
-{c:"immunology",i:"🧬",f:"Coombs Direct",e:"Direct Antiglobulin Test"},
-{c:"immunology",i:"🧬",f:"Coombs Indirect",e:"Indirect Antiglobulin Test"},
-{c:"immunology",i:"🧬",f:"Widal Test",e:"Widal"},
-{c:"immunology",i:"🧬",f:"2ME",e:"2-Mercaptoethanol Test"},
-{c:"immunology",i:"🧬",f:"ASO",e:"Antistreptolysin O"},
-{c:"immunology",i:"🧬",f:"Anti-HBs",e:"Hepatitis B Surface Antibody"},
-{c:"immunology",i:"🧬",f:"HBsAg",e:"Hepatitis B Surface Antigen"},
-{c:"immunology",i:"🧬",f:"HBeAg",e:"Hepatitis B e Antigen"},
-{c:"immunology",i:"🧬",f:"Anti-HBe",e:"Hepatitis B e Antibody"},
-{c:"immunology",i:"🧬",f:"Anti-HBc Total",e:"Hepatitis B Core Total Antibody"},
-{c:"immunology",i:"🧬",f:"Anti-HCV",e:"Hepatitis C Antibody"},
-{c:"immunology",i:"🧬",f:"HIV 1/2 Ag/Ab",e:"HIV Ag/Ab"},
-{c:"immunology",i:"🧬",f:"VDRL",e:"Venereal Disease Research Laboratory"},
-{c:"immunology",i:"🧬",f:"RPR",e:"Rapid Plasma Reagin"},
-
-/* =========================
-   TUMOR MARKERS
-========================= */
-
-{c:"tumor",i:"🎗️",f:"AFP",e:"Alpha-Fetoprotein"},
-{c:"tumor",i:"🎗️",f:"CEA",e:"Carcinoembryonic Antigen"},
-{c:"tumor",i:"🎗️",f:"CA 125",e:"Cancer Antigen 125"},
-{c:"tumor",i:"🎗️",f:"CA 15-3",e:"Cancer Antigen 15-3"},
-{c:"tumor",i:"🎗️",f:"CA 19-9",e:"Cancer Antigen 19-9"},
-{c:"tumor",i:"🎗️",f:"CA 72-4",e:"Cancer Antigen 72-4"},
-{c:"tumor",i:"🎗️",f:"PSA Total",e:"Total Prostate Specific Antigen"},
-{c:"tumor",i:"🎗️",f:"Free PSA",e:"Free Prostate Specific Antigen"},
-{c:"tumor",i:"🎗️",f:"HE4",e:"Human Epididymis Protein 4"},
-{c:"tumor",i:"🎗️",f:"ROMA",e:"Risk of Ovarian Malignancy Algorithm"},
-{c:"tumor",i:"🎗️",f:"β2-Microglobulin",e:"Beta-2 Microglobulin"},
-{c:"tumor",i:"🎗️",f:"Chromogranin A",e:"Chromogranin A"},
-{c:"tumor",i:"🎗️",f:"NSE",e:"Neuron Specific Enolase"},
-{c:"tumor",i:"🎗️",f:"CYFRA 21-1",e:"Cytokeratin 19 Fragment"},
-{c:"tumor",i:"🎗️",f:"SCC Antigen",e:"Squamous Cell Carcinoma Antigen"},
-
-/* =========================
-   VITAMINS & MINERALS
-========================= */
-
-{c:"vitamin",i:"💊",f:"Vitamin D",e:"25-OH Vitamin D"},
-{c:"vitamin",i:"💊",f:"Vitamin B12",e:"Cobalamin"},
-{c:"vitamin",i:"💊",f:"Folate",e:"Folic Acid"},
-{c:"vitamin",i:"💊",f:"Vitamin A",e:"Retinol"},
-{c:"vitamin",i:"💊",f:"Vitamin E",e:"Tocopherol"},
-{c:"vitamin",i:"💊",f:"Vitamin B1",e:"Thiamine"},
-{c:"vitamin",i:"💊",f:"Vitamin B6",e:"Pyridoxine"},
-{c:"vitamin",i:"💊",f:"Zinc",e:"Zn"},
-{c:"vitamin",i:"💊",f:"Copper",e:"Cu"},
-{c:"vitamin",i:"💊",f:"Selenium",e:"Se"},
-{c:"vitamin",i:"💊",f:"Ferritin",e:"Ferritin"},
-{c:"vitamin",i:"💊",f:"Iron",e:"Serum Iron"},
-{c:"vitamin",i:"💊",f:"TIBC",e:"Total Iron Binding Capacity"},
-{c:"vitamin",i:"💊",f:"Transferrin",e:"Transferrin"},
-
-/* =========================
-   URINE & BODY FLUIDS
-========================= */
-
-{c:"urine",i:"🧫",f:"آنالیز کامل ادرار",e:"Urinalysis / U/A"},
-{c:"urine",i:"🧫",f:"میکروسکوپی ادرار",e:"Urine Microscopy"},
-{c:"urine",i:"🧫",f:"کشت ادرار",e:"Urine Culture"},
-{c:"urine",i:"🧫",f:"پروتئین ادرار",e:"Urine Protein"},
-{c:"urine",i:"🧫",f:"آلبومین ادرار",e:"Urine Albumin"},
-{c:"urine",i:"🧫",f:"کراتینین ادرار",e:"Urine Creatinine"},
-{c:"urine",i:"🧫",f:"نسبت آلبومین به کراتینین",e:"UACR"},
-{c:"urine",i:"🧫",f:"نسبت پروتئین به کراتینین",e:"UPCR"},
-{c:"urine",i:"🧫",f:"پروتئین ادرار 24 ساعته",e:"24h Urine Protein"},
-{c:"urine",i:"🧫",f:"کراتینین ادرار 24 ساعته",e:"24h Urine Creatinine"},
-{c:"urine",i:"🧫",f:"Urine Pregnancy Test",e:"UPT"},
-{c:"urine",i:"🧫",f:"Urine Calcium",e:"Urinary Calcium"},
-{c:"urine",i:"🧫",f:"Urine Uric Acid",e:"Urinary Uric Acid"},
-{c:"urine",i:"🧫",f:"Urine Sodium",e:"Urinary Sodium"},
-{c:"urine",i:"🧫",f:"Urine Potassium",e:"Urinary Potassium"},
-{c:"urine",i:"🧫",f:"Semen Analysis",e:"Semen Analysis"},
-{c:"urine",i:"🧫",f:"آنالیز مایع منی",e:"Sperm Analysis"},
-{c:"urine",i:"🧫",f:"تعداد اسپرم",e:"Sperm Count"},
-{c:"urine",i:"🧫",f:"آنالیز مایع پلور",e:"Pleural Fluid Analysis"},
-{c:"urine",i:"🧫",f:"آنالیز مایع آسیت",e:"Ascitic Fluid Analysis"},
-{c:"urine",i:"🧫",f:"آنالیز مایع سینوویال",e:"Synovial Fluid Analysis"},
-{c:"urine",i:"🧫",f:"آنالیز CSF",e:"Cerebrospinal Fluid Analysis"},
-
-/* =========================
-   MICROBIOLOGY
-========================= */
-
-{c:"microbiology",i:"🦠",f:"کشت ادرار",e:"Urine Culture"},
-{c:"microbiology",i:"🦠",f:"کشت خون",e:"Blood Culture"},
-{c:"microbiology",i:"🦠",f:"کشت مدفوع",e:"Stool Culture"},
-{c:"microbiology",i:"🦠",f:"کشت زخم",e:"Wound Culture"},
-{c:"microbiology",i:"🦠",f:"کشت ترشحات واژینال",e:"Vaginal Culture"},
-{c:"microbiology",i:"🦠",f:"کشت ترشحات گلو",e:"Throat Culture"},
-{c:"microbiology",i:"🦠",f:"کشت خلط",e:"Sputum Culture"},
-{c:"microbiology",i:"🦠",f:"کشت گوش",e:"Ear Culture"},
-{c:"microbiology",i:"🦠",f:"کشت چشم",e:"Eye Culture"},
-{c:"microbiology",i:"🦠",f:"کشت پوست",e:"Skin Culture"},
-{c:"microbiology",i:"🦠",f:"آنتی‌بیوگرام",e:"Antibiotic Susceptibility Test"},
-{c:"microbiology",i:"🦠",f:"Gram Stain",e:"Gram Staining"},
-{c:"microbiology",i:"🦠",f:"KOH Test",e:"KOH Preparation"},
-{c:"microbiology",i:"🦠",f:"AFB Smear",e:"Acid Fast Bacilli"},
-{c:"microbiology",i:"🦠",f:"Wet Mount",e:"Wet Mount Microscopy"},
-{c:"microbiology",i:"🦠",f:"Stool Ova & Parasites",e:"O&P"},
-{c:"microbiology",i:"🦠",f:"Occult Blood Stool",e:"FOBT"},
-{c:"microbiology",i:"🦠",f:"H. pylori Antigen",e:"H. pylori Stool Antigen"},
-{c:"microbiology",i:"🦠",f:"H. pylori Antibody",e:"H. pylori Ab"},
-{c:"microbiology",i:"🦠",f:"Malaria Smear",e:"Malaria Blood Film"},
-{c:"microbiology",i:"🦠",f:"Malaria Rapid Test",e:"Malaria RDT"},
-
-/* =========================
-   ADDITIONAL SPECIAL TESTS
-========================= */
-
-{c:"immunology",i:"🧬",f:"TB IGRA",e:"Interferon Gamma Release Assay"},
-{c:"immunology",i:"🧬",f:"Anti-GBM",e:"Anti Glomerular Basement Membrane"},
-{c:"immunology",i:"🧬",f:"ANCA",e:"Anti-Neutrophil Cytoplasmic Antibody"},
-{c:"immunology",i:"🧬",f:"MPO-ANCA",e:"Myeloperoxidase ANCA"},
-{c:"immunology",i:"🧬",f:"PR3-ANCA",e:"Proteinase 3 ANCA"},
-{c:"immunology",i:"🧬",f:"Anti-Cardiolipin IgG",e:"aCL IgG"},
-{c:"immunology",i:"🧬",f:"Anti-Cardiolipin IgM",e:"aCL IgM"},
-{c:"immunology",i:"🧬",f:"Beta-2 Glycoprotein IgG",e:"β2GP1 IgG"},
-{c:"immunology",i:"🧬",f:"Beta-2 Glycoprotein IgM",e:"β2GP1 IgM"},
-{c:"immunology",i:"🧬",f:"Lupus Anticoagulant",e:"LA"},
-
-{c:"chemistry",i:"🧪",f:"Lactate",e:"Lactic Acid"},
-{c:"chemistry",i:"🧪",f:"Ammonia",e:"NH3"},
-{c:"chemistry",i:"🧪",f:"Homocysteine",e:"Homocysteine"},
-{c:"chemistry",i:"🧪",f:"HbA1c",e:"Glycated Hemoglobin"},
-{c:"chemistry",i:"🧪",f:"Bicarbonate",e:"HCO3"},
-{c:"chemistry",i:"🧪",f:"Total CO2",e:"Total Carbon Dioxide"},
-
-{c:"hormone",i:"⚗️",f:"Renin",e:"Plasma Renin"},
-{c:"hormone",i:"⚗️",f:"Aldosterone",e:"Aldosterone"},
-{c:"hormone",i:"⚗️",f:"Metanephrine",e:"Metanephrine"},
-{c:"hormone",i:"⚗️",f:"Normetanephrine",e:"Normetanephrine"},
-{c:"hormone",i:"⚗️",f:"VMA",e:"Vanillylmandelic Acid"},
-{c:"hormone",i:"⚗️",f:"17-OH Progesterone",e:"17-Hydroxyprogesterone"},
-{c:"hormone",i:"⚗️",f:"Androstenedione",e:"Androstenedione"},
-{c:"hormone",i:"⚗️",f:"DHT",e:"Dihydrotestosterone"},
-
-{c:"tumor",i:"🎗️",f:"ProGRP",e:"Pro-Gastrin Releasing Peptide"},
-{c:"tumor",i:"🎗️",f:"CA 242",e:"Cancer Antigen 242"},
-{c:"tumor",i:"🎗️",f:"TPS",e:"Tissue Polypeptide Specific Antigen"},
-{c:"tumor",i:"🎗️",f:"TPA",e:"Tissue Polypeptide Antigen"},
-
-{c:"hematology",i:"🩸",f:"Bone Marrow Examination",e:"Bone Marrow Study"},
-{c:"hematology",i:"🩸",f:"Iron Deficiency Profile",e:"Iron Profile"},
-{c:"hematology",i:"🩸",f:"Thalassemia Screening",e:"Thalassemia Screen"},
-{c:"hematology",i:"🩸",f:"Osmotic Fragility Test",e:"OFT"},
-{c:"hematology",i:"🩸",f:"Direct Platelet Count",e:"Platelet Count"},
-{c:"hematology",i:"🩸",f:"MPV",e:"Mean Platelet Volume"},
-{c:"hematology",i:"🩸",f:"PDW",e:"Platelet Distribution Width"},
-{c:"hematology",i:"🩸",f:"PCT",e:"Plateletcrit"}
-
-];
-
-
-const categoryNames = {
-
-hematology:"هماتولوژی",
-chemistry:"بیوشیمی",
-hormone:"هورمون‌شناسی",
-immunology:"ایمونولوژی و سرولوژی",
-microbiology:"میکروب‌شناسی",
-tumor:"تومورمارکرها",
-urine:"ادرار و مایعات بدن",
-coagulation:"آزمایش‌های انعقادی",
-vitamin:"ویتامین‌ها و مواد معدنی"
-
-};
-
-const categoryIcons = {
-
-hematology:"🩸",
-chemistry:"🧪",
-hormone:"⚗️",
-immunology:"🧬",
-microbiology:"🦠",
-tumor:"🎗️",
-urine:"🧫",
-coagulation:"🩸",
-vitamin:"💊"
-
-};
-
-
-const container =
-document.getElementById("testsContainer");
 
 const searchInput =
 document.getElementById("searchInput");
 
-const resultCount =
-document.getElementById("resultCount");
+const categories =
+document.querySelectorAll(".category");
 
 const noResult =
 document.getElementById("noResult");
 
-let activeCategory="all";
+searchInput.addEventListener("input",function(){
 
+const search =
+this.value.trim().toLowerCase();
 
-function normalize(text){
+let found = false;
 
-return text
-.toLowerCase()
-.replace(/ي/g,"ی")
-.replace(/ى/g,"ی")
-.replace(/ك/g,"ک")
-.trim();
+categories.forEach(category => {
 
-}
+let categoryFound = false;
 
+const tests =
+category.querySelectorAll(".test");
 
-function renderTests(){
+tests.forEach(test => {
 
-const query=normalize(searchInput.value);
+const text =
+test.innerText.toLowerCase();
 
-container.innerHTML="";
+if(text.includes(search)){
 
-let filtered=tests.filter(test=>{
+test.style.display = "";
 
-const matchesCategory=
-activeCategory==="all" ||
-test.c===activeCategory;
+categoryFound = true;
+found = true;
 
-const searchText=
-normalize(test.f+" "+test.e);
+}else{
 
-const matchesSearch=
-!query ||
-searchText.includes(query);
-
-return matchesCategory && matchesSearch;
-
-});
-
-
-resultCount.textContent=filtered.length;
-
-
-if(filtered.length===0){
-
-noResult.style.display="block";
-return;
+test.style.display = "none";
 
 }
 
-noResult.style.display="none";
-
-
-const groups={};
-
-
-filtered.forEach(test=>{
-
-if(!groups[test.c]){
-groups[test.c]=[];
-}
-
-groups[test.c].push(test);
-
 });
 
+if(search === ""){
 
-Object.keys(groups).forEach(category=>{
+category.style.display = "";
 
-const section=
-document.createElement("div");
+}else{
 
-section.className="category";
-
-
-const title=
-document.createElement("div");
-
-title.className="category-title";
-
-title.innerHTML=`
-
-<span>${categoryIcons[category]}</span>
-
-<h2>${categoryNames[category]}</h2>
-
-`;
-
-section.appendChild(title);
-
-
-const grid=
-document.createElement("div");
-
-grid.className="tests-grid";
-
-
-groups[category].forEach(test=>{
-
-const card=
-document.createElement("div");
-
-card.className="test-card";
-
-card.innerHTML=`
-
-<div class="test-fa">
-${test.i} ${test.f}
-</div>
-
-<span class="test-en">
-${test.e}
-</span>
-
-`;
-
-grid.appendChild(card);
-
-});
-
-
-section.appendChild(grid);
-
-container.appendChild(section);
-
-});
+category.style.display =
+categoryFound ? "" : "none";
 
 }
 
-
-searchInput.addEventListener(
-"input",
-renderTests
-);
-
-
-document.querySelectorAll(".filter-btn")
-.forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-document
-.querySelectorAll(".filter-btn")
-.forEach(btn=>
-btn.classList.remove("active")
-);
-
-button.classList.add("active");
-
-activeCategory=
-button.dataset.category;
-
-renderTests();
-
 });
 
+noResult.style.display =
+(search !== "" && !found)
+? "block"
+: "none";
+
 });
-
-
-renderTests();
 
 </script>
 
