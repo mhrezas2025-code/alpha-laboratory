@@ -676,89 +676,107 @@ class="site-logo">
 </header>
 <!-- جستجوی حرفه‌ای آزمایش‌ها -->
 
-<div class="search-box">
+<div class="search-area">
 
-```
-<div class="search-title">
-    🔬 جستجوی آزمایش‌ها
-</div>
+  <div class="search-box">
 
-<input
-    type="text"
-    id="testSearch"
-    placeholder="نام آزمایش را وارد کنید؛ مثال: CBC یا قند خون"
-    autocomplete="off"
->
+    <div class="search-icon">🔬</div>
 
-<div id="searchResult">
+    <input
+      type="text"
+      id="testSearch"
+      placeholder="جستجوی آزمایش؛ مثال: CBC، قند خون، Vitamin D..."
+      autocomplete="off"
+    >
+
+  </div>
+
+  <div id="searchResult" class="search-result">
     نمایش همه آزمایش‌ها
-</div>
-```
+  </div>
 
 </div>
 
 <script>
-function normalizeText(text) {
-    return text
-        .toLowerCase()
-        .replace(/ي/g, "ی")
-        .replace(/ك/g, "ک")
-        .trim();
+
+function normalizeText(text){
+
+  return text
+    .toLowerCase()
+    .replace(/ي/g,"ی")
+    .replace(/ك/g,"ک")
+    .trim();
+
 }
 
-function searchTests() {
+function searchTests(){
 
-    const input = document.getElementById("testSearch");
-    const result = document.getElementById("searchResult");
+  const input =
+    document.getElementById("testSearch");
 
-    const searchValue = normalizeText(input.value);
+  const result =
+    document.getElementById("searchResult");
 
-    const tests = document.querySelectorAll(".test");
+  const searchValue =
+    normalizeText(input.value);
 
-    let found = 0;
+  const tests =
+    document.querySelectorAll(".test");
 
-    tests.forEach(function(test) {
+  let found = 0;
 
-        const text = normalizeText(test.textContent);
+  tests.forEach(function(test){
 
-        if (searchValue === "" || text.includes(searchValue)) {
+    const text =
+      normalizeText(test.textContent);
 
-            test.style.display = "";
+    if(
+      searchValue === "" ||
+      text.includes(searchValue)
+    ){
 
-            if (searchValue !== "") {
-                found++;
-            }
+      test.style.display = "";
 
-        } else {
+      if(searchValue !== ""){
+        found++;
+      }
 
-            test.style.display = "none";
+    }else{
 
-        }
-
-    });
-
-    if (searchValue === "") {
-
-        result.innerHTML = "نمایش همه آزمایش‌ها";
-
-    } else if (found > 0) {
-
-        result.innerHTML =
-            "✅ تعداد آزمایش‌های یافت‌شده: <strong>" +
-            found +
-            "</strong>";
-
-    } else {
-
-        result.innerHTML =
-            "❌ آزمایش مورد نظر یافت نشد";
+      test.style.display = "none";
 
     }
+
+  });
+
+  if(searchValue === ""){
+
+    result.innerHTML =
+      "نمایش همه آزمایش‌ها";
+
+  }else if(found > 0){
+
+    result.innerHTML =
+      "✅ تعداد آزمایش‌های یافت‌شده: <strong>"
+      + found +
+      "</strong>";
+
+  }else{
+
+    result.innerHTML =
+      "❌ آزمایش مورد نظر یافت نشد";
+
+  }
+
 }
 
 document
-    .getElementById("testSearch")
-    .addEventListener("input", searchTests);
+  .getElementById("testSearch")
+  .addEventListener(
+    "input",
+    searchTests
+  );
+
 </script>
 
 
