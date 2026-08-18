@@ -27,7 +27,7 @@
     header {
       background: #063b57;
       color: white;
-      padding: 15px 7%;
+      padding: 10px 7%;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -40,13 +40,14 @@
       align-items: center;
       max-width: 1200px;
       margin: auto;
+      min-height: 100px;
     }
 
     .site-logo {
       width: 100px;
       height: 100px;
       object-fit: contain;
-      border-radius: 12px;
+      border-radius: 10px;
     }
 
     nav ul {
@@ -66,99 +67,115 @@
     }
 
     .hero {
-      background:
-        linear-gradient(135deg, rgba(3,58,85,.94), rgba(9,128,157,.85));
+      background: linear-gradient(135deg,#063b57,#087d99);
       color: white;
-      padding: 80px 7%;
       text-align: center;
+      padding: 80px 7%;
     }
 
     .hero h1 {
-      font-size: clamp(35px, 5vw, 55px);
+      font-size: clamp(35px,5vw,55px);
       margin-bottom: 15px;
     }
 
-    .hero h1 span {
-      color: #52e2e2;
-    }
-
     .hero p {
-      max-width: 700px;
-      margin: auto;
-      color: #e4f7fa;
-      font-size: 17px;
-    }
-
-    .services-section {
-      padding: 75px 7%;
-    }
-
-    .title {
-      text-align: center;
       max-width: 750px;
-      margin: 0 auto 45px;
-    }
-
-    .title h2 {
-      color: #063b57;
-      font-size: 35px;
-      margin-bottom: 10px;
-    }
-
-    .title p {
-      color: #687e89;
+      margin: auto;
+      color: #dff7fa;
+      font-size: 17px;
     }
 
     .services {
       max-width: 1200px;
-      margin: auto;
+      margin: 60px auto;
+      padding: 0 7%;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2,1fr);
       gap: 25px;
     }
 
     .card {
       background: white;
-      padding: 30px;
       border-radius: 20px;
+      padding: 30px;
       border: 1px solid #e0edf1;
       box-shadow: 0 10px 30px rgba(4,55,75,.07);
       transition: .3s;
     }
 
     .card:hover {
-      transform: translateY(-7px);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(4,55,75,.12);
     }
 
     .icon {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
-
-    .card h3 {
-      color: #075675;
-      font-size: 21px;
+      font-size: 45px;
       margin-bottom: 10px;
     }
 
-    .card p {
-      color: #687e89;
-      font-size: 14px;
+    .card h2 {
+      color: #063b57;
+      margin-bottom: 15px;
+      font-size: 25px;
     }
 
-    .back-home {
+    .card p {
+      color: #637983;
+      margin-bottom: 12px;
+    }
+
+    .tests {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #e3eef1;
+    }
+
+    .tests span {
+      display: inline-block;
+      background: #eef9fb;
+      color: #075675;
+      padding: 6px 12px;
+      margin: 4px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    .home-service {
+      max-width: 1100px;
+      margin: 20px auto 70px;
+      padding: 45px;
+      background: linear-gradient(135deg,#063b57,#087d99);
+      color: white;
+      border-radius: 25px;
       text-align: center;
-      margin-top: 50px;
+    }
+
+    .home-service h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .home-service p {
+      color: #d8f2f5;
+      margin-bottom: 20px;
     }
 
     .btn {
       display: inline-block;
-      padding: 13px 28px;
+      padding: 12px 25px;
       border-radius: 12px;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    .primary {
       background: #32cbd0;
       color: #063b57;
+    }
+
+    .back {
+      text-align: center;
+      margin-bottom: 60px;
     }
 
     footer {
@@ -172,23 +189,46 @@
       color: #32d1d8;
     }
 
+    .whatsapp-button {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      background: #25D366;
+      color: white;
+      padding: 13px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.20);
+      z-index: 999;
+    }
+
     @media(max-width:800px) {
 
       nav ul {
         display: none;
       }
 
+      nav {
+        justify-content: center;
+      }
+
       .services {
         grid-template-columns: 1fr;
       }
 
-      .site-logo {
-        width: 80px;
-        height: 80px;
+      .hero {
+        padding: 60px 5%;
       }
 
-      .services-section {
-        padding: 55px 5%;
+      .card {
+        padding: 25px;
+      }
+
+      .home-service {
+        margin: 20px 5% 50px;
+        padding: 30px 20px;
       }
     }
   </style>
@@ -197,12 +237,11 @@
 <body>
 
 <header>
-
   <nav>
 
     <a href="index.html">
       <img src="لوگو.jfif"
-           alt="لوگوی آزمایشگاه آلفا"
+           alt="لوگوی آزمایشگاه تخصصی آلفا"
            class="site-logo">
     </a>
 
@@ -215,15 +254,12 @@
     </ul>
 
   </nav>
-
 </header>
 
 
 <section class="hero">
 
-  <h1>
-    خدمات <span>آزمایشگاهی</span>
-  </h1>
+  <h1>خدمات آزمایشگاهی</h1>
 
   <p>
     ارائه خدمات آزمایشگاهی دقیق، حرفه‌ای و قابل اعتماد
@@ -233,169 +269,268 @@
 </section>
 
 
-<section class="services-section">
+<section class="services">
 
-  <div class="title">
 
-    <h2>خدمات تخصصی آزمایشگاه آلفا</h2>
+  <!-- هماتولوژی -->
+
+  <div class="card">
+
+    <div class="icon">🩸</div>
+
+    <h2>هماتولوژی</h2>
 
     <p>
-      مجموعه‌ای از آزمایش‌های روتین و تخصصی
-      برای بررسی دقیق وضعیت سلامت شما
+      بررسی سلول‌های خونی و شاخص‌های مهم خونی
+      برای کمک به تشخیص کم‌خونی، عفونت‌ها و اختلالات خونی.
     </p>
 
-  </div>
+    <div class="tests">
 
-
-  <div class="services">
-
-
-    <div class="card">
-
-      <div class="icon">🩸</div>
-
-      <h3>هماتولوژی</h3>
-
-      <p>
-        انجام آزمایش‌های مرتبط با سلول‌های خونی،
-        CBC، کم‌خونی، بررسی پلاکت‌ها و سایر
-        شاخص‌های مهم هماتولوژیک.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">🧪</div>
-
-      <h3>بیوشیمی</h3>
-
-      <p>
-        بررسی قند خون، چربی‌ها، آنزیم‌های کبدی،
-        عملکرد کلیه، الکترولیت‌ها و سایر
-        پارامترهای مهم بیوشیمیایی.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">🦠</div>
-
-      <h3>میکروب‌شناسی</h3>
-
-      <p>
-        انجام کشت‌های میکروبی، شناسایی
-        میکروارگانیسم‌ها و بررسی حساسیت
-        آنتی‌بیوتیکی.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">🧬</div>
-
-      <h3>ایمونولوژی و سرولوژی</h3>
-
-      <p>
-        انجام آزمایش‌های مرتبط با سیستم ایمنی،
-        آنتی‌بادی‌ها و بررسی‌های تخصصی
-        سرولوژیک.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">⚗️</div>
-
-      <h3>هورمون‌شناسی</h3>
-
-      <p>
-        بررسی هورمون‌های تیروئیدی، هورمون‌های
-        جنسی، هورمون‌های مرتبط با غدد و
-        سایر آزمایش‌های هورمونی.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">🔬</div>
-
-      <h3>آنالیز ادرار و مایعات بدن</h3>
-
-      <p>
-        بررسی کامل ادرار، رسوبات ادراری،
-        پروتئین، آلبومین و سایر آزمایش‌های
-        مرتبط با مایعات بدن.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">🧫</div>
-
-      <h3>کشت ادرار</h3>
-
-      <p>
-        تشخیص عفونت‌های ادراری با انجام کشت،
-        شناسایی عامل عفونت و بررسی
-        حساسیت آنتی‌بیوتیکی.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">🧬</div>
-
-      <h3>آزمایش‌های تخصصی</h3>
-
-      <p>
-        ارائه طیف متنوعی از آزمایش‌های تخصصی
-        با هدف کمک به تشخیص دقیق‌تر
-        بیماری‌ها و شرایط مختلف.
-      </p>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="icon">🏠</div>
-
-      <h3>نمونه‌گیری در منزل</h3>
-
-      <p>
-        امکان هماهنگی برای نمونه‌گیری در منزل
-        برای افرادی که امکان مراجعه مستقیم
-        به آزمایشگاه را ندارند.
-      </p>
+      <span>CBC</span>
+      <span>ESR</span>
+      <span>PT / INR</span>
+      <span>aPTT</span>
+      <span>Blood Group</span>
+      <span>Reticulocyte</span>
+      <span>Hb Electrophoresis</span>
 
     </div>
 
   </div>
 
 
-  <div class="back-home">
+  <!-- بیوشیمی -->
 
-    <a href="index.html" class="btn">
-      بازگشت به صفحه اصلی
-    </a>
+  <div class="card">
+
+    <div class="icon">🧪</div>
+
+    <h2>بیوشیمی</h2>
+
+    <p>
+      بررسی عملکرد اندام‌ها و پارامترهای مهم
+      متابولیک و بیوشیمیایی بدن.
+    </p>
+
+    <div class="tests">
+
+      <span>Glucose</span>
+      <span>HbA1c</span>
+      <span>Urea</span>
+      <span>Creatinine</span>
+      <span>AST</span>
+      <span>ALT</span>
+      <span>ALP</span>
+      <span>Bilirubin</span>
+      <span>Lipid Profile</span>
+      <span>Electrolytes</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- میکروب شناسی -->
+
+  <div class="card">
+
+    <div class="icon">🦠</div>
+
+    <h2>میکروب‌شناسی</h2>
+
+    <p>
+      کشت و شناسایی میکروارگانیسم‌ها و بررسی
+      حساسیت آنتی‌بیوتیکی.
+    </p>
+
+    <div class="tests">
+
+      <span>Urine Culture</span>
+      <span>Stool Culture</span>
+      <span>Wound Culture</span>
+      <span>Sputum Culture</span>
+      <span>Throat Culture</span>
+      <span>Antibiogram</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ایمونولوژی -->
+
+  <div class="card">
+
+    <div class="icon">🧬</div>
+
+    <h2>ایمونولوژی و سرولوژی</h2>
+
+    <p>
+      بررسی سیستم ایمنی، آنتی‌بادی‌ها و آزمایش‌های
+      تخصصی سرولوژیک.
+    </p>
+
+    <div class="tests">
+
+      <span>CRP</span>
+      <span>RF</span>
+      <span>ASO</span>
+      <span>ANA</span>
+      <span>Anti-TPO</span>
+      <span>Anti-TTG</span>
+      <span>HBsAg</span>
+      <span>HBeAg</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- هورمون -->
+
+  <div class="card">
+
+    <div class="icon">⚗️</div>
+
+    <h2>هورمون‌شناسی</h2>
+
+    <p>
+      بررسی هورمون‌های تیروئیدی، جنسی و هورمون‌های
+      مرتبط با عملکرد غدد.
+    </p>
+
+    <div class="tests">
+
+      <span>TSH</span>
+      <span>FT4</span>
+      <span>FT3</span>
+      <span>Prolactin</span>
+      <span>Testosterone</span>
+      <span>FSH</span>
+      <span>LH</span>
+      <span>Cortisol</span>
+      <span>PTH</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ادرار -->
+
+  <div class="card">
+
+    <div class="icon">🔬</div>
+
+    <h2>آنالیز ادرار و مایعات بدن</h2>
+
+    <p>
+      بررسی فیزیکی، شیمیایی و میکروسکوپی ادرار
+      و سایر مایعات بدن.
+    </p>
+
+    <div class="tests">
+
+      <span>Urinalysis</span>
+      <span>Urine Protein</span>
+      <span>Urine Albumin</span>
+      <span>UACR</span>
+      <span>Urine Creatinine</span>
+      <span>Urine Sediment</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- تست های تخصصی -->
+
+  <div class="card">
+
+    <div class="icon">🧫</div>
+
+    <h2>آزمایش‌های تخصصی</h2>
+
+    <p>
+      ارائه طیف متنوعی از آزمایش‌های تخصصی
+      برای کمک به بررسی دقیق‌تر وضعیت سلامت.
+    </p>
+
+    <div class="tests">
+
+      <span>Ferritin</span>
+      <span>Iron</span>
+      <span>TIBC</span>
+      <span>Vitamin D</span>
+      <span>Vitamin B12</span>
+      <span>Folate</span>
+      <span>CA-125</span>
+      <span>CA 19-9</span>
+      <span>CEA</span>
+
+    </div>
+
+  </div>
+
+
+  <!-- نمونه گیری -->
+
+  <div class="card">
+
+    <div class="icon">🏠</div>
+
+    <h2>نمونه‌گیری در منزل</h2>
+
+    <p>
+      امکان هماهنگی نمونه‌گیری در منزل برای افرادی
+      که امکان مراجعه مستقیم به آزمایشگاه را ندارند.
+    </p>
+
+    <div class="tests">
+
+      <span>نمونه خون</span>
+      <span>نمونه ادرار</span>
+      <span>نمونه‌های آزمایشگاهی</span>
+
+    </div>
 
   </div>
 
 </section>
+
+
+<div class="home-service">
+
+  <h2>🏠 نمونه‌گیری در منزل</h2>
+
+  <p>
+    برای هماهنگی نمونه‌گیری در منزل با آزمایشگاه آلفا تماس بگیرید.
+  </p>
+
+  <a href="tel:0796961814" class="btn primary">
+    📞 تماس برای هماهنگی
+  </a>
+
+</div>
+
+
+<div class="back">
+
+  <a href="index.html" class="btn primary">
+    ← بازگشت به صفحه اصلی
+  </a>
+
+</div>
+
+
+<a href="https://wa.me/93796961814"
+   class="whatsapp-button"
+   target="_blank">
+
+  💬 تماس در واتساپ
+
+</a>
 
 
 <footer>
