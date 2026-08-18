@@ -606,23 +606,6 @@ footer span{
   }
 
 }
-.search-box {
-    width: 100%;
-    max-width: 600px;
-    margin: 25px auto;
-    text-align: center;
-}
-
-.search-box input {
-    width: 100%;
-    padding: 15px 20px;
-    border: 2px solid #0b7fab;
-    border-radius: 30px;
-    font-size: 16px;
-    outline: none;
-    text-align: right;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
 
 .search-box input:focus {
     border-color: #075f82;
@@ -691,7 +674,92 @@ class="site-logo">
 </nav>
 
 </header>
+<!-- جستجوی حرفه‌ای آزمایش‌ها -->
 
+<div class="search-box">
+
+```
+<div class="search-title">
+    🔬 جستجوی آزمایش‌ها
+</div>
+
+<input
+    type="text"
+    id="testSearch"
+    placeholder="نام آزمایش را وارد کنید؛ مثال: CBC یا قند خون"
+    autocomplete="off"
+>
+
+<div id="searchResult">
+    نمایش همه آزمایش‌ها
+</div>
+```
+
+</div>
+
+<script>
+function normalizeText(text) {
+    return text
+        .toLowerCase()
+        .replace(/ي/g, "ی")
+        .replace(/ك/g, "ک")
+        .trim();
+}
+
+function searchTests() {
+
+    const input = document.getElementById("testSearch");
+    const result = document.getElementById("searchResult");
+
+    const searchValue = normalizeText(input.value);
+
+    const tests = document.querySelectorAll(".test");
+
+    let found = 0;
+
+    tests.forEach(function(test) {
+
+        const text = normalizeText(test.textContent);
+
+        if (searchValue === "" || text.includes(searchValue)) {
+
+            test.style.display = "";
+
+            if (searchValue !== "") {
+                found++;
+            }
+
+        } else {
+
+            test.style.display = "none";
+
+        }
+
+    });
+
+    if (searchValue === "") {
+
+        result.innerHTML = "نمایش همه آزمایش‌ها";
+
+    } else if (found > 0) {
+
+        result.innerHTML =
+            "✅ تعداد آزمایش‌های یافت‌شده: <strong>" +
+            found +
+            "</strong>";
+
+    } else {
+
+        result.innerHTML =
+            "❌ آزمایش مورد نظر یافت نشد";
+
+    }
+}
+
+document
+    .getElementById("testSearch")
+    .addEventListener("input", searchTests);
+</script>
 
 
 <!-- =========================
