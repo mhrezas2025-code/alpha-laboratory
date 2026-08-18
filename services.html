@@ -7,199 +7,205 @@
 <title>خدمات و تست‌ها | آزمایشگاه تخصصی آلفا</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-  font-family: Tahoma, Arial, sans-serif;
-  background: #f5fbfd;
-  color: #123247;
-  line-height: 1.8;
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  background:#f5fbfd;
+  color:#123247;
+  line-height:1.8;
 }
 
-header {
-  background: #063b57;
-  color: white;
-  padding: 10px 7%;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 3px 15px rgba(0,0,0,.15);
+header{
+  background:#063b57;
+  color:white;
+  padding:10px 7%;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 3px 15px rgba(0,0,0,.15);
 }
 
-nav {
-  max-width: 1200px;
-  margin: auto;
-  min-height: 90px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+nav{
+  max-width:1200px;
+  margin:auto;
+  min-height:90px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.site-logo {
-  width: 85px;
-  height: 85px;
-  object-fit: contain;
-  border-radius: 10px;
+.site-logo{
+  width:85px;
+  height:85px;
+  object-fit:contain;
+  border-radius:10px;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 22px;
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:22px;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
 }
 
-nav a:hover {
-  color: #52e2e2;
+nav a:hover{
+  color:#52e2e2;
 }
 
-.hero {
-  background: linear-gradient(135deg,#063b57,#087d99);
-  color: white;
-  padding: 75px 7%;
-  text-align: center;
+.hero{
+  background:linear-gradient(135deg,#063b57,#087d99);
+  color:white;
+  padding:75px 7%;
+  text-align:center;
 }
 
-.hero h1 {
-  font-size: clamp(35px,5vw,55px);
-  margin-bottom: 15px;
+.hero h1{
+  font-size:clamp(35px,5vw,55px);
+  margin-bottom:15px;
 }
 
-.hero p {
-  max-width: 750px;
-  margin: auto;
-  color: #dff7fa;
-  font-size: 17px;
+.hero p{
+  max-width:800px;
+  margin:auto;
+  color:#dff7fa;
+  font-size:17px;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 70px 20px;
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:70px 20px;
 }
 
-.section-title {
-  text-align: center;
-  margin-bottom: 45px;
+.section-title{
+  text-align:center;
+  margin-bottom:45px;
 }
 
-.section-title h2 {
-  color: #063b57;
-  font-size: 34px;
-  margin-bottom: 10px;
+.section-title h2{
+  color:#063b57;
+  font-size:34px;
+  margin-bottom:10px;
 }
 
-.section-title p {
-  color: #687e89;
+.section-title p{
+  color:#687e89;
 }
 
-.category {
-  background: white;
-  margin-bottom: 35px;
-  padding: 30px;
-  border-radius: 22px;
-  border: 1px solid #dfedf1;
-  box-shadow: 0 10px 30px rgba(4,55,75,.07);
+.category{
+  background:white;
+  margin-bottom:35px;
+  padding:30px;
+  border-radius:22px;
+  border:1px solid #dfedf1;
+  box-shadow:0 10px 30px rgba(4,55,75,.07);
 }
 
-.category h2 {
-  color: #075675;
-  margin-bottom: 25px;
-  font-size: 25px;
-  border-bottom: 2px solid #e4f3f6;
-  padding-bottom: 12px;
+.category h2{
+  color:#075675;
+  margin-bottom:25px;
+  font-size:25px;
+  border-bottom:2px solid #e4f3f6;
+  padding-bottom:12px;
 }
 
-.tests {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 12px;
+.category-description{
+  color:#687e89;
+  margin-bottom:20px;
+  font-size:14px;
 }
 
-.test {
-  background: #f3fafc;
-  border: 1px solid #e0edf1;
-  border-radius: 10px;
-  padding: 10px 14px;
-  color: #315566;
-  font-size: 14px;
-  transition: .25s;
+.tests{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 
-.test:hover {
-  background: #e2f7f8;
-  transform: translateY(-2px);
+.test{
+  background:#f3fafc;
+  border:1px solid #e0edf1;
+  border-radius:10px;
+  padding:10px 14px;
+  color:#315566;
+  font-size:14px;
+  transition:.25s;
 }
 
-.back {
-  text-align: center;
-  margin-top: 40px;
+.test:hover{
+  background:#e2f7f8;
+  transform:translateY(-2px);
 }
 
-.back a {
-  display: inline-block;
-  background: #32cbd0;
-  color: #063b57;
-  padding: 13px 25px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
+.back{
+  text-align:center;
+  margin-top:40px;
 }
 
-footer {
-  background: #032638;
-  color: white;
-  text-align: center;
-  padding: 30px;
+.back a{
+  display:inline-block;
+  background:#32cbd0;
+  color:#063b57;
+  padding:13px 25px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
 }
 
-footer span {
-  color: #32d1d8;
+.whatsapp-button{
+  position:fixed;
+  bottom:25px;
+  left:25px;
+  background:#25D366;
+  color:white;
+  padding:13px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
+  z-index:999;
 }
 
-.whatsapp-button {
-  position: fixed;
-  bottom: 25px;
-  left: 25px;
-  background: #25D366;
-  color: white;
-  padding: 13px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 5px 20px rgba(0,0,0,.2);
-  z-index: 999;
+footer{
+  background:#032638;
+  color:white;
+  text-align:center;
+  padding:30px;
 }
 
-@media(max-width:800px) {
+footer span{
+  color:#32d1d8;
+}
 
-  nav ul {
-    display: none;
+@media(max-width:800px){
+
+  nav ul{
+    display:none;
   }
 
-  .tests {
-    grid-template-columns: 1fr;
+  .tests{
+    grid-template-columns:1fr;
   }
 
-  .category {
-    padding: 20px;
+  .category{
+    padding:20px;
   }
 
-  .container {
-    padding: 50px 15px;
+  .container{
+    padding:50px 15px;
   }
 }
 </style>
@@ -211,7 +217,9 @@ footer span {
 <nav>
 
 <a href="index.html">
-<img src="لوگو.jfif" alt="لوگوی آزمایشگاه آلفا" class="site-logo">
+<img src="لوگو.jfif"
+     alt="لوگوی آزمایشگاه آلفا"
+     class="site-logo">
 </a>
 
 <ul>
@@ -231,7 +239,7 @@ footer span {
 
 <p>
 آزمایشگاه تخصصی آلفا با ارائه مجموعه‌ای گسترده از
-آزمایش‌های روتین و تخصصی در کنار شماست.
+آزمایش‌های روتین، تخصصی و قابل ارائه در کنار شماست.
 </p>
 
 </section>
@@ -239,13 +247,18 @@ footer span {
 <main class="container">
 
 <div class="section-title">
-<h2>فهرست آزمایش‌ها</h2>
+
+<h2>فهرست کامل آزمایش‌ها</h2>
+
 <p>
-برای مشاهده آزمایش‌های هر بخش، دسته مورد نظر را بررسی کنید.
+مجموعه‌ای گسترده از آزمایش‌های تشخیصی، روتین،
+تخصصی و قابل ارائه
 </p>
+
 </div>
 
-<!-- هماتولوژی -->
+
+<!-- 1 -->
 
 <div class="category">
 
@@ -276,8 +289,8 @@ footer span {
 <div class="test">ESR</div>
 <div class="test">Reticulocyte Count</div>
 <div class="test">Peripheral Blood Smear</div>
-<div class="test">Absolute Neutrophil Count</div>
-<div class="test">Absolute Lymphocyte Count</div>
+<div class="test">ANC</div>
+<div class="test">ALC</div>
 <div class="test">Absolute Eosinophil Count</div>
 <div class="test">Hb Electrophoresis</div>
 <div class="test">HbA2</div>
@@ -287,7 +300,8 @@ footer span {
 </div>
 </div>
 
-<!-- انعقاد -->
+
+<!-- 2 -->
 
 <div class="category">
 
@@ -303,21 +317,27 @@ footer span {
 <div class="test">D-Dimer</div>
 <div class="test">Fibrinogen</div>
 <div class="test">Thrombin Time</div>
+<div class="test">Factor VIII</div>
+<div class="test">Factor IX</div>
+<div class="test">Protein C</div>
+<div class="test">Protein S</div>
+<div class="test">Antithrombin III</div>
 
 </div>
 </div>
 
-<!-- بیوشیمی -->
+
+<!-- 3 -->
 
 <div class="category">
 
-<h2>🧪 بیوشیمی</h2>
+<h2>🧪 بیوشیمی عمومی</h2>
 
 <div class="tests">
 
 <div class="test">Glucose</div>
-<div class="test">Fasting Blood Sugar (FBS)</div>
-<div class="test">Random Blood Sugar (RBS)</div>
+<div class="test">FBS</div>
+<div class="test">RBS</div>
 <div class="test">HbA1c</div>
 <div class="test">Urea</div>
 <div class="test">Creatinine</div>
@@ -349,11 +369,66 @@ footer span {
 <div class="test">Bicarbonate</div>
 <div class="test">CK</div>
 <div class="test">CK-MB</div>
+<div class="test">CRP</div>
+<div class="test">Lactate</div>
+<div class="test">Osmolality</div>
 
 </div>
 </div>
 
-<!-- آهن -->
+
+<!-- 4 -->
+
+<div class="category">
+
+<h2>🫘 عملکرد کلیه</h2>
+
+<div class="tests">
+
+<div class="test">Urea</div>
+<div class="test">BUN</div>
+<div class="test">Creatinine</div>
+<div class="test">eGFR</div>
+<div class="test">Uric Acid</div>
+<div class="test">Cystatin C</div>
+<div class="test">Urine Protein</div>
+<div class="test">Urine Creatinine</div>
+<div class="test">Urine Albumin</div>
+<div class="test">Microalbumin</div>
+<div class="test">UACR</div>
+<div class="test">24 Hour Urine Protein</div>
+<div class="test">Creatinine Clearance</div>
+
+</div>
+</div>
+
+
+<!-- 5 -->
+
+<div class="category">
+
+<h2>🧬 عملکرد کبد</h2>
+
+<div class="tests">
+
+<div class="test">ALT</div>
+<div class="test">AST</div>
+<div class="test">ALP</div>
+<div class="test">GGT</div>
+<div class="test">Total Bilirubin</div>
+<div class="test">Direct Bilirubin</div>
+<div class="test">Indirect Bilirubin</div>
+<div class="test">Total Protein</div>
+<div class="test">Albumin</div>
+<div class="test">Globulin</div>
+<div class="test">A/G Ratio</div>
+<div class="test">LDH</div>
+
+</div>
+</div>
+
+
+<!-- 6 -->
 
 <div class="category">
 
@@ -368,15 +443,44 @@ footer span {
 <div class="test">Transferrin Saturation</div>
 <div class="test">Vitamin B12</div>
 <div class="test">Folate</div>
+<div class="test">Haptoglobin</div>
+<div class="test">Erythropoietin</div>
+<div class="test">Soluble Transferrin Receptor</div>
 
 </div>
 </div>
 
-<!-- تیروئید -->
+
+<!-- 7 -->
 
 <div class="category">
 
-<h2>⚗️ هورمون‌های تیروئید</h2>
+<h2>💊 ویتامین‌ها و مواد معدنی</h2>
+
+<div class="tests">
+
+<div class="test">Vitamin D3</div>
+<div class="test">Vitamin B12</div>
+<div class="test">Folate</div>
+<div class="test">Vitamin A</div>
+<div class="test">Vitamin E</div>
+<div class="test">Vitamin C</div>
+<div class="test">Zinc</div>
+<div class="test">Copper</div>
+<div class="test">Calcium</div>
+<div class="test">Magnesium</div>
+<div class="test">Phosphorus</div>
+<div class="test">Selenium</div>
+
+</div>
+</div>
+
+
+<!-- 8 -->
+
+<div class="category">
+
+<h2>⚗️ تیروئید</h2>
 
 <div class="tests">
 
@@ -388,11 +492,13 @@ footer span {
 <div class="test">Anti-TPO</div>
 <div class="test">Anti-TG</div>
 <div class="test">Thyroglobulin</div>
+<div class="test">Calcitonin</div>
 
 </div>
 </div>
 
-<!-- هورمون ها -->
+
+<!-- 9 -->
 
 <div class="category">
 
@@ -418,33 +524,64 @@ footer span {
 <div class="test">β-hCG</div>
 <div class="test">Growth Hormone</div>
 <div class="test">IGF-1</div>
+<div class="test">IGFBP-3</div>
+<div class="test">Renin</div>
+<div class="test">Aldosterone</div>
+<div class="test">Leptin</div>
 
 </div>
 </div>
 
-<!-- ویتامین -->
+
+<!-- 10 -->
 
 <div class="category">
 
-<h2>💊 ویتامین‌ها و مواد معدنی</h2>
+<h2>👩 باروری و هورمون‌های زنان</h2>
 
 <div class="tests">
 
-<div class="test">Vitamin D3</div>
-<div class="test">Vitamin B12</div>
-<div class="test">Folate</div>
-<div class="test">Vitamin A</div>
-<div class="test">Vitamin E</div>
-<div class="test">Zinc</div>
-<div class="test">Copper</div>
-<div class="test">Calcium</div>
-<div class="test">Magnesium</div>
-<div class="test">Phosphorus</div>
+<div class="test">FSH</div>
+<div class="test">LH</div>
+<div class="test">Estradiol</div>
+<div class="test">Progesterone</div>
+<div class="test">Prolactin</div>
+<div class="test">AMH</div>
+<div class="test">β-hCG</div>
+<div class="test">Free Testosterone</div>
+<div class="test">Total Testosterone</div>
+<div class="test">DHEA-S</div>
+<div class="test">SHBG</div>
+<div class="test">17-OH Progesterone</div>
 
 </div>
 </div>
 
-<!-- ایمونولوژی -->
+
+<!-- 11 -->
+
+<div class="category">
+
+<h2>👨 هورمون‌ها و باروری مردان</h2>
+
+<div class="tests">
+
+<div class="test">Total Testosterone</div>
+<div class="test">Free Testosterone</div>
+<div class="test">FSH</div>
+<div class="test">LH</div>
+<div class="test">Prolactin</div>
+<div class="test">SHBG</div>
+<div class="test">Estradiol</div>
+<div class="test">DHEA-S</div>
+<div class="test">PSA Total</div>
+<div class="test">Free PSA</div>
+
+</div>
+</div>
+
+
+<!-- 12 -->
 
 <div class="category">
 
@@ -466,11 +603,25 @@ footer span {
 <div class="test">Direct Coombs (DAT)</div>
 <div class="test">Indirect Coombs</div>
 <div class="test">Anti-CCP</div>
+<div class="test">Anti-SSA (Ro)</div>
+<div class="test">Anti-SSB (La)</div>
+<div class="test">Anti-Sm</div>
+<div class="test">Anti-RNP</div>
+<div class="test">Anti-Scl-70</div>
+<div class="test">Anti-Jo-1</div>
+<div class="test">ANCA</div>
+<div class="test">Anti-MPO</div>
+<div class="test">Anti-PR3</div>
+<div class="test">Anticardiolipin IgG</div>
+<div class="test">Anticardiolipin IgM</div>
+<div class="test">β2-Glycoprotein I</div>
+<div class="test">Lupus Anticoagulant</div>
 
 </div>
 </div>
 
-<!-- سرولوژی -->
+
+<!-- 13 -->
 
 <div class="category">
 
@@ -481,6 +632,7 @@ footer span {
 <div class="test">HBsAg</div>
 <div class="test">Anti-HBs</div>
 <div class="test">Anti-HBc</div>
+<div class="test">Anti-HBc IgM</div>
 <div class="test">HBeAg</div>
 <div class="test">Anti-HBe</div>
 <div class="test">Anti-HCV</div>
@@ -500,11 +652,49 @@ footer span {
 <div class="test">H. pylori IgG</div>
 <div class="test">H. pylori Ag</div>
 <div class="test">TB-IGRA</div>
+<div class="test">HAV IgM</div>
+<div class="test">HAV IgG</div>
+<div class="test">HEV IgM</div>
+<div class="test">HEV IgG</div>
+<div class="test">EBV VCA IgM</div>
+<div class="test">EBV VCA IgG</div>
+<div class="test">EBNA IgG</div>
 
 </div>
 </div>
 
-<!-- ادرار -->
+
+<!-- 14 -->
+
+<div class="category">
+
+<h2>🧫 میکروب‌شناسی و کشت</h2>
+
+<div class="tests">
+
+<div class="test">Urine Culture</div>
+<div class="test">Stool Culture</div>
+<div class="test">Blood Culture</div>
+<div class="test">Sputum Culture</div>
+<div class="test">Wound Culture</div>
+<div class="test">Throat Culture</div>
+<div class="test">Vaginal Culture</div>
+<div class="test">Semen Culture</div>
+<div class="test">Ear Swab Culture</div>
+<div class="test">Nasal Swab Culture</div>
+<div class="test">Eye Swab Culture</div>
+<div class="test">Antibiogram</div>
+<div class="test">Gram Stain</div>
+<div class="test">AFB Stain</div>
+<div class="test">KOH Preparation</div>
+<div class="test">Wet Mount</div>
+<div class="test">Fungal Culture</div>
+
+</div>
+</div>
+
+
+<!-- 15 -->
 
 <div class="category">
 
@@ -524,43 +714,22 @@ footer span {
 <div class="test">Urine Bilirubin</div>
 <div class="test">Urine Blood</div>
 <div class="test">Urine pH</div>
-<div class="test">Urine Specific Gravity</div>
+<div class="test">Specific Gravity</div>
 <div class="test">Urine Sediment</div>
+<div class="test">24 Hour Urine Protein</div>
+<div class="test">24 Hour Urine Creatinine</div>
+<div class="test">Urine Calcium</div>
+<div class="test">Urine Uric Acid</div>
 
 </div>
 </div>
 
-<!-- کشت -->
+
+<!-- 16 -->
 
 <div class="category">
 
-<h2>🦠 میکروب‌شناسی و کشت</h2>
-
-<div class="tests">
-
-<div class="test">Urine Culture</div>
-<div class="test">Stool Culture</div>
-<div class="test">Blood Culture</div>
-<div class="test">Sputum Culture</div>
-<div class="test">Wound Culture</div>
-<div class="test">Throat Culture</div>
-<div class="test">Vaginal Culture</div>
-<div class="test">Semen Culture</div>
-<div class="test">Ear Swab Culture</div>
-<div class="test">Nasal Swab Culture</div>
-<div class="test">Antibiogram</div>
-<div class="test">Gram Stain</div>
-<div class="test">AFB Stain</div>
-<div class="test">KOH Preparation</div>
-
-</div>
-</div>
-
-<!-- مدفوع -->
-
-<div class="category">
-
-<h2>🧫 آزمایش‌های مدفوع</h2>
+<h2>🧫 مدفوع و انگل‌شناسی</h2>
 
 <div class="tests">
 
@@ -571,15 +740,18 @@ footer span {
 <div class="test">Entamoeba</div>
 <div class="test">Reducing Substance</div>
 <div class="test">Stool Culture</div>
+<div class="test">Cryptosporidium</div>
+<div class="test">Pinworm Test</div>
 
 </div>
 </div>
 
-<!-- اسپرم -->
+
+<!-- 17 -->
 
 <div class="category">
 
-<h2>👨 آنالیز اسپرم</h2>
+<h2>👨 آنالیز اسپرم و ناباروری</h2>
 
 <div class="tests">
 
@@ -591,11 +763,35 @@ footer span {
 <div class="test">Semen pH</div>
 <div class="test">Sperm Vitality</div>
 <div class="test">MAR Test</div>
+<div class="test">Semen Culture</div>
+<div class="test">Round Cell Count</div>
 
 </div>
 </div>
 
-<!-- تومورمارکر -->
+
+<!-- 18 -->
+
+<div class="category">
+
+<h2>🫀 مارکرهای قلبی</h2>
+
+<div class="tests">
+
+<div class="test">Troponin I</div>
+<div class="test">Troponin T</div>
+<div class="test">CK-MB</div>
+<div class="test">Total CK</div>
+<div class="test">LDH</div>
+<div class="test">BNP</div>
+<div class="test">NT-proBNP</div>
+<div class="test">Homocysteine</div>
+
+</div>
+</div>
+
+
+<!-- 19 -->
 
 <div class="category">
 
@@ -608,43 +804,166 @@ footer span {
 <div class="test">CA 125</div>
 <div class="test">CA 15-3</div>
 <div class="test">CA 19-9</div>
+<div class="test">CA 72-4</div>
+<div class="test">CA 50</div>
+<div class="test">CA 27-29</div>
 <div class="test">PSA Total</div>
 <div class="test">Free PSA</div>
 <div class="test">β2-Microglobulin</div>
+<div class="test">SCC Antigen</div>
+<div class="test">CYFRA 21-1</div>
+<div class="test">NSE</div>
+<div class="test">ProGRP</div>
+<div class="test">Chromogranin A</div>
+<div class="test">HE4</div>
+<div class="test">ROMA</div>
+<div class="test">Thyroglobulin</div>
+<div class="test">Calcitonin</div>
 
 </div>
 </div>
 
-<!-- تخصصی -->
+
+<!-- 20 -->
 
 <div class="category">
 
-<h2>🧬 آزمایش‌های تخصصی</h2>
+<h2>🩺 بارداری و آزمایش‌های زنان</h2>
+
+<div class="tests">
+
+<div class="test">β-hCG</div>
+<div class="test">Quantitative β-hCG</div>
+<div class="test">Progesterone</div>
+<div class="test">Estradiol</div>
+<div class="test">FSH</div>
+<div class="test">LH</div>
+<div class="test">Prolactin</div>
+<div class="test">AMH</div>
+<div class="test">TORCH Panel</div>
+<div class="test">Rubella IgG</div>
+<div class="test">Rubella IgM</div>
+<div class="test">CMV IgG</div>
+<div class="test">CMV IgM</div>
+<div class="test">Toxoplasma IgG</div>
+<div class="test">Toxoplasma IgM</div>
+
+</div>
+</div>
+
+
+<!-- 21 -->
+
+<div class="category">
+
+<h2>🧬 آزمایش‌های تخصصی و قابل ارائه</h2>
+
+<p class="category-description">
+برخی آزمایش‌های تخصصی ممکن است بر اساس نوع آزمایش و شرایط نمونه،
+در بخش تخصصی آزمایشگاه یا از طریق آزمایشگاه‌های مرجع قابل ارائه باشند.
+</p>
 
 <div class="tests">
 
 <div class="test">VMA</div>
+<div class="test">Metanephrine</div>
+<div class="test">Normetanephrine</div>
 <div class="test">Homocysteine</div>
-<div class="test">HbA1c</div>
 <div class="test">Cystatin C</div>
 <div class="test">BCR-ABL</div>
+<div class="test">JAK2 V617F</div>
+<div class="test">Factor V Leiden</div>
 <div class="test">Protein Electrophoresis</div>
 <div class="test">Immunofixation</div>
 <div class="test">Free Light Chains</div>
 <div class="test">G6PD</div>
 <div class="test">Gastrin</div>
 <div class="test">Procalcitonin</div>
-<div class="test">Troponin I</div>
-<div class="test">Troponin T</div>
+<div class="test">Erythropoietin</div>
+<div class="test">Renin</div>
+<div class="test">Aldosterone</div>
+<div class="test">IGF-1</div>
+<div class="test">IGFBP-3</div>
+<div class="test">Growth Hormone</div>
+<div class="test">Leptin</div>
+<div class="test">Adiponectin</div>
+<div class="test">Calcitonin</div>
+<div class="test">Anti-Müllerian Hormone</div>
+<div class="test">Haptoglobin</div>
+<div class="test">Soluble Transferrin Receptor</div>
+<div class="test">Lupus Anticoagulant</div>
+<div class="test">Anticardiolipin Antibodies</div>
+<div class="test">β2-Glycoprotein I</div>
+<div class="test">ANCA Profile</div>
+<div class="test">Anti-SSA</div>
+<div class="test">Anti-SSB</div>
+<div class="test">Anti-Sm</div>
+<div class="test">Anti-RNP</div>
+<div class="test">Anti-Scl-70</div>
+<div class="test">Anti-Jo-1</div>
+<div class="test">Anti-MPO</div>
+<div class="test">Anti-PR3</div>
 
 </div>
 </div>
+
+
+<!-- 22 -->
+
+<div class="category">
+
+<h2>🧬 آزمایش‌های مولکولی و ژنتیکی قابل ارائه</h2>
+
+<div class="tests">
+
+<div class="test">PCR</div>
+<div class="test">Real-Time PCR</div>
+<div class="test">BCR-ABL PCR</div>
+<div class="test">HBV DNA PCR</div>
+<div class="test">HCV RNA PCR</div>
+<div class="test">HIV RNA PCR</div>
+<div class="test">HPV DNA</div>
+<div class="test">TB PCR</div>
+<div class="test">CMV PCR</div>
+<div class="test">EBV PCR</div>
+<div class="test">Molecular Detection</div>
+
+</div>
+</div>
+
+
+<!-- 23 -->
+
+<div class="category">
+
+<h2>🏠 نمونه‌گیری در منزل</h2>
+
+<p class="category-description">
+برای افرادی که امکان مراجعه حضوری ندارند، امکان هماهنگی
+نمونه‌گیری در منزل فراهم می‌باشد.
+</p>
+
+<div class="tests">
+
+<div class="test">نمونه‌گیری خون</div>
+<div class="test">نمونه‌گیری ادرار</div>
+<div class="test">نمونه‌گیری مدفوع</div>
+<div class="test">نمونه‌گیری سایر نمونه‌ها</div>
+
+</div>
+</div>
+
 
 <div class="back">
-<a href="index.html">⬅ بازگشت به صفحه اصلی</a>
+
+<a href="index.html">
+⬅ بازگشت به صفحه اصلی
+</a>
+
 </div>
 
 </main>
+
 
 <a href="https://wa.me/93796961814"
 class="whatsapp-button"
@@ -652,15 +971,20 @@ target="_blank">
 💬 تماس در واتساپ
 </a>
 
+
 <footer>
 
 <strong>
 آزمایشگاه تخصصی <span>آلفا</span>
 </strong>
 
-<p>Alpha Specialized Laboratory</p>
+<p>
+Alpha Specialized Laboratory
+</p>
 
-<small>© 2026 تمامی حقوق محفوظ است.</small>
+<small>
+© 2026 تمامی حقوق محفوظ است.
+</small>
 
 </footer>
 
