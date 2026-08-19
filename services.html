@@ -608,12 +608,344 @@ footer span{
     box-shadow: 0 0 10px rgba(11,127,171,0.25);
 }
 </style>
+<style>
+/* ===== ALPHA PREMIUM SERVICES DESIGN ===== */
 
+:root {
+  --alpha-primary: #0b7285;
+  --alpha-secondary: #087f5b;
+  --alpha-dark: #073b4c;
+  --alpha-light: #f1fbfc;
+  --alpha-white: #ffffff;
+  --alpha-text: #183b42;
+  --alpha-muted: #6b7f85;
+  --alpha-shadow: 0 15px 45px rgba(7, 59, 76, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(11,114,133,.08), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(8,127,91,.08), transparent 30%),
+    #f7fcfd;
+  color: var(--alpha-text);
+}
+
+/* HEADER */
+
+.alpha-header {
+  position: relative;
+  background: linear-gradient(135deg, #073b4c, #0b7285);
+  color: white;
+  padding: 22px 6%;
+  overflow: hidden;
+}
+
+.alpha-header::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  top: -140px;
+  right: 5%;
+}
+
+.alpha-header-content {
+  max-width: 1250px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.alpha-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.alpha-logo-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+  font-weight: bold;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+.alpha-logo h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.alpha-logo span {
+  font-size: 12px;
+  opacity: .8;
+}
+
+.alpha-badge {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+}
+
+.alpha-badge span {
+  color: #69db7c;
+}
+
+/* HERO */
+
+.services-hero {
+  padding: 65px 20px 90px;
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.7), rgba(241,251,252,.95));
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: auto;
+}
+
+.hero-label {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 30px;
+  background: #e3f7f9;
+  color: var(--alpha-primary);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.hero-content h2 {
+  margin: 22px 0 15px;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.2;
+  color: var(--alpha-dark);
+}
+
+.hero-content h2 strong {
+  color: var(--alpha-primary);
+}
+
+.hero-content p {
+  max-width: 650px;
+  margin: auto;
+  line-height: 2;
+  color: var(--alpha-muted);
+  font-size: 16px;
+}
+
+/* STATS */
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 38px;
+  flex-wrap: wrap;
+}
+
+.hero-stats div {
+  min-width: 150px;
+  padding: 18px 25px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(11,114,133,.1);
+  box-shadow: var(--alpha-shadow);
+}
+
+.hero-stats strong {
+  display: block;
+  font-size: 25px;
+  color: var(--alpha-primary);
+}
+
+.hero-stats span {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--alpha-muted);
+}
+
+/* SEARCH */
+
+.test-search-box {
+  max-width: 850px;
+  margin: -35px auto 45px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 22px;
+  background: rgba(255,255,255,.95);
+  border: 1px solid rgba(11,114,133,.12);
+  border-radius: 22px;
+  box-shadow: 0 18px 50px rgba(7,59,76,.16);
+  backdrop-filter: blur(15px);
+}
+
+.test-search-box span {
+  font-size: 22px;
+}
+
+.test-search-box input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 16px 5px;
+  background: transparent;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--alpha-text);
+}
+
+.test-search-box input::placeholder {
+  color: #9aabad;
+}
+
+/* TEST CARDS */
+
+.test {
+  transition: all .25s ease;
+  border-radius: 16px;
+}
+
+.test:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(7,59,76,.12);
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .alpha-header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .alpha-logo {
+    flex-direction: column;
+  }
+
+  .alpha-logo h1 {
+    font-size: 19px;
+  }
+
+  .alpha-badge {
+    width: 100%;
+  }
+
+  .services-hero {
+    padding: 45px 15px 75px;
+  }
+
+  .hero-content h2 {
+    font-size: 34px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .hero-stats {
+    gap: 10px;
+  }
+
+  .hero-stats div {
+    min-width: 105px;
+    padding: 15px 10px;
+  }
+
+  .hero-stats strong {
+    font-size: 21px;
+  }
+
+  .test-search-box {
+    margin: -30px 15px 30px;
+  }
+}
+</style>
 </head>
 
 
 <body>
+<div class="alpha-header">
+  <div class="alpha-header-content">
+    <div class="alpha-logo">
+      <div class="alpha-logo-icon">α</div>
+      <div>
+        <h1>آزمایشگاه تخصصی آلفا</h1>
+        <span>Alpha Specialized Laboratory</span>
+      </div>
+    </div>
 
+    <div class="alpha-badge">
+      <span>●</span>
+      خدمات آزمایشگاهی
+    </div>
+  </div>
+</div>
+
+<section class="services-hero">
+  <div class="hero-content">
+    <span class="hero-label">🧬 ALPHA LABORATORY</span>
+
+    <h2>
+      همه آزمایش‌ها،
+      <strong>در یک نگاه</strong>
+    </h2>
+
+    <p>
+      مجموعه‌ای جامع از آزمایش‌های تشخیصی تخصصی،
+      روتین و پیشرفته در آزمایشگاه تخصصی آلفا
+    </p>
+
+    <div class="hero-stats">
+      <div>
+        <strong>529+</strong>
+        <span>آزمایش تخصصی</span>
+      </div>
+
+      <div>
+        <strong>24/7</strong>
+        <span>پشتیبانی</span>
+      </div>
+
+      <div>
+        <strong>α</strong>
+        <span>استاندارد آلفا</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="test-search-box">
+  <span>🔍</span>
+  <input
+    type="text"
+    id="testSearch"
+    placeholder="نام آزمایش را جستجو کنید..."
+  >
+</div>
 
 <!-- =========================
      HEADER
