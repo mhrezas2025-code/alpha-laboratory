@@ -1356,7 +1356,6 @@ function normalizeText(text) {
 document.addEventListener("DOMContentLoaded", function () {
 
   const input1 = document.getElementById("testSearch");
-  const input2 = document.getElementById("searchInput");
   const result = document.getElementById("searchResult");
 
   const inputs = [input1, input2].filter(Boolean);
@@ -4164,15 +4163,14 @@ document.getElementById("totalCategories")
 
    
 
-   <!-- ALPHA PREMIUM SEARCH -->
+  <!-- ALPHA PREMIUM SEARCH -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const tests = [...document.querySelectorAll(".test")];
 
-  const searchInput =
-    document.querySelector('input[type="search"]') ||
-    document.querySelector('input[type="text"]');
+  const searchInput = document.getElementById("testSearch");
+  const resultCount = document.getElementById("resultCount");
 
   if (!searchInput) return;
 
@@ -4202,27 +4200,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    /* نمایش نتیجه جستجو */
-    let result = document.getElementById("alpha-search-result");
-
-    if (!result) {
-      result = document.createElement("div");
-      result.id = "alpha-search-result";
-
-      searchInput.parentElement.appendChild(result);
-    }
-
-    if (query) {
-
-      result.innerHTML =
-        `🔬 تعداد آزمایش‌های یافت‌شده: <strong>${found}</strong>`;
-
-      result.style.display = "block";
-
-    } else {
-
-      result.style.display = "none";
-
+    if (resultCount) {
+      resultCount.textContent = found;
     }
 
   });
