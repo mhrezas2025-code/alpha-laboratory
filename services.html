@@ -9,7 +9,190 @@
 </title>
 
 <style>
+/* ================================
+   ALPHA LABORATORY - PREMIUM DESIGN
+================================ */
 
+body {
+    background:
+        radial-gradient(circle at 10% 10%, rgba(0, 170, 255, 0.08), transparent 25%),
+        radial-gradient(circle at 90% 20%, rgba(0, 220, 180, 0.07), transparent 25%),
+        linear-gradient(135deg, #f7fbff 0%, #eef7fa 50%, #f8fcff 100%);
+}
+
+/* هدر اصلی */
+header,
+nav {
+    position: relative;
+    z-index: 10;
+}
+
+/* عنوان صفحه */
+h1 {
+    font-size: 36px !important;
+    font-weight: 900 !important;
+    color: #063b5c !important;
+    text-align: center;
+    margin-top: 25px !important;
+    margin-bottom: 15px !important;
+    letter-spacing: -1px;
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 4px;
+    margin: 14px auto 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #00a8e8, #00c896);
+}
+
+/* متن معرفی */
+main > p,
+.container > p {
+    text-align: center;
+    color: #607d8b;
+    font-size: 17px;
+    line-height: 2;
+}
+
+/* کارت آمار */
+.stats,
+.statistics,
+.info-boxes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 30px auto;
+    max-width: 950px;
+}
+
+.stats > *,
+.statistics > *,
+.info-boxes > * {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(0,150,200,0.12);
+    border-radius: 20px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,70,100,0.08);
+    transition: 0.3s ease;
+}
+
+.stats > *:hover,
+.statistics > *:hover,
+.info-boxes > *:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,120,160,0.15);
+}
+
+/* جستجو */
+input[type="search"],
+input[type="text"] {
+    border: 2px solid #d8edf5 !important;
+    border-radius: 50px !important;
+    padding: 15px 22px !important;
+    font-size: 16px !important;
+    outline: none !important;
+    background: white !important;
+    box-shadow: 0 8px 25px rgba(0,80,120,0.07);
+    transition: 0.3s ease;
+}
+
+input[type="search"]:focus,
+input[type="text"]:focus {
+    border-color: #00a8e8 !important;
+    box-shadow: 0 0 0 4px rgba(0,168,232,0.10);
+}
+
+/* عنوان بخش آزمایش‌ها */
+section h2 {
+    position: relative;
+    color: #064b6b;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 15px 20px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    background: linear-gradient(
+        90deg,
+        rgba(0,168,232,0.10),
+        rgba(0,200,150,0.04),
+        transparent
+    );
+    border-right: 5px solid #00a8e8;
+}
+
+/* کارت هر آزمایش */
+.test {
+    background: rgba(255,255,255,0.90) !important;
+    border: 1px solid rgba(0,130,170,0.10) !important;
+    border-radius: 14px !important;
+    padding: 15px 18px !important;
+    margin: 8px 0 !important;
+    box-shadow: 0 5px 18px rgba(0,60,90,0.05);
+    transition: all 0.25s ease;
+}
+
+.test:hover {
+    transform: translateX(-5px);
+    border-color: rgba(0,168,232,0.35) !important;
+    box-shadow: 0 10px 25px rgba(0,120,160,0.12);
+}
+
+.test strong {
+    color: #063b5c;
+    font-size: 16px;
+}
+
+.test small,
+.test span {
+    color: #607d8b;
+}
+
+/* دکمه واتساپ */
+.whatsapp-button {
+    background: linear-gradient(135deg, #20c96b, #10a957) !important;
+    box-shadow: 0 10px 25px rgba(16,169,87,0.25) !important;
+    transition: 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* دکمه بازگشت */
+a[href*="index.html"] {
+    transition: 0.3s ease;
+}
+
+a[href*="index.html"]:hover {
+    transform: translateY(-2px);
+}
+
+/* موبایل */
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 28px !important;
+    }
+
+    .stats,
+    .statistics,
+    .info-boxes {
+        grid-template-columns: 1fr;
+    }
+
+    section h2 {
+        font-size: 19px;
+    }
+
+    .test {
+        padding: 13px !important;
+    }
+}
 /* =========================
    RESET
 ========================= */
