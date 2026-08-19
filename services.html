@@ -7,7 +7,150 @@
 <title>
 آزمایش‌های تخصصی | آزمایشگاه تخصصی آلفا
 </title>
+/* ================================
+   ALPHA LABORATORY - PREMIUM STYLE
+================================ */
 
+body {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(0, 150, 136, 0.10), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(0, 188, 212, 0.10), transparent 30%),
+    linear-gradient(135deg, #f7fbfc, #eef7f8);
+}
+
+/* عنوان اصلی */
+h1 {
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 15px;
+}
+
+/* توضیحات */
+p {
+  line-height: 1.9;
+}
+
+/* کارت‌های تست */
+.test {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 150, 136, 0.12);
+  border-radius: 18px;
+  padding: 18px;
+  margin: 10px 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.test::before {
+  content: "α";
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  font-size: 38px;
+  font-weight: 900;
+  opacity: 0.035;
+}
+
+.test:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px rgba(0, 121, 107, 0.14);
+  border-color: rgba(0, 150, 136, 0.30);
+}
+
+/* نام آزمایش */
+.test strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  color: #123c45;
+  margin-bottom: 5px;
+}
+
+/* توضیحات آزمایش */
+.test span,
+.test p {
+  color: #64777c;
+  font-size: 14px;
+}
+
+/* عنوان دسته‌بندی */
+.category h2,
+section h2 {
+  position: relative;
+  margin-top: 45px;
+  margin-bottom: 22px;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #00695c, #00897b);
+  color: white;
+  font-weight: 900;
+  box-shadow: 0 10px 25px rgba(0, 105, 92, 0.18);
+}
+
+/* جستجو */
+input[type="search"],
+input[type="text"] {
+  width: 100%;
+  max-width: 750px;
+  padding: 17px 22px;
+  border-radius: 50px;
+  border: 2px solid rgba(0, 137, 123, 0.18);
+  background: rgba(255,255,255,0.9);
+  font-size: 16px;
+  outline: none;
+  transition: 0.25s;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+input[type="search"]:focus,
+input[type="text"]:focus {
+  border-color: #00897b;
+  box-shadow: 0 0 0 5px rgba(0,137,123,0.10);
+}
+
+/* آمار */
+.stats,
+.statistics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin: 30px 0;
+}
+
+.stats > *,
+.statistics > * {
+  background: rgba(255,255,255,0.85);
+  border-radius: 20px;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,137,123,0.10);
+}
+
+/* موبایل */
+@media (max-width: 600px) {
+
+  .test {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .category h2,
+  section h2 {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .test strong {
+    font-size: 15px;
+  }
+}
 <style>
 /* ================================
    ALPHA LABORATORY - PREMIUM DESIGN
