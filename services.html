@@ -4161,5 +4161,69 @@ document.getElementById("totalCategories")
 
    
 
-   
+   <!-- ALPHA PREMIUM SEARCH -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const tests = [...document.querySelectorAll(".test")];
+
+  const searchInput =
+    document.querySelector('input[type="search"]') ||
+    document.querySelector('input[type="text"]');
+
+  if (!searchInput) return;
+
+  searchInput.setAttribute(
+    "placeholder",
+    "🔍 نام آزمایش، مخفف یا نام انگلیسی را جستجو کنید..."
+  );
+
+  searchInput.setAttribute("autocomplete", "off");
+
+  searchInput.addEventListener("input", function () {
+
+    const query = this.value.trim().toLowerCase();
+
+    let found = 0;
+
+    tests.forEach(test => {
+
+      const text = test.innerText.toLowerCase();
+
+      if (!query || text.includes(query)) {
+        test.style.display = "";
+        found++;
+      } else {
+        test.style.display = "none";
+      }
+
+    });
+
+    /* نمایش نتیجه جستجو */
+    let result = document.getElementById("alpha-search-result");
+
+    if (!result) {
+      result = document.createElement("div");
+      result.id = "alpha-search-result";
+
+      searchInput.parentElement.appendChild(result);
+    }
+
+    if (query) {
+
+      result.innerHTML =
+        `🔬 تعداد آزمایش‌های یافت‌شده: <strong>${found}</strong>`;
+
+      result.style.display = "block";
+
+    } else {
+
+      result.style.display = "none";
+
+    }
+
+  });
+
+});
+</script>
 </section></body></html>
