@@ -1,1 +1,610 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ورود آزمایشگاه‌های همکار | آزمایشگاه تخصصی آلفا</title>
+
+<style>
+
+:root {
+  --alpha-primary: #0b7285;
+  --alpha-primary-dark: #063b57;
+  --alpha-accent: #32cbd0;
+  --alpha-light: #f1fbfc;
+  --alpha-text: #183b42;
+  --alpha-muted: #6b7f85;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: Tahoma, Arial, sans-serif;
+
+  color: var(--alpha-text);
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(0,150,136,.10),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(0,188,212,.10),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f7fbfc,
+      #eef7f8
+    );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 15px;
+}
+
+
+/* =========================
+   LOGIN CONTAINER
+========================= */
+
+.login-wrapper {
+
+  width: 100%;
+  max-width: 460px;
+
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+
+  text-align: center;
+
+  margin-bottom: 25px;
+
+}
+
+.logo-box {
+
+  width: 82px;
+  height: 82px;
+
+  margin: 0 auto 15px;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  background: white;
+
+  box-shadow:
+    0 12px 35px rgba(7,59,76,.14);
+
+}
+
+.logo-box img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+}
+
+.brand h1 {
+
+  margin: 0 0 5px;
+
+  color: var(--alpha-primary-dark);
+
+  font-size: 24px;
+
+  font-weight: 900;
+
+}
+
+.brand p {
+
+  margin: 0;
+
+  color: var(--alpha-muted);
+
+  font-size: 13px;
+
+}
+
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.login-card {
+
+  padding: 35px 32px;
+
+  background:
+    rgba(255,255,255,.94);
+
+  border:
+    1px solid rgba(11,114,133,.10);
+
+  border-radius: 26px;
+
+  box-shadow:
+    0 20px 55px rgba(7,59,76,.13);
+
+  backdrop-filter: blur(15px);
+
+}
+
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.login-header {
+
+  text-align: center;
+
+  margin-bottom: 28px;
+
+}
+
+.login-icon {
+
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 14px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 18px;
+
+  font-size: 27px;
+
+  background: #e3f7f9;
+
+  color: var(--alpha-primary);
+
+}
+
+.login-header h2 {
+
+  margin: 0 0 7px;
+
+  color: var(--alpha-primary-dark);
+
+  font-size: 22px;
+
+}
+
+.login-header p {
+
+  margin: 0;
+
+  color: var(--alpha-muted);
+
+  font-size: 13px;
+
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+
+  margin-bottom: 20px;
+
+}
+
+.form-group label {
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--alpha-primary-dark);
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+}
+
+.input-wrapper {
+
+  position: relative;
+
+}
+
+.input-icon {
+
+  position: absolute;
+
+  right: 15px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-size: 18px;
+
+  pointer-events: none;
+
+}
+
+.input-wrapper input {
+
+  width: 100%;
+
+  height: 52px;
+
+  padding:
+    0 48px 0 15px;
+
+  border:
+    1px solid #dcebed;
+
+  border-radius: 14px;
+
+  outline: none;
+
+  background: #fafdfe;
+
+  color: var(--alpha-text);
+
+  font-family: Tahoma, Arial, sans-serif;
+
+  font-size: 14px;
+
+  transition: .3s ease;
+
+}
+
+.input-wrapper input:focus {
+
+  border-color: var(--alpha-primary);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(11,114,133,.08);
+
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-button {
+
+  width: 100%;
+
+  height: 54px;
+
+  margin-top: 8px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  cursor: pointer;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #063b57,
+      #0b7285
+    );
+
+  font-family: Tahoma, Arial, sans-serif;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  box-shadow:
+    0 10px 25px rgba(7,59,76,.18);
+
+  transition: .3s ease;
+
+}
+
+.login-button:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 14px 30px rgba(7,59,76,.25);
+
+}
+
+
+/* =========================
+   NOTICE
+========================= */
+
+.login-notice {
+
+  margin-top: 22px;
+
+  padding: 13px 15px;
+
+  text-align: center;
+
+  color: #60777d;
+
+  background: #f1fbfc;
+
+  border-radius: 12px;
+
+  font-size: 11px;
+
+  line-height: 1.8;
+
+}
+
+
+/* =========================
+   BACK LINK
+========================= */
+
+.back-home {
+
+  display: block;
+
+  margin-top: 20px;
+
+  text-align: center;
+
+  color: var(--alpha-primary);
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+}
+
+.back-home:hover {
+
+  color: var(--alpha-primary-dark);
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer-text {
+
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: #8a9da2;
+
+  font-size: 11px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+  body {
+    padding: 20px 12px;
+  }
+
+  .login-card {
+    padding: 28px 20px;
+  }
+
+  .brand h1 {
+    font-size: 21px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-wrapper">
+
+
+  <!-- =========================
+       BRAND
+  ========================= -->
+
+  <div class="brand">
+
+    <div class="logo-box">
+
+      <img
+        src="لوگو.jfif"
+        alt="لوگوی آزمایشگاه تخصصی آلفا"
+      >
+
+    </div>
+
+    <h1>
+      آزمایشگاه تخصصی آلفا
+    </h1>
+
+    <p>
+      Alpha Specialized Laboratory
+    </p>
+
+  </div>
+
+
+  <!-- =========================
+       LOGIN CARD
+  ========================= -->
+
+  <div class="login-card">
+
+
+    <div class="login-header">
+
+      <div class="login-icon">
+        🔐
+      </div>
+
+      <h2>
+        ورود آزمایشگاه‌های همکار
+      </h2>
+
+      <p>
+        برای ورود به پرتال همکاری، اطلاعات حساب خود را وارد کنید.
+      </p>
+
+    </div>
+
+
+    <form>
+
+
+      <!-- USERNAME -->
+
+      <div class="form-group">
+
+        <label for="username">
+          نام کاربری
+        </label>
+
+        <div class="input-wrapper">
+
+          <span class="input-icon">
+            👤
+          </span>
+
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="نام کاربری آزمایشگاه"
+            autocomplete="username"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- PASSWORD -->
+
+      <div class="form-group">
+
+        <label for="password">
+          رمز عبور
+        </label>
+
+        <div class="input-wrapper">
+
+          <span class="input-icon">
+            🔑
+          </span>
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="رمز عبور"
+            autocomplete="current-password"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- LOGIN -->
+
+      <button
+        type="button"
+        class="login-button"
+      >
+
+        ورود به پرتال
+
+      </button>
+
+
+    </form>
+
+
+    <div class="login-notice">
+
+      🔒 اطلاعات حساب و اطلاعات بیماران
+      باید فقط در سامانه امن آزمایشگاه آلفا
+      مدیریت شوند.
+
+    </div>
+
+
+  </div>
+
+
+  <a
+    href="index.html"
+    class="back-home"
+  >
+    ← بازگشت به صفحه اصلی
+  </a>
+
+
+  <div class="footer-text">
+
+    © آزمایشگاه تخصصی آلفا
+    — تمامی حقوق محفوظ است.
+
+  </div>
+
+
+</div>
+
+
+</body>
+
+</html>
