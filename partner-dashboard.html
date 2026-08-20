@@ -1,1 +1,1124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+پرتال آزمایشگاه‌های همکار | آزمایشگاه تخصصی آلفا
+</title>
+
+<style>
+
+:root {
+  --alpha-primary: #0b7285;
+  --alpha-primary-dark: #063b57;
+  --alpha-secondary: #087f5b;
+  --alpha-accent: #32cbd0;
+  --alpha-light: #f1fbfc;
+  --alpha-white: #ffffff;
+  --alpha-text: #183b42;
+  --alpha-muted: #6b7f85;
+
+  --alpha-border: rgba(11,114,133,.12);
+
+  --alpha-shadow:
+    0 10px 30px rgba(7,59,76,.08);
+
+  --alpha-shadow-hover:
+    0 15px 35px rgba(7,59,76,.14);
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  color: var(--alpha-text);
+
+  line-height: 1.9;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(0,150,136,.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(0,188,212,.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f7fbfc,
+      #eef7f8
+    );
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  background:
+    linear-gradient(
+      135deg,
+      #063b57,
+      #087d99
+    );
+
+  color: white;
+
+  padding:
+    12px 6%;
+
+  box-shadow:
+    0 4px 18px
+    rgba(0,0,0,.15);
+}
+
+.header-inner {
+
+  max-width: 1250px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.logo {
+
+  width: 55px;
+  height: 55px;
+
+  object-fit: contain;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 3px;
+}
+
+.brand-text h1 {
+
+  margin: 0;
+
+  font-size: 18px;
+
+}
+
+.brand-text span {
+
+  display: block;
+
+  font-size: 11px;
+
+  opacity: .8;
+
+}
+
+.logout-button {
+
+  border: 1px solid
+    rgba(255,255,255,.25);
+
+  background:
+    rgba(255,255,255,.10);
+
+  color: white;
+
+  padding:
+    9px 16px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+
+  width: min(
+    1180px,
+    92%
+  );
+
+  margin: 0 auto;
+
+  padding:
+    45px 0 80px;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome {
+
+  margin-bottom: 30px;
+
+}
+
+.welcome h2 {
+
+  margin: 0 0 7px;
+
+  color:
+    var(--alpha-primary-dark);
+
+  font-size:
+    clamp(25px,4vw,36px);
+
+}
+
+.welcome p {
+
+  margin: 0;
+
+  color:
+    var(--alpha-muted);
+
+  font-size: 14px;
+
+}
+
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-actions {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap: 18px;
+
+  margin-bottom: 40px;
+
+}
+
+.action-card {
+
+  position: relative;
+
+  padding: 25px 20px;
+
+  text-align: center;
+
+  background:
+    rgba(255,255,255,.92);
+
+  border:
+    1px solid
+    var(--alpha-border);
+
+  border-radius: 20px;
+
+  box-shadow:
+    var(--alpha-shadow);
+
+  cursor: pointer;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+
+}
+
+.action-card:hover {
+
+  transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(11,114,133,.30);
+
+  box-shadow:
+    var(--alpha-shadow-hover);
+
+}
+
+.action-icon {
+
+  width: 58px;
+  height: 58px;
+
+  margin:
+    0 auto 12px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 18px;
+
+  background:
+    #e3f7f9;
+
+  font-size: 27px;
+
+}
+
+.action-card h3 {
+
+  margin:
+    0 0 5px;
+
+  color:
+    var(--alpha-primary-dark);
+
+  font-size: 16px;
+
+}
+
+.action-card p {
+
+  margin: 0;
+
+  color:
+    var(--alpha-muted);
+
+  font-size: 11px;
+
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+.section-title {
+
+  margin-bottom: 18px;
+
+  color:
+    var(--alpha-primary-dark);
+
+  font-size: 21px;
+
+}
+
+.stats {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 18px;
+
+  margin-bottom: 40px;
+
+}
+
+.stat-card {
+
+  padding: 22px;
+
+  background: white;
+
+  border:
+    1px solid
+    var(--alpha-border);
+
+  border-radius: 18px;
+
+  box-shadow:
+    var(--alpha-shadow);
+
+}
+
+.stat-label {
+
+  color:
+    var(--alpha-muted);
+
+  font-size: 12px;
+
+}
+
+.stat-number {
+
+  display: block;
+
+  margin-top: 5px;
+
+  color:
+    var(--alpha-primary);
+
+  font-size: 28px;
+
+  font-weight: 900;
+
+}
+
+
+/* =========================
+   REQUESTS
+========================= */
+
+.requests {
+
+  overflow: hidden;
+
+  background: white;
+
+  border:
+    1px solid
+    var(--alpha-border);
+
+  border-radius: 20px;
+
+  box-shadow:
+    var(--alpha-shadow);
+
+}
+
+.requests-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding:
+    20px 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #063b57,
+      #087d99
+    );
+
+  color: white;
+
+}
+
+.requests-header h3 {
+
+  margin: 0;
+
+  font-size: 17px;
+
+}
+
+.requests-header span {
+
+  font-size: 11px;
+
+  opacity: .8;
+
+}
+
+.table-wrapper {
+
+  overflow-x: auto;
+
+}
+
+table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 650px;
+
+}
+
+th,
+td {
+
+  padding:
+    15px 18px;
+
+  text-align: right;
+
+  border-bottom:
+    1px solid #edf3f4;
+
+  font-size: 12px;
+
+}
+
+th {
+
+  color:
+    var(--alpha-primary-dark);
+
+  background:
+    #f7fbfc;
+
+  font-weight: bold;
+
+}
+
+td {
+
+  color:
+    var(--alpha-muted);
+
+}
+
+.status {
+
+  display: inline-block;
+
+  padding:
+    4px 10px;
+
+  border-radius: 20px;
+
+  font-size: 10px;
+
+  font-weight: bold;
+
+}
+
+.status-ready {
+
+  color: #087f5b;
+
+  background:
+    #e6fcf5;
+
+}
+
+.status-process {
+
+  color: #b26a00;
+
+  background:
+    #fff4d6;
+
+}
+
+.status-received {
+
+  color: #0b7285;
+
+  background:
+    #e3f7f9;
+
+}
+
+
+/* =========================
+   INFORMATION
+========================= */
+
+.info-box {
+
+  margin-top: 30px;
+
+  padding: 22px;
+
+  background:
+    #f1fbfc;
+
+  border:
+    1px solid
+    rgba(11,114,133,.10);
+
+  border-radius: 18px;
+
+}
+
+.info-box h3 {
+
+  margin:
+    0 0 8px;
+
+  color:
+    var(--alpha-primary-dark);
+
+  font-size: 16px;
+
+}
+
+.info-box p {
+
+  margin: 0;
+
+  color:
+    var(--alpha-muted);
+
+  font-size: 12px;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+  padding:
+    25px;
+
+  text-align: center;
+
+  color: white;
+
+  background:
+    #032638;
+
+  font-size: 11px;
+
+}
+
+footer span {
+
+  color:
+    var(--alpha-accent);
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+  .quick-actions {
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .header-inner {
+
+    flex-direction: column;
+
+    text-align: center;
+
+  }
+
+  .brand {
+
+    flex-direction: column;
+
+  }
+
+  .container {
+
+    width: 94%;
+
+    padding-top: 30px;
+
+  }
+
+  .quick-actions {
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+  }
+
+  .stats {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .action-card {
+
+    padding:
+      20px 10px;
+
+  }
+
+  .welcome h2 {
+
+    font-size: 26px;
+
+  }
+
+}
+
+@media (max-width: 430px) {
+
+  .quick-actions {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="brand">
+
+      <img
+        src="لوگو.jfif"
+        alt="لوگوی آزمایشگاه تخصصی آلفا"
+        class="logo"
+      >
+
+      <div class="brand-text">
+
+        <h1>
+          آزمایشگاه تخصصی آلفا
+        </h1>
+
+        <span>
+          پرتال آزمایشگاه‌های همکار
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="logout-button"
+      type="button"
+    >
+
+      خروج از حساب
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+
+  <!-- WELCOME -->
+
+  <section class="welcome">
+
+    <h2>
+      سلام، آزمایشگاه همکار 👋
+    </h2>
+
+    <p>
+      به پرتال آزمایشگاه‌های همکار آزمایشگاه تخصصی آلفا خوش آمدید.
+    </p>
+
+  </section>
+
+
+  <!-- QUICK ACTIONS -->
+
+  <section>
+
+    <h3 class="section-title">
+      دسترسی سریع
+    </h3>
+
+
+    <div class="quick-actions">
+
+
+      <div class="action-card">
+
+        <div class="action-icon">
+          🧪
+        </div>
+
+        <h3>
+          درخواست جدید
+        </h3>
+
+        <p>
+          ثبت درخواست آزمایش جدید
+        </p>
+
+      </div>
+
+
+      <div class="action-card">
+
+        <div class="action-icon">
+          📋
+        </div>
+
+        <h3>
+          درخواست‌های من
+        </h3>
+
+        <p>
+          مشاهده و پیگیری درخواست‌ها
+        </p>
+
+      </div>
+
+
+      <div class="action-card">
+
+        <div class="action-icon">
+          📄
+        </div>
+
+        <h3>
+          جواب‌های آماده
+        </h3>
+
+        <p>
+          مشاهده و چاپ گزارش‌ها
+        </p>
+
+      </div>
+
+
+      <div class="action-card">
+
+        <div class="action-icon">
+          👤
+        </div>
+
+        <h3>
+          حساب کاربری
+        </h3>
+
+        <p>
+          مدیریت اطلاعات حساب
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- STATISTICS -->
+
+  <section>
+
+    <h3 class="section-title">
+      خلاصه فعالیت
+    </h3>
+
+
+    <div class="stats">
+
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          درخواست‌های این ماه
+        </span>
+
+        <strong class="stat-number">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          در حال انجام
+        </span>
+
+        <strong class="stat-number">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          جواب‌های آماده
+        </span>
+
+        <strong class="stat-number">
+          0
+        </strong>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- REQUESTS -->
+
+  <section>
+
+    <div class="requests">
+
+
+      <div class="requests-header">
+
+        <h3>
+          آخرین درخواست‌ها
+        </h3>
+
+        <span>
+          اطلاعات آزمایشی
+        </span>
+
+      </div>
+
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                کد درخواست
+              </th>
+
+              <th>
+                نام بیمار
+              </th>
+
+              <th>
+                تاریخ
+              </th>
+
+              <th>
+                آزمایش
+              </th>
+
+              <th>
+                وضعیت
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr>
+
+              <td>
+                AL-DEMO-001
+              </td>
+
+              <td>
+                نمونه آزمایشی
+              </td>
+
+              <td>
+                —
+              </td>
+
+              <td>
+                CBC
+              </td>
+
+              <td>
+
+                <span class="status status-process">
+                  در حال انجام
+                </span>
+
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                AL-DEMO-002
+              </td>
+
+              <td>
+                نمونه آزمایشی
+              </td>
+
+              <td>
+                —
+              </td>
+
+              <td>
+                Vitamin D
+              </td>
+
+              <td>
+
+                <span class="status status-ready">
+                  آماده
+                </span>
+
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                AL-DEMO-003
+              </td>
+
+              <td>
+                نمونه آزمایشی
+              </td>
+
+              <td>
+                —
+              </td>
+
+              <td>
+                TSH
+              </td>
+
+              <td>
+
+                <span class="status status-received">
+                  دریافت شد
+                </span>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INFORMATION -->
+
+  <div class="info-box">
+
+    <h3>
+      🔒 نکته امنیتی
+    </h3>
+
+    <p>
+      این داشبورد در این مرحله فقط نمونه طراحی است.
+      اطلاعات بیماران و نتایج آزمایش‌ها پس از راه‌اندازی
+      سیستم احراز هویت و پایگاه داده امن نمایش داده خواهند شد.
+    </p>
+
+  </div>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  © آزمایشگاه تخصصی آلفا
+  —
+  <span>
+    Alpha Specialized Laboratory
+  </span>
+
+</footer>
+
+
+</body>
+
+</html>
