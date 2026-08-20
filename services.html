@@ -302,17 +302,33 @@ nav a:hover {
    SERVICES HERO
 ========================= */
 
-.services-hero {
-  padding: 65px 20px 90px;
+  .services-hero {
+  position: relative;
+  overflow: hidden;
+
+  padding: 75px 20px 95px;
 
   text-align: center;
 
   background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(50, 203, 208, 0.12),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(11, 114, 133, 0.10),
+      transparent 32%
+    ),
     linear-gradient(
       180deg,
-      rgba(255,255,255,.7),
-      rgba(241,251,252,.95)
+      rgba(255,255,255,.92),
+      rgba(241,251,252,.98)
     );
+
+  border-bottom:
+    1px solid rgba(11,114,133,.08);
 }
 
 .hero-content {
