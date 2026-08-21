@@ -1176,8 +1176,169 @@ if (newRequestForm) {
       console.log(
         "Partner lab loaded successfully."
       );
+/* =========================
+   LOAD PARTNER REQUESTS
+========================= */
+
+async function loadRequests() {
+
+  if (!partnerLab || !partnerLab.id) {
+
+    console.warn(
+      "Cannot load requests: partner lab not found."
+    );
+
+    return;
+  }
 
 
+  const {
+    data: requests,
+    error: requestsError
+  } =
+    await supabaseClient
+      .from("lab_requests")
+      .select(
+        "id, request_code, patient_name, patient_age, patient_gender, requested_tests, status, created_at"
+      )
+      .eq(
+        "partner_lab_id",
+        partnerLab.id
+      )
+      .order(
+        "created_at",
+        { ascending: false }
+      )
+      .limit(10);
+
+
+  if (requestsError) {
+
+    console.error(
+      "Load requests error:",
+      requestsError
+    );
+
+    requestInfo.textContent =
+      "خطا در دریافت درخواست‌ها";
+
+    requestsBody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align:center;">
+          دریافت درخواست‌ها با خطا مواجه شد.
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+
+  console.log(
+    "Partner requests:",
+    requests
+  );
+
+
+  /* =========================
+     NO REQUESTS
+  ========================= */
+
+  if (!requests || requests.length === 0) {
+
+    requestInfo.textContent =
+      "هنوز درخواستی ثبت نشده است.";
+
+    requestsBody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align:center;">
+          هنوز هیچ درخواستی ثبت نشده است.
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+
+  /* =========================
+     REQUEST COUNT
+  ========================= */
+
+  requestInfo.textContent =
+    `${requests.length} درخواست اخیر`;
+
+
+  /* =========================
+     STATUS TRANSLATION
+  ========================= */
+
+  const statusLabels = {
+
+    received: "دریافت شد",
+
+    processing: "در حال انجام",
+
+    ready: "جواب آماده",
+
+    delivered: "تحویل شده"
+
+  };
+
+
+  /* =========================
+     RENDER REQUESTS
+  ========================= */
+
+  requestsBody.innerHTML =
+    requests.map(request => {
+
+      const date =
+        new Date(
+          request.created_at
+        ).toLocaleDateString(
+          "fa-IR"
+        );
+
+
+      const status =
+        statusLabels[
+          request.status
+        ] || request.status;
+
+
+      return `
+        <tr>
+
+          <td>
+            <strong>
+              ${request.request_code}
+            </strong>
+          </td>
+
+          <td>
+            ${request.patient_name}
+          </td>
+
+          <td>
+            ${date}
+          </td>
+
+          <td>
+            ${request.requested_tests}
+          </td>
+
+          <td>
+            ${status}
+          </td>
+
+        </tr>
+      `;
+
+    }).join("");
+
+}
+loadRequests();
     } catch (error) {
 
       console.error(
