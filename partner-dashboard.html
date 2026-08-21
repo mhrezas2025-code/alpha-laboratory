@@ -907,8 +907,8 @@
         await supabaseClient
           .from("partner_labs")
           .select(
-            "lab_name, lab_code, phone, address"
-          )
+  "id, lab_name, lab_code, phone, address"
+)
           .eq(
             "user_id",
             user.id
@@ -956,7 +956,192 @@
         "Partner lab:",
         partnerLab
       );
+/* =========================
+   NEW REQUEST FORM
+========================= */
 
+const newRequestForm =
+  document.getElementById("newRequestForm");
+
+const submitRequestBtn =
+  document.getElementById("submitRequestBtn");
+
+const requestMessage =
+  document.getElementById("requestMessage");
+
+
+if (newRequestForm) {
+
+  newRequestForm.addEventListener(
+    "submit",
+    async function (event) {
+
+      event.preventDefault();
+
+
+      /* =========================
+         FORM DATA
+      ========================= */
+
+      const patientName =
+        document
+          .getElementById("patientName")
+          .value
+          .trim();
+
+      const patientAgeValue =
+        document
+          .getElementById("patientAge")
+          .value
+          .trim();
+
+      const patientGender =
+        document
+          .getElementById("patientGender")
+          .value
+          .trim();
+
+      const requestedTests =
+        document
+          .getElementById("requestedTests")
+          .value
+          .trim();
+
+      const requestNotes =
+        document
+          .getElementById("requestNotes")
+          .value
+          .trim();
+
+
+      /* =========================
+         VALIDATION
+      ========================= */
+
+      if (!patientName || !requestedTests) {
+
+        requestMessage.textContent =
+          "لطفاً نام بیمار و آزمایش‌های درخواستی را وارد کنید.";
+
+        requestMessage.style.color =
+          "#c92a2a";
+
+        return;
+      }
+
+
+      if (!partnerLab || !partnerLab.id) {
+
+        requestMessage.textContent =
+          "اطلاعات آزمایشگاه شما پیدا نشد.";
+
+        requestMessage.style.color =
+          "#c92a2a";
+
+        return;
+      }
+
+
+      /* =========================
+         REQUEST CODE
+      ========================= */
+
+      const requestCode =
+        "AL-" +
+        Date.now().toString().slice(-8);
+
+
+      /* =========================
+         INSERT REQUEST
+      ========================= */
+
+      submitRequestBtn.disabled = true;
+
+      submitRequestBtn.textContent =
+        "در حال ثبت...";
+
+
+      const {
+        data: newRequest,
+        error: requestError
+      } =
+        await supabaseClient
+          .from("lab_requests")
+          .insert([
+            {
+              partner_lab_id: partnerLab.id,
+              request_code: requestCode,
+              patient_name: patientName,
+              patient_age:
+                patientAgeValue
+                  ? Number(patientAgeValue)
+                  : null,
+              patient_gender:
+                patientGender || null,
+              requested_tests: requestedTests,
+              notes: requestNotes || null
+            }
+          ])
+          .select()
+          .single();
+
+
+      /* =========================
+         ERROR
+      ========================= */
+
+      if (requestError) {
+
+        console.error(
+          "Request insert error:",
+          requestError
+        );
+
+        requestMessage.textContent =
+          "ثبت درخواست انجام نشد. لطفاً دوباره تلاش کنید.";
+
+        requestMessage.style.color =
+          "#c92a2a";
+
+        submitRequestBtn.disabled = false;
+
+        submitRequestBtn.textContent =
+          "ثبت درخواست";
+
+        return;
+      }
+
+
+      /* =========================
+         SUCCESS
+      ========================= */
+
+      console.log(
+        "New request created:",
+        newRequest
+      );
+
+
+      requestMessage.textContent =
+        "درخواست با موفقیت ثبت شد. کد درخواست: " +
+        newRequest.request_code;
+
+      requestMessage.style.color =
+        "#087f5b";
+
+
+      newRequestForm.reset();
+
+
+      submitRequestBtn.disabled = false;
+
+      submitRequestBtn.textContent =
+        "ثبت درخواست";
+
+    }
+  );
+
+}
 
       /* =========================
          DISPLAY LAB NAME
