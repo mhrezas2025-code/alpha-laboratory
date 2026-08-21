@@ -793,7 +793,7 @@ footer span {
 
   <section class="welcome">
 
-    <h2>
+    <h2 id="partnerWelcome">
       سلام، آزمایشگاه همکار 👋
     </h2>
 
@@ -1134,6 +1134,60 @@ footer span {
 <script>
   console.log("Supabase:", supabaseClient);
   console.log("Supabase connection initialized successfully.");
+</script>
+  <script>
+async function loadPartnerLab() {
+  try {
+    // دریافت کاربر واردشده
+    const { data: { user }, error: authError } =
+      await supabaseClient.auth.getUser();
+
+    if (authError) {
+      console.error("Auth error:", authError);
+      return;
+    }
+
+    if (!user) {
+      console.warn("No authenticated user found.");
+      return;
+    }
+
+    console.log("Authenticated user:", user.id);
+
+    // دریافت اطلاعات آزمایشگاه مربوط به همین کاربر
+    const { data: partnerLab, error: labError } =
+      await supabaseClient
+        .from("partner_labs")
+        .select("lab_name, lab_code, phone, address")
+        .eq("user_id", user.id)
+        .single();
+
+    if (labError) {
+      console.error("Partner lab error:", labError);
+      return;
+    }
+
+    if (!partnerLab) {
+      console.warn("No partner lab found for this user.");
+      return;
+    }
+
+    console.log("Partner lab:", partnerLab);
+
+    // نمایش نام آزمایشگاه
+    const welcomeTitle = document.getElementById("partnerWelcome");
+
+    if (welcomeTitle && partnerLab.lab_name) {
+      welcomeTitle.textContent =
+        `سلام، ${partnerLab.lab_name} 👋`;
+    }
+
+  } catch (error) {
+    console.error("Unexpected error:", error);
+  }
+}
+
+loadPartnerLab();
 </script>
 </body>
 
