@@ -498,7 +498,81 @@
 
 
   <section class="welcome">
+<!-- =========================
+     NEW LAB REQUEST
+========================= -->
 
+<section class="dashboard-section request-section">
+
+  <div class="section-header">
+    <h2>🧪 ثبت درخواست جدید</h2>
+    <p>اطلاعات بیمار و آزمایش‌های مورد نیاز را وارد کنید.</p>
+  </div>
+
+  <form id="newRequestForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label for="patientName">نام بیمار</label>
+        <input
+          type="text"
+          id="patientName"
+          placeholder="نام و نام خانوادگی بیمار"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="patientAge">سن</label>
+        <input
+          type="number"
+          id="patientAge"
+          min="0"
+          max="150"
+          placeholder="سن بیمار"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="patientGender">جنسیت</label>
+        <select id="patientGender">
+          <option value="">انتخاب کنید</option>
+          <option value="male">مرد</option>
+          <option value="female">زن</option>
+        </select>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="requestedTests">آزمایش‌های درخواستی</label>
+        <textarea
+          id="requestedTests"
+          rows="4"
+          placeholder="مثلاً: CBC، Ferritin، TSH، Vitamin D"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="requestNotes">توضیحات</label>
+        <textarea
+          id="requestNotes"
+          rows="3"
+          placeholder="توضیحات تکمیلی در صورت نیاز..."
+        ></textarea>
+      </div>
+
+    </div>
+
+    <button type="submit" id="submitRequestBtn">
+      ثبت درخواست
+    </button>
+
+    <div id="requestMessage"></div>
+
+  </form>
+
+</section>
     <h2 id="partnerWelcome">
       سلام، در حال دریافت اطلاعات... 👋
     </h2>
