@@ -1155,7 +1155,17 @@ if (newRequestForm) {
         partnerWelcome.textContent =
           `سلام، ${partnerLab.lab_name} 👋`;
       }
+document.getElementById("labName").textContent =
+  partnerLab.lab_name || "—";
 
+document.getElementById("labCode").textContent =
+  partnerLab.lab_code || "—";
+
+document.getElementById("labPhone").textContent =
+  partnerLab.phone || "—";
+
+document.getElementById("labAddress").textContent =
+  partnerLab.address || "—";
 
       /* =========================
          SECURITY INFO
