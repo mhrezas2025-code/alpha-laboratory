@@ -236,7 +236,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 850px;
+      min-width: 950px;
     }
 
     th,
@@ -282,6 +282,29 @@
     .status-delivered {
       color: #495057;
       background: #edf0f2;
+    }
+
+    .status-select {
+      width: 150px;
+      padding: 7px 9px;
+      border: 1px solid #dcebed;
+      border-radius: 9px;
+      background: #fbfeff;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 11px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .status-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11,114,133,.08);
+    }
+
+    .status-select:disabled {
+      opacity: .6;
+      cursor: wait;
     }
 
     .empty {
@@ -491,7 +514,7 @@
               <th>بیمار</th>
               <th>آزمایش‌ها</th>
               <th>تاریخ</th>
-              <th>وضعیت</th>
+              <th>وضعیت / مدیریت</th>
             </tr>
           </thead>
 
@@ -535,6 +558,7 @@
 (function () {
 
   "use strict";
+
 
   /* =====================================================
      SUPABASE
@@ -696,15 +720,6 @@
         if (error) {
           throw error;
         }
-
-        /*
-         * مهم:
-         * بعد از خروج، به partner-dashboard نمی‌رویم.
-         * صفحه ورود مرکزی را باز می‌کنیم.
-         *
-         * اگر فایل ورود شما نام دیگری دارد،
-         * فقط همین خط را بعداً تغییر می‌دهیم.
-         */
 
         window.location.href =
           "partner-login.html";
@@ -903,9 +918,55 @@
             </td>
 
             <td>
-              <span class="status ${getStatusClass(status)}">
-                ${getStatusLabel(status)}
-              </span>
+
+              <div style="
+                display:flex;
+                flex-direction:column;
+                gap:8px;
+                min-width:150px;
+              ">
+
+                <span class="status ${getStatusClass(status)}">
+                  ${getStatusLabel(status)}
+                </span>
+
+                <select
+                  class="status-select"
+                  data-request-id="${escapeHTML(request.id)}"
+                >
+
+                  <option
+                    value="received"
+                    ${status === "received" ? "selected" : ""}
+                  >
+                    دریافت شد
+                  </option>
+
+                  <option
+                    value="processing"
+                    ${status === "processing" ? "selected" : ""}
+                  >
+                    در حال انجام
+                  </option>
+
+                  <option
+                    value="ready"
+                    ${status === "ready" ? "selected" : ""}
+                  >
+                    جواب آماده
+                  </option>
+
+                  <option
+                    value="delivered"
+                    ${status === "delivered" ? "selected" : ""}
+                  >
+                    تحویل شده
+                  </option>
+
+                </select>
+
+              </div>
+
             </td>
 
           </tr>
@@ -924,6 +985,7 @@
 
     requestInfo.textContent =
       "در حال دریافت...";
+
 
     const {
       data,
@@ -991,6 +1053,120 @@
 
 
   /* =====================================================
+     UPDATE REQUEST STATUS
+  ===================================================== */
+
+  async function updateRequestStatus(
+    requestId,
+    newStatus
+  ) {
+
+    hideMessage();
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("lab_requests")
+        .update({
+          status: newStatus
+        })
+        .eq(
+          "id",
+          requestId
+        );
+
+
+    if (error) {
+
+      console.error(
+        "Update request status error:",
+        error
+      );
+
+      showMessage(
+        "تغییر وضعیت درخواست با خطا مواجه شد."
+      );
+
+      await loadRequests();
+
+      return;
+
+    }
+
+
+    console.log(
+      "Request status updated successfully:",
+      requestId,
+      newStatus
+    );
+
+
+    /*
+     * اطلاعات را دوباره از دیتابیس می‌خوانیم
+     * تا آمار و جدول دقیقاً با دیتابیس هماهنگ باشند.
+     */
+
+    await loadRequests();
+
+  }
+
+
+  /* =====================================================
+     STATUS SELECT EVENTS
+  ===================================================== */
+
+  requestsBody.addEventListener(
+    "change",
+    async function (event) {
+
+      if (
+        !event.target.classList.contains(
+          "status-select"
+        )
+      ) {
+        return;
+      }
+
+
+      const select =
+        event.target;
+
+      const requestId =
+        select.dataset.requestId;
+
+      const newStatus =
+        select.value;
+
+
+      if (!requestId) {
+
+        console.error(
+          "Request ID not found."
+        );
+
+        return;
+
+      }
+
+
+      select.disabled = true;
+
+
+      await updateRequestStatus(
+        requestId,
+        newStatus
+      );
+
+
+      select.disabled = false;
+
+    }
+  );
+
+
+  /* =====================================================
      FILTER EVENTS
   ===================================================== */
 
@@ -998,6 +1174,7 @@
     "input",
     renderRequests
   );
+
 
   statusFilter.addEventListener(
     "change",
@@ -1014,12 +1191,16 @@
     async function () {
 
       refreshButton.disabled = true;
+
       refreshButton.textContent =
         "در حال بروزرسانی...";
 
+
       await loadRequests();
 
+
       refreshButton.disabled = false;
+
       refreshButton.textContent =
         "🔄 بروزرسانی";
 
@@ -1039,11 +1220,6 @@
 
 
     try {
-
-      /*
-       * ابتدا session را می‌گیریم.
-       * این کار از getUser مستقیم پایدارتر است.
-       */
 
       const {
         data: sessionData,
@@ -1093,11 +1269,6 @@
 
         securityMessage.textContent =
           "برای ورود به پنل مدیریت باید ابتدا وارد حساب ادمین شوید.";
-
-        /*
-         * مهم:
-         * دیگر به partner-dashboard منتقل نمی‌کنیم.
-         */
 
         return;
 
@@ -1223,10 +1394,6 @@
 
         securityMessage.textContent =
           `سطح دسترسی فعلی: ${profile.role || "نامشخص"}`;
-
-        /*
-         * هیچ redirect خودکاری نداریم.
-         */
 
         return;
 
