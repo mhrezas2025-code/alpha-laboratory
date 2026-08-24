@@ -1528,7 +1528,64 @@ function openRequestDetails(requestId) {
       </div>
 
     </div>
+    <div class="detail-section result-section">
 
+      <h4>🧪 نتیجه آزمایش</h4>
+
+      <div class="detail-full">
+
+        <strong>نتیجه</strong>
+
+        <textarea
+          id="resultDataInput"
+          rows="5"
+          placeholder="نتیجه آزمایش را وارد کنید..."
+          style="
+            width:100%;
+            padding:12px;
+            border:1px solid #dcebed;
+            border-radius:10px;
+            font-family:inherit;
+            font-size:12px;
+            resize:vertical;
+            outline:none;
+          "
+        ></textarea>
+
+      </div>
+
+      <div class="detail-full">
+
+        <strong>تفسیر / توضیحات</strong>
+
+        <textarea
+          id="interpretationInput"
+          rows="3"
+          placeholder="تفسیر یا توضیحات جواب..."
+          style="
+            width:100%;
+            padding:12px;
+            border:1px solid #dcebed;
+            border-radius:10px;
+            font-family:inherit;
+            font-size:12px;
+            resize:vertical;
+            outline:none;
+          "
+        ></textarea>
+
+      </div>
+
+      <button
+        type="button"
+        id="saveResultButton"
+        class="refresh-button"
+        style="margin-top:12px;"
+      >
+        💾 ثبت جواب آزمایش
+      </button>
+
+    </div>
   `;
 
   requestModal.classList.add(
