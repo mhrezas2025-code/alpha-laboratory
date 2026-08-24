@@ -1313,7 +1313,260 @@
     }
   );
 
+/* =====================================================
+   REQUEST DETAILS MODAL
+===================================================== */
 
+const requestModal =
+  document.getElementById("requestModal");
+
+const requestModalBody =
+  document.getElementById("requestModalBody");
+
+const closeRequestModal =
+  document.getElementById("closeRequestModal");
+
+
+function openRequestDetails(requestId) {
+
+  const request =
+    allRequests.find(
+      r => r.id === requestId
+    );
+
+  if (!request) {
+
+    showMessage(
+      "اطلاعات درخواست پیدا نشد."
+    );
+
+    return;
+
+  }
+
+  const lab =
+    request.partner_lab || {};
+
+  const status =
+    request.status || "received";
+
+  const createdDate =
+    request.created_at
+      ? new Date(
+          request.created_at
+        ).toLocaleString("fa-IR")
+      : "-";
+
+
+  requestModalBody.innerHTML = `
+
+    <div class="detail-section">
+
+      <h4>👤 اطلاعات بیمار</h4>
+
+      <div class="detail-grid">
+
+        <div class="detail-item">
+          <strong>نام بیمار</strong>
+          <span>
+            ${escapeHTML(
+              request.patient_name || "-"
+            )}
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <strong>سن</strong>
+          <span>
+            ${escapeHTML(
+              request.patient_age || "-"
+            )}
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <strong>جنسیت</strong>
+          <span>
+            ${escapeHTML(
+              request.patient_gender || "-"
+            )}
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <strong>وضعیت</strong>
+          <span>
+            ${getStatusLabel(status)}
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="detail-section">
+
+      <h4>📋 اطلاعات درخواست</h4>
+
+      <div class="detail-grid">
+
+        <div class="detail-item">
+          <strong>کد درخواست</strong>
+          <span>
+            ${escapeHTML(
+              request.request_code || "-"
+            )}
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <strong>تاریخ ثبت</strong>
+          <span>
+            ${createdDate}
+          </span>
+        </div>
+
+      </div>
+
+      <div class="detail-full">
+
+        <strong>آزمایش‌های درخواست‌شده</strong>
+
+        <span>
+          ${escapeHTML(
+            request.requested_tests || "-"
+          )}
+        </span>
+
+      </div>
+
+      <div class="detail-full">
+
+        <strong>توضیحات</strong>
+
+        <span>
+          ${escapeHTML(
+            request.notes ||
+            "توضیحی ثبت نشده است."
+          )}
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="detail-section">
+
+      <h4>🏥 اطلاعات آزمایشگاه همکار</h4>
+
+      <div class="detail-grid">
+
+        <div class="detail-item">
+          <strong>نام آزمایشگاه</strong>
+          <span>
+            ${escapeHTML(
+              lab.lab_name || "-"
+            )}
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <strong>کد آزمایشگاه</strong>
+          <span>
+            ${escapeHTML(
+              lab.lab_code || "-"
+            )}
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+  requestModal.classList.add(
+    "active"
+  );
+
+}
+
+
+function closeRequestDetails() {
+
+  requestModal.classList.remove(
+    "active"
+  );
+
+}
+
+
+requestsBody.addEventListener(
+  "click",
+  function (event) {
+
+    const button =
+      event.target.closest(
+        ".request-code-button"
+      );
+
+    if (!button) {
+      return;
+    }
+
+    const requestId =
+      button.dataset.requestId;
+
+    openRequestDetails(
+      requestId
+    );
+
+  }
+);
+
+
+closeRequestModal.addEventListener(
+  "click",
+  closeRequestDetails
+);
+
+
+requestModal.addEventListener(
+  "click",
+  function (event) {
+
+    if (
+      event.target ===
+      requestModal
+    ) {
+
+      closeRequestDetails();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  function (event) {
+
+    if (
+      event.key === "Escape" &&
+      requestModal.classList.contains(
+        "active"
+      )
+    ) {
+
+      closeRequestDetails();
+
+    }
+
+  }
+);
   /* =====================================================
      FILTER EVENTS
   ===================================================== */
