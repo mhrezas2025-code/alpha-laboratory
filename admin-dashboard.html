@@ -345,156 +345,183 @@
     footer span {
       color: var(--accent);
     }
-/* =====================================================
-   REQUEST DETAILS MODAL
-===================================================== */
 
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background: rgba(3,38,56,.65);
-  backdrop-filter: blur(4px);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+    /* =====================================================
+       REQUEST DETAILS MODAL
+    ===================================================== */
 
-.modal-overlay.active {
-  display: flex;
-}
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(3,38,56,.65);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-.request-modal {
-  width: min(700px, 100%);
-  max-height: 90vh;
-  overflow-y: auto;
-  background: white;
-  border-radius: 22px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-}
+    .modal-overlay.active {
+      display: flex;
+    }
 
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 20px 24px;
-  color: white;
-  background: linear-gradient(135deg, #063b57, #087d99);
-}
+    .request-modal {
+      width: min(700px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
 
-.modal-header h3 {
-  margin: 0;
-  font-size: 17px;
-}
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 20px 24px;
+      color: white;
+      background: linear-gradient(135deg, #063b57, #087d99);
+    }
 
-.modal-close {
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.15);
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-}
+    .modal-header h3 {
+      margin: 0;
+      font-size: 17px;
+    }
 
-.modal-close:hover {
-  background: rgba(255,255,255,.25);
-}
+    .modal-close {
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.15);
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
 
-.modal-body {
-  padding: 24px;
-}
+    .modal-close:hover {
+      background: rgba(255,255,255,.25);
+    }
 
-.detail-section {
-  margin-bottom: 22px;
-}
+    .modal-body {
+      padding: 24px;
+    }
 
-.detail-section:last-child {
-  margin-bottom: 0;
-}
+    .detail-section {
+      margin-bottom: 22px;
+    }
 
-.detail-section h4 {
-  margin: 0 0 12px;
-  color: var(--primary-dark);
-  font-size: 14px;
-}
+    .detail-section:last-child {
+      margin-bottom: 0;
+    }
 
-.detail-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
+    .detail-section h4 {
+      margin: 0 0 12px;
+      color: var(--primary-dark);
+      font-size: 14px;
+    }
 
-.detail-item {
-  padding: 12px;
-  background: #f7fbfc;
-  border: 1px solid #edf3f4;
-  border-radius: 10px;
-}
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
 
-.detail-item strong {
-  display: block;
-  margin-bottom: 3px;
-  color: var(--primary-dark);
-  font-size: 10px;
-}
+    .detail-item {
+      padding: 12px;
+      background: #f7fbfc;
+      border: 1px solid #edf3f4;
+      border-radius: 10px;
+    }
 
-.detail-item span {
-  color: var(--text);
-  font-size: 12px;
-}
+    .detail-item strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--primary-dark);
+      font-size: 10px;
+    }
 
-.detail-full {
-  margin-top: 10px;
-  padding: 14px;
-  background: #f7fbfc;
-  border: 1px solid #edf3f4;
-  border-radius: 10px;
-}
+    .detail-item span {
+      color: var(--text);
+      font-size: 12px;
+    }
 
-.detail-full strong {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--primary-dark);
-  font-size: 10px;
-}
+    .detail-full {
+      margin-top: 10px;
+      padding: 14px;
+      background: #f7fbfc;
+      border: 1px solid #edf3f4;
+      border-radius: 10px;
+    }
 
-.detail-full span {
-  color: var(--text);
-  font-size: 12px;
-  white-space: pre-wrap;
-}
+    .detail-full strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--primary-dark);
+      font-size: 10px;
+    }
 
-.request-code-button {
-  padding: 0;
-  border: none;
-  background: none;
-  color: var(--primary);
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .detail-full span {
+      color: var(--text);
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
 
-.request-code-button:hover {
-  text-decoration: underline;
-}
+    .request-code-button {
+      padding: 0;
+      border: none;
+      background: none;
+      color: var(--primary);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-@media (max-width: 650px) {
+    .request-code-button:hover {
+      text-decoration: underline;
+    }
 
-  .detail-grid {
-    grid-template-columns: 1fr;
-  }
+    .result-input,
+    .interpretation-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dcebed;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 12px;
+      resize: vertical;
+      outline: none;
+      background: white;
+    }
 
-  .modal-body {
-    padding: 18px;
-  }
+    .result-input:focus,
+    .interpretation-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11,114,133,.08);
+    }
 
-}
+    .result-save-button {
+      margin-top: 12px;
+      width: 100%;
+    }
+
+    @media (max-width: 650px) {
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-body {
+        padding: 18px;
+      }
+
+    }
+
     @media (max-width: 1000px) {
+
       .stats {
         grid-template-columns: repeat(2,1fr);
       }
@@ -506,9 +533,11 @@
       .refresh-button {
         grid-column: span 2;
       }
+
     }
 
     @media (max-width: 650px) {
+
       .header-inner {
         flex-direction: column;
       }
@@ -526,6 +555,7 @@
       .refresh-button {
         grid-column: auto;
       }
+
     }
   </style>
 </head>
@@ -536,6 +566,7 @@
   <div class="header-inner">
 
     <div class="brand">
+
       <img
         src="لوگو.jfif"
         alt="لوگوی آزمایشگاه تخصصی آلفا"
@@ -546,20 +577,31 @@
         <h1>آزمایشگاه تخصصی آلفا</h1>
         <span>پنل مدیریت مرکزی</span>
       </div>
+
     </div>
 
-    <button id="logoutButton" class="logout-button">
+    <button
+      id="logoutButton"
+      class="logout-button"
+      type="button"
+    >
       خروج از حساب
     </button>
 
   </div>
 </header>
 
+
 <main class="container">
 
-  <div id="systemMessage" class="system-message"></div>
+  <div
+    id="systemMessage"
+    class="system-message"
+  ></div>
+
 
   <section class="welcome">
+
     <h2 id="adminWelcome">
       سلام، در حال بررسی حساب... 👋
     </h2>
@@ -567,7 +609,9 @@
     <p>
       به پنل مدیریت مرکزی آزمایشگاه تخصصی آلفا خوش آمدید.
     </p>
+
   </section>
+
 
   <section>
 
@@ -579,31 +623,63 @@
 
       <div class="stat-card">
         <div class="stat-icon">📋</div>
-        <span class="stat-label">کل درخواست‌ها</span>
-        <strong id="totalRequests" class="stat-number">0</strong>
+        <span class="stat-label">
+          کل درخواست‌ها
+        </span>
+        <strong
+          id="totalRequests"
+          class="stat-number"
+        >
+          0
+        </strong>
       </div>
+
 
       <div class="stat-card">
         <div class="stat-icon">🟡</div>
-        <span class="stat-label">درخواست‌های جدید</span>
-        <strong id="receivedRequests" class="stat-number">0</strong>
+        <span class="stat-label">
+          درخواست‌های جدید
+        </span>
+        <strong
+          id="receivedRequests"
+          class="stat-number"
+        >
+          0
+        </strong>
       </div>
+
 
       <div class="stat-card">
         <div class="stat-icon">🔵</div>
-        <span class="stat-label">در حال انجام</span>
-        <strong id="processingRequests" class="stat-number">0</strong>
+        <span class="stat-label">
+          در حال انجام
+        </span>
+        <strong
+          id="processingRequests"
+          class="stat-number"
+        >
+          0
+        </strong>
       </div>
+
 
       <div class="stat-card">
         <div class="stat-icon">🟢</div>
-        <span class="stat-label">جواب‌های آماده</span>
-        <strong id="readyRequests" class="stat-number">0</strong>
+        <span class="stat-label">
+          جواب‌های آماده
+        </span>
+        <strong
+          id="readyRequests"
+          class="stat-number"
+        >
+          0
+        </strong>
       </div>
 
     </div>
 
   </section>
+
 
   <section>
 
@@ -620,20 +696,42 @@
       >
 
       <select id="statusFilter">
-        <option value="all">همه وضعیت‌ها</option>
-        <option value="received">دریافت شد</option>
-        <option value="processing">در حال انجام</option>
-        <option value="ready">جواب آماده</option>
-        <option value="delivered">تحویل شده</option>
+
+        <option value="all">
+          همه وضعیت‌ها
+        </option>
+
+        <option value="received">
+          دریافت شد
+        </option>
+
+        <option value="processing">
+          در حال انجام
+        </option>
+
+        <option value="ready">
+          جواب آماده
+        </option>
+
+        <option value="delivered">
+          تحویل شده
+        </option>
+
       </select>
 
-      <button id="refreshButton" class="refresh-button">
+
+      <button
+        id="refreshButton"
+        class="refresh-button"
+        type="button"
+      >
         🔄 بروزرسانی
       </button>
 
     </div>
 
   </section>
+
 
   <section>
 
@@ -651,11 +749,13 @@
 
       </div>
 
+
       <div class="table-wrapper">
 
         <table>
 
           <thead>
+
             <tr>
               <th>کد درخواست</th>
               <th>آزمایشگاه</th>
@@ -664,14 +764,21 @@
               <th>تاریخ</th>
               <th>وضعیت / مدیریت</th>
             </tr>
+
           </thead>
+
 
           <tbody id="requestsBody">
 
             <tr>
-              <td colspan="6" class="empty">
+
+              <td
+                colspan="6"
+                class="empty"
+              >
                 در حال دریافت اطلاعات...
               </td>
+
             </tr>
 
           </tbody>
@@ -684,9 +791,12 @@
 
   </section>
 
+
   <div class="security-box">
 
-    <h3>🔐 امنیت پنل</h3>
+    <h3>
+      🔐 امنیت پنل
+    </h3>
 
     <p id="securityMessage">
       در حال بررسی سطح دسترسی...
@@ -695,6 +805,8 @@
   </div>
 
 </main>
+
+
 <!-- =====================================================
      REQUEST DETAILS MODAL
 ===================================================== -->
@@ -724,6 +836,7 @@
 
     </div>
 
+
     <div
       id="requestModalBody"
       class="modal-body"
@@ -738,10 +851,17 @@
   </div>
 
 </div>
+
+
 <footer>
+
   © آزمایشگاه تخصصی آلفا —
-  <span>Alpha Specialized Laboratory</span>
+  <span>
+    Alpha Specialized Laboratory
+  </span>
+
 </footer>
+
 
 <script>
 
@@ -759,6 +879,7 @@
 
   const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_rtOJjJKZJOHv0NPDYRgvJw_dtXV_DUS";
+
 
   const supabaseClient =
     window.supabase.createClient(
@@ -787,31 +908,64 @@
   ===================================================== */
 
   const adminWelcome =
-    document.getElementById("adminWelcome");
+    document.getElementById(
+      "adminWelcome"
+    );
 
   const logoutButton =
-    document.getElementById("logoutButton");
+    document.getElementById(
+      "logoutButton"
+    );
 
   const systemMessage =
-    document.getElementById("systemMessage");
+    document.getElementById(
+      "systemMessage"
+    );
 
   const securityMessage =
-    document.getElementById("securityMessage");
+    document.getElementById(
+      "securityMessage"
+    );
 
   const requestInfo =
-    document.getElementById("requestInfo");
+    document.getElementById(
+      "requestInfo"
+    );
 
   const requestsBody =
-    document.getElementById("requestsBody");
+    document.getElementById(
+      "requestsBody"
+    );
 
   const searchInput =
-    document.getElementById("searchInput");
+    document.getElementById(
+      "searchInput"
+    );
 
   const statusFilter =
-    document.getElementById("statusFilter");
+    document.getElementById(
+      "statusFilter"
+    );
 
   const refreshButton =
-    document.getElementById("refreshButton");
+    document.getElementById(
+      "refreshButton"
+    );
+
+  const requestModal =
+    document.getElementById(
+      "requestModal"
+    );
+
+  const requestModalBody =
+    document.getElementById(
+      "requestModalBody"
+    );
+
+  const closeRequestModal =
+    document.getElementById(
+      "closeRequestModal"
+    );
 
 
   let allRequests = [];
@@ -823,15 +977,19 @@
 
   function showMessage(message) {
 
-    systemMessage.textContent = message;
-    systemMessage.style.display = "block";
+    systemMessage.textContent =
+      message;
+
+    systemMessage.style.display =
+      "block";
 
   }
 
 
   function hideMessage() {
 
-    systemMessage.style.display = "none";
+    systemMessage.style.display =
+      "none";
 
   }
 
@@ -846,7 +1004,9 @@
       value === null ||
       value === undefined
     ) {
+
       return "";
+
     }
 
     return String(value)
@@ -866,13 +1026,23 @@
   function getStatusLabel(status) {
 
     const labels = {
-      received: "دریافت شد",
-      processing: "در حال انجام",
-      ready: "جواب آماده",
-      delivered: "تحویل شده"
+
+      received:
+        "دریافت شد",
+
+      processing:
+        "در حال انجام",
+
+      ready:
+        "جواب آماده",
+
+      delivered:
+        "تحویل شده"
+
     };
 
-    return labels[status] || "نامشخص";
+    return labels[status] ||
+      "نامشخص";
 
   }
 
@@ -880,13 +1050,23 @@
   function getStatusClass(status) {
 
     const classes = {
-      received: "status-received",
-      processing: "status-process",
-      ready: "status-ready",
-      delivered: "status-delivered"
+
+      received:
+        "status-received",
+
+      processing:
+        "status-process",
+
+      ready:
+        "status-ready",
+
+      delivered:
+        "status-delivered"
+
     };
 
-    return classes[status] || "status-received";
+    return classes[status] ||
+      "status-received";
 
   }
 
@@ -899,22 +1079,35 @@
     "click",
     async function () {
 
-      logoutButton.disabled = true;
-      logoutButton.textContent = "در حال خروج...";
+      logoutButton.disabled =
+        true;
+
+      logoutButton.textContent =
+        "در حال خروج...";
+
 
       try {
 
-        const { error } =
-          await supabaseClient.auth.signOut();
+        const {
+          error
+        } =
+          await supabaseClient
+            .auth
+            .signOut();
+
 
         if (error) {
+
           throw error;
+
         }
+
 
         window.location.href =
           "partner-login.html";
 
       }
+
 
       catch (error) {
 
@@ -927,8 +1120,11 @@
           "خروج از حساب با خطا مواجه شد."
         );
 
-        logoutButton.disabled = false;
-        logoutButton.textContent = "خروج از حساب";
+        logoutButton.disabled =
+          false;
+
+        logoutButton.textContent =
+          "خروج از حساب";
 
       }
 
@@ -940,38 +1136,47 @@
      STATISTICS
   ===================================================== */
 
-  function updateStatistics(requests) {
+  function updateStatistics(
+    requests
+  ) {
 
     document.getElementById(
       "totalRequests"
-    ).textContent = requests.length;
+    ).textContent =
+      requests.length;
+
 
     document.getElementById(
       "receivedRequests"
     ).textContent =
       requests.filter(
-        r => r.status === "received"
+        r =>
+          r.status === "received"
       ).length;
+
 
     document.getElementById(
       "processingRequests"
     ).textContent =
       requests.filter(
-        r => r.status === "processing"
+        r =>
+          r.status === "processing"
       ).length;
+
 
     document.getElementById(
       "readyRequests"
     ).textContent =
       requests.filter(
-        r => r.status === "ready"
+        r =>
+          r.status === "ready"
       ).length;
 
   }
 
 
   /* =====================================================
-     RENDER
+     RENDER REQUESTS
   ===================================================== */
 
   function renderRequests() {
@@ -979,10 +1184,12 @@
     let filtered =
       [...allRequests];
 
+
     const search =
       searchInput.value
         .trim()
         .toLowerCase();
+
 
     const selectedStatus =
       statusFilter.value;
@@ -991,41 +1198,54 @@
     if (search) {
 
       filtered =
-        filtered.filter(request => {
+        filtered.filter(
+          request => {
 
-          const code =
-            String(
-              request.request_code || ""
-            ).toLowerCase();
+            const code =
+              String(
+                request.request_code ||
+                ""
+              ).toLowerCase();
 
-          const patient =
-            String(
-              request.patient_name || ""
-            ).toLowerCase();
 
-          const lab =
-            String(
-              request.partner_lab?.lab_name || ""
-            ).toLowerCase();
+            const patient =
+              String(
+                request.patient_name ||
+                ""
+              ).toLowerCase();
 
-          const tests =
-            String(
-              request.requested_tests || ""
-            ).toLowerCase();
 
-          return (
-            code.includes(search) ||
-            patient.includes(search) ||
-            lab.includes(search) ||
-            tests.includes(search)
-          );
+            const lab =
+              String(
+                request.partner_lab?.lab_name ||
+                ""
+              ).toLowerCase();
 
-        });
+
+            const tests =
+              String(
+                request.requested_tests ||
+                ""
+              ).toLowerCase();
+
+
+            return (
+              code.includes(search) ||
+              patient.includes(search) ||
+              lab.includes(search) ||
+              tests.includes(search)
+            );
+
+          }
+        );
 
     }
 
 
-    if (selectedStatus !== "all") {
+    if (
+      selectedStatus !==
+      "all"
+    ) {
 
       filtered =
         filtered.filter(
@@ -1044,11 +1264,18 @@
     if (!filtered.length) {
 
       requestsBody.innerHTML = `
+
         <tr>
-          <td colspan="6" class="empty">
+
+          <td
+            colspan="6"
+            class="empty"
+          >
             هیچ درخواستی پیدا نشد.
           </td>
+
         </tr>
+
       `;
 
       return;
@@ -1057,114 +1284,147 @@
 
 
     requestsBody.innerHTML =
-      filtered.map(request => {
+      filtered
+        .map(
+          request => {
 
-        const date =
-          request.created_at
-            ? new Date(
-                request.created_at
-              ).toLocaleDateString(
-                "fa-IR"
-              )
-            : "-";
+            const date =
+              request.created_at
+                ? new Date(
+                    request.created_at
+                  ).toLocaleDateString(
+                    "fa-IR"
+                  )
+                : "-";
 
-        const labName =
-          request.partner_lab?.lab_name ||
-          "نامشخص";
 
-        const status =
-          request.status ||
-          "received";
+            const labName =
+              request.partner_lab?.lab_name ||
+              "نامشخص";
 
-        return `
-          <tr>
 
-          \<td>
-  <button
-    type="button"
-    class="request-code-button"
-    data-request-id="${escapeHTML(request.id)}"
-  >
-    ${escapeHTML(request.request_code)}
-  </button>
-</td>
+            const status =
+              request.status ||
+              "received";
 
-            <td>
-              ${escapeHTML(labName)}
-            </td>
 
-            <td>
-              ${escapeHTML(
-                request.patient_name
-              )}
-            </td>
+            return `
 
-            <td>
-              ${escapeHTML(
-                request.requested_tests
-              )}
-            </td>
+              <tr>
 
-            <td>
-              ${date}
-            </td>
+                <td>
 
-            <td>
-
-              <div style="
-                display:flex;
-                flex-direction:column;
-                gap:8px;
-                min-width:150px;
-              ">
-
-                <span class="status ${getStatusClass(status)}">
-                  ${getStatusLabel(status)}
-                </span>
-
-                <select
-                  class="status-select"
-                  data-request-id="${escapeHTML(request.id)}"
-                >
-
-                  <option
-                    value="received"
-                    ${status === "received" ? "selected" : ""}
+                  <button
+                    type="button"
+                    class="request-code-button"
+                    data-request-id="${escapeHTML(request.id)}"
                   >
-                    دریافت شد
-                  </option>
+                    ${escapeHTML(
+                      request.request_code ||
+                      "-"
+                    )}
+                  </button>
 
-                  <option
-                    value="processing"
-                    ${status === "processing" ? "selected" : ""}
+                </td>
+
+
+                <td>
+                  ${escapeHTML(
+                    labName
+                  )}
+                </td>
+
+
+                <td>
+                  ${escapeHTML(
+                    request.patient_name ||
+                    "-"
+                  )}
+                </td>
+
+
+                <td>
+                  ${escapeHTML(
+                    request.requested_tests ||
+                    "-"
+                  )}
+                </td>
+
+
+                <td>
+                  ${date}
+                </td>
+
+
+                <td>
+
+                  <div
+                    style="
+                      display:flex;
+                      flex-direction:column;
+                      gap:8px;
+                      min-width:150px;
+                    "
                   >
-                    در حال انجام
-                  </option>
 
-                  <option
-                    value="ready"
-                    ${status === "ready" ? "selected" : ""}
-                  >
-                    جواب آماده
-                  </option>
+                    <span
+                      class="status ${getStatusClass(status)}"
+                    >
+                      ${getStatusLabel(
+                        status
+                      )}
+                    </span>
 
-                  <option
-                    value="delivered"
-                    ${status === "delivered" ? "selected" : ""}
-                  >
-                    تحویل شده
-                  </option>
 
-                </select>
+                    <select
+                      class="status-select"
+                      data-request-id="${escapeHTML(request.id)}"
+                    >
 
-              </div>
+                      <option
+                        value="received"
+                        ${status === "received" ? "selected" : ""}
+                      >
+                        دریافت شد
+                      </option>
 
-            </td>
 
-          </tr>
-        `;
+                      <option
+                        value="processing"
+                        ${status === "processing" ? "selected" : ""}
+                      >
+                        در حال انجام
+                      </option>
 
-      }).join("");
+
+                      <option
+                        value="ready"
+                        ${status === "ready" ? "selected" : ""}
+                      >
+                        جواب آماده
+                      </option>
+
+
+                      <option
+                        value="delivered"
+                        ${status === "delivered" ? "selected" : ""}
+                      >
+                        تحویل شده
+                      </option>
+
+                    </select>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            `;
+
+          }
+        )
+        .join("");
 
   }
 
@@ -1219,12 +1479,20 @@
       requestInfo.textContent =
         "خطا در دریافت";
 
+
       requestsBody.innerHTML = `
+
         <tr>
-          <td colspan="6" class="empty">
+
+          <td
+            colspan="6"
+            class="empty"
+          >
             خطا در دریافت درخواست‌ها.
           </td>
+
         </tr>
+
       `;
 
       return;
@@ -1235,9 +1503,11 @@
     allRequests =
       data || [];
 
+
     updateStatistics(
       allRequests
     );
+
 
     renderRequests();
 
@@ -1281,26 +1551,24 @@
         "تغییر وضعیت درخواست با خطا مواجه شد."
       );
 
+
       await loadRequests();
 
-      return;
+      return false;
 
     }
 
 
     console.log(
-      "Request status updated successfully:",
+      "Request status updated:",
       requestId,
       newStatus
     );
 
 
-    /*
-     * اطلاعات را دوباره از دیتابیس می‌خوانیم
-     * تا آمار و جدول دقیقاً با دیتابیس هماهنگ باشند.
-     */
-
     await loadRequests();
+
+    return true;
 
   }
 
@@ -1318,15 +1586,19 @@
           "status-select"
         )
       ) {
+
         return;
+
       }
 
 
       const select =
         event.target;
 
+
       const requestId =
         select.dataset.requestId;
+
 
       const newStatus =
         select.value;
@@ -1334,8 +1606,8 @@
 
       if (!requestId) {
 
-        console.error(
-          "Request ID not found."
+        showMessage(
+          "شناسه درخواست پیدا نشد."
         );
 
         return;
@@ -1343,309 +1615,1052 @@
       }
 
 
-      select.disabled = true;
+      select.disabled =
+        true;
 
 
-      await updateRequestStatus(
-        requestId,
-        newStatus
-      );
+      try {
 
+        await updateRequestStatus(
+          requestId,
+          newStatus
+        );
 
-      select.disabled = false;
+      }
+
+      finally {
+
+        select.disabled =
+          false;
+
+      }
 
     }
   );
 
-/* =====================================================
-   REQUEST DETAILS MODAL
-===================================================== */
 
-const requestModal =
-  document.getElementById("requestModal");
+  /* =====================================================
+     LOAD EXISTING RESULT
+  ===================================================== */
 
-const requestModalBody =
-  document.getElementById("requestModalBody");
+  async function getExistingResult(
+    requestId
+  ) {
 
-const closeRequestModal =
-  document.getElementById("closeRequestModal");
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("lab_results")
+        .select(`
+          id,
+          request_id,
+          result_data,
+          interpretation,
+          verified_by,
+          verified_at,
+          updated_at
+        `)
+        .eq(
+          "request_id",
+          requestId
+        )
+        .maybeSingle();
 
 
-function openRequestDetails(requestId) {
+    if (error) {
 
-  const request =
-    allRequests.find(
-      r => r.id === requestId
-    );
+      console.error(
+        "Load existing result error:",
+        error
+      );
 
-  if (!request) {
+      return {
+        data: null,
+        error
+      };
 
-    showMessage(
-      "اطلاعات درخواست پیدا نشد."
-    );
+    }
 
-    return;
+
+    return {
+      data,
+      error: null
+    };
 
   }
 
-  const lab =
-    request.partner_lab || {};
 
-  const status =
-    request.status || "received";
+  /* =====================================================
+     REQUEST DETAILS MODAL
+  ===================================================== */
 
-  const createdDate =
-    request.created_at
-      ? new Date(
-          request.created_at
-        ).toLocaleString("fa-IR")
-      : "-";
+  async function openRequestDetails(
+    requestId
+  ) {
 
-
-  requestModalBody.innerHTML = `
-
-    <div class="detail-section">
-
-      <h4>👤 اطلاعات بیمار</h4>
-
-      <div class="detail-grid">
-
-        <div class="detail-item">
-          <strong>نام بیمار</strong>
-          <span>
-            ${escapeHTML(
-              request.patient_name || "-"
-            )}
-          </span>
-        </div>
-
-        <div class="detail-item">
-          <strong>سن</strong>
-          <span>
-            ${escapeHTML(
-              request.patient_age || "-"
-            )}
-          </span>
-        </div>
-
-        <div class="detail-item">
-          <strong>جنسیت</strong>
-          <span>
-            ${escapeHTML(
-              request.patient_gender || "-"
-            )}
-          </span>
-        </div>
-
-        <div class="detail-item">
-          <strong>وضعیت</strong>
-          <span>
-            ${getStatusLabel(status)}
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="detail-section">
-
-      <h4>📋 اطلاعات درخواست</h4>
-
-      <div class="detail-grid">
-
-        <div class="detail-item">
-          <strong>کد درخواست</strong>
-          <span>
-            ${escapeHTML(
-              request.request_code || "-"
-            )}
-          </span>
-        </div>
-
-        <div class="detail-item">
-          <strong>تاریخ ثبت</strong>
-          <span>
-            ${createdDate}
-          </span>
-        </div>
-
-      </div>
-
-      <div class="detail-full">
-
-        <strong>آزمایش‌های درخواست‌شده</strong>
-
-        <span>
-          ${escapeHTML(
-            request.requested_tests || "-"
-          )}
-        </span>
-
-      </div>
-
-      <div class="detail-full">
-
-        <strong>توضیحات</strong>
-
-        <span>
-          ${escapeHTML(
-            request.notes ||
-            "توضیحی ثبت نشده است."
-          )}
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="detail-section">
-
-      <h4>🏥 اطلاعات آزمایشگاه همکار</h4>
-
-      <div class="detail-grid">
-
-        <div class="detail-item">
-          <strong>نام آزمایشگاه</strong>
-          <span>
-            ${escapeHTML(
-              lab.lab_name || "-"
-            )}
-          </span>
-        </div>
-
-        <div class="detail-item">
-          <strong>کد آزمایشگاه</strong>
-          <span>
-            ${escapeHTML(
-              lab.lab_code || "-"
-            )}
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="detail-section result-section">
-
-      <h4>🧪 نتیجه آزمایش</h4>
-
-      <div class="detail-full">
-
-        <strong>نتیجه</strong>
-
-        <textarea
-          id="resultDataInput"
-          rows="5"
-          placeholder="نتیجه آزمایش را وارد کنید..."
-          style="
-            width:100%;
-            padding:12px;
-            border:1px solid #dcebed;
-            border-radius:10px;
-            font-family:inherit;
-            font-size:12px;
-            resize:vertical;
-            outline:none;
-          "
-        ></textarea>
-
-      </div>
-
-      <div class="detail-full">
-
-        <strong>تفسیر / توضیحات</strong>
-
-        <textarea
-          id="interpretationInput"
-          rows="3"
-          placeholder="تفسیر یا توضیحات جواب..."
-          style="
-            width:100%;
-            padding:12px;
-            border:1px solid #dcebed;
-            border-radius:10px;
-            font-family:inherit;
-            font-size:12px;
-            resize:vertical;
-            outline:none;
-          "
-        ></textarea>
-
-      </div>
-
-      <button
-        type="button"
-        id="saveResultButton"
-        class="refresh-button"
-        style="margin-top:12px;"
-      >
-        💾 ثبت جواب آزمایش
-      </button>
-
-    </div>
-  `;
-
-  requestModal.classList.add(
-    "active"
-  );
-
-}
-
-
-function closeRequestDetails() {
-
-  requestModal.classList.remove(
-    "active"
-  );
-
-}
-
-
-requestsBody.addEventListener(
-  "click",
-  function (event) {
-
-    const button =
-      event.target.closest(
-        ".request-code-button"
+    const request =
+      allRequests.find(
+        r =>
+          r.id === requestId
       );
 
-    if (!button) {
+
+    if (!request) {
+
+      showMessage(
+        "اطلاعات درخواست پیدا نشد."
+      );
+
       return;
+
     }
 
-    const requestId =
-      button.dataset.requestId;
 
-    openRequestDetails(
-      requestId
+    const lab =
+      request.partner_lab ||
+      {};
+
+
+    const status =
+      request.status ||
+      "received";
+
+
+    const createdDate =
+      request.created_at
+        ? new Date(
+            request.created_at
+          ).toLocaleString(
+            "fa-IR"
+          )
+        : "-";
+
+
+    requestModal.classList.add(
+      "active"
+    );
+
+    requestModal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+
+    requestModalBody.innerHTML = `
+
+      <div class="empty">
+        در حال دریافت نتیجه قبلی...
+      </div>
+
+    `;
+
+
+    const {
+      data: existingResult,
+      error
+    } =
+      await getExistingResult(
+        requestId
+      );
+
+
+    if (error) {
+
+      requestModalBody.innerHTML = `
+
+        <div
+          class="empty"
+          style="color:#c92a2a;"
+        >
+          خطا در دریافت نتیجه قبلی.
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    let previousResult = "";
+
+
+    if (
+      existingResult &&
+      existingResult.result_data
+    ) {
+
+      if (
+        typeof existingResult.result_data ===
+        "object"
+      ) {
+
+        previousResult =
+          existingResult
+            .result_data
+            ?.result ||
+          "";
+
+      }
+
+      else {
+
+        previousResult =
+          String(
+            existingResult.result_data
+          );
+
+      }
+
+    }
+
+
+    const previousInterpretation =
+      existingResult?.interpretation ||
+      "";
+
+
+    requestModalBody.innerHTML = `
+
+      <div class="detail-section">
+
+        <h4>
+          👤 اطلاعات بیمار
+        </h4>
+
+
+        <div class="detail-grid">
+
+          <div class="detail-item">
+
+            <strong>
+              نام بیمار
+            </strong>
+
+            <span>
+              ${escapeHTML(
+                request.patient_name ||
+                "-"
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              سن
+            </strong>
+
+            <span>
+              ${escapeHTML(
+                request.patient_age ||
+                "-"
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              جنسیت
+            </strong>
+
+            <span>
+              ${escapeHTML(
+                request.patient_gender ||
+                "-"
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              وضعیت
+            </strong>
+
+            <span>
+              ${getStatusLabel(
+                status
+              )}
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-section">
+
+        <h4>
+          📋 اطلاعات درخواست
+        </h4>
+
+
+        <div class="detail-grid">
+
+          <div class="detail-item">
+
+            <strong>
+              کد درخواست
+            </strong>
+
+            <span>
+              ${escapeHTML(
+                request.request_code ||
+                "-"
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              تاریخ ثبت
+            </strong>
+
+            <span>
+              ${createdDate}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail-full">
+
+          <strong>
+            آزمایش‌های درخواست‌شده
+          </strong>
+
+          <span>
+            ${escapeHTML(
+              request.requested_tests ||
+              "-"
+            )}
+          </span>
+
+        </div>
+
+
+        <div class="detail-full">
+
+          <strong>
+            توضیحات
+          </strong>
+
+          <span>
+            ${escapeHTML(
+              request.notes ||
+              "توضیحی ثبت نشده است."
+            )}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-section">
+
+        <h4>
+          🏥 اطلاعات آزمایشگاه همکار
+        </h4>
+
+
+        <div class="detail-grid">
+
+          <div class="detail-item">
+
+            <strong>
+              نام آزمایشگاه
+            </strong>
+
+            <span>
+              ${escapeHTML(
+                lab.lab_name ||
+                "-"
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              کد آزمایشگاه
+            </strong>
+
+            <span>
+              ${escapeHTML(
+                lab.lab_code ||
+                "-"
+              )}
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="detail-section result-section">
+
+        <h4>
+          🧪 نتیجه آزمایش
+        </h4>
+
+
+        <div class="detail-full">
+
+          <strong>
+            نتیجه
+          </strong>
+
+          <textarea
+            id="resultDataInput"
+            class="result-input"
+            rows="6"
+            placeholder="نتیجه آزمایش را وارد کنید..."
+          >${escapeHTML(
+            previousResult
+          )}</textarea>
+
+        </div>
+
+
+        <div class="detail-full">
+
+          <strong>
+            تفسیر / توضیحات
+          </strong>
+
+          <textarea
+            id="interpretationInput"
+            class="interpretation-input"
+            rows="4"
+            placeholder="تفسیر یا توضیحات جواب..."
+          >${escapeHTML(
+            previousInterpretation
+          )}</textarea>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="saveResultButton"
+          class="refresh-button result-save-button"
+          data-request-id="${escapeHTML(requestId)}"
+        >
+          💾 ${existingResult
+            ? "ویرایش جواب آزمایش"
+            : "ثبت جواب آزمایش"}
+        </button>
+
+
+        ${
+          existingResult
+            ? `
+              <div
+                style="
+                  margin-top:10px;
+                  padding:10px;
+                  border-radius:10px;
+                  background:#e6fcf5;
+                  color:#087f5b;
+                  font-size:11px;
+                "
+              >
+                ✅ برای این درخواست قبلاً جواب ثبت شده است.
+                می‌توانید آن را ویرایش کنید.
+              </div>
+            `
+            : ""
+        }
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =====================================================
+     CLOSE MODAL
+  ===================================================== */
+
+  function closeRequestDetails() {
+
+    requestModal.classList.remove(
+      "active"
+    );
+
+    requestModal.setAttribute(
+      "aria-hidden",
+      "true"
     );
 
   }
-);
-
-if (closeRequestModal) {
-
-  closeRequestModal.addEventListener(
-    "click",
-    closeRequestDetails
-  );
-
-}
 
 
-if (requestModal) {
+  /* =====================================================
+     REQUEST CODE CLICK
+  ===================================================== */
 
-  requestModal.addEventListener(
+  requestsBody.addEventListener(
     "click",
     function (event) {
 
+      const button =
+        event.target.closest(
+          ".request-code-button"
+        );
+
+
+      if (!button) {
+
+        return;
+
+      }
+
+
+      const requestId =
+        button.dataset.requestId;
+
+
+      if (!requestId) {
+
+        showMessage(
+          "شناسه درخواست پیدا نشد."
+        );
+
+        return;
+
+      }
+
+
+      openRequestDetails(
+        requestId
+      );
+
+    }
+  );
+
+
+  /* =====================================================
+     SAVE LAB RESULT
+  ===================================================== */
+
+  async function saveLabResult(
+    requestId
+  ) {
+
+    const resultInput =
+      document.getElementById(
+        "resultDataInput"
+      );
+
+
+    const interpretationInput =
+      document.getElementById(
+        "interpretationInput"
+      );
+
+
+    const saveButton =
+      document.getElementById(
+        "saveResultButton"
+      );
+
+
+    if (
+      !resultInput ||
+      !interpretationInput ||
+      !saveButton
+    ) {
+
+      showMessage(
+        "فرم نتیجه آزمایش پیدا نشد."
+      );
+
+      return;
+
+    }
+
+
+    if (!requestId) {
+
+      showMessage(
+        "شناسه درخواست پیدا نشد."
+      );
+
+      return;
+
+    }
+
+
+    const resultText =
+      resultInput.value.trim();
+
+
+    const interpretation =
+      interpretationInput.value.trim();
+
+
+    if (!resultText) {
+
+      showMessage(
+        "لطفاً نتیجه آزمایش را وارد کنید."
+      );
+
+      resultInput.focus();
+
+      return;
+
+    }
+
+
+    saveButton.disabled =
+      true;
+
+
+    saveButton.textContent =
+      "در حال ثبت...";
+
+
+    try {
+
+      /* =================================================
+         GET CURRENT USER
+      ================================================= */
+
+      const {
+        data: userData,
+        error: userError
+      } =
+        await supabaseClient.auth.getUser();
+
+
+      if (userError) {
+
+        throw userError;
+
+      }
+
+
+      const currentUser =
+        userData?.user;
+
+
+      if (!currentUser) {
+
+        throw new Error(
+          "کاربر وارد شده پیدا نشد."
+        );
+
+      }
+
+
+      console.log(
+        "Saving result for request:",
+        requestId
+      );
+
+
+      console.log(
+        "Current admin user:",
+        currentUser.id
+      );
+
+
+      /* =================================================
+         CHECK EXISTING RESULT
+      ================================================= */
+
+      const {
+        data: existingResult,
+        error: checkError
+      } =
+        await supabaseClient
+          .from("lab_results")
+          .select("id")
+          .eq(
+            "request_id",
+            requestId
+          )
+          .maybeSingle();
+
+
+      if (checkError) {
+
+        console.error(
+          "Check existing result error:",
+          checkError
+        );
+
+        throw checkError;
+
+      }
+
+
+      const now =
+        new Date().toISOString();
+
+
+      let resultResponse;
+
+
+      /* =================================================
+         UPDATE EXISTING RESULT
+      ================================================= */
+
+      if (existingResult) {
+
+        console.log(
+          "Existing result found:",
+          existingResult.id
+        );
+
+
+        resultResponse =
+          await supabaseClient
+            .from("lab_results")
+            .update({
+
+              result_data: {
+                result:
+                  resultText
+              },
+
+              interpretation:
+                interpretation ||
+                null,
+
+              verified_by:
+                currentUser.id,
+
+              verified_at:
+                now,
+
+              updated_at:
+                now
+
+            })
+            .eq(
+              "id",
+              existingResult.id
+            )
+            .select()
+            .single();
+
+      }
+
+
+      /* =================================================
+         INSERT NEW RESULT
+      ================================================= */
+
+      else {
+
+        console.log(
+          "No existing result. Creating new result."
+        );
+
+
+        resultResponse =
+          await supabaseClient
+            .from("lab_results")
+            .insert({
+
+              request_id:
+                requestId,
+
+              result_data: {
+                result:
+                  resultText
+              },
+
+              interpretation:
+                interpretation ||
+                null,
+
+              verified_by:
+                currentUser.id,
+
+              verified_at:
+                now,
+
+              updated_at:
+                now
+
+            })
+            .select()
+            .single();
+
+      }
+
+
       if (
-        event.target ===
-        requestModal
+        resultResponse.error
+      ) {
+
+        console.error(
+          "Lab result database error:",
+          resultResponse.error
+        );
+
+        throw resultResponse.error;
+
+      }
+
+
+      console.log(
+        "Lab result saved successfully:",
+        resultResponse.data
+      );
+
+
+      /* =================================================
+         UPDATE REQUEST STATUS
+      ================================================= */
+
+      const {
+        error: statusError
+      } =
+        await supabaseClient
+          .from("lab_requests")
+          .update({
+
+            status:
+              "ready"
+
+          })
+          .eq(
+            "id",
+            requestId
+          );
+
+
+      if (statusError) {
+
+        console.error(
+          "Status update error:",
+          statusError
+        );
+
+        throw statusError;
+
+      }
+
+
+      console.log(
+        "Request status changed to ready."
+      );
+
+
+      /* =================================================
+         SUCCESS
+      ================================================= */
+
+      showMessage(
+        existingResult
+          ? "جواب آزمایش با موفقیت ویرایش شد."
+          : "جواب آزمایش با موفقیت ثبت شد."
+      );
+
+
+      await loadRequests();
+
+
+      /*
+       * دوباره همان درخواست را باز می‌کنیم
+       * تا نتیجه ذخیره‌شده نمایش داده شود.
+       */
+
+      await openRequestDetails(
+        requestId
+      );
+
+    }
+
+
+    catch (error) {
+
+      console.error(
+        "Save lab result error:",
+        error
+      );
+
+
+      console.error(
+        "Error message:",
+        error?.message
+      );
+
+
+      console.error(
+        "Error code:",
+        error?.code
+      );
+
+
+      console.error(
+        "Error details:",
+        error?.details
+      );
+
+
+      console.error(
+        "Error hint:",
+        error?.hint
+      );
+
+
+      showMessage(
+        error?.message
+          ? `ثبت جواب آزمایش با خطا مواجه شد: ${error.message}`
+          : "ثبت جواب آزمایش با خطا مواجه شد."
+      );
+
+    }
+
+
+    finally {
+
+      if (saveButton) {
+
+        saveButton.disabled =
+          false;
+
+
+        saveButton.textContent =
+          "💾 ثبت جواب آزمایش";
+
+      }
+
+    }
+
+  }
+
+
+  /* =====================================================
+     SAVE BUTTON EVENT
+  ===================================================== */
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      const button =
+        event.target.closest(
+          "#saveResultButton"
+        );
+
+
+      if (!button) {
+
+        return;
+
+      }
+
+
+      const requestId =
+        button.dataset.requestId;
+
+
+      console.log(
+        "Save button clicked. Request ID:",
+        requestId
+      );
+
+
+      if (!requestId) {
+
+        showMessage(
+          "کد درخواست پیدا نشد."
+        );
+
+        return;
+
+      }
+
+
+      saveLabResult(
+        requestId
+      );
+
+    }
+  );
+
+
+  /* =====================================================
+     CLOSE MODAL BUTTON
+  ===================================================== */
+
+  if (closeRequestModal) {
+
+    closeRequestModal.addEventListener(
+      "click",
+      closeRequestDetails
+    );
+
+  }
+
+
+  /* =====================================================
+     CLOSE MODAL BY BACKDROP
+  ===================================================== */
+
+  if (requestModal) {
+
+    requestModal.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          event.target ===
+          requestModal
+        ) {
+
+          closeRequestDetails();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     ESCAPE
+  ===================================================== */
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key === "Escape" &&
+        requestModal.classList.contains(
+          "active"
+        )
       ) {
 
         closeRequestDetails();
@@ -1655,26 +2670,7 @@ if (requestModal) {
     }
   );
 
-}
 
-
-document.addEventListener(
-  "keydown",
-  function (event) {
-
-    if (
-      event.key === "Escape" &&
-      requestModal.classList.contains(
-        "active"
-      )
-    ) {
-
-      closeRequestDetails();
-
-    }
-
-  }
-);
   /* =====================================================
      FILTER EVENTS
   ===================================================== */
@@ -1699,19 +2695,38 @@ document.addEventListener(
     "click",
     async function () {
 
-      refreshButton.disabled = true;
+      refreshButton.disabled =
+        true;
+
 
       refreshButton.textContent =
         "در حال بروزرسانی...";
 
 
-      await loadRequests();
+      try {
 
+        await loadRequests();
 
-      refreshButton.disabled = false;
+      }
 
-      refreshButton.textContent =
-        "🔄 بروزرسانی";
+      catch (error) {
+
+        console.error(
+          "Refresh error:",
+          error
+        );
+
+      }
+
+      finally {
+
+        refreshButton.disabled =
+          false;
+
+        refreshButton.textContent =
+          "🔄 بروزرسانی";
+
+      }
 
     }
   );
@@ -1746,12 +2761,15 @@ document.addEventListener(
           sessionError
         );
 
+
         showMessage(
           "ارتباط با سرویس ورود Supabase برقرار نشد. صفحه را دوباره بارگذاری کنید."
         );
 
+
         securityMessage.textContent =
           "در انتظار برقراری ارتباط با سرویس احراز هویت...";
+
 
         return;
 
@@ -1772,12 +2790,15 @@ document.addEventListener(
           "No active session."
         );
 
+
         showMessage(
           "هیچ حساب فعالی در این مرورگر وجود ندارد."
         );
 
+
         securityMessage.textContent =
           "برای ورود به پنل مدیریت باید ابتدا وارد حساب ادمین شوید.";
+
 
         return;
 
@@ -1795,7 +2816,7 @@ document.addEventListener(
 
 
       /* =================================================
-         VERIFY ADMIN USER ID
+         VERIFY ADMIN USER
       ================================================= */
 
       if (
@@ -1808,12 +2829,15 @@ document.addEventListener(
           user.id
         );
 
+
         securityMessage.textContent =
           "این حساب، حساب مدیر مرکزی آلفا نیست.";
+
 
         showMessage(
           "این حساب اجازه ورود به پنل مدیریت مرکزی را ندارد."
         );
+
 
         return;
 
@@ -1821,23 +2845,23 @@ document.addEventListener(
 
 
       /* =================================================
-         LOAD USER PROFILE
+         LOAD PROFILE
       ================================================= */
 
       const {
         data: profile,
         error: profileError
       } =
-      await supabaseClient
-        .from("user_profiles")
-        .select(
-          "id, full_name, role"
-        )
-        .eq(
-          "id",
-          user.id
-        )
-        .maybeSingle();
+        await supabaseClient
+          .from("user_profiles")
+          .select(
+            "id, full_name, role"
+          )
+          .eq(
+            "id",
+            user.id
+          )
+          .maybeSingle();
 
 
       if (profileError) {
@@ -1847,12 +2871,15 @@ document.addEventListener(
           profileError
         );
 
+
         showMessage(
           "حساب شناسایی شد، اما دریافت سطح دسترسی با خطا مواجه شد."
         );
 
+
         securityMessage.textContent =
           "خطا در خواندن user_profiles.";
+
 
         return;
 
@@ -1875,8 +2902,10 @@ document.addEventListener(
           "برای این حساب پروفایل مدیریتی پیدا نشد."
         );
 
+
         securityMessage.textContent =
           "رکورد user_profiles برای حساب مدیر وجود ندارد.";
+
 
         return;
 
@@ -1897,12 +2926,18 @@ document.addEventListener(
           profile.role
         );
 
+
         showMessage(
           "سطح دسترسی این حساب admin نیست."
         );
 
+
         securityMessage.textContent =
-          `سطح دسترسی فعلی: ${profile.role || "نامشخص"}`;
+          `سطح دسترسی فعلی: ${
+            profile.role ||
+            "نامشخص"
+          }`;
+
 
         return;
 
@@ -1923,7 +2958,9 @@ document.addEventListener(
 
 
       securityMessage.textContent =
-        `دسترسی تأیید شد | مدیر مرکزی | ${user.email || ""}`;
+        `دسترسی تأیید شد | مدیر مرکزی | ${
+          user.email || ""
+        }`;
 
 
       hideMessage();
@@ -1968,6 +3005,7 @@ document.addEventListener(
               payload
             );
 
+
             loadRequests();
 
           }
@@ -1985,6 +3023,7 @@ document.addEventListener(
 
     }
 
+
     catch (error) {
 
       console.error(
@@ -1992,9 +3031,11 @@ document.addEventListener(
         error
       );
 
+
       showMessage(
         "خطای غیرمنتظره در پنل مدیریت."
       );
+
 
       securityMessage.textContent =
         "خطا در اجرای پنل مدیریت.";
@@ -2011,12 +3052,16 @@ document.addEventListener(
   supabaseClient
     .auth
     .onAuthStateChange(
-      function (event, session) {
+      function (
+        event,
+        session
+      ) {
 
         console.log(
           "Auth state:",
           event,
-          session?.user?.id || null
+          session?.user?.id ||
+          null
         );
 
       }
@@ -2028,6 +3073,7 @@ document.addEventListener(
   ===================================================== */
 
   loadAdmin();
+
 
 })();
 
