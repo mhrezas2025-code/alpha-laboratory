@@ -18,6 +18,8 @@
       --muted: #6b7f85;
       --border: rgba(11,114,133,.12);
       --shadow: 0 10px 30px rgba(7,59,76,.08);
+      --danger: #c92a2a;
+      --success: #087f5b;
     }
 
     * {
@@ -33,6 +35,13 @@
         radial-gradient(circle at 10% 10%, rgba(0,150,136,.08), transparent 30%),
         radial-gradient(circle at 90% 20%, rgba(0,188,212,.08), transparent 30%),
         linear-gradient(135deg, #f7fbfc, #eef7f8);
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
     }
 
     header {
@@ -81,7 +90,8 @@
     }
 
     .logout-button,
-    .refresh-button {
+    .refresh-button,
+    .primary-button {
       border: none;
       border-radius: 10px;
       background: var(--primary);
@@ -90,6 +100,7 @@
       cursor: pointer;
       font-family: inherit;
       font-size: 12px;
+      transition: .2s;
     }
 
     .logout-button {
@@ -98,7 +109,8 @@
     }
 
     .logout-button:hover,
-    .refresh-button:hover {
+    .refresh-button:hover,
+    .primary-button:hover {
       background: var(--primary-dark);
     }
 
@@ -121,6 +133,19 @@
       background: #fff4d6;
       color: #8a5a00;
       font-size: 13px;
+      border: 1px solid rgba(138,90,0,.12);
+    }
+
+    .system-message.error {
+      background: #fff5f5;
+      color: #c92a2a;
+      border-color: rgba(201,42,42,.15);
+    }
+
+    .system-message.success {
+      background: #e6fcf5;
+      color: #087f5b;
+      border-color: rgba(8,127,91,.15);
     }
 
     .welcome {
@@ -201,6 +226,12 @@
       background: #fbfeff;
     }
 
+    .filters input:focus,
+    .filters select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11,114,133,.08);
+    }
+
     .requests {
       overflow: hidden;
       background: white;
@@ -254,6 +285,11 @@
 
     td {
       color: var(--muted);
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: #fbfeff;
     }
 
     .status {
@@ -262,6 +298,7 @@
       border-radius: 20px;
       font-size: 10px;
       font-weight: bold;
+      white-space: nowrap;
     }
 
     .status-ready {
@@ -347,7 +384,7 @@
     }
 
     /* =====================================================
-       REQUEST DETAILS MODAL
+       MODAL
     ===================================================== */
 
     .modal-overlay {
@@ -367,8 +404,8 @@
     }
 
     .request-modal {
-      width: min(700px, 100%);
-      max-height: 90vh;
+      width: min(760px, 100%);
+      max-height: 92vh;
       overflow-y: auto;
       background: white;
       border-radius: 22px;
@@ -376,6 +413,9 @@
     }
 
     .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -495,6 +535,7 @@
       resize: vertical;
       outline: none;
       background: white;
+      color: var(--text);
     }
 
     .result-input:focus,
@@ -508,16 +549,51 @@
       width: 100%;
     }
 
-    @media (max-width: 650px) {
+    .result-existing {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #e6fcf5;
+      color: #087f5b;
+      font-size: 11px;
+    }
 
-      .detail-grid {
-        grid-template-columns: 1fr;
-      }
+    .result-not-found {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f7fbfc;
+      color: var(--muted);
+      font-size: 11px;
+    }
 
-      .modal-body {
-        padding: 18px;
-      }
+    .loading-box {
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+    }
 
+    .error-box {
+      padding: 15px;
+      border-radius: 12px;
+      background: #fff5f5;
+      color: #c92a2a;
+      font-size: 12px;
+    }
+
+    .mini-button {
+      border: none;
+      padding: 7px 10px;
+      border-radius: 8px;
+      background: #e3f7f9;
+      color: var(--primary-dark);
+      cursor: pointer;
+      font-size: 10px;
+      font-family: inherit;
+    }
+
+    .mini-button:hover {
+      background: #d2f1f4;
     }
 
     @media (max-width: 1000px) {
@@ -548,12 +624,21 @@
       }
 
       .stats,
-      .filters {
+      .filters,
+      .detail-grid {
         grid-template-columns: 1fr;
       }
 
       .refresh-button {
         grid-column: auto;
+      }
+
+      .modal-body {
+        padding: 18px;
+      }
+
+      .modal-header {
+        padding: 16px;
       }
 
     }
@@ -623,57 +708,26 @@
 
       <div class="stat-card">
         <div class="stat-icon">📋</div>
-        <span class="stat-label">
-          کل درخواست‌ها
-        </span>
-        <strong
-          id="totalRequests"
-          class="stat-number"
-        >
-          0
-        </strong>
+        <span class="stat-label">کل درخواست‌ها</span>
+        <strong id="totalRequests" class="stat-number">0</strong>
       </div>
-
 
       <div class="stat-card">
         <div class="stat-icon">🟡</div>
-        <span class="stat-label">
-          درخواست‌های جدید
-        </span>
-        <strong
-          id="receivedRequests"
-          class="stat-number"
-        >
-          0
-        </strong>
+        <span class="stat-label">درخواست‌های جدید</span>
+        <strong id="receivedRequests" class="stat-number">0</strong>
       </div>
-
 
       <div class="stat-card">
         <div class="stat-icon">🔵</div>
-        <span class="stat-label">
-          در حال انجام
-        </span>
-        <strong
-          id="processingRequests"
-          class="stat-number"
-        >
-          0
-        </strong>
+        <span class="stat-label">در حال انجام</span>
+        <strong id="processingRequests" class="stat-number">0</strong>
       </div>
-
 
       <div class="stat-card">
         <div class="stat-icon">🟢</div>
-        <span class="stat-label">
-          جواب‌های آماده
-        </span>
-        <strong
-          id="readyRequests"
-          class="stat-number"
-        >
-          0
-        </strong>
+        <span class="stat-label">جواب‌های آماده</span>
+        <strong id="readyRequests" class="stat-number">0</strong>
       </div>
 
     </div>
@@ -692,7 +746,7 @@
       <input
         type="search"
         id="searchInput"
-        placeholder="جستجو بر اساس کد درخواست، بیمار یا آزمایشگاه..."
+        placeholder="جستجو بر اساس کد درخواست، بیمار، آزمایشگاه یا آزمایش..."
       >
 
       <select id="statusFilter">
@@ -718,7 +772,6 @@
         </option>
 
       </select>
-
 
       <button
         id="refreshButton"
@@ -766,7 +819,6 @@
             </tr>
 
           </thead>
-
 
           <tbody id="requestsBody">
 
@@ -836,13 +888,12 @@
 
     </div>
 
-
     <div
       id="requestModalBody"
       class="modal-body"
     >
 
-      <div class="empty">
+      <div class="loading-box">
         در حال دریافت اطلاعات...
       </div>
 
@@ -856,9 +907,7 @@
 <footer>
 
   © آزمایشگاه تخصصی آلفا —
-  <span>
-    Alpha Specialized Laboratory
-  </span>
+  <span>Alpha Specialized Laboratory</span>
 
 </footer>
 
@@ -896,7 +945,7 @@
 
 
   /* =====================================================
-     ADMIN ACCOUNT
+     ADMIN USER
   ===================================================== */
 
   const ADMIN_USER_ID =
@@ -908,64 +957,40 @@
   ===================================================== */
 
   const adminWelcome =
-    document.getElementById(
-      "adminWelcome"
-    );
+    document.getElementById("adminWelcome");
 
   const logoutButton =
-    document.getElementById(
-      "logoutButton"
-    );
+    document.getElementById("logoutButton");
 
   const systemMessage =
-    document.getElementById(
-      "systemMessage"
-    );
+    document.getElementById("systemMessage");
 
   const securityMessage =
-    document.getElementById(
-      "securityMessage"
-    );
+    document.getElementById("securityMessage");
 
   const requestInfo =
-    document.getElementById(
-      "requestInfo"
-    );
+    document.getElementById("requestInfo");
 
   const requestsBody =
-    document.getElementById(
-      "requestsBody"
-    );
+    document.getElementById("requestsBody");
 
   const searchInput =
-    document.getElementById(
-      "searchInput"
-    );
+    document.getElementById("searchInput");
 
   const statusFilter =
-    document.getElementById(
-      "statusFilter"
-    );
+    document.getElementById("statusFilter");
 
   const refreshButton =
-    document.getElementById(
-      "refreshButton"
-    );
+    document.getElementById("refreshButton");
 
   const requestModal =
-    document.getElementById(
-      "requestModal"
-    );
+    document.getElementById("requestModal");
 
   const requestModalBody =
-    document.getElementById(
-      "requestModalBody"
-    );
+    document.getElementById("requestModalBody");
 
   const closeRequestModal =
-    document.getElementById(
-      "closeRequestModal"
-    );
+    document.getElementById("closeRequestModal");
 
 
   let allRequests = [];
@@ -975,10 +1000,16 @@
      MESSAGE
   ===================================================== */
 
-  function showMessage(message) {
+  function showMessage(
+    message,
+    type = "error"
+  ) {
 
     systemMessage.textContent =
       message;
+
+    systemMessage.className =
+      "system-message " + type;
 
     systemMessage.style.display =
       "block";
@@ -995,7 +1026,7 @@
 
 
   /* =====================================================
-     HTML ESCAPE
+     ESCAPE HTML
   ===================================================== */
 
   function escapeHTML(value) {
@@ -1004,9 +1035,7 @@
       value === null ||
       value === undefined
     ) {
-
       return "";
-
     }
 
     return String(value)
@@ -1020,53 +1049,77 @@
 
 
   /* =====================================================
-     STATUS
+     STATUS LABEL
   ===================================================== */
 
   function getStatusLabel(status) {
 
     const labels = {
-
-      received:
-        "دریافت شد",
-
-      processing:
-        "در حال انجام",
-
-      ready:
-        "جواب آماده",
-
-      delivered:
-        "تحویل شده"
-
+      received: "دریافت شد",
+      processing: "در حال انجام",
+      ready: "جواب آماده",
+      delivered: "تحویل شده"
     };
 
-    return labels[status] ||
-      "نامشخص";
+    return labels[status] || "نامشخص";
 
   }
 
 
+  /* =====================================================
+     STATUS CLASS
+  ===================================================== */
+
   function getStatusClass(status) {
 
     const classes = {
-
-      received:
-        "status-received",
-
-      processing:
-        "status-process",
-
-      ready:
-        "status-ready",
-
-      delivered:
-        "status-delivered"
-
+      received: "status-received",
+      processing: "status-process",
+      ready: "status-ready",
+      delivered: "status-delivered"
     };
 
     return classes[status] ||
       "status-received";
+
+  }
+
+
+  /* =====================================================
+     FORMAT DATE
+  ===================================================== */
+
+  function formatDate(
+    value,
+    withTime = false
+  ) {
+
+    if (!value) {
+      return "-";
+    }
+
+    try {
+
+      return new Date(value)
+        .toLocaleString(
+          "fa-IR",
+          withTime
+            ? {
+                dateStyle: "short",
+                timeStyle: "short"
+              }
+            : {
+                dateStyle: "short"
+              }
+        );
+
+    }
+
+    catch (error) {
+
+      return "-";
+
+    }
 
   }
 
@@ -1079,12 +1132,10 @@
     "click",
     async function () {
 
-      logoutButton.disabled =
-        true;
+      logoutButton.disabled = true;
 
       logoutButton.textContent =
         "در حال خروج...";
-
 
       try {
 
@@ -1095,19 +1146,14 @@
             .auth
             .signOut();
 
-
         if (error) {
-
           throw error;
-
         }
-
 
         window.location.href =
           "partner-login.html";
 
       }
-
 
       catch (error) {
 
@@ -1203,31 +1249,23 @@
 
             const code =
               String(
-                request.request_code ||
-                ""
+                request.request_code || ""
               ).toLowerCase();
-
 
             const patient =
               String(
-                request.patient_name ||
-                ""
+                request.patient_name || ""
               ).toLowerCase();
-
 
             const lab =
               String(
-                request.partner_lab?.lab_name ||
-                ""
+                request.partner_lab?.lab_name || ""
               ).toLowerCase();
-
 
             const tests =
               String(
-                request.requested_tests ||
-                ""
+                request.requested_tests || ""
               ).toLowerCase();
-
 
             return (
               code.includes(search) ||
@@ -1243,8 +1281,7 @@
 
 
     if (
-      selectedStatus !==
-      "all"
+      selectedStatus !== "all"
     ) {
 
       filtered =
@@ -1288,16 +1325,6 @@
         .map(
           request => {
 
-            const date =
-              request.created_at
-                ? new Date(
-                    request.created_at
-                  ).toLocaleDateString(
-                    "fa-IR"
-                  )
-                : "-";
-
-
             const labName =
               request.partner_lab?.lab_name ||
               "نامشخص";
@@ -1320,8 +1347,7 @@
                     data-request-id="${escapeHTML(request.id)}"
                   >
                     ${escapeHTML(
-                      request.request_code ||
-                      "-"
+                      request.request_code || "-"
                     )}
                   </button>
 
@@ -1329,30 +1355,28 @@
 
 
                 <td>
+                  ${escapeHTML(labName)}
+                </td>
+
+
+                <td>
                   ${escapeHTML(
-                    labName
+                    request.patient_name || "-"
                   )}
                 </td>
 
 
                 <td>
                   ${escapeHTML(
-                    request.patient_name ||
-                    "-"
+                    request.requested_tests || "-"
                   )}
                 </td>
 
 
                 <td>
-                  ${escapeHTML(
-                    request.requested_tests ||
-                    "-"
+                  ${formatDate(
+                    request.created_at
                   )}
-                </td>
-
-
-                <td>
-                  ${date}
                 </td>
 
 
@@ -1370,9 +1394,7 @@
                     <span
                       class="status ${getStatusClass(status)}"
                     >
-                      ${getStatusLabel(
-                        status
-                      )}
+                      ${getStatusLabel(status)}
                     </span>
 
 
@@ -1388,7 +1410,6 @@
                         دریافت شد
                       </option>
 
-
                       <option
                         value="processing"
                         ${status === "processing" ? "selected" : ""}
@@ -1396,14 +1417,12 @@
                         در حال انجام
                       </option>
 
-
                       <option
                         value="ready"
                         ${status === "ready" ? "selected" : ""}
                       >
                         جواب آماده
                       </option>
-
 
                       <option
                         value="delivered"
@@ -1487,15 +1506,18 @@
           <td
             colspan="6"
             class="empty"
+            style="color:#c92a2a;"
           >
             خطا در دریافت درخواست‌ها.
+            <br>
+            لطفاً Console مرورگر را بررسی کنید.
           </td>
 
         </tr>
 
       `;
 
-      return;
+      return false;
 
     }
 
@@ -1511,6 +1533,8 @@
 
     renderRequests();
 
+    return true;
+
   }
 
 
@@ -1522,9 +1546,6 @@
     requestId,
     newStatus
   ) {
-
-    hideMessage();
-
 
     const {
       error
@@ -1548,21 +1569,19 @@
       );
 
       showMessage(
-        "تغییر وضعیت درخواست با خطا مواجه شد."
+        `تغییر وضعیت انجام نشد: ${
+          error.message || "خطای نامشخص"
+        }`
       );
-
-
-      await loadRequests();
 
       return false;
 
     }
 
 
-    console.log(
-      "Request status updated:",
-      requestId,
-      newStatus
+    showMessage(
+      "وضعیت درخواست با موفقیت تغییر کرد.",
+      "success"
     );
 
 
@@ -1574,7 +1593,7 @@
 
 
   /* =====================================================
-     STATUS SELECT EVENTS
+     STATUS CHANGE
   ===================================================== */
 
   requestsBody.addEventListener(
@@ -1586,9 +1605,7 @@
           "status-select"
         )
       ) {
-
         return;
-
       }
 
 
@@ -1615,8 +1632,7 @@
       }
 
 
-      select.disabled =
-        true;
+      select.disabled = true;
 
 
       try {
@@ -1630,8 +1646,7 @@
 
       finally {
 
-        select.disabled =
-          false;
+        select.disabled = false;
 
       }
 
@@ -1640,17 +1655,18 @@
 
 
   /* =====================================================
-     LOAD EXISTING RESULT
+     GET EXISTING RESULT
+     
+     مهم:
+     اگر هیچ نتیجه‌ای وجود نداشته باشد،
+     این وضعیت خطا نیست.
   ===================================================== */
 
   async function getExistingResult(
     requestId
   ) {
 
-    const {
-      data,
-      error
-    } =
+    const response =
       await supabaseClient
         .from("lab_results")
         .select(`
@@ -1669,23 +1685,44 @@
         .maybeSingle();
 
 
-    if (error) {
+    if (response.error) {
+
+      /*
+       * PGRST116 معمولاً یعنی رکوردی پیدا نشده.
+       * در حالت maybeSingle معمولاً null برمی‌گردد،
+       * اما برای اطمینان این کد را هم مدیریت می‌کنیم.
+       */
+
+      if (
+        response.error.code ===
+        "PGRST116"
+      ) {
+
+        return {
+          data: null,
+          error: null
+        };
+
+      }
+
 
       console.error(
         "Load existing result error:",
-        error
+        response.error
       );
+
 
       return {
         data: null,
-        error
+        error: response.error
       };
 
     }
 
 
     return {
-      data,
+      data:
+        response.data || null,
       error: null
     };
 
@@ -1693,7 +1730,78 @@
 
 
   /* =====================================================
-     REQUEST DETAILS MODAL
+     EXTRACT RESULT TEXT
+  ===================================================== */
+
+  function extractResultText(
+    resultData
+  ) {
+
+    if (
+      resultData === null ||
+      resultData === undefined
+    ) {
+
+      return "";
+
+    }
+
+
+    if (
+      typeof resultData ===
+      "string"
+    ) {
+
+      return resultData;
+
+    }
+
+
+    if (
+      typeof resultData ===
+      "object"
+    ) {
+
+      if (
+        resultData.result !==
+        undefined
+      ) {
+
+        return String(
+          resultData.result
+        );
+
+      }
+
+
+      try {
+
+        return JSON.stringify(
+          resultData,
+          null,
+          2
+        );
+
+      }
+
+      catch (error) {
+
+        return "";
+
+      }
+
+    }
+
+
+    return String(
+      resultData
+    );
+
+  }
+
+
+  /* =====================================================
+     OPEN REQUEST DETAILS
   ===================================================== */
 
   async function openRequestDetails(
@@ -1703,7 +1811,8 @@
     const request =
       allRequests.find(
         r =>
-          r.id === requestId
+          String(r.id) ===
+          String(requestId)
       );
 
 
@@ -1728,16 +1837,6 @@
       "received";
 
 
-    const createdDate =
-      request.created_at
-        ? new Date(
-            request.created_at
-          ).toLocaleString(
-            "fa-IR"
-          )
-        : "-";
-
-
     requestModal.classList.add(
       "active"
     );
@@ -1750,31 +1849,58 @@
 
     requestModalBody.innerHTML = `
 
-      <div class="empty">
-        در حال دریافت نتیجه قبلی...
+      <div class="loading-box">
+        ⏳ در حال دریافت جزئیات و نتیجه قبلی...
       </div>
 
     `;
 
 
-    const {
-      data: existingResult,
-      error
-    } =
+    const resultResponse =
       await getExistingResult(
         requestId
       );
 
 
-    if (error) {
+    /*
+     * اگر خطای واقعی RLS یا ساختار جدول وجود داشته باشد
+     * آن را واضح نمایش می‌دهیم.
+     */
+
+    if (
+      resultResponse.error
+    ) {
+
+      const error =
+        resultResponse.error;
+
 
       requestModalBody.innerHTML = `
 
-        <div
-          class="empty"
-          style="color:#c92a2a;"
-        >
-          خطا در دریافت نتیجه قبلی.
+        <div class="error-box">
+
+          <strong>
+            ⚠️ خطا در خواندن جواب آزمایش
+          </strong>
+
+          <br><br>
+
+          ${
+            escapeHTML(
+              error.message ||
+              "خطای نامشخص"
+            )
+          }
+
+          <br><br>
+
+          <small>
+            Code:
+            ${escapeHTML(
+              error.code || "-"
+            )}
+          </small>
+
         </div>
 
       `;
@@ -1784,42 +1910,23 @@
     }
 
 
-    let previousResult = "";
+    const existingResult =
+      resultResponse.data;
 
 
-    if (
-      existingResult &&
-      existingResult.result_data
-    ) {
-
-      if (
-        typeof existingResult.result_data ===
-        "object"
-      ) {
-
-        previousResult =
-          existingResult
-            .result_data
-            ?.result ||
-          "";
-
-      }
-
-      else {
-
-        previousResult =
-          String(
-            existingResult.result_data
-          );
-
-      }
-
-    }
+    const previousResult =
+      extractResultText(
+        existingResult?.result_data
+      );
 
 
     const previousInterpretation =
       existingResult?.interpretation ||
       "";
+
+
+    const resultExists =
+      !!existingResult;
 
 
     requestModalBody.innerHTML = `
@@ -1841,8 +1948,7 @@
 
             <span>
               ${escapeHTML(
-                request.patient_name ||
-                "-"
+                request.patient_name || "-"
               )}
             </span>
 
@@ -1857,8 +1963,7 @@
 
             <span>
               ${escapeHTML(
-                request.patient_age ||
-                "-"
+                request.patient_age || "-"
               )}
             </span>
 
@@ -1873,8 +1978,7 @@
 
             <span>
               ${escapeHTML(
-                request.patient_gender ||
-                "-"
+                request.patient_gender || "-"
               )}
             </span>
 
@@ -1884,13 +1988,11 @@
           <div class="detail-item">
 
             <strong>
-              وضعیت
+              وضعیت فعلی
             </strong>
 
             <span>
-              ${getStatusLabel(
-                status
-              )}
+              ${getStatusLabel(status)}
             </span>
 
           </div>
@@ -1917,8 +2019,7 @@
 
             <span>
               ${escapeHTML(
-                request.request_code ||
-                "-"
+                request.request_code || "-"
               )}
             </span>
 
@@ -1932,7 +2033,10 @@
             </strong>
 
             <span>
-              ${createdDate}
+              ${formatDate(
+                request.created_at,
+                true
+              )}
             </span>
 
           </div>
@@ -1948,8 +2052,7 @@
 
           <span>
             ${escapeHTML(
-              request.requested_tests ||
-              "-"
+              request.requested_tests || "-"
             )}
           </span>
 
@@ -1977,7 +2080,7 @@
       <div class="detail-section">
 
         <h4>
-          🏥 اطلاعات آزمایشگاه همکار
+          🏥 آزمایشگاه همکار
         </h4>
 
 
@@ -1991,8 +2094,7 @@
 
             <span>
               ${escapeHTML(
-                lab.lab_name ||
-                "-"
+                lab.lab_name || "-"
               )}
             </span>
 
@@ -2007,8 +2109,7 @@
 
             <span>
               ${escapeHTML(
-                lab.lab_code ||
-                "-"
+                lab.lab_code || "-"
               )}
             </span>
 
@@ -2019,23 +2120,23 @@
       </div>
 
 
-      <div class="detail-section result-section">
+      <div class="detail-section">
 
         <h4>
-          🧪 نتیجه آزمایش
+          🧪 ثبت / ویرایش جواب آزمایش
         </h4>
 
 
         <div class="detail-full">
 
           <strong>
-            نتیجه
+            نتیجه آزمایش
           </strong>
 
           <textarea
             id="resultDataInput"
             class="result-input"
-            rows="6"
+            rows="7"
             placeholder="نتیجه آزمایش را وارد کنید..."
           >${escapeHTML(
             previousResult
@@ -2053,8 +2154,8 @@
           <textarea
             id="interpretationInput"
             class="interpretation-input"
-            rows="4"
-            placeholder="تفسیر یا توضیحات جواب..."
+            rows="5"
+            placeholder="تفسیر یا توضیحات جواب را وارد کنید..."
           >${escapeHTML(
             previousInterpretation
           )}</textarea>
@@ -2068,30 +2169,40 @@
           class="refresh-button result-save-button"
           data-request-id="${escapeHTML(requestId)}"
         >
-          💾 ${existingResult
-            ? "ویرایش جواب آزمایش"
-            : "ثبت جواب آزمایش"}
+          💾 ${
+            resultExists
+              ? "ویرایش جواب آزمایش"
+              : "ثبت جواب آزمایش"
+          }
         </button>
 
 
         ${
-          existingResult
+          resultExists
             ? `
-              <div
-                style="
-                  margin-top:10px;
-                  padding:10px;
-                  border-radius:10px;
-                  background:#e6fcf5;
-                  color:#087f5b;
-                  font-size:11px;
-                "
-              >
+              <div class="result-existing">
                 ✅ برای این درخواست قبلاً جواب ثبت شده است.
-                می‌توانید آن را ویرایش کنید.
+                می‌توانید نتیجه را ویرایش کنید.
+                <br>
+                ${
+                  existingResult.updated_at
+                    ? `آخرین ویرایش:
+                       ${escapeHTML(
+                         formatDate(
+                           existingResult.updated_at,
+                           true
+                         )
+                       )}`
+                    : ""
+                }
               </div>
             `
-            : ""
+            : `
+              <div class="result-not-found">
+                ℹ️ هنوز برای این درخواست جوابی ثبت نشده است.
+                نتیجه را وارد کرده و روی «ثبت جواب آزمایش» کلیک کنید.
+              </div>
+            `
         }
 
       </div>
@@ -2119,6 +2230,48 @@
   }
 
 
+  closeRequestModal.addEventListener(
+    "click",
+    closeRequestDetails
+  );
+
+
+  requestModal.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        event.target ===
+        requestModal
+      ) {
+
+        closeRequestDetails();
+
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key === "Escape" &&
+        requestModal.classList.contains(
+          "active"
+        )
+      ) {
+
+        closeRequestDetails();
+
+      }
+
+    }
+  );
+
+
   /* =====================================================
      REQUEST CODE CLICK
   ===================================================== */
@@ -2134,9 +2287,7 @@
 
 
       if (!button) {
-
         return;
-
       }
 
 
@@ -2204,17 +2355,6 @@
     }
 
 
-    if (!requestId) {
-
-      showMessage(
-        "شناسه درخواست پیدا نشد."
-      );
-
-      return;
-
-    }
-
-
     const resultText =
       resultInput.value.trim();
 
@@ -2239,28 +2379,27 @@
     saveButton.disabled =
       true;
 
-
     saveButton.textContent =
-      "در حال ثبت...";
+      "⏳ در حال ثبت جواب...";
 
 
     try {
 
       /* =================================================
-         GET CURRENT USER
+         CURRENT USER
       ================================================= */
 
       const {
         data: userData,
         error: userError
       } =
-        await supabaseClient.auth.getUser();
+        await supabaseClient
+          .auth
+          .getUser();
 
 
       if (userError) {
-
         throw userError;
-
       }
 
 
@@ -2278,14 +2417,12 @@
 
 
       console.log(
-        "Saving result for request:",
-        requestId
-      );
-
-
-      console.log(
-        "Current admin user:",
-        currentUser.id
+        "Saving result:",
+        {
+          requestId,
+          userId:
+            currentUser.id
+        }
       );
 
 
@@ -2295,27 +2432,15 @@
 
       const {
         data: existingResult,
-        error: checkError
+        error: existingError
       } =
-        await supabaseClient
-          .from("lab_results")
-          .select("id")
-          .eq(
-            "request_id",
-            requestId
-          )
-          .maybeSingle();
-
-
-      if (checkError) {
-
-        console.error(
-          "Check existing result error:",
-          checkError
+        await getExistingResult(
+          requestId
         );
 
-        throw checkError;
 
+      if (existingError) {
+        throw existingError;
       }
 
 
@@ -2323,44 +2448,64 @@
         new Date().toISOString();
 
 
-      let resultResponse;
+      const payload = {
+
+        request_id:
+          requestId,
+
+        result_data: {
+          result:
+            resultText
+        },
+
+        interpretation:
+          interpretation || null,
+
+        verified_by:
+          currentUser.id,
+
+        verified_at:
+          now,
+
+        updated_at:
+          now
+
+      };
+
+
+      let savedResult;
 
 
       /* =================================================
-         UPDATE EXISTING RESULT
+         UPDATE
       ================================================= */
 
       if (existingResult) {
 
         console.log(
-          "Existing result found:",
+          "Updating existing lab result:",
           existingResult.id
         );
 
 
-        resultResponse =
+        const response =
           await supabaseClient
             .from("lab_results")
             .update({
-
-              result_data: {
-                result:
-                  resultText
-              },
+              result_data:
+                payload.result_data,
 
               interpretation:
-                interpretation ||
-                null,
+                payload.interpretation,
 
               verified_by:
-                currentUser.id,
+                payload.verified_by,
 
               verified_at:
-                now,
+                payload.verified_at,
 
               updated_at:
-                now
-
+                payload.updated_at
             })
             .eq(
               "id",
@@ -2369,70 +2514,51 @@
             .select()
             .single();
 
+
+        if (response.error) {
+          throw response.error;
+        }
+
+
+        savedResult =
+          response.data;
+
       }
 
 
       /* =================================================
-         INSERT NEW RESULT
+         INSERT
       ================================================= */
 
       else {
 
         console.log(
-          "No existing result. Creating new result."
+          "Creating new lab result."
         );
 
 
-        resultResponse =
+        const response =
           await supabaseClient
             .from("lab_results")
-            .insert({
-
-              request_id:
-                requestId,
-
-              result_data: {
-                result:
-                  resultText
-              },
-
-              interpretation:
-                interpretation ||
-                null,
-
-              verified_by:
-                currentUser.id,
-
-              verified_at:
-                now,
-
-              updated_at:
-                now
-
-            })
+            .insert(payload)
             .select()
             .single();
 
-      }
+
+        if (response.error) {
+          throw response.error;
+        }
 
 
-      if (
-        resultResponse.error
-      ) {
-
-        console.error(
-          "Lab result database error:",
-          resultResponse.error
-        );
-
-        throw resultResponse.error;
+        savedResult =
+          response.data;
 
       }
 
 
       console.log(
-        "Lab result saved successfully:",
-        resultResponse.data
+        "Lab result saved:",
+        savedResult
       );
 
 
@@ -2446,10 +2572,8 @@
         await supabaseClient
           .from("lab_requests")
           .update({
-
             status:
               "ready"
-
           })
           .eq(
             "id",
@@ -2458,14 +2582,7 @@
 
 
       if (statusError) {
-
-        console.error(
-          "Status update error:",
-          statusError
-        );
-
         throw statusError;
-
       }
 
 
@@ -2480,8 +2597,9 @@
 
       showMessage(
         existingResult
-          ? "جواب آزمایش با موفقیت ویرایش شد."
-          : "جواب آزمایش با موفقیت ثبت شد."
+          ? "جواب آزمایش با موفقیت ویرایش شد و وضعیت درخواست به «جواب آماده» تغییر کرد."
+          : "جواب آزمایش با موفقیت ثبت شد و وضعیت درخواست به «جواب آماده» تغییر کرد.",
+        "success"
       );
 
 
@@ -2489,7 +2607,7 @@
 
 
       /*
-       * دوباره همان درخواست را باز می‌کنیم
+       * دوباره جزئیات را باز می‌کنیم
        * تا نتیجه ذخیره‌شده نمایش داده شود.
        */
 
@@ -2503,39 +2621,79 @@
     catch (error) {
 
       console.error(
-        "Save lab result error:",
-        error
+        "================================"
       );
 
+      console.error(
+        "SAVE LAB RESULT ERROR"
+      );
 
       console.error(
-        "Error message:",
+        "Message:",
         error?.message
       );
 
-
       console.error(
-        "Error code:",
+        "Code:",
         error?.code
       );
 
-
       console.error(
-        "Error details:",
+        "Details:",
         error?.details
       );
 
-
       console.error(
-        "Error hint:",
+        "Hint:",
         error?.hint
       );
 
+      console.error(
+        "Full error:",
+        error
+      );
+
+      console.error(
+        "================================"
+      );
+
+
+      let message =
+        "ثبت جواب آزمایش با خطا مواجه شد.";
+
+
+      if (
+        error?.code ===
+        "42501"
+      ) {
+
+        message =
+          "دسترسی لازم برای ثبت یا ویرایش جواب آزمایش وجود ندارد. Policyهای جدول lab_results را بررسی کنید.";
+
+      }
+
+      else if (
+        error?.code ===
+        "23505"
+      ) {
+
+        message =
+          "برای این درخواست قبلاً جواب ثبت شده است.";
+
+      }
+
+      else if (
+        error?.message
+      ) {
+
+        message +=
+          ` ${error.message}`;
+
+      }
+
 
       showMessage(
-        error?.message
-          ? `ثبت جواب آزمایش با خطا مواجه شد: ${error.message}`
-          : "ثبت جواب آزمایش با خطا مواجه شد."
+        message
       );
 
     }
@@ -2549,8 +2707,13 @@
           false;
 
 
+        /*
+         * متن دکمه بعد از ذخیره
+         * از وضعیت موجود تعیین می‌شود.
+         */
+
         saveButton.textContent =
-          "💾 ثبت جواب آزمایش";
+          "💾 ذخیره جواب آزمایش";
 
       }
 
@@ -2574,20 +2737,12 @@
 
 
       if (!button) {
-
         return;
-
       }
 
 
       const requestId =
         button.dataset.requestId;
-
-
-      console.log(
-        "Save button clicked. Request ID:",
-        requestId
-      );
 
 
       if (!requestId) {
@@ -2610,69 +2765,7 @@
 
 
   /* =====================================================
-     CLOSE MODAL BUTTON
-  ===================================================== */
-
-  if (closeRequestModal) {
-
-    closeRequestModal.addEventListener(
-      "click",
-      closeRequestDetails
-    );
-
-  }
-
-
-  /* =====================================================
-     CLOSE MODAL BY BACKDROP
-  ===================================================== */
-
-  if (requestModal) {
-
-    requestModal.addEventListener(
-      "click",
-      function (event) {
-
-        if (
-          event.target ===
-          requestModal
-        ) {
-
-          closeRequestDetails();
-
-        }
-
-      }
-    );
-
-  }
-
-
-  /* =====================================================
-     ESCAPE
-  ===================================================== */
-
-  document.addEventListener(
-    "keydown",
-    function (event) {
-
-      if (
-        event.key === "Escape" &&
-        requestModal.classList.contains(
-          "active"
-        )
-      ) {
-
-        closeRequestDetails();
-
-      }
-
-    }
-  );
-
-
-  /* =====================================================
-     FILTER EVENTS
+     FILTERS
   ===================================================== */
 
   searchInput.addEventListener(
@@ -2698,14 +2791,18 @@
       refreshButton.disabled =
         true;
 
-
       refreshButton.textContent =
-        "در حال بروزرسانی...";
+        "⏳ در حال بروزرسانی...";
 
 
       try {
 
         await loadRequests();
+
+        showMessage(
+          "اطلاعات با موفقیت بروزرسانی شد.",
+          "success"
+        );
 
       }
 
@@ -2739,11 +2836,23 @@
   async function loadAdmin() {
 
     console.log(
+      "================================"
+    );
+
+    console.log(
       "Alpha Admin Dashboard started."
+    );
+
+    console.log(
+      "================================"
     );
 
 
     try {
+
+      /* =================================================
+         GET SESSION
+      ================================================= */
 
       const {
         data: sessionData,
@@ -2763,12 +2872,12 @@
 
 
         showMessage(
-          "ارتباط با سرویس ورود Supabase برقرار نشد. صفحه را دوباره بارگذاری کنید."
+          "ارتباط با سرویس ورود Supabase برقرار نشد."
         );
 
 
         securityMessage.textContent =
-          "در انتظار برقراری ارتباط با سرویس احراز هویت...";
+          "خطا در بررسی نشست کاربر.";
 
 
         return;
@@ -2779,10 +2888,6 @@
       const session =
         sessionData?.session;
 
-
-      /* =================================================
-         NO SESSION
-      ================================================= */
 
       if (!session) {
 
@@ -2816,7 +2921,7 @@
 
 
       /* =================================================
-         VERIFY ADMIN USER
+         ADMIN USER CHECK
       ================================================= */
 
       if (
@@ -2825,7 +2930,7 @@
       ) {
 
         console.warn(
-          "This is not the configured admin account:",
+          "Wrong admin account:",
           user.id
         );
 
@@ -2845,23 +2950,23 @@
 
 
       /* =================================================
-         LOAD PROFILE
+         PROFILE
       ================================================= */
 
       const {
         data: profile,
         error: profileError
       } =
-        await supabaseClient
-          .from("user_profiles")
-          .select(
-            "id, full_name, role"
-          )
-          .eq(
-            "id",
-            user.id
-          )
-          .maybeSingle();
+      await supabaseClient
+        .from("user_profiles")
+        .select(
+          "id, full_name, role"
+        )
+        .eq(
+          "id",
+          user.id
+        )
+        .maybeSingle();
 
 
       if (profileError) {
@@ -2886,16 +2991,6 @@
       }
 
 
-      console.log(
-        "Admin profile:",
-        profile
-      );
-
-
-      /* =================================================
-         PROFILE NOT FOUND
-      ================================================= */
-
       if (!profile) {
 
         showMessage(
@@ -2912,8 +3007,14 @@
       }
 
 
+      console.log(
+        "Admin profile:",
+        profile
+      );
+
+
       /* =================================================
-         ROLE CHECK
+         ROLE
       ================================================= */
 
       if (
@@ -2978,48 +3079,105 @@
       await loadRequests();
 
 
-      console.log(
-        "Admin dashboard loaded successfully."
-      );
+      /* =================================================
+         REALTIME - REQUESTS
+      ================================================= */
+
+      const requestChannel =
+        supabaseClient
+          .channel(
+            "admin-lab-requests"
+          )
+          .on(
+            "postgres_changes",
+            {
+              event: "*",
+              schema: "public",
+              table: "lab_requests"
+            },
+            function (payload) {
+
+              console.log(
+                "Realtime lab_requests:",
+                payload
+              );
+
+
+              loadRequests();
+
+            }
+          )
+          .subscribe(
+            function (status) {
+
+              console.log(
+                "Requests realtime:",
+                status
+              );
+
+            }
+          );
 
 
       /* =================================================
-         REALTIME
+         REALTIME - RESULTS
       ================================================= */
 
-      supabaseClient
-        .channel(
-          "admin-lab-requests"
-        )
-        .on(
-          "postgres_changes",
-          {
-            event: "*",
-            schema: "public",
-            table: "lab_requests"
-          },
-          function (payload) {
+      const resultChannel =
+        supabaseClient
+          .channel(
+            "admin-lab-results"
+          )
+          .on(
+            "postgres_changes",
+            {
+              event: "*",
+              schema: "public",
+              table: "lab_results"
+            },
+            function (payload) {
 
-            console.log(
-              "Admin Realtime:",
-              payload
-            );
+              console.log(
+                "Realtime lab_results:",
+                payload
+              );
 
 
-            loadRequests();
+              /*
+               * وقتی جواب آزمایش ثبت یا ویرایش شد،
+               * آمار و جدول را بروزرسانی می‌کنیم.
+               */
 
-          }
-        )
-        .subscribe(
-          function (status) {
+              loadRequests();
 
-            console.log(
-              "Admin Realtime status:",
-              status
-            );
+            }
+          )
+          .subscribe(
+            function (status) {
 
-          }
-        );
+              console.log(
+                "Results realtime:",
+                status
+              );
+
+            }
+          );
+
+
+      /*
+       * جلوگیری از هشدار lint برای کانال‌ها
+       */
+
+      window.__alphaAdminRequestChannel =
+        requestChannel;
+
+      window.__alphaAdminResultChannel =
+        resultChannel;
+
+
+      console.log(
+        "Admin dashboard loaded successfully."
+      );
 
     }
 
@@ -3033,7 +3191,9 @@
 
 
       showMessage(
-        "خطای غیرمنتظره در پنل مدیریت."
+        error?.message
+          ? `خطای غیرمنتظره: ${error.message}`
+          : "خطای غیرمنتظره در پنل مدیریت."
       );
 
 
@@ -3046,7 +3206,7 @@
 
 
   /* =====================================================
-     AUTH STATE LISTENER
+     AUTH STATE
   ===================================================== */
 
   supabaseClient
