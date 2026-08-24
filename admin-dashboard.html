@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <title>مدیریت مرکزی | آزمایشگاه تخصصی آلفا</title>
+
+  <script>
+    /* =====================================================
+       SUPABASE CONFIG
+    ===================================================== */
+
+    const SUPABASE_URL =
+      "https://znnfjaetnmzttcueqxpw.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_rtOJjJKZJOHv0NPDYRgvJw_dtXV_DUS";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+  </script>
+
+  <style>
+
+    :root {
+      --primary: #0b7285;
+      --primary-dark: #063b57;
+      --secondary: #087f5b;
+      --accent: #32cbd0;
+      --light: #f1fbfc;
+      --text: #183b42;
+      --muted: #6b7f85;
+      --border: rgba(11,114,133,.12);
+      --shadow: 0 10px 30px rgba(7,59,76,.08);
+      --shadow-hover: 0 15px 35px rgba(7,59,76,.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.9;
+
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(0,150,136,.08),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(0,188,212,.08),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #f7fbfc,
+          #eef7f8
+        );
+    }
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background:
+        linear-gradient(
+          135deg,
+          #063b57,
+          #087d99
+        );
+
+      color: white;
+      padding: 12px 6%;
+
+      box-shadow:
+        0 4px 18px rgba(0,0,0,.15);
+    }
+
+    .header-inner {
+      max-width: 1250px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+
+      background: white;
+      border-radius: 12px;
+      padding: 3px;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 11px;
+      opacity: .8;
+    }
+
+    .logout-button {
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.10);
+      color: white;
+
+      padding: 9px 16px;
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      font-family: inherit;
+      font-size: 12px;
+    }
+
+    .logout-button:hover {
+      background: rgba(255,255,255,.20);
+    }
+
+    /* =====================================================
+       CONTAINER
+    ===================================================== */
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+
+      padding: 45px 0 80px;
+    }
+
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
+
+    .system-message {
+      display: none;
+
+      margin-bottom: 25px;
+      padding: 15px 18px;
+
+      border-radius: 14px;
+
+      background: #fff4d6;
+      color: #8a5a00;
+
+      font-size: 13px;
+    }
+
+    /* =====================================================
+       WELCOME
+    ===================================================== */
+
+    .welcome {
+      margin-bottom: 30px;
+    }
+
+    .welcome h2 {
+      margin: 0 0 7px;
+
+      color: var(--primary-dark);
+
+      font-size:
+        clamp(25px,4vw,36px);
+    }
+
+    .welcome p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    /* =====================================================
+       STATS
+    ===================================================== */
+
+    .stats {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap: 18px;
+
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      padding: 22px;
+
+      background: white;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      box-shadow: var(--shadow);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        var(--shadow-hover);
+    }
+
+    .stat-icon {
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .stat-number {
+      display: block;
+
+      margin-top: 5px;
+
+      color: var(--primary);
+
+      font-size: 30px;
+
+      font-weight: 900;
+    }
+
+    /* =====================================================
+       SECTION TITLE
+    ===================================================== */
+
+    .section-title {
+      margin-bottom: 18px;
+
+      color: var(--primary-dark);
+
+      font-size: 21px;
+    }
+
+    /* =====================================================
+       FILTERS
+    ===================================================== */
+
+    .filters {
+      display: grid;
+
+      grid-template-columns:
+        1fr 220px 150px;
+
+      gap: 12px;
+
+      margin-bottom: 20px;
+
+      padding: 18px;
+
+      background: white;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .filters input,
+    .filters select {
+
+      width: 100%;
+
+      padding: 12px 14px;
+
+      border:
+        1px solid #dcebed;
+
+      border-radius: 10px;
+
+      outline: none;
+
+      font-family: inherit;
+
+      font-size: 12px;
+
+      background: #fbfeff;
+    }
+
+    .filters input:focus,
+    .filters select:focus {
+
+      border-color:
+        var(--primary);
+    }
+
+    .refresh-button {
+
+      border: none;
+
+      border-radius: 10px;
+
+      background:
+        var(--primary);
+
+      color: white;
+
+      font-family: inherit;
+
+      cursor: pointer;
+
+      font-size: 12px;
+
+      padding: 10px;
+
+      transition:
+        background .2s ease;
+    }
+
+    .refresh-button:hover {
+
+      background:
+        var(--primary-dark);
+    }
+
+    /* =====================================================
+       REQUESTS
+    ===================================================== */
+
+    .requests {
+
+      overflow: hidden;
+
+      background: white;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 20px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .requests-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding: 20px 22px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #063b57,
+          #087d99
+        );
+
+      color: white;
+    }
+
+    .requests-header h3 {
+
+      margin: 0;
+
+      font-size: 17px;
+    }
+
+    .requests-header span {
+
+      font-size: 11px;
+
+      opacity: .8;
+    }
+
+    .table-wrapper {
+
+      overflow-x: auto;
+    }
+
+    table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      min-width: 850px;
+    }
+
+    th,
+    td {
+
+      padding: 14px 16px;
+
+      text-align: right;
+
+      border-bottom:
+        1px solid #edf3f4;
+
+      font-size: 12px;
+    }
+
+    th {
+
+      color:
+        var(--primary-dark);
+
+      background:
+        #f7fbfc;
+
+      font-weight:
+        bold;
+    }
+
+    td {
+
+      color:
+        var(--muted);
+    }
+
+    tr:hover td {
+
+      background:
+        #fbfeff;
+    }
+
+    /* =====================================================
+       STATUS
+    ===================================================== */
+
+    .status {
+
+      display: inline-block;
+
+      padding:
+        4px 10px;
+
+      border-radius:
+        20px;
+
+      font-size:
+        10px;
+
+      font-weight:
+        bold;
+    }
+
+    .status-ready {
+
+      color:
+        #087f5b;
+
+      background:
+        #e6fcf5;
+    }
+
+    .status-process {
+
+      color:
+        #b26a00;
+
+      background:
+        #fff4d6;
+    }
+
+    .status-received {
+
+      color:
+        #0b7285;
+
+      background:
+        #e3f7f9;
+    }
+
+    .status-delivered {
+
+      color:
+        #495057;
+
+      background:
+        #edf0f2;
+    }
+
+    /* =====================================================
+       EMPTY
+    ===================================================== */
+
+    .empty {
+
+      text-align:
+        center;
+
+      padding:
+        35px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+    }
+
+    /* =====================================================
+       SECURITY
+    ===================================================== */
+
+    .security-box {
+
+      margin-top:
+        30px;
+
+      padding:
+        22px;
+
+      background:
+        #f1fbfc;
+
+      border:
+        1px solid
+        rgba(11,114,133,.10);
+
+      border-radius:
+        18px;
+    }
+
+    .security-box h3 {
+
+      margin:
+        0 0 8px;
+
+      color:
+        var(--primary-dark);
+
+      font-size:
+        16px;
+    }
+
+    .security-box p {
+
+      margin: 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        12px;
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+
+      padding:
+        25px;
+
+      text-align:
+        center;
+
+      color:
+        white;
+
+      background:
+        #032638;
+
+      font-size:
+        11px;
+    }
+
+    footer span {
+
+      color:
+        var(--accent);
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 1000px) {
+
+      .stats {
+
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .filters {
+
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .refresh-button {
+
+        grid-column:
+          span 2;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .header-inner {
+
+        flex-direction:
+          column;
+
+        text-align:
+          center;
+      }
+
+      .brand {
+
+        flex-direction:
+          column;
+      }
+
+      .container {
+
+        width:
+          94%;
+
+        padding-top:
+          30px;
+      }
+
+      .stats {
+
+        grid-template-columns:
+          1fr;
+      }
+
+      .filters {
+
+        grid-template-columns:
+          1fr;
+      }
+
+      .refresh-button {
+
+        grid-column:
+          auto;
+      }
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+  <div class="header-inner">
+
+    <div class="brand">
+
+      <img
+        src="لوگو.jfif"
+        alt="لوگوی آزمایشگاه تخصصی آلفا"
+        class="logo"
+      >
+
+      <div class="brand-text">
+
+        <h1>
+          آزمایشگاه تخصصی آلفا
+        </h1>
+
+        <span>
+          پنل مدیریت مرکزی
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <button
+      id="logoutButton"
+      class="logout-button"
+      type="button"
+    >
+      خروج از حساب
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+  <div
+    id="systemMessage"
+    class="system-message"
+  ></div>
+
+
+  <!-- ===================================================
+       WELCOME
+  =================================================== -->
+
+  <section class="welcome">
+
+    <h2 id="adminWelcome">
+      سلام، در حال دریافت اطلاعات... 👋
+    </h2>
+
+    <p>
+      به پنل مدیریت مرکزی آزمایشگاه تخصصی آلفا خوش آمدید.
+    </p>
+
+  </section>
+
+
+  <!-- ===================================================
+       STATISTICS
+  =================================================== -->
+
+  <section>
+
+    <h3 class="section-title">
+      📊 خلاصه فعالیت
+    </h3>
+
+
+    <div class="stats">
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          📋
+        </div>
+
+        <span class="stat-label">
+          کل درخواست‌ها
+        </span>
+
+        <strong
+          id="totalRequests"
+          class="stat-number"
+        >
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🟡
+        </div>
+
+        <span class="stat-label">
+          درخواست‌های جدید
+        </span>
+
+        <strong
+          id="receivedRequests"
+          class="stat-number"
+        >
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🔵
+        </div>
+
+        <span class="stat-label">
+          در حال انجام
+        </span>
+
+        <strong
+          id="processingRequests"
+          class="stat-number"
+        >
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🟢
+        </div>
+
+        <span class="stat-label">
+          جواب‌های آماده
+        </span>
+
+        <strong
+          id="readyRequests"
+          class="stat-number"
+        >
+          0
+        </strong>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================
+       FILTERS
+  =================================================== -->
+
+  <section>
+
+    <h3 class="section-title">
+      🔎 مدیریت درخواست‌ها
+    </h3>
+
+
+    <div class="filters">
+
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="جستجو بر اساس کد درخواست یا نام بیمار..."
+      >
+
+
+      <select id="statusFilter">
+
+        <option value="all">
+          همه وضعیت‌ها
+        </option>
+
+        <option value="received">
+          دریافت شد
+        </option>
+
+        <option value="processing">
+          در حال انجام
+        </option>
+
+        <option value="ready">
+          جواب آماده
+        </option>
+
+        <option value="delivered">
+          تحویل شده
+        </option>
+
+      </select>
+
+
+      <button
+        id="refreshButton"
+        class="refresh-button"
+        type="button"
+      >
+        🔄 بروزرسانی
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================
+       REQUEST TABLE
+  =================================================== -->
+
+  <section>
+
+    <div class="requests">
+
+
+      <div class="requests-header">
+
+        <h3>
+          📋 درخواست‌های آزمایشگاه‌های زیرمجموعه
+        </h3>
+
+        <span id="requestInfo">
+          در حال دریافت اطلاعات...
+        </span>
+
+      </div>
+
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                کد درخواست
+              </th>
+
+              <th>
+                آزمایشگاه
+              </th>
+
+              <th>
+                بیمار
+              </th>
+
+              <th>
+                آزمایش‌ها
+              </th>
+
+              <th>
+                تاریخ
+              </th>
+
+              <th>
+                وضعیت
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="requestsBody">
+
+            <tr>
+
+              <td
+                colspan="6"
+                class="empty"
+              >
+                در حال دریافت اطلاعات...
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================
+       SECURITY
+  =================================================== -->
+
+  <div class="security-box">
+
+    <h3>
+      🔐 امنیت پنل
+    </h3>
+
+    <p id="securityMessage">
+      در حال بررسی سطح دسترسی...
+    </p>
+
+  </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  © آزمایشگاه تخصصی آلفا —
+
+  <span>
+    Alpha Specialized Laboratory
+  </span>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   ALPHA ADMIN DASHBOARD
+   AUTH + ADMIN ROLE + REQUEST MANAGEMENT
+===================================================== */
+
+(function () {
+
+  "use strict";
+
+
+  /* =====================================================
+     ELEMENTS
+  ===================================================== */
+
+  const adminWelcome =
+    document.getElementById(
+      "adminWelcome"
+    );
+
+  const logoutButton =
+    document.getElementById(
+      "logoutButton"
+    );
+
+  const systemMessage =
+    document.getElementById(
+      "systemMessage"
+    );
+
+  const securityMessage =
+    document.getElementById(
+      "securityMessage"
+    );
+
+  const requestInfo =
+    document.getElementById(
+      "requestInfo"
+    );
+
+  const requestsBody =
+    document.getElementById(
+      "requestsBody"
+    );
+
+  const searchInput =
+    document.getElementById(
+      "searchInput"
+    );
+
+  const statusFilter =
+    document.getElementById(
+      "statusFilter"
+    );
+
+  const refreshButton =
+    document.getElementById(
+      "refreshButton"
+    );
+
+
+  /* =====================================================
+     DATA
+  ===================================================== */
+
+  let allRequests = [];
+
+
+  /* =====================================================
+     SHOW MESSAGE
+  ===================================================== */
+
+  function showMessage(message) {
+
+    if (!systemMessage)
+      return;
+
+    systemMessage.textContent =
+      message;
+
+    systemMessage.style.display =
+      "block";
+  }
+
+
+  /* =====================================================
+     HIDE MESSAGE
+  ===================================================== */
+
+  function hideMessage() {
+
+    if (!systemMessage)
+      return;
+
+    systemMessage.style.display =
+      "none";
+  }
+
+
+  /* =====================================================
+     STATUS LABEL
+  ===================================================== */
+
+  function getStatusLabel(status) {
+
+    const labels = {
+
+      received:
+        "دریافت شد",
+
+      processing:
+        "در حال انجام",
+
+      ready:
+        "جواب آماده",
+
+      delivered:
+        "تحویل شده"
+
+    };
+
+    return labels[status] ||
+      status ||
+      "نامشخص";
+  }
+
+
+  /* =====================================================
+     STATUS CLASS
+  ===================================================== */
+
+  function getStatusClass(status) {
+
+    if (status === "received")
+      return "status-received";
+
+    if (status === "processing")
+      return "status-process";
+
+    if (status === "ready")
+      return "status-ready";
+
+    if (status === "delivered")
+      return "status-delivered";
+
+    return "status-received";
+  }
+
+
+  /* =====================================================
+     ESCAPE HTML
+  ===================================================== */
+
+  function escapeHTML(value) {
+
+    if (value === null ||
+        value === undefined) {
+
+      return "";
+    }
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  /* =====================================================
+     LOGOUT
+  ===================================================== */
+
+  if (logoutButton) {
+
+    logoutButton.addEventListener(
+      "click",
+      async function () {
+
+        logoutButton.disabled =
+          true;
+
+        logoutButton.textContent =
+          "در حال خروج...";
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .auth
+            .signOut();
+
+
+        if (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+          logoutButton.disabled =
+            false;
+
+          logoutButton.textContent =
+            "خروج از حساب";
+
+          showMessage(
+            "خطا در خروج از حساب."
+          );
+
+          return;
+        }
+
+
+        window.location.href =
+          "partner-login.html";
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     UPDATE STATISTICS
+  ===================================================== */
+
+  function updateStatistics(
+    requests
+  ) {
+
+    const total =
+      requests.length;
+
+
+    const received =
+      requests.filter(
+        request =>
+          request.status ===
+          "received"
+      ).length;
+
+
+    const processing =
+      requests.filter(
+        request =>
+          request.status ===
+          "processing"
+      ).length;
+
+
+    const ready =
+      requests.filter(
+        request =>
+          request.status ===
+          "ready"
+      ).length;
+
+
+    document.getElementById(
+      "totalRequests"
+    ).textContent =
+      total;
+
+
+    document.getElementById(
+      "receivedRequests"
+    ).textContent =
+      received;
+
+
+    document.getElementById(
+      "processingRequests"
+    ).textContent =
+      processing;
+
+
+    document.getElementById(
+      "readyRequests"
+    ).textContent =
+      ready;
+
+  }
+
+
+  /* =====================================================
+     RENDER REQUESTS
+  ===================================================== */
+
+  function renderRequests() {
+
+    let filteredRequests =
+      [...allRequests];
+
+
+    const search =
+      searchInput
+        ? searchInput.value
+            .trim()
+            .toLowerCase()
+        : "";
+
+
+    const selectedStatus =
+      statusFilter
+        ? statusFilter.value
+        : "all";
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    if (search) {
+
+      filteredRequests =
+        filteredRequests.filter(
+          request => {
+
+            const code =
+              String(
+                request.request_code ||
+                ""
+              ).toLowerCase();
+
+
+            const patient =
+              String(
+                request.patient_name ||
+                ""
+              ).toLowerCase();
+
+
+            const lab =
+              String(
+                request.partner_lab?.lab_name ||
+                ""
+              ).toLowerCase();
+
+
+            return (
+              code.includes(search) ||
+              patient.includes(search) ||
+              lab.includes(search)
+            );
+
+          }
+        );
+
+    }
+
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    if (
+      selectedStatus !==
+      "all"
+    ) {
+
+      filteredRequests =
+        filteredRequests.filter(
+          request =>
+            request.status ===
+            selectedStatus
+        );
+
+    }
+
+
+    /* =========================
+       INFO
+    ========================= */
+
+    requestInfo.textContent =
+      `${filteredRequests.length} درخواست`;
+
+
+    /* =========================
+       EMPTY
+    ========================= */
+
+    if (
+      filteredRequests.length === 0
+    ) {
+
+      requestsBody.innerHTML = `
+
+        <tr>
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            هیچ درخواستی پیدا نشد.
+          </td>
+
+        </tr>
+
+      `;
+
+      return;
+    }
+
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    requestsBody.innerHTML =
+      filteredRequests
+        .map(request => {
+
+          const date =
+            request.created_at
+              ? new Date(
+                  request.created_at
+                ).toLocaleDateString(
+                  "fa-IR"
+                )
+              : "-";
+
+
+          const labName =
+            request.partner_lab?.lab_name ||
+            "نامشخص";
+
+
+          const status =
+            request.status ||
+            "received";
+
+
+          return `
+
+            <tr>
+
+              <td>
+
+                <strong>
+                  ${escapeHTML(
+                    request.request_code
+                  )}
+                </strong>
+
+              </td>
+
+
+              <td>
+
+                ${escapeHTML(
+                  labName
+                )}
+
+              </td>
+
+
+              <td>
+
+                ${escapeHTML(
+                  request.patient_name
+                )}
+
+              </td>
+
+
+              <td>
+
+                ${escapeHTML(
+                  request.requested_tests
+                )}
+
+              </td>
+
+
+              <td>
+
+                ${date}
+
+              </td>
+
+
+              <td>
+
+                <span
+                  class="status
+                  ${getStatusClass(
+                    status
+                  )}"
+                >
+
+                  ${getStatusLabel(
+                    status
+                  )}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        })
+        .join("");
+
+  }
+
+
+  /* =====================================================
+     LOAD ALL REQUESTS
+  ===================================================== */
+
+  async function loadRequests() {
+
+    requestInfo.textContent =
+      "در حال دریافت...";
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("lab_requests")
+        .select(`
+          id,
+          request_code,
+          patient_name,
+          patient_age,
+          patient_gender,
+          requested_tests,
+          notes,
+          status,
+          created_at,
+          partner_lab:partner_lab_id (
+            id,
+            lab_name,
+            lab_code
+          )
+        `)
+        .order(
+          "created_at",
+          {
+            ascending:
+              false
+          }
+        );
+
+
+    if (error) {
+
+      console.error(
+        "Load admin requests error:",
+        error
+      );
+
+      requestInfo.textContent =
+        "خطا در دریافت اطلاعات";
+
+      requestsBody.innerHTML = `
+
+        <tr>
+
+          <td
+            colspan="6"
+            class="empty"
+          >
+            دریافت درخواست‌ها با خطا مواجه شد.
+          </td>
+
+        </tr>
+
+      `;
+
+      return;
+
+    }
+
+
+    allRequests =
+      data || [];
+
+
+    console.log(
+      "Admin requests:",
+      allRequests
+    );
+
+
+    updateStatistics(
+      allRequests
+    );
+
+
+    renderRequests();
+
+  }
+
+
+  /* =====================================================
+     SEARCH EVENTS
+  ===================================================== */
+
+  if (searchInput) {
+
+    searchInput.addEventListener(
+      "input",
+      renderRequests
+    );
+
+  }
+
+
+  if (statusFilter) {
+
+    statusFilter.addEventListener(
+      "change",
+      renderRequests
+    );
+
+  }
+
+
+  /* =====================================================
+     REFRESH
+  ===================================================== */
+
+  if (refreshButton) {
+
+    refreshButton.addEventListener(
+      "click",
+      async function () {
+
+        refreshButton.disabled =
+          true;
+
+        refreshButton.textContent =
+          "در حال بروزرسانی...";
+
+
+        await loadRequests();
+
+
+        refreshButton.disabled =
+          false;
+
+        refreshButton.textContent =
+          "🔄 بروزرسانی";
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     LOAD ADMIN
+  ===================================================== */
+
+  async function loadAdmin() {
+
+    try {
+
+      console.log(
+        "Alpha Admin Dashboard started."
+      );
+
+
+      /* =========================
+         AUTH
+      ========================= */
+
+      const {
+        data: {
+          user
+        },
+        error:
+          authError
+      } =
+        await supabaseClient
+          .auth
+          .getUser();
+
+
+      if (authError) {
+
+        console.error(
+          "Auth error:",
+          authError
+        );
+
+        showMessage(
+          "خطا در بررسی حساب کاربری."
+        );
+
+        return;
+
+      }
+
+
+      /* =========================
+         NO USER
+      ========================= */
+
+      if (!user) {
+
+        window.location.href =
+          "partner-login.html";
+
+        return;
+
+      }
+
+
+      console.log(
+        "Authenticated user:",
+        user.id
+      );
+
+
+      /* =========================
+         LOAD PROFILE
+      ========================= */
+
+      const {
+        data: profile,
+        error:
+          profileError
+      } =
+        await supabaseClient
+          .from(
+            "user_profiles"
+          )
+          .select(
+            "id, full_name, role"
+          )
+          .eq(
+            "id",
+            user.id
+          )
+          .maybeSingle();
+
+
+      if (profileError) {
+
+        console.error(
+          "Profile error:",
+          profileError
+        );
+
+        showMessage(
+          "خطا در دریافت سطح دسترسی."
+        );
+
+        return;
+
+      }
+
+
+      /* =========================
+         CHECK ADMIN
+      ========================= */
+
+      if (
+        !profile ||
+        profile.role !==
+        "admin"
+      ) {
+
+        console.warn(
+          "Access denied:",
+          profile
+        );
+
+
+        if (
+          securityMessage
+        ) {
+
+          securityMessage.textContent =
+            "دسترسی غیرمجاز. این صفحه فقط برای مدیر آزمایشگاه آلفا است.";
+
+        }
+
+
+        showMessage(
+          "شما اجازه ورود به پنل مدیریت را ندارید."
+        );
+
+
+        setTimeout(
+          function () {
+
+            window.location.href =
+              "partner-dashboard.html";
+
+          },
+          1800
+        );
+
+
+        return;
+
+      }
+
+
+      /* =========================
+         ADMIN WELCOME
+      ========================= */
+
+      const adminName =
+        profile.full_name ||
+        "مدیر آزمایشگاه آلفا";
+
+
+      adminWelcome.textContent =
+        `سلام، ${adminName} 👋`;
+
+
+      if (
+        securityMessage
+      ) {
+
+        securityMessage.textContent =
+          `دسترسی تأیید شد | سطح دسترسی: مدیر | حساب: ${user.email || "Admin"}`;
+
+      }
+
+
+      hideMessage();
+
+
+      /* =========================
+         LOAD REQUESTS
+      ========================= */
+
+      await loadRequests();
+
+
+      console.log(
+        "Admin dashboard loaded successfully."
+      );
+
+    }
+    catch (error) {
+
+      console.error(
+        "Unexpected admin dashboard error:",
+        error
+      );
+
+      showMessage(
+        "یک خطای غیرمنتظره در پنل مدیریت رخ داد."
+      );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     START
+  ===================================================== */
+
+  loadAdmin();
+
+})();
+
+</script>
+
+
+</body>
+
+</html>
