@@ -1037,13 +1037,15 @@
         return `
           <tr>
 
-            <td>
-              <strong>
-                ${escapeHTML(
-                  request.request_code
-                )}
-              </strong>
-            </td>
+          \<td>
+  <button
+    type="button"
+    class="request-code-button"
+    data-request-id="${escapeHTML(request.id)}"
+  >
+    ${escapeHTML(request.request_code)}
+  </button>
+</td>
 
             <td>
               ${escapeHTML(labName)}
