@@ -9,45 +9,19 @@
 
   <title>مدیریت مرکزی | آزمایشگاه تخصصی آلفا</title>
 
-  <script>
-    /* =====================================================
-       SUPABASE CONFIG
-    ===================================================== */
-
-    const SUPABASE_URL =
-      "https://znnfjaetnmzttcueqxpw.supabase.co";
-
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_rtOJjJkZJOHv0NPDYRgvJw_dtXV_DUS";
-
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-      );
-  </script>
-
   <style>
-
     :root {
       --primary: #0b7285;
       --primary-dark: #063b57;
-      --secondary: #087f5b;
       --accent: #32cbd0;
-      --light: #f1fbfc;
       --text: #183b42;
       --muted: #6b7f85;
       --border: rgba(11,114,133,.12);
       --shadow: 0 10px 30px rgba(7,59,76,.08);
-      --shadow-hover: 0 15px 35px rgba(7,59,76,.14);
     }
 
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -55,52 +29,25 @@
       font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
       line-height: 1.9;
-
       background:
-        radial-gradient(
-          circle at 10% 10%,
-          rgba(0,150,136,.08),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 90% 20%,
-          rgba(0,188,212,.08),
-          transparent 30%
-        ),
-        linear-gradient(
-          135deg,
-          #f7fbfc,
-          #eef7f8
-        );
+        radial-gradient(circle at 10% 10%, rgba(0,150,136,.08), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(0,188,212,.08), transparent 30%),
+        linear-gradient(135deg, #f7fbfc, #eef7f8);
     }
-
-    /* =====================================================
-       HEADER
-    ===================================================== */
 
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-
-      background:
-        linear-gradient(
-          135deg,
-          #063b57,
-          #087d99
-        );
-
+      background: linear-gradient(135deg, #063b57, #087d99);
       color: white;
       padding: 12px 6%;
-
-      box-shadow:
-        0 4px 18px rgba(0,0,0,.15);
+      box-shadow: 0 4px 18px rgba(0,0,0,.15);
     }
 
     .header-inner {
       max-width: 1250px;
       margin: auto;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -117,7 +64,6 @@
       width: 55px;
       height: 55px;
       object-fit: contain;
-
       background: white;
       border-radius: 12px;
       padding: 3px;
@@ -134,61 +80,48 @@
       opacity: .8;
     }
 
-    .logout-button {
-      border: 1px solid rgba(255,255,255,.25);
-      background: rgba(255,255,255,.10);
+    .logout-button,
+    .refresh-button {
+      border: none;
+      border-radius: 10px;
+      background: var(--primary);
       color: white;
-
-      padding: 9px 16px;
-      border-radius: 12px;
-
+      padding: 10px 16px;
       cursor: pointer;
-
       font-family: inherit;
       font-size: 12px;
     }
 
-    .logout-button:hover {
-      background: rgba(255,255,255,.20);
+    .logout-button {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
     }
 
-    .logout-button:disabled {
+    .logout-button:hover,
+    .refresh-button:hover {
+      background: var(--primary-dark);
+    }
+
+    button:disabled {
       opacity: .6;
       cursor: not-allowed;
     }
 
-    /* =====================================================
-       CONTAINER
-    ===================================================== */
-
     .container {
       width: min(1200px, 92%);
-      margin: 0 auto;
-
+      margin: auto;
       padding: 45px 0 80px;
     }
 
-    /* =====================================================
-       MESSAGE
-    ===================================================== */
-
     .system-message {
       display: none;
-
       margin-bottom: 25px;
       padding: 15px 18px;
-
       border-radius: 14px;
-
       background: #fff4d6;
       color: #8a5a00;
-
       font-size: 13px;
     }
-
-    /* =====================================================
-       WELCOME
-    ===================================================== */
 
     .welcome {
       margin-bottom: 30px;
@@ -196,526 +129,242 @@
 
     .welcome h2 {
       margin: 0 0 7px;
-
       color: var(--primary-dark);
-
-      font-size:
-        clamp(25px,4vw,36px);
+      font-size: clamp(25px,4vw,36px);
     }
 
     .welcome p {
       margin: 0;
-
       color: var(--muted);
-
       font-size: 14px;
     }
 
-    /* =====================================================
-       STATS
-    ===================================================== */
-
     .stats {
       display: grid;
-
-      grid-template-columns:
-        repeat(4,1fr);
-
+      grid-template-columns: repeat(4,1fr);
       gap: 18px;
-
       margin-bottom: 40px;
     }
 
     .stat-card {
       padding: 22px;
-
       background: white;
-
-      border:
-        1px solid var(--border);
-
+      border: 1px solid var(--border);
       border-radius: 18px;
-
       box-shadow: var(--shadow);
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-3px);
-
-      box-shadow:
-        var(--shadow-hover);
     }
 
     .stat-icon {
       font-size: 26px;
-      margin-bottom: 5px;
     }
 
     .stat-label {
       color: var(--muted);
-
       font-size: 12px;
     }
 
     .stat-number {
       display: block;
-
       margin-top: 5px;
-
       color: var(--primary);
-
       font-size: 30px;
-
       font-weight: 900;
     }
 
-    /* =====================================================
-       SECTION TITLE
-    ===================================================== */
-
     .section-title {
       margin-bottom: 18px;
-
       color: var(--primary-dark);
-
       font-size: 21px;
     }
 
-    /* =====================================================
-       FILTERS
-    ===================================================== */
-
     .filters {
       display: grid;
-
-      grid-template-columns:
-        1fr 220px 150px;
-
+      grid-template-columns: 1fr 220px 150px;
       gap: 12px;
-
       margin-bottom: 20px;
-
       padding: 18px;
-
       background: white;
-
-      border:
-        1px solid var(--border);
-
+      border: 1px solid var(--border);
       border-radius: 18px;
-
       box-shadow: var(--shadow);
     }
 
     .filters input,
     .filters select {
-
       width: 100%;
-
       padding: 12px 14px;
-
-      border:
-        1px solid #dcebed;
-
+      border: 1px solid #dcebed;
       border-radius: 10px;
-
       outline: none;
-
       font-family: inherit;
-
       font-size: 12px;
-
       background: #fbfeff;
     }
 
-    .filters input:focus,
-    .filters select:focus {
-
-      border-color:
-        var(--primary);
-    }
-
-    .refresh-button {
-
-      border: none;
-
-      border-radius: 10px;
-
-      background:
-        var(--primary);
-
-      color: white;
-
-      font-family: inherit;
-
-      cursor: pointer;
-
-      font-size: 12px;
-
-      padding: 10px;
-
-      transition:
-        background .2s ease;
-    }
-
-    .refresh-button:hover {
-
-      background:
-        var(--primary-dark);
-    }
-
-    .refresh-button:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-    }
-
-    /* =====================================================
-       REQUESTS
-    ===================================================== */
-
     .requests {
-
       overflow: hidden;
-
       background: white;
-
-      border:
-        1px solid var(--border);
-
+      border: 1px solid var(--border);
       border-radius: 20px;
-
       box-shadow: var(--shadow);
     }
 
     .requests-header {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 15px;
-
       padding: 20px 22px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #063b57,
-          #087d99
-        );
-
+      background: linear-gradient(135deg, #063b57, #087d99);
       color: white;
     }
 
     .requests-header h3 {
-
       margin: 0;
-
       font-size: 17px;
     }
 
     .requests-header span {
-
       font-size: 11px;
-
       opacity: .8;
     }
 
     .table-wrapper {
-
       overflow-x: auto;
     }
 
     table {
-
       width: 100%;
-
       border-collapse: collapse;
-
       min-width: 850px;
     }
 
     th,
     td {
-
       padding: 14px 16px;
-
       text-align: right;
-
-      border-bottom:
-        1px solid #edf3f4;
-
+      border-bottom: 1px solid #edf3f4;
       font-size: 12px;
     }
 
     th {
-
-      color:
-        var(--primary-dark);
-
-      background:
-        #f7fbfc;
-
-      font-weight:
-        bold;
+      color: var(--primary-dark);
+      background: #f7fbfc;
     }
 
     td {
-
-      color:
-        var(--muted);
+      color: var(--muted);
     }
-
-    tr:hover td {
-
-      background:
-        #fbfeff;
-    }
-
-    /* =====================================================
-       STATUS
-    ===================================================== */
 
     .status {
-
       display: inline-block;
-
-      padding:
-        4px 10px;
-
-      border-radius:
-        20px;
-
-      font-size:
-        10px;
-
-      font-weight:
-        bold;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: bold;
     }
 
     .status-ready {
-
-      color:
-        #087f5b;
-
-      background:
-        #e6fcf5;
+      color: #087f5b;
+      background: #e6fcf5;
     }
 
     .status-process {
-
-      color:
-        #b26a00;
-
-      background:
-        #fff4d6;
+      color: #b26a00;
+      background: #fff4d6;
     }
 
     .status-received {
-
-      color:
-        #0b7285;
-
-      background:
-        #e3f7f9;
+      color: #0b7285;
+      background: #e3f7f9;
     }
 
     .status-delivered {
-
-      color:
-        #495057;
-
-      background:
-        #edf0f2;
+      color: #495057;
+      background: #edf0f2;
     }
-
-    /* =====================================================
-       EMPTY
-    ===================================================== */
 
     .empty {
-
-      text-align:
-        center;
-
-      padding:
-        35px;
-
-      color:
-        var(--muted);
-
-      font-size:
-        13px;
+      text-align: center;
+      padding: 35px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    /* =====================================================
-       SECURITY
-    ===================================================== */
-
     .security-box {
-
-      margin-top:
-        30px;
-
-      padding:
-        22px;
-
-      background:
-        #f1fbfc;
-
-      border:
-        1px solid
-        rgba(11,114,133,.10);
-
-      border-radius:
-        18px;
+      margin-top: 30px;
+      padding: 22px;
+      background: #f1fbfc;
+      border: 1px solid rgba(11,114,133,.10);
+      border-radius: 18px;
     }
 
     .security-box h3 {
-
-      margin:
-        0 0 8px;
-
-      color:
-        var(--primary-dark);
-
-      font-size:
-        16px;
+      margin: 0 0 8px;
+      color: var(--primary-dark);
+      font-size: 16px;
     }
 
     .security-box p {
-
       margin: 0;
-
-      color:
-        var(--muted);
-
-      font-size:
-        12px;
+      color: var(--muted);
+      font-size: 12px;
     }
 
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-
     footer {
-
-      padding:
-        25px;
-
-      text-align:
-        center;
-
-      color:
-        white;
-
-      background:
-        #032638;
-
-      font-size:
-        11px;
+      padding: 25px;
+      text-align: center;
+      color: white;
+      background: #032638;
+      font-size: 11px;
     }
 
     footer span {
-
-      color:
-        var(--accent);
+      color: var(--accent);
     }
 
-    /* =====================================================
-       RESPONSIVE
-    ===================================================== */
-
     @media (max-width: 1000px) {
-
       .stats {
-
-        grid-template-columns:
-          repeat(2,1fr);
+        grid-template-columns: repeat(2,1fr);
       }
 
       .filters {
-
-        grid-template-columns:
-          1fr 1fr;
+        grid-template-columns: 1fr 1fr;
       }
 
       .refresh-button {
-
-        grid-column:
-          span 2;
+        grid-column: span 2;
       }
     }
 
     @media (max-width: 650px) {
-
       .header-inner {
-
-        flex-direction:
-          column;
-
-        text-align:
-          center;
+        flex-direction: column;
       }
 
       .brand {
-
-        flex-direction:
-          column;
+        flex-direction: column;
+        text-align: center;
       }
 
-      .container {
-
-        width:
-          94%;
-
-        padding-top:
-          30px;
-      }
-
-      .stats {
-
-        grid-template-columns:
-          1fr;
-      }
-
+      .stats,
       .filters {
-
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
 
       .refresh-button {
-
-        grid-column:
-          auto;
+        grid-column: auto;
       }
     }
-
   </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header>
-
   <div class="header-inner">
 
     <div class="brand">
-
       <img
         src="لوگو.jfif"
         alt="لوگوی آزمایشگاه تخصصی آلفا"
@@ -723,66 +372,31 @@
       >
 
       <div class="brand-text">
-
-        <h1>
-          آزمایشگاه تخصصی آلفا
-        </h1>
-
-        <span>
-          پنل مدیریت مرکزی
-        </span>
-
+        <h1>آزمایشگاه تخصصی آلفا</h1>
+        <span>پنل مدیریت مرکزی</span>
       </div>
-
     </div>
 
-
-    <button
-      id="logoutButton"
-      class="logout-button"
-      type="button"
-    >
+    <button id="logoutButton" class="logout-button">
       خروج از حساب
     </button>
 
   </div>
-
 </header>
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
 
 <main class="container">
 
-
-  <div
-    id="systemMessage"
-    class="system-message"
-  ></div>
-
-
-  <!-- ===================================================
-       WELCOME
-  =================================================== -->
+  <div id="systemMessage" class="system-message"></div>
 
   <section class="welcome">
-
     <h2 id="adminWelcome">
-      سلام، در حال دریافت اطلاعات... 👋
+      سلام، در حال بررسی حساب... 👋
     </h2>
 
     <p>
       به پنل مدیریت مرکزی آزمایشگاه تخصصی آلفا خوش آمدید.
     </p>
-
   </section>
-
-
-  <!-- ===================================================
-       STATISTICS
-  =================================================== -->
 
   <section>
 
@@ -790,98 +404,35 @@
       📊 خلاصه فعالیت
     </h3>
 
-
     <div class="stats">
 
-
       <div class="stat-card">
-
-        <div class="stat-icon">
-          📋
-        </div>
-
-        <span class="stat-label">
-          کل درخواست‌ها
-        </span>
-
-        <strong
-          id="totalRequests"
-          class="stat-number"
-        >
-          0
-        </strong>
-
+        <div class="stat-icon">📋</div>
+        <span class="stat-label">کل درخواست‌ها</span>
+        <strong id="totalRequests" class="stat-number">0</strong>
       </div>
 
-
       <div class="stat-card">
-
-        <div class="stat-icon">
-          🟡
-        </div>
-
-        <span class="stat-label">
-          درخواست‌های جدید
-        </span>
-
-        <strong
-          id="receivedRequests"
-          class="stat-number"
-        >
-          0
-        </strong>
-
+        <div class="stat-icon">🟡</div>
+        <span class="stat-label">درخواست‌های جدید</span>
+        <strong id="receivedRequests" class="stat-number">0</strong>
       </div>
 
-
       <div class="stat-card">
-
-        <div class="stat-icon">
-          🔵
-        </div>
-
-        <span class="stat-label">
-          در حال انجام
-        </span>
-
-        <strong
-          id="processingRequests"
-          class="stat-number"
-        >
-          0
-        </strong>
-
+        <div class="stat-icon">🔵</div>
+        <span class="stat-label">در حال انجام</span>
+        <strong id="processingRequests" class="stat-number">0</strong>
       </div>
 
-
       <div class="stat-card">
-
-        <div class="stat-icon">
-          🟢
-        </div>
-
-        <span class="stat-label">
-          جواب‌های آماده
-        </span>
-
-        <strong
-          id="readyRequests"
-          class="stat-number"
-        >
-          0
-        </strong>
-
+        <div class="stat-icon">🟢</div>
+        <span class="stat-label">جواب‌های آماده</span>
+        <strong id="readyRequests" class="stat-number">0</strong>
       </div>
-
 
     </div>
 
   </section>
-
-
-  <!-- ===================================================
-       FILTERS
-  =================================================== -->
 
   <section>
 
@@ -889,46 +440,23 @@
       🔎 مدیریت درخواست‌ها
     </h3>
 
-
     <div class="filters">
 
       <input
         type="search"
         id="searchInput"
-        placeholder="جستجو بر اساس کد درخواست یا نام بیمار..."
+        placeholder="جستجو بر اساس کد درخواست، بیمار یا آزمایشگاه..."
       >
-
 
       <select id="statusFilter">
-
-        <option value="all">
-          همه وضعیت‌ها
-        </option>
-
-        <option value="received">
-          دریافت شد
-        </option>
-
-        <option value="processing">
-          در حال انجام
-        </option>
-
-        <option value="ready">
-          جواب آماده
-        </option>
-
-        <option value="delivered">
-          تحویل شده
-        </option>
-
+        <option value="all">همه وضعیت‌ها</option>
+        <option value="received">دریافت شد</option>
+        <option value="processing">در حال انجام</option>
+        <option value="ready">جواب آماده</option>
+        <option value="delivered">تحویل شده</option>
       </select>
 
-
-      <button
-        id="refreshButton"
-        class="refresh-button"
-        type="button"
-      >
+      <button id="refreshButton" class="refresh-button">
         🔄 بروزرسانی
       </button>
 
@@ -936,15 +464,9 @@
 
   </section>
 
-
-  <!-- ===================================================
-       REQUEST TABLE
-  =================================================== -->
-
   <section>
 
     <div class="requests">
-
 
       <div class="requests-header">
 
@@ -953,60 +475,32 @@
         </h3>
 
         <span id="requestInfo">
-          در حال دریافت اطلاعات...
+          در حال دریافت...
         </span>
 
       </div>
-
 
       <div class="table-wrapper">
 
         <table>
 
           <thead>
-
             <tr>
-
-              <th>
-                کد درخواست
-              </th>
-
-              <th>
-                آزمایشگاه
-              </th>
-
-              <th>
-                بیمار
-              </th>
-
-              <th>
-                آزمایش‌ها
-              </th>
-
-              <th>
-                تاریخ
-              </th>
-
-              <th>
-                وضعیت
-              </th>
-
+              <th>کد درخواست</th>
+              <th>آزمایشگاه</th>
+              <th>بیمار</th>
+              <th>آزمایش‌ها</th>
+              <th>تاریخ</th>
+              <th>وضعیت</th>
             </tr>
-
           </thead>
-
 
           <tbody id="requestsBody">
 
             <tr>
-
-              <td
-                colspan="6"
-                class="empty"
-              >
+              <td colspan="6" class="empty">
                 در حال دریافت اطلاعات...
               </td>
-
             </tr>
 
           </tbody>
@@ -1019,16 +513,9 @@
 
   </section>
 
-
-  <!-- ===================================================
-       SECURITY
-  ===================================================== -->
-
   <div class="security-box">
 
-    <h3>
-      🔐 امنیت پنل
-    </h3>
+    <h3>🔐 امنیت پنل</h3>
 
     <p id="securityMessage">
       در حال بررسی سطح دسترسی...
@@ -1036,47 +523,49 @@
 
   </div>
 
-
 </main>
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <footer>
-
   © آزمایشگاه تخصصی آلفا —
-
-  <span>
-    Alpha Specialized Laboratory
-  </span>
-
+  <span>Alpha Specialized Laboratory</span>
 </footer>
 
-
 <script>
-
-/* =====================================================
-   ALPHA ADMIN DASHBOARD
-   AUTH + ADMIN ROLE + REQUEST MANAGEMENT
-===================================================== */
 
 (function () {
 
   "use strict";
 
+  /* =====================================================
+     SUPABASE
+  ===================================================== */
+
+  const SUPABASE_URL =
+    "https://znnfjaetnmzttcueqxpw.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_rtOJjJKZJOHv0NPDYRgvJw_dtXV_DUS";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      }
+    );
+
 
   /* =====================================================
-     ADMIN CONFIG
+     ADMIN ACCOUNT
   ===================================================== */
 
   const ADMIN_USER_ID =
     "e84796a5-47bc-4d1f-9b6c-0f00e2a9c2d6";
-
-
-  const ADMIN_EMAIL =
-    "mh.rezas2025@gmail.com";
 
 
   /* =====================================================
@@ -1084,141 +573,57 @@
   ===================================================== */
 
   const adminWelcome =
-    document.getElementById(
-      "adminWelcome"
-    );
+    document.getElementById("adminWelcome");
 
   const logoutButton =
-    document.getElementById(
-      "logoutButton"
-    );
+    document.getElementById("logoutButton");
 
   const systemMessage =
-    document.getElementById(
-      "systemMessage"
-    );
+    document.getElementById("systemMessage");
 
   const securityMessage =
-    document.getElementById(
-      "securityMessage"
-    );
+    document.getElementById("securityMessage");
 
   const requestInfo =
-    document.getElementById(
-      "requestInfo"
-    );
+    document.getElementById("requestInfo");
 
   const requestsBody =
-    document.getElementById(
-      "requestsBody"
-    );
+    document.getElementById("requestsBody");
 
   const searchInput =
-    document.getElementById(
-      "searchInput"
-    );
+    document.getElementById("searchInput");
 
   const statusFilter =
-    document.getElementById(
-      "statusFilter"
-    );
+    document.getElementById("statusFilter");
 
   const refreshButton =
-    document.getElementById(
-      "refreshButton"
-    );
+    document.getElementById("refreshButton");
 
-
-  /* =====================================================
-     DATA
-  ===================================================== */
 
   let allRequests = [];
 
 
   /* =====================================================
-     SHOW MESSAGE
+     MESSAGE
   ===================================================== */
 
   function showMessage(message) {
 
-    if (!systemMessage)
-      return;
+    systemMessage.textContent = message;
+    systemMessage.style.display = "block";
 
-    systemMessage.textContent =
-      message;
-
-    systemMessage.style.display =
-      "block";
   }
 
-
-  /* =====================================================
-     HIDE MESSAGE
-  ===================================================== */
 
   function hideMessage() {
 
-    if (!systemMessage)
-      return;
+    systemMessage.style.display = "none";
 
-    systemMessage.style.display =
-      "none";
   }
 
 
   /* =====================================================
-     STATUS LABEL
-  ===================================================== */
-
-  function getStatusLabel(status) {
-
-    const labels = {
-
-      received:
-        "دریافت شد",
-
-      processing:
-        "در حال انجام",
-
-      ready:
-        "جواب آماده",
-
-      delivered:
-        "تحویل شده"
-
-    };
-
-    return labels[status] ||
-      status ||
-      "نامشخص";
-  }
-
-
-  /* =====================================================
-     STATUS CLASS
-  ===================================================== */
-
-  function getStatusClass(status) {
-
-    if (status === "received")
-      return "status-received";
-
-    if (status === "processing")
-      return "status-process";
-
-    if (status === "ready")
-      return "status-ready";
-
-    if (status === "delivered")
-      return "status-delivered";
-
-    return "status-received";
-  }
-
-
-  /* =====================================================
-     ESCAPE HTML
+     HTML ESCAPE
   ===================================================== */
 
   function escapeHTML(value) {
@@ -1227,37 +632,47 @@
       value === null ||
       value === undefined
     ) {
-
       return "";
-
     }
 
     return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
 
-      .replace(
-        /&/g,
-        "&amp;"
-      )
+  }
 
-      .replace(
-        /</g,
-        "&lt;"
-      )
 
-      .replace(
-        />/g,
-        "&gt;"
-      )
+  /* =====================================================
+     STATUS
+  ===================================================== */
 
-      .replace(
-        /"/g,
-        "&quot;"
-      )
+  function getStatusLabel(status) {
 
-      .replace(
-        /'/g,
-        "&#039;"
-      );
+    const labels = {
+      received: "دریافت شد",
+      processing: "در حال انجام",
+      ready: "جواب آماده",
+      delivered: "تحویل شده"
+    };
+
+    return labels[status] || "نامشخص";
+
+  }
+
+
+  function getStatusClass(status) {
+
+    const classes = {
+      received: "status-received",
+      processing: "status-process",
+      ready: "status-ready",
+      delivered: "status-delivered"
+    };
+
+    return classes[status] || "status-received";
 
   }
 
@@ -1266,203 +681,149 @@
      LOGOUT
   ===================================================== */
 
-  if (logoutButton) {
+  logoutButton.addEventListener(
+    "click",
+    async function () {
 
-    logoutButton.addEventListener(
-      "click",
-      async function () {
+      logoutButton.disabled = true;
+      logoutButton.textContent = "در حال خروج...";
 
-        logoutButton.disabled =
-          true;
+      try {
 
-        logoutButton.textContent =
-          "در حال خروج...";
-
-
-        const {
-          error
-        } =
-          await supabaseClient
-            .auth
-            .signOut();
-
+        const { error } =
+          await supabaseClient.auth.signOut();
 
         if (error) {
-
-          console.error(
-            "Logout error:",
-            error
-          );
-
-          logoutButton.disabled =
-            false;
-
-          logoutButton.textContent =
-            "خروج از حساب";
-
-          showMessage(
-            "خطا در خروج از حساب."
-          );
-
-          return;
-
+          throw error;
         }
 
-
         /*
-         * مدیر بعد از خروج
-         * به Login مدیر برمی‌گردد
+         * مهم:
+         * بعد از خروج، به partner-dashboard نمی‌رویم.
+         * صفحه ورود مرکزی را باز می‌کنیم.
+         *
+         * اگر فایل ورود شما نام دیگری دارد،
+         * فقط همین خط را بعداً تغییر می‌دهیم.
          */
 
         window.location.href =
-          "admin-login.html";
+          "partner-login.html";
 
       }
-    );
 
-  }
+      catch (error) {
+
+        console.error(
+          "Logout error:",
+          error
+        );
+
+        showMessage(
+          "خروج از حساب با خطا مواجه شد."
+        );
+
+        logoutButton.disabled = false;
+        logoutButton.textContent = "خروج از حساب";
+
+      }
+
+    }
+  );
 
 
   /* =====================================================
-     UPDATE STATISTICS
+     STATISTICS
   ===================================================== */
 
-  function updateStatistics(
-    requests
-  ) {
-
-    const total =
-      requests.length;
-
-
-    const received =
-      requests.filter(
-        request =>
-          request.status ===
-          "received"
-      ).length;
-
-
-    const processing =
-      requests.filter(
-        request =>
-          request.status ===
-          "processing"
-      ).length;
-
-
-    const ready =
-      requests.filter(
-        request =>
-          request.status ===
-          "ready"
-      ).length;
-
+  function updateStatistics(requests) {
 
     document.getElementById(
       "totalRequests"
-    ).textContent =
-      total;
-
+    ).textContent = requests.length;
 
     document.getElementById(
       "receivedRequests"
     ).textContent =
-      received;
-
+      requests.filter(
+        r => r.status === "received"
+      ).length;
 
     document.getElementById(
       "processingRequests"
     ).textContent =
-      processing;
-
+      requests.filter(
+        r => r.status === "processing"
+      ).length;
 
     document.getElementById(
       "readyRequests"
     ).textContent =
-      ready;
+      requests.filter(
+        r => r.status === "ready"
+      ).length;
 
   }
 
 
   /* =====================================================
-     RENDER REQUESTS
+     RENDER
   ===================================================== */
 
   function renderRequests() {
 
-    let filteredRequests =
+    let filtered =
       [...allRequests];
 
-
     const search =
-      searchInput
-        ? searchInput.value
-            .trim()
-            .toLowerCase()
-        : "";
-
+      searchInput.value
+        .trim()
+        .toLowerCase();
 
     const selectedStatus =
-      statusFilter
-        ? statusFilter.value
-        : "all";
+      statusFilter.value;
 
-
-    /* =========================
-       SEARCH
-    ========================= */
 
     if (search) {
 
-      filteredRequests =
-        filteredRequests.filter(
-          request => {
+      filtered =
+        filtered.filter(request => {
 
-            const code =
-              String(
-                request.request_code ||
-                ""
-              ).toLowerCase();
+          const code =
+            String(
+              request.request_code || ""
+            ).toLowerCase();
 
+          const patient =
+            String(
+              request.patient_name || ""
+            ).toLowerCase();
 
-            const patient =
-              String(
-                request.patient_name ||
-                ""
-              ).toLowerCase();
+          const lab =
+            String(
+              request.partner_lab?.lab_name || ""
+            ).toLowerCase();
 
+          const tests =
+            String(
+              request.requested_tests || ""
+            ).toLowerCase();
 
-            const lab =
-              String(
-                request.partner_lab?.lab_name ||
-                ""
-              ).toLowerCase();
+          return (
+            code.includes(search) ||
+            patient.includes(search) ||
+            lab.includes(search) ||
+            tests.includes(search)
+          );
 
-
-            return (
-              code.includes(search) ||
-              patient.includes(search) ||
-              lab.includes(search)
-            );
-
-          }
-        );
+        });
 
     }
 
 
-    /* =========================
-       STATUS
-    ========================= */
+    if (selectedStatus !== "all") {
 
-    if (
-      selectedStatus !==
-      "all"
-    ) {
-
-      filteredRequests =
-        filteredRequests.filter(
+      filtered =
+        filtered.filter(
           request =>
             request.status ===
             selectedStatus
@@ -1471,35 +832,18 @@
     }
 
 
-    /* =========================
-       INFO
-    ========================= */
-
     requestInfo.textContent =
-      `${filteredRequests.length} درخواست`;
+      `${filtered.length} درخواست`;
 
 
-    /* =========================
-       EMPTY
-    ========================= */
-
-    if (
-      filteredRequests.length === 0
-    ) {
+    if (!filtered.length) {
 
       requestsBody.innerHTML = `
-
         <tr>
-
-          <td
-            colspan="6"
-            class="empty"
-          >
+          <td colspan="6" class="empty">
             هیچ درخواستی پیدا نشد.
           </td>
-
         </tr>
-
       `;
 
       return;
@@ -1507,119 +851,79 @@
     }
 
 
-    /* =========================
-       TABLE
-    ========================= */
-
     requestsBody.innerHTML =
-      filteredRequests
-        .map(request => {
+      filtered.map(request => {
 
-          const date =
-            request.created_at
-              ? new Date(
-                  request.created_at
-                ).toLocaleDateString(
-                  "fa-IR"
-                )
-              : "-";
+        const date =
+          request.created_at
+            ? new Date(
+                request.created_at
+              ).toLocaleDateString(
+                "fa-IR"
+              )
+            : "-";
 
+        const labName =
+          request.partner_lab?.lab_name ||
+          "نامشخص";
 
-          const labName =
-            request.partner_lab?.lab_name ||
-            "نامشخص";
+        const status =
+          request.status ||
+          "received";
 
+        return `
+          <tr>
 
-          const status =
-            request.status ||
-            "received";
-
-
-          return `
-
-            <tr>
-
-              <td>
-
-                <strong>
-                  ${escapeHTML(
-                    request.request_code
-                  )}
-                </strong>
-
-              </td>
-
-
-              <td>
-
+            <td>
+              <strong>
                 ${escapeHTML(
-                  labName
+                  request.request_code
                 )}
+              </strong>
+            </td>
 
-              </td>
+            <td>
+              ${escapeHTML(labName)}
+            </td>
 
+            <td>
+              ${escapeHTML(
+                request.patient_name
+              )}
+            </td>
 
-              <td>
+            <td>
+              ${escapeHTML(
+                request.requested_tests
+              )}
+            </td>
 
-                ${escapeHTML(
-                  request.patient_name
-                )}
+            <td>
+              ${date}
+            </td>
 
-              </td>
+            <td>
+              <span class="status ${getStatusClass(status)}">
+                ${getStatusLabel(status)}
+              </span>
+            </td>
 
+          </tr>
+        `;
 
-              <td>
-
-                ${escapeHTML(
-                  request.requested_tests
-                )}
-
-              </td>
-
-
-              <td>
-
-                ${date}
-
-              </td>
-
-
-              <td>
-
-                <span
-                  class="status
-                  ${getStatusClass(
-                    status
-                  )}"
-                >
-
-                  ${getStatusLabel(
-                    status
-                  )}
-
-                </span>
-
-              </td>
-
-            </tr>
-
-          `;
-
-        })
-        .join("");
+      }).join("");
 
   }
 
 
   /* =====================================================
-     LOAD ALL REQUESTS
+     LOAD REQUESTS
   ===================================================== */
 
   async function loadRequests() {
 
     requestInfo.textContent =
       "در حال دریافت...";
-
 
     const {
       data,
@@ -1646,8 +950,7 @@
         .order(
           "created_at",
           {
-            ascending:
-              false
+            ascending: false
           }
         );
 
@@ -1655,27 +958,19 @@
     if (error) {
 
       console.error(
-        "Load admin requests error:",
+        "Load requests error:",
         error
       );
 
       requestInfo.textContent =
-        "خطا در دریافت اطلاعات";
-
+        "خطا در دریافت";
 
       requestsBody.innerHTML = `
-
         <tr>
-
-          <td
-            colspan="6"
-            class="empty"
-          >
-            دریافت درخواست‌ها با خطا مواجه شد.
+          <td colspan="6" class="empty">
+            خطا در دریافت درخواست‌ها.
           </td>
-
         </tr>
-
       `;
 
       return;
@@ -1686,17 +981,9 @@
     allRequests =
       data || [];
 
-
-    console.log(
-      "Admin requests:",
-      allRequests
-    );
-
-
     updateStatistics(
       allRequests
     );
-
 
     renderRequests();
 
@@ -1704,138 +991,121 @@
 
 
   /* =====================================================
-     SEARCH EVENTS
+     FILTER EVENTS
   ===================================================== */
 
-  if (searchInput) {
+  searchInput.addEventListener(
+    "input",
+    renderRequests
+  );
 
-    searchInput.addEventListener(
-      "input",
-      renderRequests
-    );
-
-  }
-
-
-  if (statusFilter) {
-
-    statusFilter.addEventListener(
-      "change",
-      renderRequests
-    );
-
-  }
+  statusFilter.addEventListener(
+    "change",
+    renderRequests
+  );
 
 
   /* =====================================================
      REFRESH
   ===================================================== */
 
-  if (refreshButton) {
+  refreshButton.addEventListener(
+    "click",
+    async function () {
 
-    refreshButton.addEventListener(
-      "click",
-      async function () {
+      refreshButton.disabled = true;
+      refreshButton.textContent =
+        "در حال بروزرسانی...";
 
-        refreshButton.disabled =
-          true;
+      await loadRequests();
 
-        refreshButton.textContent =
-          "در حال بروزرسانی...";
+      refreshButton.disabled = false;
+      refreshButton.textContent =
+        "🔄 بروزرسانی";
 
-
-        await loadRequests();
-
-
-        refreshButton.disabled =
-          false;
-
-        refreshButton.textContent =
-          "🔄 بروزرسانی";
-
-      }
-    );
-
-  }
+    }
+  );
 
 
   /* =====================================================
-     LOAD ADMIN
+     ADMIN AUTHENTICATION
   ===================================================== */
 
   async function loadAdmin() {
 
+    console.log(
+      "Alpha Admin Dashboard started."
+    );
+
+
     try {
 
-      console.log(
-        "Alpha Admin Dashboard started."
-      );
-
-
-      /* =================================================
-         AUTHENTICATED USER
-      ================================================= */
+      /*
+       * ابتدا session را می‌گیریم.
+       * این کار از getUser مستقیم پایدارتر است.
+       */
 
       const {
-        data: {
-          user
-        },
-        error:
-          authError
+        data: sessionData,
+        error: sessionError
       } =
         await supabaseClient
           .auth
-          .getUser();
+          .getSession();
 
 
-      if (authError) {
+      if (sessionError) {
 
         console.error(
-          "Auth error:",
-          authError
+          "Session error:",
+          sessionError
         );
-
 
         showMessage(
-          "خطا در بررسی حساب کاربری."
+          "ارتباط با سرویس ورود Supabase برقرار نشد. صفحه را دوباره بارگذاری کنید."
         );
 
+        securityMessage.textContent =
+          "در انتظار برقراری ارتباط با سرویس احراز هویت...";
 
         return;
 
       }
+
+
+      const session =
+        sessionData?.session;
 
 
       /* =================================================
-         NO USER
+         NO SESSION
       ================================================= */
 
-      if (!user) {
+      if (!session) {
 
         console.warn(
-          "No authenticated user."
+          "No active session."
         );
-
 
         showMessage(
-          "برای ورود به پنل مدیریت ابتدا وارد حساب مدیر شوید."
+          "هیچ حساب فعالی در این مرورگر وجود ندارد."
         );
 
+        securityMessage.textContent =
+          "برای ورود به پنل مدیریت باید ابتدا وارد حساب ادمین شوید.";
 
-        setTimeout(
-          function () {
-
-            window.location.href =
-              "admin-login.html";
-
-          },
-          1200
-        );
-
+        /*
+         * مهم:
+         * دیگر به partner-dashboard منتقل نمی‌کنیم.
+         */
 
         return;
 
       }
+
+
+      const user =
+        session.user;
 
 
       console.log(
@@ -1844,33 +1114,50 @@
       );
 
 
-      console.log(
-        "Authenticated email:",
-        user.email
-      );
+      /* =================================================
+         VERIFY ADMIN USER ID
+      ================================================= */
+
+      if (
+        user.id !==
+        ADMIN_USER_ID
+      ) {
+
+        console.warn(
+          "This is not the configured admin account:",
+          user.id
+        );
+
+        securityMessage.textContent =
+          "این حساب، حساب مدیر مرکزی آلفا نیست.";
+
+        showMessage(
+          "این حساب اجازه ورود به پنل مدیریت مرکزی را ندارد."
+        );
+
+        return;
+
+      }
 
 
       /* =================================================
-         LOAD PROFILE
+         LOAD USER PROFILE
       ================================================= */
 
       const {
         data: profile,
-        error:
-          profileError
+        error: profileError
       } =
-        await supabaseClient
-          .from(
-            "user_profiles"
-          )
-          .select(
-            "id, full_name, role"
-          )
-          .eq(
-            "id",
-            user.id
-          )
-          .maybeSingle();
+      await supabaseClient
+        .from("user_profiles")
+        .select(
+          "id, full_name, role"
+        )
+        .eq(
+          "id",
+          user.id
+        )
+        .maybeSingle();
 
 
       if (profileError) {
@@ -1880,19 +1167,12 @@
           profileError
         );
 
-
         showMessage(
-          "خطا در دریافت سطح دسترسی."
+          "حساب شناسایی شد، اما دریافت سطح دسترسی با خطا مواجه شد."
         );
 
-
-        if (securityMessage) {
-
-          securityMessage.textContent =
-            "خطا در بررسی پروفایل مدیر.";
-
-        }
-
+        securityMessage.textContent =
+          "خطا در خواندن user_profiles.";
 
         return;
 
@@ -1906,40 +1186,46 @@
 
 
       /* =================================================
-         CHECK ADMIN ROLE
+         PROFILE NOT FOUND
+      ================================================= */
+
+      if (!profile) {
+
+        showMessage(
+          "برای این حساب پروفایل مدیریتی پیدا نشد."
+        );
+
+        securityMessage.textContent =
+          "رکورد user_profiles برای حساب مدیر وجود ندارد.";
+
+        return;
+
+      }
+
+
+      /* =================================================
+         ROLE CHECK
       ================================================= */
 
       if (
-        !profile ||
         profile.role !==
         "admin"
       ) {
 
         console.warn(
-          "Access denied. User is not admin:",
-          profile
+          "Admin role check failed:",
+          profile.role
         );
-
-
-        if (
-          securityMessage
-        ) {
-
-          securityMessage.textContent =
-            "دسترسی غیرمجاز — این حساب مدیر نیست.";
-
-        }
-
 
         showMessage(
-          "این حساب اجازه ورود به پنل مدیریت مرکزی را ندارد."
+          "سطح دسترسی این حساب admin نیست."
         );
 
+        securityMessage.textContent =
+          `سطح دسترسی فعلی: ${profile.role || "نامشخص"}`;
 
         /*
-         * بسیار مهم:
-         * دیگر کاربر را به partner-dashboard
-         * منتقل نمی‌کنیم.
+         * هیچ redirect خودکاری نداریم.
          */
 
         return;
@@ -1948,46 +1234,28 @@
 
 
       /* =================================================
-         OPTIONAL ADMIN ID CHECK
-      ================================================= */
-
-      if (
-        user.id !==
-        ADMIN_USER_ID
-      ) {
-
-        console.warn(
-          "Admin role exists but user ID is different:",
-          user.id
-        );
-
-      }
-
-
-      /* =================================================
-         ADMIN WELCOME
+         SUCCESS
       ================================================= */
 
       const adminName =
         profile.full_name ||
-        "مدیر آزمایشگاه آلفا";
+        "مدیر آزمایشگاه تخصصی آلفا";
 
 
       adminWelcome.textContent =
         `سلام، ${adminName} 👋`;
 
 
-      if (
-        securityMessage
-      ) {
-
-        securityMessage.textContent =
-          `دسترسی تأیید شد | سطح دسترسی: مدیر | حساب: ${user.email || ADMIN_EMAIL}`;
-
-      }
+      securityMessage.textContent =
+        `دسترسی تأیید شد | مدیر مرکزی | ${user.email || ""}`;
 
 
       hideMessage();
+
+
+      console.log(
+        "Admin authentication successful."
+      );
 
 
       /* =================================================
@@ -2001,22 +1269,82 @@
         "Admin dashboard loaded successfully."
       );
 
+
+      /* =================================================
+         REALTIME
+      ================================================= */
+
+      supabaseClient
+        .channel(
+          "admin-lab-requests"
+        )
+        .on(
+          "postgres_changes",
+          {
+            event: "*",
+            schema: "public",
+            table: "lab_requests"
+          },
+          function (payload) {
+
+            console.log(
+              "Admin Realtime:",
+              payload
+            );
+
+            loadRequests();
+
+          }
+        )
+        .subscribe(
+          function (status) {
+
+            console.log(
+              "Admin Realtime status:",
+              status
+            );
+
+          }
+        );
+
     }
+
     catch (error) {
 
       console.error(
-        "Unexpected admin dashboard error:",
+        "Unexpected admin error:",
         error
       );
 
-
       showMessage(
-        "یک خطای غیرمنتظره در پنل مدیریت رخ داد."
+        "خطای غیرمنتظره در پنل مدیریت."
       );
+
+      securityMessage.textContent =
+        "خطا در اجرای پنل مدیریت.";
 
     }
 
   }
+
+
+  /* =====================================================
+     AUTH STATE LISTENER
+  ===================================================== */
+
+  supabaseClient
+    .auth
+    .onAuthStateChange(
+      function (event, session) {
+
+        console.log(
+          "Auth state:",
+          event,
+          session?.user?.id || null
+        );
+
+      }
+    );
 
 
   /* =====================================================
@@ -2029,7 +1357,5 @@
 
 </script>
 
-
 </body>
-
 </html>
