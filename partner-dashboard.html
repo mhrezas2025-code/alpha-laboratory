@@ -1,18 +1,29 @@
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- =========================
+       SUPABASE
+  ========================= -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <title>پرتال آزمایشگاه‌های همکار | آزمایشگاه تخصصی آلفا</title>
+  <title>
+    پرتال آزمایشگاه‌های همکار | آزمایشگاه تخصصی آلفا
+  </title>
+
+
+  <!-- =========================
+       SUPABASE CONFIG
+  ========================= -->
 
   <script>
-    /* =========================
-       SUPABASE CONFIG
-    ========================= */
 
     const SUPABASE_URL =
       "https://znnfjaetnmzttcueqxpw.supabase.co";
@@ -25,57 +36,95 @@
         SUPABASE_URL,
         SUPABASE_PUBLISHABLE_KEY
       );
+
   </script>
 
+
+  <!-- =========================
+       CSS
+  ========================= -->
+
   <style>
+
     :root {
+
       --primary: #0b7285;
       --primary-dark: #063b57;
       --secondary: #087f5b;
       --accent: #32cbd0;
+
       --light: #f1fbfc;
+
       --text: #183b42;
       --muted: #6b7f85;
+
       --border: rgba(11,114,133,.12);
-      --shadow: 0 10px 30px rgba(7,59,76,.08);
-      --shadow-hover: 0 15px 35px rgba(7,59,76,.14);
+
+      --shadow:
+        0 10px 30px rgba(7,59,76,.08);
+
+      --shadow-hover:
+        0 15px 35px rgba(7,59,76,.14);
+
     }
+
 
     * {
       box-sizing: border-box;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
+
       margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
+
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
       color: var(--text);
+
       line-height: 1.9;
 
       background:
+
         radial-gradient(
           circle at 10% 10%,
           rgba(0,150,136,.08),
           transparent 30%
         ),
+
         radial-gradient(
           circle at 90% 20%,
           rgba(0,188,212,.08),
           transparent 30%
         ),
+
         linear-gradient(
           135deg,
           #f7fbfc,
           #eef7f8
         );
+
     }
 
+
+    /* =========================
+       HEADER
+    ========================= */
+
     header {
+
       position: sticky;
+
       top: 0;
+
       z-index: 1000;
 
       background:
@@ -86,103 +135,414 @@
         );
 
       color: white;
+
       padding: 12px 6%;
 
       box-shadow:
         0 4px 18px rgba(0,0,0,.15);
+
     }
 
+
     .header-inner {
+
       max-width: 1250px;
+
       margin: auto;
 
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 20px;
+
     }
+
 
     .brand {
+
       display: flex;
+
       align-items: center;
+
       gap: 12px;
+
     }
 
+
     .logo {
+
       width: 55px;
+
       height: 55px;
+
       object-fit: contain;
 
       background: white;
+
       border-radius: 12px;
+
       padding: 3px;
+
     }
+
 
     .brand-text h1 {
+
       margin: 0;
+
       font-size: 18px;
+
     }
+
 
     .brand-text span {
+
       display: block;
+
       font-size: 11px;
+
       opacity: .8;
+
     }
 
+
     .logout-button {
-      border: 1px solid rgba(255,255,255,.25);
-      background: rgba(255,255,255,.10);
+
+      border:
+        1px solid
+        rgba(255,255,255,.25);
+
+      background:
+        rgba(255,255,255,.10);
+
       color: white;
 
       padding: 9px 16px;
+
       border-radius: 12px;
+
       cursor: pointer;
 
       font-family: inherit;
+
       font-size: 12px;
+
     }
+
 
     .logout-button:hover {
-      background: rgba(255,255,255,.20);
+
+      background:
+        rgba(255,255,255,.20);
+
     }
+
+
+    /* =========================
+       CONTAINER
+    ========================= */
 
     .container {
+
       width: min(1180px, 92%);
+
       margin: 0 auto;
+
       padding: 45px 0 80px;
+
     }
+
+
+    /* =========================
+       SYSTEM MESSAGE
+    ========================= */
+
+    .system-message {
+
+      display: none;
+
+      margin-bottom: 25px;
+
+      padding: 15px 18px;
+
+      border-radius: 14px;
+
+      background: #fff4d6;
+
+      color: #8a5a00;
+
+      font-size: 13px;
+
+    }
+
+
+    /* =========================
+       WELCOME
+    ========================= */
 
     .welcome {
+
       margin-bottom: 30px;
+
     }
+
 
     .welcome h2 {
+
       margin: 0 0 7px;
+
       color: var(--primary-dark);
-      font-size: clamp(25px,4vw,36px);
+
+      font-size:
+        clamp(25px,4vw,36px);
+
     }
+
 
     .welcome p {
+
       margin: 0;
+
       color: var(--muted);
+
       font-size: 14px;
+
     }
+
+
+    /* =========================
+       REQUEST FORM
+    ========================= */
+
+    .request-section {
+
+      margin-bottom: 35px;
+
+      padding: 25px;
+
+      background: white;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 20px;
+
+      box-shadow: var(--shadow);
+
+    }
+
+
+    .section-header h2 {
+
+      margin: 0 0 5px;
+
+      color: var(--primary-dark);
+
+      font-size: 22px;
+
+    }
+
+
+    .section-header p {
+
+      margin: 0 0 25px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+    }
+
+
+    .form-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+
+    }
+
+
+    .form-group {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 6px;
+
+    }
+
+
+    .form-group.full-width {
+
+      grid-column:
+        1 / -1;
+
+    }
+
+
+    .form-group label {
+
+      color:
+        var(--primary-dark);
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+    }
+
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+
+      width: 100%;
+
+      padding: 12px 14px;
+
+      border:
+        1px solid
+        #dcebed;
+
+      border-radius: 12px;
+
+      background: #fbfefe;
+
+      color: var(--text);
+
+      font-family: inherit;
+
+      font-size: 12px;
+
+      outline: none;
+
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+    }
+
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+
+      border-color:
+        var(--primary);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(11,114,133,.08);
+
+    }
+
+
+    .form-group textarea {
+
+      resize: vertical;
+
+    }
+
+
+    #submitRequestBtn {
+
+      margin-top: 20px;
+
+      border: none;
+
+      padding: 12px 25px;
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #063b57,
+          #087d99
+        );
+
+      color: white;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+    }
+
+
+    #submitRequestBtn:hover {
+
+      opacity: .92;
+
+    }
+
+
+    #submitRequestBtn:disabled {
+
+      opacity: .6;
+
+      cursor: not-allowed;
+
+    }
+
+
+    #requestMessage {
+
+      margin-top: 12px;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+    }
+
+
+    /* =========================
+       QUICK ACTIONS
+    ========================= */
 
     .quick-actions {
+
       display: grid;
-      grid-template-columns: repeat(4,1fr);
+
+      grid-template-columns:
+        repeat(4,1fr);
+
       gap: 18px;
+
       margin-bottom: 40px;
+
     }
 
+
     .action-card {
+
       position: relative;
+
       padding: 25px 20px;
+
       text-align: center;
 
-      background: rgba(255,255,255,.92);
+      background:
+        rgba(255,255,255,.92);
 
-      border: 1px solid var(--border);
+      border:
+        1px solid
+        var(--border);
+
       border-radius: 20px;
 
       box-shadow: var(--shadow);
@@ -193,93 +553,180 @@
         transform .3s ease,
         box-shadow .3s ease,
         border-color .3s ease;
+
     }
+
 
     .action-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(11,114,133,.30);
-      box-shadow: var(--shadow-hover);
+
+      transform:
+        translateY(-5px);
+
+      border-color:
+        rgba(11,114,133,.30);
+
+      box-shadow:
+        var(--shadow-hover);
+
     }
 
+
     .action-icon {
+
       width: 58px;
+
       height: 58px;
-      margin: 0 auto 12px;
+
+      margin:
+        0 auto 12px;
 
       display: grid;
+
       place-items: center;
 
       border-radius: 18px;
-      background: #e3f7f9;
+
+      background:
+        #e3f7f9;
 
       font-size: 27px;
+
     }
+
 
     .action-card h3 {
-      margin: 0 0 5px;
-      color: var(--primary-dark);
+
+      margin:
+        0 0 5px;
+
+      color:
+        var(--primary-dark);
+
       font-size: 16px;
+
     }
+
 
     .action-card p {
+
       margin: 0;
-      color: var(--muted);
+
+      color:
+        var(--muted);
+
       font-size: 11px;
+
     }
+
+
+    /* =========================
+       SECTION TITLE
+    ========================= */
 
     .section-title {
+
       margin-bottom: 18px;
-      color: var(--primary-dark);
+
+      color:
+        var(--primary-dark);
+
       font-size: 21px;
+
     }
+
+
+    /* =========================
+       STATS
+    ========================= */
 
     .stats {
+
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+
+      grid-template-columns:
+        repeat(3,1fr);
+
       gap: 18px;
+
       margin-bottom: 40px;
+
     }
+
 
     .stat-card {
+
       padding: 22px;
+
       background: white;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid
+        var(--border);
+
       border-radius: 18px;
 
-      box-shadow: var(--shadow);
+      box-shadow:
+        var(--shadow);
+
     }
+
 
     .stat-label {
-      color: var(--muted);
+
+      color:
+        var(--muted);
+
       font-size: 12px;
+
     }
+
 
     .stat-number {
+
       display: block;
+
       margin-top: 5px;
 
-      color: var(--primary);
+      color:
+        var(--primary);
 
       font-size: 28px;
+
       font-weight: 900;
+
     }
 
+
+    /* =========================
+       REQUESTS
+    ========================= */
+
     .requests {
+
       overflow: hidden;
 
       background: white;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid
+        var(--border);
+
       border-radius: 20px;
 
-      box-shadow: var(--shadow);
+      box-shadow:
+        var(--shadow);
+
     }
 
+
     .requests-header {
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 15px;
 
       padding: 20px 22px;
@@ -292,49 +739,90 @@
         );
 
       color: white;
+
     }
+
 
     .requests-header h3 {
+
       margin: 0;
+
       font-size: 17px;
+
     }
+
 
     .requests-header span {
+
       font-size: 11px;
+
       opacity: .8;
+
     }
+
 
     .table-wrapper {
+
       overflow-x: auto;
+
     }
 
+
     table {
+
       width: 100%;
-      border-collapse: collapse;
+
+      border-collapse:
+        collapse;
+
       min-width: 650px;
+
     }
+
 
     th,
     td {
+
       padding: 15px 18px;
+
       text-align: right;
 
-      border-bottom: 1px solid #edf3f4;
+      border-bottom:
+        1px solid
+        #edf3f4;
 
       font-size: 12px;
+
     }
+
 
     th {
-      color: var(--primary-dark);
-      background: #f7fbfc;
+
+      color:
+        var(--primary-dark);
+
+      background:
+        #f7fbfc;
+
       font-weight: bold;
+
     }
+
 
     td {
-      color: var(--muted);
+
+      color:
+        var(--muted);
+
     }
 
+
+    /* =========================
+       STATUS
+    ========================= */
+
     .status {
+
       display: inline-block;
 
       padding: 4px 10px;
@@ -342,117 +830,225 @@
       border-radius: 20px;
 
       font-size: 10px;
+
       font-weight: bold;
+
     }
+
 
     .status-ready {
+
       color: #087f5b;
+
       background: #e6fcf5;
+
     }
+
 
     .status-process {
+
       color: #b26a00;
+
       background: #fff4d6;
+
     }
+
 
     .status-received {
+
       color: #0b7285;
+
       background: #e3f7f9;
+
     }
+
+
+    .status-delivered {
+
+      color: #6741d9;
+
+      background: #f3f0ff;
+
+    }
+
+
+    /* =========================
+       INFO
+    ========================= */
 
     .info-box {
+
       margin-top: 30px;
+
       padding: 22px;
 
-      background: #f1fbfc;
+      background:
+        #f1fbfc;
 
-      border: 1px solid rgba(11,114,133,.10);
+      border:
+        1px solid
+        rgba(11,114,133,.10);
+
       border-radius: 18px;
+
     }
+
 
     .info-box h3 {
-      margin: 0 0 8px;
-      color: var(--primary-dark);
+
+      margin:
+        0 0 8px;
+
+      color:
+        var(--primary-dark);
+
       font-size: 16px;
+
     }
+
 
     .info-box p {
+
       margin: 0;
-      color: var(--muted);
+
+      color:
+        var(--muted);
+
       font-size: 12px;
+
     }
 
-    .system-message {
-      display: none;
 
-      margin-bottom: 25px;
-      padding: 15px 18px;
-
-      border-radius: 14px;
-
-      background: #fff4d6;
-      color: #8a5a00;
-
-      font-size: 13px;
-    }
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
+
       padding: 25px;
 
       text-align: center;
 
       color: white;
 
-      background: #032638;
+      background:
+        #032638;
 
       font-size: 11px;
+
     }
+
 
     footer span {
-      color: var(--accent);
+
+      color:
+        var(--accent);
+
     }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
 
     @media (max-width: 900px) {
+
       .quick-actions {
-        grid-template-columns: repeat(2,1fr);
+
+        grid-template-columns:
+          repeat(2,1fr);
+
       }
+
     }
+
 
     @media (max-width: 650px) {
+
       .header-inner {
+
         flex-direction: column;
+
         text-align: center;
+
       }
+
 
       .brand {
+
         flex-direction: column;
+
       }
+
 
       .container {
+
         width: 94%;
+
         padding-top: 30px;
+
       }
+
 
       .stats {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
+
+
+      .form-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .form-group.full-width {
+
+        grid-column:
+          auto;
+
+      }
+
 
       .action-card {
-        padding: 20px 10px;
+
+        padding:
+          20px 10px;
+
       }
+
     }
 
+
     @media (max-width: 430px) {
+
       .quick-actions {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
   <div class="header-inner">
 
     <div class="brand">
@@ -477,6 +1073,7 @@
 
     </div>
 
+
     <button
       id="logoutButton"
       class="logout-button"
@@ -486,10 +1083,18 @@
     </button>
 
   </div>
+
 </header>
 
 
+<!-- =========================
+     MAIN
+========================= -->
+
 <main class="container">
+
+
+  <!-- SYSTEM MESSAGE -->
 
   <div
     id="systemMessage"
@@ -497,92 +1102,172 @@
   ></div>
 
 
+  <!-- =========================
+       WELCOME
+  ========================= -->
+
   <section class="welcome">
-<!-- =========================
-     NEW LAB REQUEST
-========================= -->
 
-<section class="dashboard-section request-section">
-
-  <div class="section-header">
-    <h2>🧪 ثبت درخواست جدید</h2>
-    <p>اطلاعات بیمار و آزمایش‌های مورد نیاز را وارد کنید.</p>
-  </div>
-
-  <form id="newRequestForm">
-
-    <div class="form-grid">
-
-      <div class="form-group">
-        <label for="patientName">نام بیمار</label>
-        <input
-          type="text"
-          id="patientName"
-          placeholder="نام و نام خانوادگی بیمار"
-          required
-        >
-      </div>
-
-      <div class="form-group">
-        <label for="patientAge">سن</label>
-        <input
-          type="number"
-          id="patientAge"
-          min="0"
-          max="150"
-          placeholder="سن بیمار"
-        >
-      </div>
-
-      <div class="form-group">
-        <label for="patientGender">جنسیت</label>
-        <select id="patientGender">
-          <option value="">انتخاب کنید</option>
-          <option value="male">مرد</option>
-          <option value="female">زن</option>
-        </select>
-      </div>
-
-      <div class="form-group full-width">
-        <label for="requestedTests">آزمایش‌های درخواستی</label>
-        <textarea
-          id="requestedTests"
-          rows="4"
-          placeholder="مثلاً: CBC، Ferritin، TSH، Vitamin D"
-          required
-        ></textarea>
-      </div>
-
-      <div class="form-group full-width">
-        <label for="requestNotes">توضیحات</label>
-        <textarea
-          id="requestNotes"
-          rows="3"
-          placeholder="توضیحات تکمیلی در صورت نیاز..."
-        ></textarea>
-      </div>
-
-    </div>
-
-    <button type="submit" id="submitRequestBtn">
-      ثبت درخواست
-    </button>
-
-    <div id="requestMessage"></div>
-
-  </form>
-
-</section>
     <h2 id="partnerWelcome">
       سلام، در حال دریافت اطلاعات... 👋
     </h2>
 
     <p>
-      به پرتال آزمایشگاه‌های همکار آزمایشگاه تخصصی آلفا خوش آمدید.
+      به پرتال آزمایشگاه‌های همکار
+      آزمایشگاه تخصصی آلفا خوش آمدید.
     </p>
 
   </section>
 
+
+  <!-- =========================
+       NEW REQUEST
+  ========================= -->
+
+  <section
+    class="dashboard-section request-section"
+  >
+
+    <div class="section-header">
+
+      <h2>
+        🧪 ثبت درخواست جدید
+      </h2>
+
+      <p>
+        اطلاعات بیمار و آزمایش‌های مورد نیاز را وارد کنید.
+      </p>
+
+    </div>
+
+
+    <form id="newRequestForm">
+
+
+      <div class="form-grid">
+
+
+        <!-- PATIENT NAME -->
+
+        <div class="form-group">
+
+          <label for="patientName">
+            نام بیمار
+          </label>
+
+          <input
+            type="text"
+            id="patientName"
+            placeholder="نام و نام خانوادگی بیمار"
+            required
+          >
+
+        </div>
+
+
+        <!-- AGE -->
+
+        <div class="form-group">
+
+          <label for="patientAge">
+            سن
+          </label>
+
+          <input
+            type="number"
+            id="patientAge"
+            min="0"
+            max="150"
+            placeholder="سن بیمار"
+          >
+
+        </div>
+
+
+        <!-- GENDER -->
+
+        <div class="form-group">
+
+          <label for="patientGender">
+            جنسیت
+          </label>
+
+          <select id="patientGender">
+
+            <option value="">
+              انتخاب کنید
+            </option>
+
+            <option value="male">
+              مرد
+            </option>
+
+            <option value="female">
+              زن
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- TESTS -->
+
+        <div class="form-group full-width">
+
+          <label for="requestedTests">
+            آزمایش‌های درخواستی
+          </label>
+
+          <textarea
+            id="requestedTests"
+            rows="4"
+            placeholder="مثلاً: CBC، Ferritin، TSH، Vitamin D"
+            required
+          ></textarea>
+
+        </div>
+
+
+        <!-- NOTES -->
+
+        <div class="form-group full-width">
+
+          <label for="requestNotes">
+            توضیحات
+          </label>
+
+          <textarea
+            id="requestNotes"
+            rows="3"
+            placeholder="توضیحات تکمیلی در صورت نیاز..."
+          ></textarea>
+
+        </div>
+
+
+      </div>
+
+
+      <button
+        type="submit"
+        id="submitRequestBtn"
+      >
+        ثبت درخواست
+      </button>
+
+
+      <div id="requestMessage"></div>
+
+
+    </form>
+
+  </section>
+
+
+  <!-- =========================
+       QUICK ACTIONS
+  ========================= -->
 
   <section>
 
@@ -590,36 +1275,86 @@
       دسترسی سریع
     </h3>
 
+
     <div class="quick-actions">
 
-      <div class="action-card">
-        <div class="action-icon">🧪</div>
-        <h3>درخواست جدید</h3>
-        <p>ثبت درخواست آزمایش جدید</p>
-      </div>
 
       <div class="action-card">
-        <div class="action-icon">📋</div>
-        <h3>درخواست‌های من</h3>
-        <p>مشاهده و پیگیری درخواست‌ها</p>
+
+        <div class="action-icon">
+          🧪
+        </div>
+
+        <h3>
+          درخواست جدید
+        </h3>
+
+        <p>
+          ثبت درخواست آزمایش جدید
+        </p>
+
       </div>
 
-      <div class="action-card">
-        <div class="action-icon">📄</div>
-        <h3>جواب‌های آماده</h3>
-        <p>مشاهده و چاپ گزارش‌ها</p>
-      </div>
 
       <div class="action-card">
-        <div class="action-icon">👤</div>
-        <h3>حساب کاربری</h3>
-        <p>مدیریت اطلاعات حساب</p>
+
+        <div class="action-icon">
+          📋
+        </div>
+
+        <h3>
+          درخواست‌های من
+        </h3>
+
+        <p>
+          مشاهده و پیگیری درخواست‌ها
+        </p>
+
       </div>
+
+
+      <div class="action-card">
+
+        <div class="action-icon">
+          📄
+        </div>
+
+        <h3>
+          جواب‌های آماده
+        </h3>
+
+        <p>
+          مشاهده و چاپ گزارش‌ها
+        </p>
+
+      </div>
+
+
+      <div class="action-card">
+
+        <div class="action-icon">
+          👤
+        </div>
+
+        <h3>
+          حساب کاربری
+        </h3>
+
+        <p>
+          مدیریت اطلاعات حساب
+        </p>
+
+      </div>
+
 
     </div>
 
   </section>
 
+
+  <!-- =========================
+       STATISTICS
+  ========================= -->
 
   <section>
 
@@ -627,9 +1362,14 @@
       خلاصه فعالیت
     </h3>
 
+
     <div class="stats">
 
+
+      <!-- MONTHLY -->
+
       <div class="stat-card">
+
         <span class="stat-label">
           درخواست‌های این ماه
         </span>
@@ -640,9 +1380,14 @@
         >
           0
         </strong>
+
       </div>
 
+
+      <!-- PROCESSING -->
+
       <div class="stat-card">
+
         <span class="stat-label">
           در حال انجام
         </span>
@@ -653,9 +1398,14 @@
         >
           0
         </strong>
+
       </div>
 
+
+      <!-- READY -->
+
       <div class="stat-card">
+
         <span class="stat-label">
           جواب‌های آماده
         </span>
@@ -666,16 +1416,23 @@
         >
           0
         </strong>
+
       </div>
+
 
     </div>
 
   </section>
 
 
+  <!-- =========================
+       LATEST REQUESTS
+  ========================= -->
+
   <section>
 
     <div class="requests">
+
 
       <div class="requests-header">
 
@@ -689,6 +1446,7 @@
 
       </div>
 
+
       <div class="table-wrapper">
 
         <table>
@@ -696,21 +1454,43 @@
           <thead>
 
             <tr>
-              <th>کد درخواست</th>
-              <th>نام بیمار</th>
-              <th>تاریخ</th>
-              <th>آزمایش</th>
-              <th>وضعیت</th>
+
+              <th>
+                کد درخواست
+              </th>
+
+              <th>
+                نام بیمار
+              </th>
+
+              <th>
+                تاریخ
+              </th>
+
+              <th>
+                آزمایش
+              </th>
+
+              <th>
+                وضعیت
+              </th>
+
             </tr>
 
           </thead>
 
+
           <tbody id="requestsBody">
 
             <tr>
-              <td colspan="5" style="text-align:center;">
+
+              <td
+                colspan="5"
+                style="text-align:center;"
+              >
                 در حال دریافت اطلاعات...
               </td>
+
             </tr>
 
           </tbody>
@@ -724,6 +1504,10 @@
   </section>
 
 
+  <!-- =========================
+       SECURITY
+  ========================= -->
+
   <div class="info-box">
 
     <h3>
@@ -736,12 +1520,18 @@
 
   </div>
 
+
 </main>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
   © آزمایشگاه تخصصی آلفا —
+
   <span>
     Alpha Specialized Laboratory
   </span>
@@ -749,11 +1539,11 @@
 </footer>
 
 
+<!-- =====================================================
+     DASHBOARD JAVASCRIPT
+===================================================== -->
+
 <script>
-/* =====================================================
-   ALPHA PARTNER DASHBOARD
-   AUTH + PARTNER LAB
-===================================================== */
 
 (function () {
 
@@ -765,19 +1555,76 @@
   ========================= */
 
   const partnerWelcome =
-    document.getElementById("partnerWelcome");
+    document.getElementById(
+      "partnerWelcome"
+    );
+
 
   const logoutButton =
-    document.getElementById("logoutButton");
+    document.getElementById(
+      "logoutButton"
+    );
+
 
   const systemMessage =
-    document.getElementById("systemMessage");
+    document.getElementById(
+      "systemMessage"
+    );
+
 
   const requestInfo =
-    document.getElementById("requestInfo");
+    document.getElementById(
+      "requestInfo"
+    );
+
 
   const requestsBody =
-    document.getElementById("requestsBody");
+    document.getElementById(
+      "requestsBody"
+    );
+
+
+  const monthlyRequests =
+    document.getElementById(
+      "monthlyRequests"
+    );
+
+
+  const processingRequests =
+    document.getElementById(
+      "processingRequests"
+    );
+
+
+  const readyRequests =
+    document.getElementById(
+      "readyRequests"
+    );
+
+
+  const newRequestForm =
+    document.getElementById(
+      "newRequestForm"
+    );
+
+
+  const submitRequestBtn =
+    document.getElementById(
+      "submitRequestBtn"
+    );
+
+
+  const requestMessage =
+    document.getElementById(
+      "requestMessage"
+    );
+
+
+  /* =========================
+     PARTNER LAB
+  ========================= */
+
+  let currentPartnerLab = null;
 
 
   /* =========================
@@ -786,11 +1633,132 @@
 
   function showMessage(message) {
 
-    if (!systemMessage) return;
+    if (!systemMessage) {
+      return;
+    }
 
-    systemMessage.textContent = message;
+    systemMessage.textContent =
+      message;
 
-    systemMessage.style.display = "block";
+    systemMessage.style.display =
+      "block";
+
+  }
+
+
+  /* =========================
+     ESCAPE HTML
+  ========================= */
+
+  function escapeHtml(value) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+
+      return "";
+
+    }
+
+
+    return String(value)
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  /* =========================
+     STATUS LABEL
+  ========================= */
+
+  function getStatusLabel(status) {
+
+    const statusLabels = {
+
+      received:
+        "دریافت شد",
+
+      processing:
+        "در حال انجام",
+
+      ready:
+        "جواب آماده",
+
+      delivered:
+        "تحویل شده"
+
+    };
+
+
+    return (
+      statusLabels[status] ||
+      status ||
+      "نامشخص"
+    );
+
+  }
+
+
+  /* =========================
+     STATUS CLASS
+  ========================= */
+
+  function getStatusClass(status) {
+
+    if (
+      status === "ready"
+    ) {
+
+      return "status-ready";
+
+    }
+
+
+    if (
+      status === "processing"
+    ) {
+
+      return "status-process";
+
+    }
+
+
+    if (
+      status === "delivered"
+    ) {
+
+      return "status-delivered";
+
+    }
+
+
+    return "status-received";
+
   }
 
 
@@ -804,13 +1772,18 @@
       "click",
       async function () {
 
-        logoutButton.disabled = true;
+        logoutButton.disabled =
+          true;
 
         logoutButton.textContent =
           "در حال خروج...";
 
+
         const { error } =
-          await supabaseClient.auth.signOut();
+          await supabaseClient
+            .auth
+            .signOut();
+
 
         if (error) {
 
@@ -819,28 +1792,755 @@
             error
           );
 
-          logoutButton.disabled = false;
+
+          logoutButton.disabled =
+            false;
 
           logoutButton.textContent =
             "خروج از حساب";
+
 
           showMessage(
             "خطا در خروج از حساب."
           );
 
+
           return;
+
         }
+
 
         window.location.href =
           "partner-login.html";
+
       }
     );
+
   }
 
 
-  /* =========================
+  /* =====================================================
+     LOAD REQUESTS
+  ===================================================== */
+
+  async function loadRequests() {
+
+    if (
+      !currentPartnerLab ||
+      !currentPartnerLab.id
+    ) {
+
+      console.warn(
+        "Cannot load requests: partner lab not found."
+      );
+
+      return;
+
+    }
+
+
+    const {
+      data: requests,
+      error: requestsError
+    } =
+      await supabaseClient
+
+        .from(
+          "lab_requests"
+        )
+
+        .select(
+          "id, request_code, patient_name, patient_age, patient_gender, requested_tests, status, created_at"
+        )
+
+        .eq(
+          "partner_lab_id",
+          currentPartnerLab.id
+        )
+
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        )
+
+        .limit(10);
+
+
+    if (requestsError) {
+
+      console.error(
+        "Load requests error:",
+        requestsError
+      );
+
+
+      requestInfo.textContent =
+        "خطا در دریافت درخواست‌ها";
+
+
+      requestsBody.innerHTML = `
+
+        <tr>
+
+          <td
+            colspan="5"
+            style="text-align:center;"
+          >
+            دریافت درخواست‌ها با خطا مواجه شد.
+          </td>
+
+        </tr>
+
+      `;
+
+
+      return;
+
+    }
+
+
+    console.log(
+      "Partner requests:",
+      requests
+    );
+
+
+    /* =========================
+       NO REQUESTS
+    ========================= */
+
+    if (
+      !requests ||
+      requests.length === 0
+    ) {
+
+      requestInfo.textContent =
+        "هنوز درخواستی ثبت نشده است.";
+
+
+      requestsBody.innerHTML = `
+
+        <tr>
+
+          <td
+            colspan="5"
+            style="text-align:center;"
+          >
+            هنوز هیچ درخواستی ثبت نشده است.
+          </td>
+
+        </tr>
+
+      `;
+
+
+      return;
+
+    }
+
+
+    /* =========================
+       REQUEST INFO
+    ========================= */
+
+    requestInfo.textContent =
+      `${requests.length} درخواست اخیر`;
+
+
+    /* =========================
+       RENDER
+    ========================= */
+
+    requestsBody.innerHTML =
+      requests
+        .map(
+          function (request) {
+
+
+            const date =
+              new Date(
+                request.created_at
+              ).toLocaleDateString(
+                "fa-IR"
+              );
+
+
+            const statusLabel =
+              getStatusLabel(
+                request.status
+              );
+
+
+            const statusClass =
+              getStatusClass(
+                request.status
+              );
+
+
+            return `
+
+              <tr>
+
+                <td>
+
+                  <strong>
+                    ${escapeHtml(
+                      request.request_code
+                    )}
+                  </strong>
+
+                </td>
+
+
+                <td>
+                  ${escapeHtml(
+                    request.patient_name
+                  )}
+                </td>
+
+
+                <td>
+                  ${escapeHtml(
+                    date
+                  )}
+                </td>
+
+
+                <td>
+                  ${escapeHtml(
+                    request.requested_tests
+                  )}
+                </td>
+
+
+                <td>
+
+                  <span
+                    class="status ${statusClass}"
+                  >
+                    ${escapeHtml(
+                      statusLabel
+                    )}
+                  </span>
+
+                </td>
+
+              </tr>
+
+            `;
+
+          }
+        )
+        .join("");
+
+  }
+
+
+  /* =====================================================
+     LOAD REAL DASHBOARD STATISTICS
+  ===================================================== */
+
+  async function loadDashboardStats() {
+
+    if (
+      !currentPartnerLab ||
+      !currentPartnerLab.id
+    ) {
+
+      console.warn(
+        "Cannot load stats: partner lab not found."
+      );
+
+      return;
+
+    }
+
+
+    console.log(
+      "Loading real dashboard statistics..."
+    );
+
+
+    /* =========================
+       CURRENT MONTH
+    ========================= */
+
+    const now =
+      new Date();
+
+
+    const monthStart =
+      new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        1,
+        0,
+        0,
+        0,
+        0
+      );
+
+
+    const monthStartISO =
+      monthStart.toISOString();
+
+
+    /* =========================
+       MONTHLY REQUESTS
+    ========================= */
+
+    const {
+      count: monthlyCount,
+      error: monthlyError
+    } =
+      await supabaseClient
+
+        .from(
+          "lab_requests"
+        )
+
+        .select(
+          "id",
+          {
+            count: "exact",
+            head: true
+          }
+        )
+
+        .eq(
+          "partner_lab_id",
+          currentPartnerLab.id
+        )
+
+        .gte(
+          "created_at",
+          monthStartISO
+        );
+
+
+    if (monthlyError) {
+
+      console.error(
+        "Monthly stats error:",
+        monthlyError
+      );
+
+      return;
+
+    }
+
+
+    /* =========================
+       PROCESSING
+    ========================= */
+
+    const {
+      count: processingCount,
+      error: processingError
+    } =
+      await supabaseClient
+
+        .from(
+          "lab_requests"
+        )
+
+        .select(
+          "id",
+          {
+            count: "exact",
+            head: true
+          }
+        )
+
+        .eq(
+          "partner_lab_id",
+          currentPartnerLab.id
+        )
+
+        .eq(
+          "status",
+          "processing"
+        );
+
+
+    if (processingError) {
+
+      console.error(
+        "Processing stats error:",
+        processingError
+      );
+
+      return;
+
+    }
+
+
+    /* =========================
+       READY
+    ========================= */
+
+    const {
+      count: readyCount,
+      error: readyError
+    } =
+      await supabaseClient
+
+        .from(
+          "lab_requests"
+        )
+
+        .select(
+          "id",
+          {
+            count: "exact",
+            head: true
+          }
+        )
+
+        .eq(
+          "partner_lab_id",
+          currentPartnerLab.id
+        )
+
+        .eq(
+          "status",
+          "ready"
+        );
+
+
+    if (readyError) {
+
+      console.error(
+        "Ready stats error:",
+        readyError
+      );
+
+      return;
+
+    }
+
+
+    /* =========================
+       UPDATE UI
+    ========================= */
+
+    monthlyRequests.textContent =
+      monthlyCount || 0;
+
+
+    processingRequests.textContent =
+      processingCount || 0;
+
+
+    readyRequests.textContent =
+      readyCount || 0;
+
+
+    console.log(
+      "Dashboard stats:",
+      {
+        monthly:
+          monthlyCount || 0,
+
+        processing:
+          processingCount || 0,
+
+        ready:
+          readyCount || 0
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     REFRESH DASHBOARD
+  ===================================================== */
+
+  async function refreshDashboard() {
+
+    console.log(
+      "Refreshing dashboard..."
+    );
+
+
+    await Promise.all([
+
+      loadRequests(),
+
+      loadDashboardStats()
+
+    ]);
+
+  }
+
+
+  /* =====================================================
+     NEW REQUEST FORM
+  ===================================================== */
+
+  if (newRequestForm) {
+
+    newRequestForm.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+
+        /* =========================
+           FORM DATA
+        ========================= */
+
+        const patientName =
+          document
+            .getElementById(
+              "patientName"
+            )
+            .value
+            .trim();
+
+
+        const patientAgeValue =
+          document
+            .getElementById(
+              "patientAge"
+            )
+            .value
+            .trim();
+
+
+        const patientGender =
+          document
+            .getElementById(
+              "patientGender"
+            )
+            .value
+            .trim();
+
+
+        const requestedTests =
+          document
+            .getElementById(
+              "requestedTests"
+            )
+            .value
+            .trim();
+
+
+        const requestNotes =
+          document
+            .getElementById(
+              "requestNotes"
+            )
+            .value
+            .trim();
+
+
+        /* =========================
+           VALIDATION
+        ========================= */
+
+        if (
+          !patientName ||
+          !requestedTests
+        ) {
+
+          requestMessage.textContent =
+            "لطفاً نام بیمار و آزمایش‌های درخواستی را وارد کنید.";
+
+          requestMessage.style.color =
+            "#c92a2a";
+
+          return;
+
+        }
+
+
+        if (
+          !currentPartnerLab ||
+          !currentPartnerLab.id
+        ) {
+
+          requestMessage.textContent =
+            "اطلاعات آزمایشگاه شما پیدا نشد.";
+
+          requestMessage.style.color =
+            "#c92a2a";
+
+          return;
+
+        }
+
+
+        /* =========================
+           REQUEST CODE
+        ========================= */
+
+        const requestCode =
+          "AL-" +
+          Date.now()
+            .toString()
+            .slice(-8);
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        submitRequestBtn.disabled =
+          true;
+
+        submitRequestBtn.textContent =
+          "در حال ثبت...";
+
+
+        requestMessage.textContent =
+          "";
+
+
+        /* =========================
+           INSERT
+        ========================= */
+
+        const {
+          data: newRequest,
+          error: requestError
+        } =
+          await supabaseClient
+
+            .from(
+              "lab_requests"
+            )
+
+            .insert([
+
+              {
+
+                partner_lab_id:
+                  currentPartnerLab.id,
+
+                request_code:
+                  requestCode,
+
+                patient_name:
+                  patientName,
+
+                patient_age:
+                  patientAgeValue
+                    ? Number(
+                        patientAgeValue
+                      )
+                    : null,
+
+                patient_gender:
+                  patientGender ||
+                  null,
+
+                requested_tests:
+                  requestedTests,
+
+                notes:
+                  requestNotes ||
+                  null
+
+              }
+
+            ])
+
+            .select()
+            .single();
+
+
+        /* =========================
+           INSERT ERROR
+        ========================= */
+
+        if (requestError) {
+
+          console.error(
+            "Request insert error:",
+            requestError
+          );
+
+
+          requestMessage.textContent =
+            "ثبت درخواست انجام نشد. لطفاً دوباره تلاش کنید.";
+
+
+          requestMessage.style.color =
+            "#c92a2a";
+
+
+          submitRequestBtn.disabled =
+            false;
+
+
+          submitRequestBtn.textContent =
+            "ثبت درخواست";
+
+
+          return;
+
+        }
+
+
+        /* =========================
+           SUCCESS
+        ========================= */
+
+        console.log(
+          "New request created:",
+          newRequest
+        );
+
+
+        requestMessage.textContent =
+          "درخواست با موفقیت ثبت شد. کد درخواست: " +
+          newRequest.request_code;
+
+
+        requestMessage.style.color =
+          "#087f5b";
+
+
+        /* =========================
+           RESET
+        ========================= */
+
+        newRequestForm.reset();
+
+
+        /* =========================
+           IMPORTANT
+           UPDATE WITHOUT REFRESH
+        ========================= */
+
+        await refreshDashboard();
+
+
+        /* =========================
+           BUTTON RESTORE
+        ========================= */
+
+        submitRequestBtn.disabled =
+          false;
+
+
+        submitRequestBtn.textContent =
+          "ثبت درخواست";
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
      LOAD PARTNER LAB
-  ========================= */
+  ===================================================== */
 
   async function loadPartnerLab() {
 
@@ -852,14 +2552,16 @@
 
 
       /* =========================
-         CHECK AUTH
+         AUTH
       ========================= */
 
       const {
         data: { user },
         error: authError
       } =
-        await supabaseClient.auth.getUser();
+        await supabaseClient
+          .auth
+          .getUser();
 
 
       if (authError) {
@@ -869,11 +2571,14 @@
           authError
         );
 
+
         showMessage(
           "خطا در بررسی حساب کاربری."
         );
 
+
         return;
+
       }
 
 
@@ -883,10 +2588,13 @@
           "No authenticated user found."
         );
 
+
         window.location.href =
           "partner-login.html";
 
+
         return;
+
       }
 
 
@@ -897,7 +2605,7 @@
 
 
       /* =========================
-         LOAD PARTNER LAB
+         PARTNER LAB
       ========================= */
 
       const {
@@ -905,14 +2613,20 @@
         error: labError
       } =
         await supabaseClient
-          .from("partner_labs")
+
+          .from(
+            "partner_labs"
+          )
+
           .select(
-  "id, lab_name, lab_code, phone, address"
-)
+            "id, lab_name, lab_code, phone, address"
+          )
+
           .eq(
             "user_id",
             user.id
           )
+
           .maybeSingle();
 
 
@@ -923,14 +2637,18 @@
           labError
         );
 
+
         showMessage(
           "اطلاعات آزمایشگاه شما از پایگاه داده دریافت نشد. لطفاً دسترسی جدول partner_labs و مقدار user_id را بررسی کنید."
         );
 
+
         partnerWelcome.textContent =
           "آزمایشگاه همکار 👋";
 
+
         return;
+
       }
 
 
@@ -941,223 +2659,51 @@
           user.id
         );
 
+
         showMessage(
           "برای حساب کاربری شما هنوز آزمایشگاه همکار ثبت نشده است."
         );
 
+
         partnerWelcome.textContent =
           "آزمایشگاه همکار 👋";
 
+
         return;
+
       }
+
+
+      /* =========================
+         SAVE PARTNER LAB
+      ========================= */
+
+      currentPartnerLab =
+        partnerLab;
 
 
       console.log(
         "Partner lab:",
-        partnerLab
-      );
-/* =========================
-   NEW REQUEST FORM
-========================= */
-
-const newRequestForm =
-  document.getElementById("newRequestForm");
-
-const submitRequestBtn =
-  document.getElementById("submitRequestBtn");
-
-const requestMessage =
-  document.getElementById("requestMessage");
-
-
-if (newRequestForm) {
-
-  newRequestForm.addEventListener(
-    "submit",
-    async function (event) {
-
-      event.preventDefault();
-
-
-      /* =========================
-         FORM DATA
-      ========================= */
-
-      const patientName =
-        document
-          .getElementById("patientName")
-          .value
-          .trim();
-
-      const patientAgeValue =
-        document
-          .getElementById("patientAge")
-          .value
-          .trim();
-
-      const patientGender =
-        document
-          .getElementById("patientGender")
-          .value
-          .trim();
-
-      const requestedTests =
-        document
-          .getElementById("requestedTests")
-          .value
-          .trim();
-
-      const requestNotes =
-        document
-          .getElementById("requestNotes")
-          .value
-          .trim();
-
-
-      /* =========================
-         VALIDATION
-      ========================= */
-
-      if (!patientName || !requestedTests) {
-
-        requestMessage.textContent =
-          "لطفاً نام بیمار و آزمایش‌های درخواستی را وارد کنید.";
-
-        requestMessage.style.color =
-          "#c92a2a";
-
-        return;
-      }
-
-
-      if (!partnerLab || !partnerLab.id) {
-
-        requestMessage.textContent =
-          "اطلاعات آزمایشگاه شما پیدا نشد.";
-
-        requestMessage.style.color =
-          "#c92a2a";
-
-        return;
-      }
-
-
-      /* =========================
-         REQUEST CODE
-      ========================= */
-
-      const requestCode =
-        "AL-" +
-        Date.now().toString().slice(-8);
-
-
-      /* =========================
-         INSERT REQUEST
-      ========================= */
-
-      submitRequestBtn.disabled = true;
-
-      submitRequestBtn.textContent =
-        "در حال ثبت...";
-
-
-      const {
-        data: newRequest,
-        error: requestError
-      } =
-        await supabaseClient
-          .from("lab_requests")
-          .insert([
-            {
-              partner_lab_id: partnerLab.id,
-              request_code: requestCode,
-              patient_name: patientName,
-              patient_age:
-                patientAgeValue
-                  ? Number(patientAgeValue)
-                  : null,
-              patient_gender:
-                patientGender || null,
-              requested_tests: requestedTests,
-              notes: requestNotes || null
-            }
-          ])
-          .select()
-          .single();
-
-
-      /* =========================
-         ERROR
-      ========================= */
-
-      if (requestError) {
-
-        console.error(
-          "Request insert error:",
-          requestError
-        );
-
-        requestMessage.textContent =
-          "ثبت درخواست انجام نشد. لطفاً دوباره تلاش کنید.";
-
-        requestMessage.style.color =
-          "#c92a2a";
-
-        submitRequestBtn.disabled = false;
-
-        submitRequestBtn.textContent =
-          "ثبت درخواست";
-
-        return;
-      }
-
-
-      /* =========================
-         SUCCESS
-      ========================= */
-
-      console.log(
-        "New request created:",
-        newRequest
+        currentPartnerLab
       );
 
 
-      requestMessage.textContent =
-        "درخواست با موفقیت ثبت شد. کد درخواست: " +
-        newRequest.request_code;
-
-      requestMessage.style.color =
-        "#087f5b";
-
-
-      newRequestForm.reset();
-
-
-      submitRequestBtn.disabled = false;
-
-      submitRequestBtn.textContent =
-        "ثبت درخواست";
-
-    }
-  );
-
-}
-
       /* =========================
-         DISPLAY LAB NAME
+         WELCOME
       ========================= */
 
       if (
-        partnerLab.lab_name &&
-        partnerWelcome
+        currentPartnerLab.lab_name
       ) {
 
         partnerWelcome.textContent =
-          `سلام، ${partnerLab.lab_name} 👋`;
+          `سلام، ${currentPartnerLab.lab_name} 👋`;
+
       }
 
+
       /* =========================
-         SECURITY INFO
+         SECURITY
       ========================= */
 
       const securityMessage =
@@ -1165,179 +2711,34 @@ if (newRequestForm) {
           "securityMessage"
         );
 
+
       if (securityMessage) {
 
         securityMessage.textContent =
-          `حساب فعال: ${partnerLab.lab_name || "آزمایشگاه همکار"} | کد آزمایشگاه: ${partnerLab.lab_code || "ثبت نشده"}`;
+
+          `حساب فعال: ${
+            currentPartnerLab.lab_name ||
+            "آزمایشگاه همکار"
+          } | کد آزمایشگاه: ${
+            currentPartnerLab.lab_code ||
+            "ثبت نشده"
+          }`;
+
       }
 
 
       console.log(
         "Partner lab loaded successfully."
       );
-/* =========================
-   LOAD PARTNER REQUESTS
-========================= */
-
-async function loadRequests() {
-
-  if (!partnerLab || !partnerLab.id) {
-
-    console.warn(
-      "Cannot load requests: partner lab not found."
-    );
-
-    return;
-  }
 
 
-  const {
-    data: requests,
-    error: requestsError
-  } =
-    await supabaseClient
-      .from("lab_requests")
-      .select(
-        "id, request_code, patient_name, patient_age, patient_gender, requested_tests, status, created_at"
-      )
-      .eq(
-        "partner_lab_id",
-        partnerLab.id
-      )
-      .order(
-        "created_at",
-        { ascending: false }
-      )
-      .limit(10);
+      /* =========================
+         INITIAL LOAD
+      ========================= */
+
+      await refreshDashboard();
 
 
-  if (requestsError) {
-
-    console.error(
-      "Load requests error:",
-      requestsError
-    );
-
-    requestInfo.textContent =
-      "خطا در دریافت درخواست‌ها";
-
-    requestsBody.innerHTML = `
-      <tr>
-        <td colspan="5" style="text-align:center;">
-          دریافت درخواست‌ها با خطا مواجه شد.
-        </td>
-      </tr>
-    `;
-
-    return;
-  }
-
-
-  console.log(
-    "Partner requests:",
-    requests
-  );
-
-
-  /* =========================
-     NO REQUESTS
-  ========================= */
-
-  if (!requests || requests.length === 0) {
-
-    requestInfo.textContent =
-      "هنوز درخواستی ثبت نشده است.";
-
-    requestsBody.innerHTML = `
-      <tr>
-        <td colspan="5" style="text-align:center;">
-          هنوز هیچ درخواستی ثبت نشده است.
-        </td>
-      </tr>
-    `;
-
-    return;
-  }
-
-
-  /* =========================
-     REQUEST COUNT
-  ========================= */
-
-  requestInfo.textContent =
-    `${requests.length} درخواست اخیر`;
-
-
-  /* =========================
-     STATUS TRANSLATION
-  ========================= */
-
-  const statusLabels = {
-
-    received: "دریافت شد",
-
-    processing: "در حال انجام",
-
-    ready: "جواب آماده",
-
-    delivered: "تحویل شده"
-
-  };
-
-
-  /* =========================
-     RENDER REQUESTS
-  ========================= */
-
-  requestsBody.innerHTML =
-    requests.map(request => {
-
-      const date =
-        new Date(
-          request.created_at
-        ).toLocaleDateString(
-          "fa-IR"
-        );
-
-
-      const status =
-        statusLabels[
-          request.status
-        ] || request.status;
-
-
-      return `
-        <tr>
-
-          <td>
-            <strong>
-              ${request.request_code}
-            </strong>
-          </td>
-
-          <td>
-            ${request.patient_name}
-          </td>
-
-          <td>
-            ${date}
-          </td>
-
-          <td>
-            ${request.requested_tests}
-          </td>
-
-          <td>
-            ${status}
-          </td>
-
-        </tr>
-      `;
-
-    }).join("");
-
-}
-loadRequests();
     } catch (error) {
 
       console.error(
@@ -1345,10 +2746,13 @@ loadRequests();
         error
       );
 
+
       showMessage(
         "یک خطای غیرمنتظره در داشبورد رخ داد."
       );
+
     }
+
   }
 
 
@@ -1360,7 +2764,11 @@ loadRequests();
 
 
 })();
+
 </script>
 
+
 </body>
+
 </html>
+```
