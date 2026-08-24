@@ -18,7 +18,7 @@
       "https://znnfjaetnmzttcueqxpw.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_rtOJjJKZJOHv0NPDYRgvJw_dtXV_DUS";
+      "sb_publishable_rtOJjJkZJOHv0NPDYRgvJw_dtXV_DUS";
 
     const supabaseClient =
       window.supabase.createClient(
@@ -150,6 +150,11 @@
 
     .logout-button:hover {
       background: rgba(255,255,255,.20);
+    }
+
+    .logout-button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
     }
 
     /* =====================================================
@@ -361,6 +366,11 @@
 
       background:
         var(--primary-dark);
+    }
+
+    .refresh-button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
     }
 
     /* =====================================================
@@ -1012,7 +1022,7 @@
 
   <!-- ===================================================
        SECURITY
-  =================================================== -->
+  ===================================================== -->
 
   <div class="security-box">
 
@@ -1055,6 +1065,18 @@
 (function () {
 
   "use strict";
+
+
+  /* =====================================================
+     ADMIN CONFIG
+  ===================================================== */
+
+  const ADMIN_USER_ID =
+    "e84796a5-47bc-4d1f-9b6c-0f00e2a9c2d6";
+
+
+  const ADMIN_EMAIL =
+    "mh.rezas2025@gmail.com";
 
 
   /* =====================================================
@@ -1201,18 +1223,42 @@
 
   function escapeHTML(value) {
 
-    if (value === null ||
-        value === undefined) {
+    if (
+      value === null ||
+      value === undefined
+    ) {
 
       return "";
+
     }
 
     return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
   }
 
 
@@ -1259,11 +1305,17 @@
           );
 
           return;
+
         }
 
 
+        /*
+         * مدیر بعد از خروج
+         * به Login مدیر برمی‌گردد
+         */
+
         window.location.href =
-          "partner-login.html";
+          "admin-login.html";
 
       }
     );
@@ -1451,6 +1503,7 @@
       `;
 
       return;
+
     }
 
 
@@ -1609,6 +1662,7 @@
       requestInfo.textContent =
         "خطا در دریافت اطلاعات";
 
+
       requestsBody.innerHTML = `
 
         <tr>
@@ -1718,9 +1772,9 @@
       );
 
 
-      /* =========================
-         AUTH
-      ========================= */
+      /* =================================================
+         AUTHENTICATED USER
+      ================================================= */
 
       const {
         data: {
@@ -1741,23 +1795,43 @@
           authError
         );
 
+
         showMessage(
           "خطا در بررسی حساب کاربری."
         );
+
 
         return;
 
       }
 
 
-      /* =========================
+      /* =================================================
          NO USER
-      ========================= */
+      ================================================= */
 
       if (!user) {
 
-        window.location.href =
-          "partner-login.html";
+        console.warn(
+          "No authenticated user."
+        );
+
+
+        showMessage(
+          "برای ورود به پنل مدیریت ابتدا وارد حساب مدیر شوید."
+        );
+
+
+        setTimeout(
+          function () {
+
+            window.location.href =
+              "admin-login.html";
+
+          },
+          1200
+        );
+
 
         return;
 
@@ -1770,9 +1844,15 @@
       );
 
 
-      /* =========================
+      console.log(
+        "Authenticated email:",
+        user.email
+      );
+
+
+      /* =================================================
          LOAD PROFILE
-      ========================= */
+      ================================================= */
 
       const {
         data: profile,
@@ -1800,18 +1880,34 @@
           profileError
         );
 
+
         showMessage(
           "خطا در دریافت سطح دسترسی."
         );
+
+
+        if (securityMessage) {
+
+          securityMessage.textContent =
+            "خطا در بررسی پروفایل مدیر.";
+
+        }
+
 
         return;
 
       }
 
 
-      /* =========================
-         CHECK ADMIN
-      ========================= */
+      console.log(
+        "Admin profile:",
+        profile
+      );
+
+
+      /* =================================================
+         CHECK ADMIN ROLE
+      ================================================= */
 
       if (
         !profile ||
@@ -1820,7 +1916,7 @@
       ) {
 
         console.warn(
-          "Access denied:",
+          "Access denied. User is not admin:",
           profile
         );
 
@@ -1830,35 +1926,47 @@
         ) {
 
           securityMessage.textContent =
-            "دسترسی غیرمجاز. این صفحه فقط برای مدیر آزمایشگاه آلفا است.";
+            "دسترسی غیرمجاز — این حساب مدیر نیست.";
 
         }
 
 
         showMessage(
-          "شما اجازه ورود به پنل مدیریت را ندارید."
+          "این حساب اجازه ورود به پنل مدیریت مرکزی را ندارد."
         );
 
 
-        setTimeout(
-          function () {
-
-            window.location.href =
-              "partner-dashboard.html";
-
-          },
-          1800
-        );
-
+        /*
+         * بسیار مهم:
+         * دیگر کاربر را به partner-dashboard
+         * منتقل نمی‌کنیم.
+         */
 
         return;
 
       }
 
 
-      /* =========================
+      /* =================================================
+         OPTIONAL ADMIN ID CHECK
+      ================================================= */
+
+      if (
+        user.id !==
+        ADMIN_USER_ID
+      ) {
+
+        console.warn(
+          "Admin role exists but user ID is different:",
+          user.id
+        );
+
+      }
+
+
+      /* =================================================
          ADMIN WELCOME
-      ========================= */
+      ================================================= */
 
       const adminName =
         profile.full_name ||
@@ -1874,7 +1982,7 @@
       ) {
 
         securityMessage.textContent =
-          `دسترسی تأیید شد | سطح دسترسی: مدیر | حساب: ${user.email || "Admin"}`;
+          `دسترسی تأیید شد | سطح دسترسی: مدیر | حساب: ${user.email || ADMIN_EMAIL}`;
 
       }
 
@@ -1882,9 +1990,9 @@
       hideMessage();
 
 
-      /* =========================
+      /* =================================================
          LOAD REQUESTS
-      ========================= */
+      ================================================= */
 
       await loadRequests();
 
@@ -1900,6 +2008,7 @@
         "Unexpected admin dashboard error:",
         error
       );
+
 
       showMessage(
         "یک خطای غیرمنتظره در پنل مدیریت رخ داد."
