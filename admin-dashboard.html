@@ -1528,28 +1528,35 @@ requestsBody.addEventListener(
   }
 );
 
+if (closeRequestModal) {
 
-closeRequestModal.addEventListener(
-  "click",
-  closeRequestDetails
-);
+  closeRequestModal.addEventListener(
+    "click",
+    closeRequestDetails
+  );
+
+}
 
 
-requestModal.addEventListener(
-  "click",
-  function (event) {
+if (requestModal) {
 
-    if (
-      event.target ===
-      requestModal
-    ) {
+  requestModal.addEventListener(
+    "click",
+    function (event) {
 
-      closeRequestDetails();
+      if (
+        event.target ===
+        requestModal
+      ) {
+
+        closeRequestDetails();
+
+      }
 
     }
+  );
 
-  }
-);
+}
 
 
 document.addEventListener(
