@@ -3184,7 +3184,19 @@ function printLabReport(
           </p>
 
         </div>
+<div class="print-report-code">
 
+<strong>
+کد درخواست
+</strong>
+
+<span>
+${escapeHTML(
+request.request_code || "-"
+)}
+</span>
+
+</div>
         <div class="print-report-code">
 
           <strong>
