@@ -644,7 +644,27 @@ footer span{
   border-bottom:2px solid #063b57;
   margin-bottom:20px;
 }
+.print-report-code{
+  width:90px;
+  text-align:center;
+  border:1px solid #ccc;
+  padding:8px;
+  border-radius:5px;
+  font-size:10px;
+}
 
+.print-report-code strong{
+  display:block;
+  color:#555;
+  margin-bottom:4px;
+  font-size:9px;
+}
+
+.print-report-code span{
+  font-size:11px;
+  font-weight:bold;
+  color:#063b57;
+}
 .print-report-logo{
   width:80px;
   height:80px;
@@ -3052,315 +3072,516 @@ result
 );
 
 }
-
 /* =====================================================
-   PRINT REPORT HTML
+   PRINT REPORT HTML - FINAL VERSION
 ===================================================== */
 
 function printLabReport(
-request,
-result
+  request,
+  result
 ){
 
-if(!request){
+  if(!request){
 
-showMessage(
-"اطلاعات درخواست برای چاپ پیدا نشد.",
-"error"
-);
+    showMessage(
+      "اطلاعات درخواست برای چاپ پیدا نشد.",
+      "error"
+    );
 
-return;
+    return;
 
-}
+  }
 
-if(!result){
+  if(!result){
 
-showMessage(
-"برای این درخواست هنوز نتیجه آزمایش ثبت نشده است.",
-"error"
-);
+    showMessage(
+      "برای این درخواست هنوز نتیجه آزمایش ثبت نشده است.",
+      "error"
+    );
 
-return;
+    return;
 
-}
+  }
 
-const lab =
-request.partner_lab || {};
+  const lab =
+    request.partner_lab || {};
 
-const createdDate =
-request.created_at
-?
-new Date(
-request.created_at
-).toLocaleDateString(
-"fa-IR"
-)
-:
-"-";
+  const createdDate =
+    request.created_at
+    ?
+    new Date(
+      request.created_at
+    ).toLocaleDateString(
+      "fa-IR"
+    )
+    :
+    "-";
 
-const printContainer =
-document.getElementById(
-"printReportContainer"
-);
+  const printDate =
+    new Date().toLocaleDateString(
+      "fa-IR"
+    );
 
-if(!printContainer){
+  const printTime =
+    new Date().toLocaleTimeString(
+      "fa-IR",
+      {
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
 
-showMessage(
-"بخش چاپ راپور پیدا نشد.",
-"error"
-);
+  const printContainer =
+    document.getElementById(
+      "printReportContainer"
+    );
 
-return;
+  if(!printContainer){
 
-}
+    showMessage(
+      "بخش چاپ راپور پیدا نشد.",
+      "error"
+    );
 
-printContainer.innerHTML = `
+    return;
 
-<div class="print-report-page">
+  }
 
-<div class="print-report-header">
+  /* =====================================================
+     BUILD REPORT
+  ===================================================== */
 
-<img
-src="لوگو.jfif"
-class="print-report-logo"
-alt="لوگوی آزمایشگاه تخصصی آلفا"
->
+  printContainer.innerHTML = `
 
-<div class="print-report-title">
+    <div class="print-report-page">
 
-<h1>
-آزمایشگاه تخصصی آلفا
-</h1>
+      <!-- HEADER -->
 
-<h2>
-Alpha Specialized Laboratory
-</h2>
+      <div class="print-report-header">
 
-<p>
-راپور نتیجه آزمایش
-</p>
+        <div>
 
-</div>
+          <img
+            src="لوگو.jfif"
+            class="print-report-logo"
+            alt="لوگوی آزمایشگاه تخصصی آلفا"
+          >
 
-<div style="width:80px;"></div>
+        </div>
 
-</div>
+        <div class="print-report-title">
 
+          <h1>
+            آزمایشگاه تخصصی آلفا
+          </h1>
 
-<div class="print-report-meta">
+          <h2>
+            Alpha Specialized Laboratory
+          </h2>
 
-<div class="print-meta-item">
+          <p>
+            راپور نتیجه آزمایش
+          </p>
 
-<strong>
-نام مریض
-</strong>
+        </div>
 
-<span>
-${escapeHTML(
-request.patient_name || "-"
-)}
-</span>
+        <div class="print-report-code">
 
-</div>
+          <strong>
+            کد راپور
+          </strong>
 
+          <span>
+            ${escapeHTML(
+              request.request_code || "-"
+            )}
+          </span>
 
-<div class="print-meta-item">
+        </div>
 
-<strong>
-کد درخواست
-</strong>
+      </div>
 
-<span>
-${escapeHTML(
-request.request_code || "-"
-)}
-</span>
 
-</div>
+      <!-- PATIENT INFORMATION -->
 
+      <div class="print-report-section">
 
-<div class="print-meta-item">
+        <h3>
+          👤 مشخصات مریض
+        </h3>
 
-<strong>
-سن
-</strong>
+        <div class="print-report-meta">
 
-<span>
-${escapeHTML(
-request.patient_age || "-"
-)}
-</span>
+          <div class="print-meta-item">
 
-</div>
+            <strong>
+              نام مریض
+            </strong>
 
+            <span>
+              ${escapeHTML(
+                request.patient_name || "-"
+              )}
+            </span>
 
-<div class="print-meta-item">
+          </div>
 
-<strong>
-جنسیت
-</strong>
 
-<span>
-${escapeHTML(
-request.patient_gender || "-"
-)}
-</span>
+          <div class="print-meta-item">
 
-</div>
+            <strong>
+              سن
+            </strong>
 
+            <span>
+              ${
+                request.patient_age !== null &&
+                request.patient_age !== undefined &&
+                request.patient_age !== ""
+                ?
+                escapeHTML(
+                  request.patient_age
+                )
+                :
+                "-"
+              }
+            </span>
 
-<div class="print-meta-item">
+          </div>
 
-<strong>
-آزمایشگاه همکار
-</strong>
 
-<span>
-${escapeHTML(
-lab.lab_name || "-"
-)}
-</span>
+          <div class="print-meta-item">
 
-</div>
+            <strong>
+              جنسیت
+            </strong>
 
+            <span>
+              ${escapeHTML(
+                request.patient_gender || "-"
+              )}
+            </span>
 
-<div class="print-meta-item">
+          </div>
 
-<strong>
-تاریخ
-</strong>
 
-<span>
-${escapeHTML(createdDate)}
-</span>
+          <div class="print-meta-item">
 
-</div>
+            <strong>
+              آزمایشگاه همکار
+            </strong>
 
-</div>
+            <span>
+              ${escapeHTML(
+                lab.lab_name || "-"
+              )}
+            </span>
 
+          </div>
 
-<div class="print-report-section">
 
-<h3>
-🧪 آزمایش‌های درخواست‌شده
-</h3>
+          <div class="print-meta-item">
 
-<div class="print-request-tests">
-${escapeHTML(
-request.requested_tests || "-"
-)}
-</div>
+            <strong>
+              کد آزمایشگاه
+            </strong>
 
-</div>
+            <span>
+              ${escapeHTML(
+                lab.lab_code || "-"
+              )}
+            </span>
 
+          </div>
 
-<div class="print-report-section">
 
-<h3>
-📋 عنوان نتیجه
-</h3>
+          <div class="print-meta-item">
 
-<div class="print-request-tests">
-${escapeHTML(
-result.result_title || "-"
-)}
-</div>
+            <strong>
+              تاریخ ثبت درخواست
+            </strong>
 
-</div>
+            <span>
+              ${escapeHTML(
+                createdDate
+              )}
+            </span>
 
+          </div>
 
-<div class="print-report-section">
+        </div>
 
-<h3>
-🔬 نتیجه آزمایش
-</h3>
+      </div>
 
-<div class="print-result-box">
-${escapeHTML(
-result.result_text || "-"
-)}
-</div>
 
-</div>
+      <!-- REQUESTED TESTS -->
 
+      <div class="print-report-section">
 
-${
-result.result_file_url
-?
-`
-<div class="print-report-section">
+        <h3>
+          🧪 آزمایش‌های درخواست‌شده
+        </h3>
 
-<h3>
-📎 فایل جواب
-</h3>
+        <div class="print-request-tests">
 
-<div class="print-request-tests">
+          ${escapeHTML(
+            request.requested_tests || "-"
+          )}
 
-فایل جواب الکترونیکی نیز برای این درخواست ثبت شده است.
+        </div>
 
-</div>
+      </div>
 
-</div>
-`
-:
-""
-}
 
+      <!-- RESULT TITLE -->
 
-<div class="print-report-footer">
+      <div class="print-report-section">
 
-<div class="print-signature">
+        <h3>
+          📋 عنوان نتیجه
+        </h3>
 
-<div>
-مسئول آزمایشگاه
-</div>
+        <div class="print-request-tests">
 
-<div class="print-signature-line">
-امضاء و مهر
-</div>
+          ${escapeHTML(
+            result.result_title || "-"
+          )}
 
-</div>
+        </div>
 
+      </div>
 
-<div class="print-signature">
 
-<div>
-تاریخ چاپ
-</div>
+      <!-- LAB RESULT -->
 
-<div class="print-signature-line">
-${new Date().toLocaleDateString("fa-IR")}
-</div>
+      <div class="print-report-section">
 
-</div>
+        <h3>
+          🔬 نتیجه آزمایش
+        </h3>
 
-</div>
+        <div class="print-result-box">
 
-</div>
+          ${escapeHTML(
+            result.result_text || "-"
+          )}
 
-`;
+        </div>
 
-printContainer.style.display =
-"block";
+      </div>
 
-setTimeout(
-function(){
 
-window.print();
+      <!-- NOTES -->
 
-setTimeout(
-function(){
+      ${
+        request.notes
+        ?
+        `
 
-printContainer.style.display =
-"none";
+        <div class="print-report-section">
 
-},
-500
-);
+          <h3>
+            📝 توضیحات
+          </h3>
 
-},
-150
-);
+          <div class="print-request-tests">
+
+            ${escapeHTML(
+              request.notes
+            )}
+
+          </div>
+
+        </div>
+
+        `
+        :
+        ""
+      }
+
+
+      <!-- ELECTRONIC FILE -->
+
+      ${
+        result.result_file_url
+        ?
+        `
+
+        <div class="print-report-section">
+
+          <h3>
+            📎 فایل جواب
+          </h3>
+
+          <div class="print-request-tests">
+
+            فایل جواب الکترونیکی برای این درخواست
+            نیز ثبت شده است.
+
+            <br>
+
+            <span style="
+              font-size:10px;
+              color:#666;
+            ">
+
+              فایل اصلی از طریق سیستم آزمایشگاه
+              قابل مشاهده می‌باشد.
+
+            </span>
+
+          </div>
+
+        </div>
+
+        `
+        :
+        ""
+      }
+
+
+      <!-- VERIFICATION -->
+
+      <div
+        style="
+          margin-top:18px;
+          padding:10px 14px;
+          border:1px solid #c9e8df;
+          background:#f1fbf8;
+          border-radius:6px;
+          font-size:11px;
+          color:#087f5b;
+        "
+      >
+
+        ${
+          result.verified === true
+          ?
+          "✅ نتیجه آزمایش توسط آزمایشگاه تأیید شده است."
+          :
+          "⚠️ این نتیجه هنوز تأیید نهایی نشده است."
+        }
+
+      </div>
+
+
+      <!-- FOOTER -->
+
+      <div class="print-report-footer">
+
+        <div>
+
+          <strong>
+            آزمایشگاه تخصصی آلفا
+          </strong>
+
+          <br>
+
+          <span>
+            Alpha Specialized Laboratory
+          </span>
+
+          <br>
+
+          <span>
+            تاریخ چاپ:
+            ${escapeHTML(printDate)}
+          </span>
+
+          <br>
+
+          <span>
+            ساعت چاپ:
+            ${escapeHTML(printTime)}
+          </span>
+
+        </div>
+
+
+        <div class="print-signature">
+
+          <div>
+            مسئول آزمایشگاه
+          </div>
+
+          <div class="print-signature-line">
+            امضاء و مهر
+          </div>
+
+        </div>
+
+
+        <div class="print-signature">
+
+          <div>
+            تأیید نهایی
+          </div>
+
+          <div class="print-signature-line">
+            امضاء و مهر
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- COPYRIGHT -->
+
+      <div
+        style="
+          margin-top:20px;
+          padding-top:8px;
+          border-top:1px solid #ddd;
+          text-align:center;
+          font-size:9px;
+          color:#777;
+        "
+      >
+
+        این راپور توسط سیستم مدیریت مرکزی
+        آزمایشگاه تخصصی آلفا صادر شده است.
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  /* =====================================================
+     SHOW PRINT CONTAINER
+  ===================================================== */
+
+  printContainer.style.display =
+    "block";
+
+
+  /* =====================================================
+     PRINT
+  ===================================================== */
+
+  setTimeout(
+    function(){
+
+      window.print();
+
+      setTimeout(
+        function(){
+
+          printContainer.style.display =
+            "none";
+
+          printContainer.innerHTML =
+            "";
+
+        },
+        700
+      );
+
+    },
+    300
+  );
 
 }
 
