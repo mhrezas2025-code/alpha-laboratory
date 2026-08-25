@@ -1477,7 +1477,8 @@ lab_name,
 lab_code
 )
 `)
-.order(
+.eq("partner_lab_id", partnerLab.id)
+  .order(
 "created_at",
 {
 ascending:false
