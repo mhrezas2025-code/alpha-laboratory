@@ -550,6 +550,16 @@ footer span{
   margin-top:12px;
 }
 
+.print-report-button{
+  width:100%;
+  margin-top:10px;
+  background:#063b57;
+}
+
+.print-report-button:hover{
+  background:#087d99;
+}
+
 .verified-box{
   margin-top:12px;
   padding:12px;
@@ -615,6 +625,127 @@ footer span{
   color:var(--primary-dark);
 }
 
+/* PRINT */
+
+.print-report-page{
+  direction:rtl;
+  font-family:Tahoma,Arial,sans-serif;
+  color:#111;
+  background:white;
+  padding:25px;
+}
+
+.print-report-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding-bottom:15px;
+  border-bottom:2px solid #063b57;
+  margin-bottom:20px;
+}
+
+.print-report-logo{
+  width:80px;
+  height:80px;
+  object-fit:contain;
+}
+
+.print-report-title{
+  flex:1;
+  text-align:center;
+}
+
+.print-report-title h1{
+  margin:0;
+  font-size:22px;
+  color:#063b57;
+}
+
+.print-report-title h2{
+  margin:4px 0;
+  font-size:14px;
+}
+
+.print-report-title p{
+  margin:0;
+  font-size:10px;
+  color:#666;
+}
+
+.print-report-meta{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.print-meta-item{
+  border:1px solid #ccc;
+  padding:9px 12px;
+  border-radius:5px;
+}
+
+.print-meta-item strong{
+  display:block;
+  font-size:10px;
+  color:#555;
+  margin-bottom:3px;
+}
+
+.print-meta-item span{
+  font-size:12px;
+}
+
+.print-report-section{
+  margin-top:18px;
+}
+
+.print-report-section h3{
+  margin:0 0 8px;
+  padding:7px 10px;
+  background:#eef7f8;
+  border-right:4px solid #087d99;
+  font-size:13px;
+}
+
+.print-result-box{
+  border:1px solid #aaa;
+  padding:15px;
+  min-height:120px;
+  white-space:pre-wrap;
+  line-height:2;
+  font-size:12px;
+}
+
+.print-request-tests{
+  border:1px solid #ccc;
+  padding:12px;
+  white-space:pre-wrap;
+  line-height:2;
+  font-size:12px;
+}
+
+.print-report-footer{
+  display:flex;
+  justify-content:space-between;
+  margin-top:60px;
+  padding-top:15px;
+  border-top:1px solid #ccc;
+  font-size:11px;
+}
+
+.print-signature{
+  text-align:center;
+  min-width:180px;
+}
+
+.print-signature-line{
+  margin-top:45px;
+  border-top:1px solid #333;
+  padding-top:5px;
+}
+
 @media(max-width:1000px){
 
   .stats{
@@ -657,6 +788,33 @@ footer span{
 
   .modal-body{
     padding:18px;
+  }
+
+}
+
+@media print{
+
+  body *{
+    visibility:hidden !important;
+  }
+
+  #printReportContainer,
+  #printReportContainer *{
+    visibility:visible !important;
+  }
+
+  #printReportContainer{
+    display:block !important;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    background:white;
+  }
+
+  @page{
+    size:A4;
+    margin:12mm;
   }
 
 }
@@ -973,6 +1131,13 @@ class="modal-body"
 
 </div>
 
+<!-- PRINT CONTAINER -->
+
+<div
+id="printReportContainer"
+style="display:none;"
+></div>
+
 <footer>
 
 © آزمایشگاه تخصصی آلفا —
@@ -1076,7 +1241,10 @@ let allRequests = [];
    MESSAGE
 ===================================================== */
 
-function showMessage(message,type="error"){
+function showMessage(
+message,
+type="error"
+){
 
 systemMessage.textContent =
 message;
@@ -1097,7 +1265,7 @@ systemMessage.style.display =
 }
 
 /* =====================================================
-   ESCAPE
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHTML(value){
@@ -1106,7 +1274,9 @@ if(
 value === null ||
 value === undefined
 ){
+
 return "";
+
 }
 
 return String(value)
@@ -1124,24 +1294,35 @@ return String(value)
 
 function getStatusLabel(status){
 
-const labels={
+const labels = {
+
 received:"دریافت شد",
+
 processing:"در حال انجام",
+
 ready:"جواب آماده",
+
 delivered:"تحویل شده"
+
 };
 
-return labels[status] || "نامشخص";
+return labels[status] ||
+"نامشخص";
 
 }
 
 function getStatusClass(status){
 
-const classes={
+const classes = {
+
 received:"status-received",
+
 processing:"status-process",
+
 ready:"status-ready",
+
 delivered:"status-delivered"
+
 };
 
 return classes[status] ||
@@ -1157,23 +1338,25 @@ logoutButton.addEventListener(
 "click",
 async function(){
 
-logoutButton.disabled=true;
+logoutButton.disabled = true;
 
-logoutButton.textContent=
+logoutButton.textContent =
 "در حال خروج...";
 
 try{
 
-const {error}=
+const {error} =
 await supabaseClient
 .auth
 .signOut();
 
 if(error){
+
 throw error;
+
 }
 
-window.location.href=
+window.location.href =
 "partner-login.html";
 
 }
@@ -1190,9 +1373,9 @@ showMessage(
 "error"
 );
 
-logoutButton.disabled=false;
+logoutButton.disabled = false;
 
-logoutButton.textContent=
+logoutButton.textContent =
 "خروج از حساب";
 
 }
@@ -1203,80 +1386,82 @@ logoutButton.textContent=
    STATISTICS
 ===================================================== */
 
-function updateStatistics(requests){
+function updateStatistics(
+requests
+){
 
 document.getElementById(
 "totalRequests"
-).textContent=
+).textContent =
 requests.length;
 
 document.getElementById(
 "receivedRequests"
-).textContent=
+).textContent =
 requests.filter(
-r=>r.status==="received"
+r => r.status === "received"
 ).length;
 
 document.getElementById(
 "processingRequests"
-).textContent=
+).textContent =
 requests.filter(
-r=>r.status==="processing"
+r => r.status === "processing"
 ).length;
 
 document.getElementById(
 "readyRequests"
-).textContent=
+).textContent =
 requests.filter(
-r=>r.status==="ready"
+r => r.status === "ready"
 ).length;
 
 }
 
 /* =====================================================
-   RENDER
+   RENDER REQUESTS
 ===================================================== */
 
 function renderRequests(){
 
-let filtered=[
-...allRequests
-];
+let filtered =
+[...allRequests];
 
-const search=
+const search =
 searchInput.value
 .trim()
 .toLowerCase();
 
-const selectedStatus=
+const selectedStatus =
 statusFilter.value;
 
 if(search){
 
-filtered=
-filtered.filter(request=>{
+filtered =
+filtered.filter(
+request => {
 
-const code=
+const code =
 String(
 request.request_code || ""
 ).toLowerCase();
 
-const patient=
+const patient =
 String(
 request.patient_name || ""
 ).toLowerCase();
 
-const lab=
+const lab =
 String(
 request.partner_lab?.lab_name || ""
 ).toLowerCase();
 
-const tests=
+const tests =
 String(
 request.requested_tests || ""
 ).toLowerCase();
 
-return(
+return (
 code.includes(search) ||
 patient.includes(search) ||
 lab.includes(search) ||
@@ -1287,9 +1472,11 @@ tests.includes(search)
 
 }
 
-if(selectedStatus!=="all"){
+if(
+selectedStatus !== "all"
+){
 
-filtered=
+filtered =
 filtered.filter(
 request =>
 request.status ===
@@ -1298,12 +1485,12 @@ selectedStatus
 
 }
 
-requestInfo.textContent=
+requestInfo.textContent =
 `${filtered.length} درخواست`;
 
 if(!filtered.length){
 
-requestsBody.innerHTML=`
+requestsBody.innerHTML = `
 
 <tr>
 
@@ -1322,23 +1509,26 @@ return;
 
 }
 
-requestsBody.innerHTML=
-filtered.map(request=>{
+requestsBody.innerHTML =
+filtered.map(
+request => {
 
-const date=
+const date =
 request.created_at
-? new Date(
+?
+new Date(
 request.created_at
 ).toLocaleDateString(
 "fa-IR"
 )
-: "-";
+:
+"-";
 
-const labName=
+const labName =
 request.partner_lab?.lab_name ||
 "نامشخص";
 
-const status=
+const status =
 request.status ||
 "received";
 
@@ -1406,28 +1596,28 @@ data-request-id="${escapeHTML(request.id)}"
 
 <option
 value="received"
-${status==="received"?"selected":""}
+${status === "received" ? "selected" : ""}
 >
 دریافت شد
 </option>
 
 <option
 value="processing"
-${status==="processing"?"selected":""}
+${status === "processing" ? "selected" : ""}
 >
 در حال انجام
 </option>
 
 <option
 value="ready"
-${status==="ready"?"selected":""}
+${status === "ready" ? "selected" : ""}
 >
 جواب آماده
 </option>
 
 <option
 value="delivered"
-${status==="delivered"?"selected":""}
+${status === "delivered" ? "selected" : ""}
 >
 تحویل شده
 </option>
@@ -1448,17 +1638,19 @@ ${status==="delivered"?"selected":""}
 
 /* =====================================================
    LOAD REQUESTS
+   IMPORTANT:
+   ADMIN MUST SEE ALL REQUESTS
 ===================================================== */
 
 async function loadRequests(){
 
-requestInfo.textContent=
+requestInfo.textContent =
 "در حال دریافت...";
 
 const {
 data,
 error
-}=
+} =
 await supabaseClient
 .from("lab_requests")
 .select(`
@@ -1477,8 +1669,7 @@ lab_name,
 lab_code
 )
 `)
-.eq("partner_lab_id", partnerLab.id)
-  .order(
+.order(
 "created_at",
 {
 ascending:false
@@ -1492,10 +1683,10 @@ console.error(
 error
 );
 
-requestInfo.textContent=
+requestInfo.textContent =
 "خطا در دریافت";
 
-requestsBody.innerHTML=`
+requestsBody.innerHTML = `
 
 <tr>
 
@@ -1507,7 +1698,9 @@ class="empty"
 
 <br><br>
 
-${escapeHTML(error.message)}
+${escapeHTML(
+error.message
+)}
 
 </td>
 
@@ -1515,11 +1708,11 @@ ${escapeHTML(error.message)}
 
 `;
 
-return;
+throw error;
 
 }
 
-allRequests=
+allRequests =
 data || [];
 
 updateStatistics(
@@ -1543,7 +1736,7 @@ hideMessage();
 
 const {
 error
-}=
+} =
 await supabaseClient
 .from("lab_requests")
 .update({
@@ -1562,7 +1755,7 @@ error
 );
 
 showMessage(
-"تغییر وضعیت درخواست با خطا مواجه شد: "+
+"تغییر وضعیت درخواست با خطا مواجه شد: " +
 error.message,
 "error"
 );
@@ -1597,19 +1790,21 @@ if(
 "status-select"
 )
 ){
+
 return;
+
 }
 
-const select=
+const select =
 event.target;
 
-const requestId=
+const requestId =
 select.dataset.requestId;
 
-const newStatus=
+const newStatus =
 select.value;
 
-select.disabled=true;
+select.disabled = true;
 
 try{
 
@@ -1620,16 +1815,25 @@ newStatus
 
 }
 
+catch(error){
+
+console.error(
+"Status change error:",
+error
+);
+
+}
+
 finally{
 
-select.disabled=false;
+select.disabled = false;
 
 }
 
 });
 
 /* =====================================================
-   GET RESULT
+   GET EXISTING RESULT
 ===================================================== */
 
 async function getExistingResult(
@@ -1639,7 +1843,7 @@ requestId
 const {
 data,
 error
-}=
+} =
 await supabaseClient
 .from("lab_results")
 .select(`
@@ -1658,7 +1862,7 @@ requestId
 )
 .maybeSingle();
 
-return{
+return {
 data,
 error
 };
@@ -1672,7 +1876,9 @@ error
 function validateFile(file){
 
 if(!file){
+
 return;
+
 }
 
 if(
@@ -1701,7 +1907,7 @@ throw new Error(
 }
 
 /* =====================================================
-   FILE UPLOAD
+   UPLOAD FILE
 ===================================================== */
 
 async function uploadResultFile(
@@ -1711,19 +1917,19 @@ file
 
 validateFile(file);
 
-const extension=
+const extension =
 file.name
 .split(".")
 .pop()
 .toLowerCase();
 
-const safeFileName=
+const safeFileName =
 `${requestId}-${Date.now()}-${Math.random()
 .toString(36)
 .substring(2,10)
 }.${extension}`;
 
-const filePath=
+const filePath =
 `results/${safeFileName}`;
 
 console.log(
@@ -1733,7 +1939,7 @@ filePath
 
 const {
 error:uploadError
-}=
+} =
 await supabaseClient
 .storage
 .from(RESULT_BUCKET)
@@ -1762,7 +1968,7 @@ throw new Error(
 
 const {
 data
-}=
+} =
 supabaseClient
 .storage
 .from(RESULT_BUCKET)
@@ -1770,7 +1976,7 @@ supabaseClient
 filePath
 );
 
-const publicUrl=
+const publicUrl =
 data?.publicUrl;
 
 if(!publicUrl){
@@ -1781,7 +1987,7 @@ throw new Error(
 
 }
 
-return{
+return {
 url:publicUrl,
 path:filePath
 };
@@ -1797,53 +2003,61 @@ fileUrl
 ){
 
 if(!fileUrl){
+
 return;
+
 }
 
 try{
 
-const marker=
+const marker =
 "/storage/v1/object/public/";
 
-const index=
+const index =
 fileUrl.indexOf(marker);
 
-if(index===-1){
+if(index === -1){
+
 return;
+
 }
 
-const after=
+const after =
 fileUrl.substring(
 index + marker.length
 );
 
-const slash=
+const slash =
 after.indexOf("/");
 
-if(slash===-1){
+if(slash === -1){
+
 return;
+
 }
 
-const bucket=
+const bucket =
 after.substring(
 0,
 slash
 );
 
-const path=
+const path =
 decodeURIComponent(
 after.substring(
-slash+1
+slash + 1
 )
 );
 
-if(bucket!==RESULT_BUCKET){
+if(bucket !== RESULT_BUCKET){
+
 return;
+
 }
 
 const {
 error
-}=
+} =
 await supabaseClient
 .storage
 .from(bucket)
@@ -1872,16 +2086,16 @@ error
 }
 
 /* =====================================================
-   OPEN DETAILS
+   OPEN REQUEST DETAILS
 ===================================================== */
 
 async function openRequestDetails(
 requestId
 ){
 
-const request=
+const request =
 allRequests.find(
-r=>r.id===requestId
+r => r.id === requestId
 );
 
 if(!request){
@@ -1895,20 +2109,22 @@ return;
 
 }
 
-const lab=
+const lab =
 request.partner_lab || {};
 
-const status=
+const status =
 request.status || "received";
 
-const createdDate=
+const createdDate =
 request.created_at
-? new Date(
+?
+new Date(
 request.created_at
 ).toLocaleString(
 "fa-IR"
 )
-: "-";
+:
+"-";
 
 requestModal.classList.add(
 "active"
@@ -1919,7 +2135,7 @@ requestModal.setAttribute(
 "false"
 );
 
-requestModalBody.innerHTML=`
+requestModalBody.innerHTML = `
 
 <div class="empty">
 در حال دریافت اطلاعات جواب...
@@ -1930,14 +2146,14 @@ requestModalBody.innerHTML=`
 const {
 data:existingResult,
 error
-}=
+} =
 await getExistingResult(
 requestId
 );
 
 if(error){
 
-requestModalBody.innerHTML=`
+requestModalBody.innerHTML = `
 
 <div
 class="empty"
@@ -1960,19 +2176,19 @@ return;
 
 }
 
-const previousTitle=
+const previousTitle =
 existingResult?.result_title || "";
 
-const previousText=
+const previousText =
 existingResult?.result_text || "";
 
-const previousFileUrl=
+const previousFileUrl =
 existingResult?.result_file_url || "";
 
-const isVerified=
+const isVerified =
 existingResult?.verified === true;
 
-requestModalBody.innerHTML=`
+requestModalBody.innerHTML = `
 
 <div class="detail-section">
 
@@ -2281,9 +2497,7 @@ class="refresh-button result-save-button"
 data-request-id="${escapeHTML(requestId)}"
 >
 
-💾
-
-${
+💾 ${
 existingResult
 ?
 "ویرایش جواب آزمایش"
@@ -2293,10 +2507,20 @@ existingResult
 
 </button>
 
+
 ${
 existingResult
 ?
 `
+<button
+type="button"
+id="printReportButton"
+class="refresh-button print-report-button"
+data-request-id="${escapeHTML(requestId)}"
+>
+🖨️ چاپ راپور مریض
+</button>
+
 <div
 style="
 margin-top:10px;
@@ -2308,7 +2532,7 @@ font-size:11px;
 "
 >
 ✅ برای این درخواست قبلاً جواب ثبت شده است.
-می‌توانید اطلاعات آن را ویرایش کنید.
+می‌توانید اطلاعات آن را ویرایش یا راپور مریض را چاپ کنید.
 </div>
 `
 :
@@ -2319,7 +2543,7 @@ font-size:11px;
 
 `;
 
-const fileInput=
+const fileInput =
 document.getElementById(
 "resultFileInput"
 );
@@ -2330,46 +2554,48 @@ fileInput.addEventListener(
 "change",
 function(){
 
-const status=
+const status =
 document.getElementById(
 "fileUploadStatus"
 );
 
-const file=
+const file =
 fileInput.files?.[0];
 
 if(!file){
+
 return;
+
 }
 
 try{
 
 validateFile(file);
 
-const sizeMB=
+const sizeMB =
 (
 file.size /
 1024 /
 1024
 ).toFixed(2);
 
-status.className=
+status.className =
 "upload-status success";
 
-status.textContent=
+status.textContent =
 `✅ فایل انتخاب شد: ${file.name} (${sizeMB} MB)`;
 
 }
 
 catch(error){
 
-status.className=
+status.className =
 "upload-status error";
 
-status.textContent=
+status.textContent =
 "❌ " + error.message;
 
-fileInput.value="";
+fileInput.value = "";
 
 }
 
@@ -2380,39 +2606,39 @@ fileInput.value="";
 }
 
 /* =====================================================
-   SAVE RESULT
+   SAVE LAB RESULT
 ===================================================== */
 
 async function saveLabResult(
 requestId
 ){
 
-const titleInput=
+const titleInput =
 document.getElementById(
 "resultTitleInput"
 );
 
-const textInput=
+const textInput =
 document.getElementById(
 "resultTextInput"
 );
 
-const fileInput=
+const fileInput =
 document.getElementById(
 "resultFileInput"
 );
 
-const saveButton=
+const saveButton =
 document.getElementById(
 "saveResultButton"
 );
 
-const uploadStatus=
+const uploadStatus =
 document.getElementById(
 "fileUploadStatus"
 );
 
-const progressBox=
+const progressBox =
 document.getElementById(
 "uploadProgressBox"
 );
@@ -2433,13 +2659,13 @@ return;
 
 }
 
-const resultTitle=
+const resultTitle =
 titleInput.value.trim();
 
-const resultText=
+const resultText =
 textInput.value.trim();
 
-const selectedFile=
+const selectedFile =
 fileInput.files?.[0] || null;
 
 if(!resultTitle){
@@ -2471,12 +2697,14 @@ return;
 try{
 
 if(selectedFile){
+
 validateFile(selectedFile);
+
 }
 
-saveButton.disabled=true;
+saveButton.disabled = true;
 
-saveButton.textContent=
+saveButton.textContent =
 "⏳ در حال ثبت...";
 
 hideMessage();
@@ -2486,16 +2714,18 @@ hideMessage();
 const {
 data:userData,
 error:userError
-}=
+} =
 await supabaseClient
 .auth
 .getUser();
 
 if(userError){
+
 throw userError;
+
 }
 
-const currentUser=
+const currentUser =
 userData?.user;
 
 if(!currentUser){
@@ -2522,58 +2752,66 @@ throw new Error(
 const {
 data:existingResult,
 error:checkError
-}=
+} =
 await getExistingResult(
 requestId
 );
 
 if(checkError){
+
 throw checkError;
+
 }
 
 /* FILE */
 
-let resultFileUrl=
+let resultFileUrl =
 existingResult?.result_file_url ||
 null;
 
 if(selectedFile){
 
 if(progressBox){
-progressBox.style.display="block";
+
+progressBox.style.display =
+"block";
+
 }
 
 if(uploadStatus){
 
-uploadStatus.className=
+uploadStatus.className =
 "upload-status";
 
-uploadStatus.textContent=
+uploadStatus.textContent =
 "⏳ در حال آپلود فایل جواب...";
 
 }
 
-const uploaded=
+const uploaded =
 await uploadResultFile(
 requestId,
 selectedFile
 );
 
-resultFileUrl=
+resultFileUrl =
 uploaded.url;
 
 if(uploadStatus){
 
-uploadStatus.className=
+uploadStatus.className =
 "upload-status success";
 
-uploadStatus.textContent=
+uploadStatus.textContent =
 "✅ فایل با موفقیت آپلود شد.";
 
 }
 
 if(progressBox){
-progressBox.style.display="none";
+
+progressBox.style.display =
+"none";
+
 }
 
 }
@@ -2584,7 +2822,7 @@ let response;
 
 if(existingResult){
 
-response=
+response =
 await supabaseClient
 .from("lab_results")
 .update({
@@ -2615,7 +2853,7 @@ existingResult.id
 
 else{
 
-response=
+response =
 await supabaseClient
 .from("lab_results")
 .insert({
@@ -2646,9 +2884,7 @@ throw response.error;
 
 }
 
-/* DELETE OLD FILE
-   ONLY AFTER DATABASE SUCCESS
-*/
+/* DELETE OLD FILE AFTER DATABASE SUCCESS */
 
 if(
 existingResult?.result_file_url &&
@@ -2667,7 +2903,7 @@ existingResult.result_file_url
 
 const {
 error:statusError
-}=
+} =
 await supabaseClient
 .from("lab_requests")
 .update({
@@ -2679,7 +2915,9 @@ requestId
 );
 
 if(statusError){
+
 throw statusError;
+
 }
 
 showMessage(
@@ -2707,22 +2945,26 @@ error
 );
 
 if(progressBox){
-progressBox.style.display="none";
+
+progressBox.style.display =
+"none";
+
 }
 
 if(uploadStatus){
 
-uploadStatus.className=
+uploadStatus.className =
 "upload-status error";
 
-uploadStatus.textContent=
+uploadStatus.textContent =
 "❌ عملیات با خطا مواجه شد.";
 
 }
 
 showMessage(
 `❌ ثبت جواب آزمایش با خطا مواجه شد: ${
-error?.message || "خطای نامشخص"
+error?.message ||
+"خطای نامشخص"
 }`,
 "error"
 );
@@ -2733,9 +2975,9 @@ finally{
 
 if(saveButton){
 
-saveButton.disabled=false;
+saveButton.disabled = false;
 
-saveButton.textContent=
+saveButton.textContent =
 "💾 ذخیره جواب آزمایش";
 
 }
@@ -2745,24 +2987,447 @@ saveButton.textContent=
 }
 
 /* =====================================================
-   SAVE BUTTON
+   PRINT REPORT
+===================================================== */
+
+async function printCurrentLabReport(
+requestId
+){
+
+const request =
+allRequests.find(
+r => r.id === requestId
+);
+
+if(!request){
+
+showMessage(
+"اطلاعات درخواست پیدا نشد.",
+"error"
+);
+
+return;
+
+}
+
+const {
+data:result,
+error
+} =
+await getExistingResult(
+requestId
+);
+
+if(error){
+
+console.error(
+"Print result error:",
+error
+);
+
+showMessage(
+"خطا در دریافت نتیجه برای چاپ: " +
+error.message,
+"error"
+);
+
+return;
+
+}
+
+if(!result){
+
+showMessage(
+"برای این درخواست هنوز جواب آزمایش ثبت نشده است.",
+"error"
+);
+
+return;
+
+}
+
+printLabReport(
+request,
+result
+);
+
+}
+
+/* =====================================================
+   PRINT REPORT HTML
+===================================================== */
+
+function printLabReport(
+request,
+result
+){
+
+if(!request){
+
+showMessage(
+"اطلاعات درخواست برای چاپ پیدا نشد.",
+"error"
+);
+
+return;
+
+}
+
+if(!result){
+
+showMessage(
+"برای این درخواست هنوز نتیجه آزمایش ثبت نشده است.",
+"error"
+);
+
+return;
+
+}
+
+const lab =
+request.partner_lab || {};
+
+const createdDate =
+request.created_at
+?
+new Date(
+request.created_at
+).toLocaleDateString(
+"fa-IR"
+)
+:
+"-";
+
+const printContainer =
+document.getElementById(
+"printReportContainer"
+);
+
+if(!printContainer){
+
+showMessage(
+"بخش چاپ راپور پیدا نشد.",
+"error"
+);
+
+return;
+
+}
+
+printContainer.innerHTML = `
+
+<div class="print-report-page">
+
+<div class="print-report-header">
+
+<img
+src="لوگو.jfif"
+class="print-report-logo"
+alt="لوگوی آزمایشگاه تخصصی آلفا"
+>
+
+<div class="print-report-title">
+
+<h1>
+آزمایشگاه تخصصی آلفا
+</h1>
+
+<h2>
+Alpha Specialized Laboratory
+</h2>
+
+<p>
+راپور نتیجه آزمایش
+</p>
+
+</div>
+
+<div style="width:80px;"></div>
+
+</div>
+
+
+<div class="print-report-meta">
+
+<div class="print-meta-item">
+
+<strong>
+نام مریض
+</strong>
+
+<span>
+${escapeHTML(
+request.patient_name || "-"
+)}
+</span>
+
+</div>
+
+
+<div class="print-meta-item">
+
+<strong>
+کد درخواست
+</strong>
+
+<span>
+${escapeHTML(
+request.request_code || "-"
+)}
+</span>
+
+</div>
+
+
+<div class="print-meta-item">
+
+<strong>
+سن
+</strong>
+
+<span>
+${escapeHTML(
+request.patient_age || "-"
+)}
+</span>
+
+</div>
+
+
+<div class="print-meta-item">
+
+<strong>
+جنسیت
+</strong>
+
+<span>
+${escapeHTML(
+request.patient_gender || "-"
+)}
+</span>
+
+</div>
+
+
+<div class="print-meta-item">
+
+<strong>
+آزمایشگاه همکار
+</strong>
+
+<span>
+${escapeHTML(
+lab.lab_name || "-"
+)}
+</span>
+
+</div>
+
+
+<div class="print-meta-item">
+
+<strong>
+تاریخ
+</strong>
+
+<span>
+${escapeHTML(createdDate)}
+</span>
+
+</div>
+
+</div>
+
+
+<div class="print-report-section">
+
+<h3>
+🧪 آزمایش‌های درخواست‌شده
+</h3>
+
+<div class="print-request-tests">
+${escapeHTML(
+request.requested_tests || "-"
+)}
+</div>
+
+</div>
+
+
+<div class="print-report-section">
+
+<h3>
+📋 عنوان نتیجه
+</h3>
+
+<div class="print-request-tests">
+${escapeHTML(
+result.result_title || "-"
+)}
+</div>
+
+</div>
+
+
+<div class="print-report-section">
+
+<h3>
+🔬 نتیجه آزمایش
+</h3>
+
+<div class="print-result-box">
+${escapeHTML(
+result.result_text || "-"
+)}
+</div>
+
+</div>
+
+
+${
+result.result_file_url
+?
+`
+<div class="print-report-section">
+
+<h3>
+📎 فایل جواب
+</h3>
+
+<div class="print-request-tests">
+
+فایل جواب الکترونیکی نیز برای این درخواست ثبت شده است.
+
+</div>
+
+</div>
+`
+:
+""
+}
+
+
+<div class="print-report-footer">
+
+<div class="print-signature">
+
+<div>
+مسئول آزمایشگاه
+</div>
+
+<div class="print-signature-line">
+امضاء و مهر
+</div>
+
+</div>
+
+
+<div class="print-signature">
+
+<div>
+تاریخ چاپ
+</div>
+
+<div class="print-signature-line">
+${new Date().toLocaleDateString("fa-IR")}
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+printContainer.style.display =
+"block";
+
+setTimeout(
+function(){
+
+window.print();
+
+setTimeout(
+function(){
+
+printContainer.style.display =
+"none";
+
+},
+500
+);
+
+},
+150
+);
+
+}
+
+/* =====================================================
+   GLOBAL CLICK HANDLER
 ===================================================== */
 
 document.addEventListener(
 "click",
 function(event){
 
-const button=
+/* PRINT */
+
+const printButton =
+event.target.closest(
+"#printReportButton"
+);
+
+if(printButton){
+
+const requestId =
+printButton.dataset.requestId;
+
+if(!requestId){
+
+showMessage(
+"شناسه درخواست پیدا نشد.",
+"error"
+);
+
+return;
+
+}
+
+printButton.disabled = true;
+
+printButton.textContent =
+"⏳ آماده‌سازی راپور...";
+
+printCurrentLabReport(
+requestId
+)
+.finally(
+function(){
+
+printButton.disabled = false;
+
+printButton.textContent =
+"🖨️ چاپ راپور مریض";
+
+});
+
+return;
+
+}
+
+/* SAVE */
+
+const saveButton =
 event.target.closest(
 "#saveResultButton"
 );
 
-if(!button){
-return;
-}
+if(saveButton){
 
-const requestId=
-button.dataset.requestId;
+const requestId =
+saveButton.dataset.requestId;
 
 if(!requestId){
 
@@ -2778,6 +3443,8 @@ return;
 saveLabResult(
 requestId
 );
+
+}
 
 });
 
@@ -2826,17 +3493,25 @@ requestsBody.addEventListener(
 "click",
 function(event){
 
-const button=
+const button =
 event.target.closest(
 ".request-code-button"
 );
 
 if(!button){
+
 return;
+
 }
 
-const requestId=
+const requestId =
 button.dataset.requestId;
+
+if(!requestId){
+
+return;
+
+}
 
 openRequestDetails(
 requestId
@@ -2852,7 +3527,7 @@ document.addEventListener(
 "keydown",
 function(event){
 
-if(event.key==="Escape"){
+if(event.key === "Escape"){
 
 if(
 requestModal.classList.contains(
@@ -2890,9 +3565,9 @@ refreshButton.addEventListener(
 "click",
 async function(){
 
-refreshButton.disabled=true;
+refreshButton.disabled = true;
 
-refreshButton.textContent=
+refreshButton.textContent =
 "در حال بروزرسانی...";
 
 try{
@@ -2913,13 +3588,19 @@ console.error(
 error
 );
 
+showMessage(
+"خطا در بروزرسانی اطلاعات: " +
+(error?.message || ""),
+"error"
+);
+
 }
 
 finally{
 
-refreshButton.disabled=false;
+refreshButton.disabled = false;
 
-refreshButton.textContent=
+refreshButton.textContent =
 "🔄 بروزرسانی";
 
 }
@@ -2941,7 +3622,7 @@ try{
 const {
 data:sessionData,
 error:sessionError
-}=
+} =
 await supabaseClient
 .auth
 .getSession();
@@ -2952,7 +3633,7 @@ throw sessionError;
 
 }
 
-const session=
+const session =
 sessionData?.session;
 
 if(!session){
@@ -2962,14 +3643,14 @@ showMessage(
 "error"
 );
 
-securityMessage.textContent=
+securityMessage.textContent =
 "برای ورود به پنل مدیریت ابتدا وارد حساب شوید.";
 
 return;
 
 }
 
-const user=
+const user =
 session.user;
 
 console.log(
@@ -2987,7 +3668,7 @@ showMessage(
 "error"
 );
 
-securityMessage.textContent=
+securityMessage.textContent =
 "این حساب، حساب مدیر مرکزی آلفا نیست.";
 
 return;
@@ -2999,7 +3680,7 @@ return;
 const {
 data:profile,
 error:profileError
-}=
+} =
 await supabaseClient
 .from("user_profiles")
 .select(
@@ -3023,7 +3704,7 @@ showMessage(
 "error"
 );
 
-securityMessage.textContent=
+securityMessage.textContent =
 "خطا در خواندن user_profiles.";
 
 return;
@@ -3037,7 +3718,7 @@ showMessage(
 "error"
 );
 
-securityMessage.textContent=
+securityMessage.textContent =
 "رکورد user_profiles وجود ندارد.";
 
 return;
@@ -3054,7 +3735,7 @@ showMessage(
 "error"
 );
 
-securityMessage.textContent=
+securityMessage.textContent =
 `سطح دسترسی فعلی: ${
 profile.role || "نامشخص"
 }`;
@@ -3065,14 +3746,14 @@ return;
 
 /* SUCCESS */
 
-const adminName=
+const adminName =
 profile.full_name ||
 "مدیر آزمایشگاه تخصصی آلفا";
 
-adminWelcome.textContent=
+adminWelcome.textContent =
 `سلام، ${adminName} 👋`;
 
-securityMessage.textContent=
+securityMessage.textContent =
 `دسترسی تأیید شد | مدیر مرکزی | ${
 user.email || ""
 }`;
@@ -3124,12 +3805,12 @@ error
 );
 
 showMessage(
-"خطای غیرمنتظره در پنل مدیریت: "+
-(error?.message || ""),
+"خطای غیرمنتظره در پنل مدیریت: " +
+(error?.message || "خطای نامشخص"),
 "error"
 );
 
-securityMessage.textContent=
+securityMessage.textContent =
 "خطا در اجرای پنل مدیریت.";
 
 }
@@ -3166,4 +3847,3 @@ loadAdmin();
 </body>
 
 </html>
-این فایل اصلی است اصلاح کن و هرچه نیاز است اضافه کن 
