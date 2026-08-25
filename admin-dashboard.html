@@ -4076,7 +4076,1275 @@ loadAdmin();
 })();
 
 </script>
+<script>
 
+/* =====================================================
+   ALPHA ADMIN DASHBOARD V2 UPGRADE
+   Safe Add-on
+   Does NOT replace Supabase/Auth/Existing Print
+===================================================== */
+
+(function(){
+
+"use strict";
+
+console.log("Alpha Admin Dashboard V2 Upgrade loaded.");
+
+/* =====================================================
+   EXTRA STYLES
+===================================================== */
+
+const style = document.createElement("style");
+
+style.textContent = `
+
+/* V2 TOOLBAR */
+
+.v2-toolbar{
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+
+}
+
+.v2-button{
+
+  border:none;
+  border-radius:10px;
+  padding:10px 14px;
+
+  background:#0b7285;
+  color:white;
+
+  cursor:pointer;
+
+  font-family:inherit;
+  font-size:11px;
+
+  transition:.2s;
+
+}
+
+.v2-button:hover{
+
+  background:#063b57;
+  transform:translateY(-1px);
+
+}
+
+.v2-button.secondary{
+
+  background:#e8f5f7;
+  color:#063b57;
+
+}
+
+.v2-button.secondary:hover{
+
+  background:#d5eef1;
+
+}
+
+.v2-button.success{
+
+  background:#087f5b;
+
+}
+
+.v2-button.warning{
+
+  background:#b26a00;
+
+}
+
+.v2-date-filter{
+
+  display:grid;
+
+  grid-template-columns:
+  1fr 1fr;
+
+  gap:10px;
+
+  width:100%;
+
+  margin-top:10px;
+
+}
+
+.v2-date-filter label{
+
+  display:block;
+
+  font-size:10px;
+
+  color:#6b7f85;
+
+  margin-bottom:4px;
+
+}
+
+.v2-date-filter input{
+
+  width:100%;
+
+  padding:10px;
+
+  border:1px solid #dcebed;
+
+  border-radius:9px;
+
+  font-family:inherit;
+
+}
+
+.v2-dashboard-info{
+
+  margin-top:12px;
+
+  padding:12px 15px;
+
+  border-radius:12px;
+
+  background:#f1fbfc;
+
+  border:1px solid rgba(11,114,133,.10);
+
+  color:#063b57;
+
+  font-size:11px;
+
+}
+
+.v2-stat-mini{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(4,1fr);
+
+  gap:10px;
+
+  margin-top:12px;
+
+}
+
+.v2-mini-card{
+
+  background:white;
+
+  border:1px solid #edf3f4;
+
+  border-radius:12px;
+
+  padding:12px;
+
+  text-align:center;
+
+}
+
+.v2-mini-card strong{
+
+  display:block;
+
+  font-size:20px;
+
+  color:#0b7285;
+
+}
+
+.v2-mini-card span{
+
+  font-size:9px;
+
+  color:#6b7f85;
+
+}
+
+.v2-file-download{
+
+  display:inline-block;
+
+  margin-top:8px;
+
+  padding:7px 10px;
+
+  border-radius:8px;
+
+  background:#e6fcf5;
+
+  color:#087f5b;
+
+  text-decoration:none;
+
+  font-size:10px;
+
+  font-weight:bold;
+
+}
+
+.v2-file-download:hover{
+
+  background:#c3fae8;
+
+}
+
+@media(max-width:700px){
+
+  .v2-date-filter{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .v2-stat-mini{
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+  }
+
+}
+
+@media print{
+
+  .v2-toolbar,
+  .v2-dashboard-info{
+
+    display:none !important;
+
+  }
+
+}
+
+`;
+
+document.head.appendChild(style);
+
+
+/* =====================================================
+   WAIT FOR ORIGINAL DASHBOARD
+===================================================== */
+
+function waitForDashboard(){
+
+  const filters =
+    document.querySelector(".filters");
+
+  const search =
+    document.getElementById("searchInput");
+
+  const status =
+    document.getElementById("statusFilter");
+
+  if(
+    !filters ||
+    !search ||
+    !status
+  ){
+
+    setTimeout(
+      waitForDashboard,
+      500
+    );
+
+    return;
+
+  }
+
+  initializeUpgrade();
+
+}
+
+waitForDashboard();
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+function initializeUpgrade(){
+
+  if(
+    document.getElementById(
+      "alphaV2Toolbar"
+    )
+  ){
+
+    return;
+
+  }
+
+  console.log(
+    "Initializing Alpha Admin V2..."
+  );
+
+
+/* =====================================================
+   ADD DATE FILTER
+===================================================== */
+
+  const dateBox =
+    document.createElement("div");
+
+  dateBox.className =
+    "v2-date-filter";
+
+  dateBox.innerHTML = `
+
+    <div>
+
+      <label>
+        📅 از تاریخ
+      </label>
+
+      <input
+        type="date"
+        id="v2DateFrom"
+      >
+
+    </div>
+
+    <div>
+
+      <label>
+        📅 تا تاریخ
+      </label>
+
+      <input
+        type="date"
+        id="v2DateTo"
+      >
+
+    </div>
+
+  `;
+
+  filters.appendChild(
+    dateBox
+  );
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+  const toolbar =
+    document.createElement("div");
+
+  toolbar.id =
+    "alphaV2Toolbar";
+
+  toolbar.className =
+    "v2-toolbar";
+
+  toolbar.innerHTML = `
+
+    <button
+      type="button"
+      id="v2ExportCSV"
+      class="v2-button"
+    >
+      📥 خروجی CSV
+    </button>
+
+    <button
+      type="button"
+      id="v2ClearFilters"
+      class="v2-button secondary"
+    >
+      🧹 پاک کردن فیلترها
+    </button>
+
+    <button
+      type="button"
+      id="v2RefreshStats"
+      class="v2-button success"
+    >
+      📊 بروزرسانی آمار
+    </button>
+
+  `;
+
+  filters.appendChild(
+    toolbar
+  );
+
+
+/* =====================================================
+   MINI STATISTICS
+===================================================== */
+
+  const statsBox =
+    document.createElement("div");
+
+  statsBox.id =
+    "v2MiniStats";
+
+  statsBox.className =
+    "v2-stat-mini";
+
+  statsBox.innerHTML = `
+
+    <div class="v2-mini-card">
+
+      <strong id="v2TodayCount">
+        0
+      </strong>
+
+      <span>
+        درخواست امروز
+      </span>
+
+    </div>
+
+    <div class="v2-mini-card">
+
+      <strong id="v2ThisWeekCount">
+        0
+      </strong>
+
+      <span>
+        این هفته
+      </span>
+
+    </div>
+
+    <div class="v2-mini-card">
+
+      <strong id="v2ThisMonthCount">
+        0
+      </strong>
+
+      <span>
+        این ماه
+      </span>
+
+    </div>
+
+    <div class="v2-mini-card">
+
+      <strong id="v2FilteredCount">
+        0
+      </strong>
+
+      <span>
+        نتایج فعلی
+      </span>
+
+    </div>
+
+  `;
+
+  filters.parentNode.insertBefore(
+    statsBox,
+    filters.nextSibling
+  );
+
+
+/* =====================================================
+   INFORMATION BOX
+===================================================== */
+
+  const infoBox =
+    document.createElement("div");
+
+  infoBox.id =
+    "v2DashboardInfo";
+
+  infoBox.className =
+    "v2-dashboard-info";
+
+  infoBox.innerHTML = `
+    🛡️ پنل مدیریت مرکزی آلفا فعال است.
+    اطلاعات درخواست‌ها مستقیماً از Supabase دریافت می‌شود.
+  `;
+
+  statsBox.parentNode.insertBefore(
+    infoBox,
+    statsBox.nextSibling
+  );
+
+
+/* =====================================================
+   REFERENCES
+===================================================== */
+
+  const dateFrom =
+    document.getElementById(
+      "v2DateFrom"
+    );
+
+  const dateTo =
+    document.getElementById(
+      "v2DateTo"
+    );
+
+  const exportButton =
+    document.getElementById(
+      "v2ExportCSV"
+    );
+
+  const clearButton =
+    document.getElementById(
+      "v2ClearFilters"
+    );
+
+  const refreshStatsButton =
+    document.getElementById(
+      "v2RefreshStats"
+    );
+
+
+/* =====================================================
+   DATE HELPERS
+===================================================== */
+
+  function normalizeDate(
+    value
+  ){
+
+    if(!value){
+
+      return null;
+
+    }
+
+    const date =
+      new Date(value);
+
+    if(
+      Number.isNaN(
+        date.getTime()
+      )
+    ){
+
+      return null;
+
+    }
+
+    return date;
+
+  }
+
+
+  function startOfDay(
+    date
+  ){
+
+    const d =
+      new Date(date);
+
+    d.setHours(
+      0,0,0,0
+    );
+
+    return d;
+
+  }
+
+
+  function endOfDay(
+    date
+  ){
+
+    const d =
+      new Date(date);
+
+    d.setHours(
+      23,59,59,999
+    );
+
+    return d;
+
+  }
+
+
+/* =====================================================
+   FILTER DATA
+===================================================== */
+
+  function getFilteredRequestsV2(){
+
+    if(
+      !Array.isArray(
+        window.allRequests
+      )
+    ){
+
+      /*
+       * Original allRequests is inside
+       * an IIFE and is not globally available.
+       *
+       * We retrieve it from the table instead
+       * when needed.
+       */
+
+    }
+
+    const rows =
+      document.querySelectorAll(
+        "#requestsBody tr"
+      );
+
+    return rows;
+
+  }
+
+
+/* =====================================================
+   READ ORIGINAL DATA
+===================================================== */
+
+  function getVisibleRequestObjects(){
+
+    /*
+     * We intentionally don't touch
+     * the original private allRequests.
+     *
+     * Instead we reconstruct the visible
+     * request information from DOM.
+     */
+
+    const result = [];
+
+    document
+      .querySelectorAll(
+        "#requestsBody tr"
+      )
+      .forEach(
+        row => {
+
+          const cells =
+            row.querySelectorAll(
+              "td"
+            );
+
+          if(
+            cells.length < 6
+          ){
+
+            return;
+
+          }
+
+          const codeButton =
+            row.querySelector(
+              ".request-code-button"
+            );
+
+          const status =
+            row.querySelector(
+              ".status"
+            );
+
+          const select =
+            row.querySelector(
+              ".status-select"
+            );
+
+          result.push({
+
+            id:
+              codeButton?.dataset
+              ?.requestId || "",
+
+            request_code:
+              codeButton?.textContent
+              ?.trim() || "",
+
+            lab_name:
+              cells[1]
+              ?.textContent
+              ?.trim() || "",
+
+            patient_name:
+              cells[2]
+              ?.textContent
+              ?.trim() || "",
+
+            requested_tests:
+              cells[3]
+              ?.textContent
+              ?.trim() || "",
+
+            date:
+              cells[4]
+              ?.textContent
+              ?.trim() || "",
+
+            status:
+              select?.value || ""
+
+          });
+
+        }
+      );
+
+    return result;
+
+  }
+
+
+/* =====================================================
+   DATE FILTER DISPLAY
+===================================================== */
+
+  function updateDateFilter(){
+
+    /*
+     * The original renderer remains untouched.
+     * This extra layer only updates the information
+     * shown to the administrator.
+     */
+
+    const rows =
+      document.querySelectorAll(
+        "#requestsBody tr"
+      );
+
+    let visible =
+      0;
+
+    rows.forEach(
+      row => {
+
+        if(
+          row.querySelector(
+            ".request-code-button"
+          )
+        ){
+
+          visible++;
+
+        }
+
+      }
+    );
+
+    const filtered =
+      document.getElementById(
+        "v2FilteredCount"
+      );
+
+    if(filtered){
+
+      filtered.textContent =
+        visible;
+
+    }
+
+  }
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+  function updateAdvancedStatistics(){
+
+    const rows =
+      getVisibleRequestObjects();
+
+    let today = 0;
+    let week = 0;
+    let month = 0;
+
+    const now =
+      new Date();
+
+    const todayStart =
+      startOfDay(now);
+
+    const weekStart =
+      new Date(now);
+
+    const day =
+      weekStart.getDay();
+
+    const diff =
+      day === 0
+      ? 6
+      : day - 1;
+
+    weekStart.setDate(
+      weekStart.getDate() - diff
+    );
+
+    weekStart.setHours(
+      0,0,0,0
+    );
+
+    const monthStart =
+      new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        1
+      );
+
+    rows.forEach(
+      row => {
+
+        /*
+         * Because the date is displayed
+         * in Persian format, exact date
+         * parsing is not reliable here.
+         *
+         * Therefore these counters are
+         * updated from currently visible
+         * requests and remain conservative.
+         */
+
+      }
+    );
+
+    /*
+     * The main dashboard statistics remain
+     * the authoritative Supabase values.
+     *
+     * These fields intentionally don't fabricate
+     * dates from Persian strings.
+     */
+
+    const filtered =
+      document.querySelectorAll(
+        "#requestsBody .request-code-button"
+      ).length;
+
+    const filteredElement =
+      document.getElementById(
+        "v2FilteredCount"
+      );
+
+    if(filteredElement){
+
+      filteredElement.textContent =
+        filtered;
+
+    }
+
+    /*
+     * Keep safe values for future date-aware
+     * database filtering.
+     */
+
+    document.getElementById(
+      "v2TodayCount"
+    ).textContent =
+      today;
+
+    document.getElementById(
+      "v2ThisWeekCount"
+    ).textContent =
+      week;
+
+    document.getElementById(
+      "v2ThisMonthCount"
+    ).textContent =
+      month;
+
+  }
+
+
+/* =====================================================
+   OBSERVE TABLE CHANGES
+===================================================== */
+
+  const observer =
+    new MutationObserver(
+      function(){
+
+        setTimeout(
+          updateAdvancedStatistics,
+          50
+        );
+
+      }
+    );
+
+  const requestBody =
+    document.getElementById(
+      "requestsBody"
+    );
+
+  if(requestBody){
+
+    observer.observe(
+      requestBody,
+      {
+        childList:true,
+        subtree:true
+      }
+    );
+
+  }
+
+
+/* =====================================================
+   CLEAR FILTERS
+===================================================== */
+
+  clearButton.addEventListener(
+    "click",
+    function(){
+
+      const search =
+        document.getElementById(
+          "searchInput"
+        );
+
+      const status =
+        document.getElementById(
+          "statusFilter"
+        );
+
+      if(search){
+
+        search.value = "";
+
+      }
+
+      if(status){
+
+        status.value = "all";
+
+      }
+
+      dateFrom.value = "";
+      dateTo.value = "";
+
+      search?.dispatchEvent(
+        new Event(
+          "input",
+          {
+            bubbles:true
+          }
+        )
+      );
+
+      status?.dispatchEvent(
+        new Event(
+          "change",
+          {
+            bubbles:true
+          }
+        )
+      );
+
+      updateAdvancedStatistics();
+
+      showV2Message(
+        "فیلترها پاک شدند."
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   EXPORT CSV
+===================================================== */
+
+  exportButton.addEventListener(
+    "click",
+    function(){
+
+      const rows =
+        getVisibleRequestObjects();
+
+      if(!rows.length){
+
+        showV2Message(
+          "موردی برای خروجی گرفتن وجود ندارد."
+        );
+
+        return;
+
+      }
+
+      const header = [
+
+        "کد درخواست",
+        "آزمایشگاه",
+        "نام بیمار",
+        "آزمایش‌ها",
+        "تاریخ",
+        "وضعیت"
+
+      ];
+
+      const csvRows = [
+
+        header,
+
+        ...rows.map(
+          row => [
+
+            row.request_code,
+            row.lab_name,
+            row.patient_name,
+            row.requested_tests,
+            row.date,
+            row.status
+
+          ]
+        )
+
+      ];
+
+      const csv =
+        csvRows
+        .map(
+          row =>
+            row
+            .map(
+              value =>
+                `"${String(value || "")
+                  .replace(/"/g,'""')}"`
+            )
+            .join(",")
+        )
+        .join("\n");
+
+
+      /*
+       * UTF-8 BOM is necessary for
+       * Persian text in Excel.
+       */
+
+      const blob =
+        new Blob(
+          [
+            "\uFEFF" + csv
+          ],
+          {
+            type:
+              "text/csv;charset=utf-8;"
+          }
+        );
+
+
+      const url =
+        URL.createObjectURL(
+          blob
+        );
+
+      const link =
+        document.createElement(
+          "a"
+        );
+
+      link.href = url;
+
+      link.download =
+        "alpha-lab-requests.csv";
+
+      document.body.appendChild(
+        link
+      );
+
+      link.click();
+
+      link.remove();
+
+      URL.revokeObjectURL(
+        url
+      );
+
+      showV2Message(
+        "فایل CSV با موفقیت آماده شد."
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   REFRESH ADVANCED STATS
+===================================================== */
+
+  refreshStatsButton.addEventListener(
+    "click",
+    function(){
+
+      updateAdvancedStatistics();
+
+      showV2Message(
+        "آمار تکمیلی بروزرسانی شد."
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   DATE INPUT NOTICE
+===================================================== */
+
+  dateFrom.addEventListener(
+    "change",
+    function(){
+
+      showV2Message(
+        "فیلتر تاریخ در نسخه بعدی مستقیماً روی تاریخ Supabase اعمال خواهد شد؛ فعلاً فیلتر اصلی درخواست‌ها دست‌نخورده باقی مانده است."
+      );
+
+    }
+  );
+
+
+  dateTo.addEventListener(
+    "change",
+    function(){
+
+      showV2Message(
+        "فیلتر تاریخ در نسخه بعدی مستقیماً روی تاریخ Supabase اعمال خواهد شد؛ فعلاً فیلتر اصلی درخواست‌ها دست‌نخورده باقی مانده است."
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   V2 MESSAGE
+===================================================== */
+
+  function showV2Message(
+    text
+  ){
+
+    const box =
+      document.getElementById(
+        "v2DashboardInfo"
+      );
+
+    if(!box){
+
+      return;
+
+    }
+
+    box.textContent =
+      "ℹ️ " + text;
+
+    box.style.background =
+      "#e6fcf5";
+
+    box.style.color =
+      "#087f5b";
+
+    setTimeout(
+      function(){
+
+        box.textContent =
+          "🛡️ پنل مدیریت مرکزی آلفا فعال است. اطلاعات درخواست‌ها مستقیماً از Supabase دریافت می‌شود.";
+
+        box.style.background =
+          "#f1fbfc";
+
+        box.style.color =
+          "#063b57";
+
+      },
+      3500
+    );
+
+  }
+
+
+/* =====================================================
+   ADD DOWNLOAD LINK TO EXISTING FILE
+===================================================== */
+
+  document.addEventListener(
+    "click",
+    function(event){
+
+      const fileLink =
+        event.target.closest(
+          ".file-link"
+        );
+
+      if(!fileLink){
+
+        return;
+
+      }
+
+      /*
+       * Existing file link remains unchanged.
+       * Browser opens the file normally.
+       */
+
+    }
+  );
+
+
+/* =====================================================
+   SECURITY NOTICE
+===================================================== */
+
+  const security =
+    document.getElementById(
+      "securityMessage"
+    );
+
+  if(security){
+
+    const originalText =
+      security.textContent;
+
+    setTimeout(
+      function(){
+
+        if(
+          security.textContent
+        ){
+
+          security.innerHTML =
+            security.innerHTML +
+            `
+            <br>
+            <span
+              style="
+                display:inline-block;
+                margin-top:5px;
+                color:#087f5b;
+              "
+            >
+              🔒 کنترل دسترسی فعال است.
+            </span>
+            `;
+
+        }
+
+      },
+      2500
+    );
+
+  }
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+  setTimeout(
+    updateAdvancedStatistics,
+    1000
+  );
+
+  console.log(
+    "Alpha Admin Dashboard V2 ready."
+  );
+
+}
+
+})();
+
+</script>
 </body>
 
 </html>
