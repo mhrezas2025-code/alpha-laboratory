@@ -2104,7 +2104,196 @@ error
 }
 
 }
+/* =====================================================
+   LOAD REQUEST STATUS HISTORY
+===================================================== */
 
+async function getRequestStatusHistory(requestId){
+
+  const {
+    data,
+    error
+  } = await supabaseClient
+    .from("request_status_history")
+    .select(`
+      id,
+      old_status,
+      new_status,
+      changed_by,
+      changed_at
+    `)
+    .eq("request_id", requestId)
+    .order("changed_at", {
+      ascending: false
+    });
+
+  if(error){
+
+    console.error(
+      "Status history error:",
+      error
+    );
+
+    return [];
+
+  }
+
+  return data || [];
+
+}
+
+
+/* =====================================================
+   STATUS HISTORY HTML
+===================================================== */
+
+function renderRequestStatusHistory(history){
+
+  if(!history || history.length === 0){
+
+    return `
+      <div class="detail-section">
+
+        <h4>
+          🕘 تاریخچه وضعیت درخواست
+        </h4>
+
+        <div
+          class="empty"
+          style="
+            padding:12px;
+            font-size:12px;
+          "
+        >
+          هنوز سابقه‌ای برای تغییر وضعیت این درخواست ثبت نشده است.
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  const historyHTML =
+    history.map(item => {
+
+      const oldLabel =
+        getStatusLabel(
+          item.old_status || "-"
+        );
+
+      const newLabel =
+        getStatusLabel(
+          item.new_status || "-"
+        );
+
+      const changedDate =
+        item.changed_at
+        ?
+        new Date(
+          item.changed_at
+        ).toLocaleString(
+          "fa-IR"
+        )
+        :
+        "-";
+
+      const changedBy =
+        item.changed_by
+        ?
+        escapeHTML(
+          item.changed_by
+        )
+        :
+        "ثبت نشده";
+
+
+      return `
+
+        <div
+          style="
+            padding:12px;
+            margin-bottom:10px;
+            border:1px solid #e9ecef;
+            border-radius:10px;
+            background:#f8f9fa;
+          "
+        >
+
+          <div
+            style="
+              font-size:13px;
+              font-weight:700;
+              margin-bottom:8px;
+            "
+          >
+            ${escapeHTML(oldLabel)}
+            <span
+              style="
+                margin:0 6px;
+                color:#868e96;
+              "
+            >
+              ←
+            </span>
+            ${escapeHTML(newLabel)}
+          </div>
+
+
+          <div
+            style="
+              font-size:11px;
+              color:#495057;
+              line-height:1.9;
+            "
+          >
+
+            <div>
+              🕐 زمان تغییر:
+              ${escapeHTML(changedDate)}
+            </div>
+
+            <div>
+              👤 شناسه کاربر:
+              <span
+                style="
+                  direction:ltr;
+                  display:inline-block;
+                  font-family:monospace;
+                "
+              >
+                ${changedBy}
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  return `
+
+    <div class="detail-section">
+
+      <h4>
+        🕘 تاریخچه وضعیت درخواست
+      </h4>
+
+      <div>
+
+        ${historyHTML}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
 /* =====================================================
    OPEN REQUEST DETAILS
 ===================================================== */
@@ -2170,7 +2359,10 @@ error
 await getExistingResult(
 requestId
 );
-
+const statusHistory =
+await getRequestStatusHistory(
+  requestId
+);
 if(error){
 
 requestModalBody.innerHTML = `
@@ -2385,7 +2577,9 @@ lab.lab_code || "-"
 
 </div>
 
-
+${renderRequestStatusHistory(
+  statusHistory
+)}
 <div class="detail-section">
 
 <h4>
