@@ -1742,58 +1742,264 @@ allRequests
 renderRequests();
 
 }
-
 /* =====================================================
-   UPDATE STATUS
+   UPDATE STATUS + STATUS HISTORY
 ===================================================== */
 
 async function updateRequestStatus(
-requestId,
-newStatus
+  requestId,
+  newStatus
 ){
 
-hideMessage();
+  hideMessage();
 
-const {
-error
-} =
-await supabaseClient
-.from("lab_requests")
-.update({
-status:newStatus
-})
-.eq(
-"id",
-requestId
-);
+  try{
 
-if(error){
+    /* =================================================
+       1. GET CURRENT USER
+    ================================================= */
 
-console.error(
-"Update status error:",
-error
-);
+    const {
+      data:userData,
+      error:userError
+    } =
+      await supabaseClient
+        .auth
+        .getUser();
 
-showMessage(
-"تغییر وضعیت درخواست با خطا مواجه شد: " +
-error.message,
-"error"
-);
+    if(userError){
 
-await loadRequests();
+      throw userError;
 
-return false;
+    }
 
-}
+    const currentUser =
+      userData?.user;
 
-showMessage(
-`وضعیت درخواست به «${getStatusLabel(newStatus)}» تغییر کرد.`,
-"success"
-);
+    if(!currentUser){
 
-await loadRequests();
+      throw new Error(
+        "کاربر وارد شده پیدا نشد."
+      );
 
-return true;
+    }
+
+    /* =================================================
+       2. ADMIN CHECK
+    ================================================= */
+
+    if(
+      currentUser.id !==
+      ADMIN_USER_ID
+    ){
+
+      throw new Error(
+        "این حساب اجازه تغییر وضعیت درخواست را ندارد."
+      );
+
+    }
+
+    /* =================================================
+       3. GET CURRENT REQUEST STATUS
+    ================================================= */
+
+    const {
+      data:currentRequest,
+      error:requestError
+    } =
+      await supabaseClient
+        .from("lab_requests")
+        .select(`
+          id,
+          status
+        `)
+        .eq(
+          "id",
+          requestId
+        )
+        .single();
+
+    if(requestError){
+
+      throw requestError;
+
+    }
+
+    if(!currentRequest){
+
+      throw new Error(
+        "درخواست موردنظر پیدا نشد."
+      );
+
+    }
+
+    const oldStatus =
+      currentRequest.status || null;
+
+    /* =================================================
+       4. SAME STATUS CHECK
+    ================================================= */
+
+    if(
+      oldStatus === newStatus
+    ){
+
+      showMessage(
+        `وضعیت درخواست همچنان «${getStatusLabel(newStatus)}» است.`,
+        "success"
+      );
+
+      return true;
+
+    }
+
+    /* =================================================
+       5. UPDATE REQUEST STATUS
+    ================================================= */
+
+    const {
+      error:statusUpdateError
+    } =
+      await supabaseClient
+        .from("lab_requests")
+        .update({
+          status:newStatus
+        })
+        .eq(
+          "id",
+          requestId
+        );
+
+    if(statusUpdateError){
+
+      throw statusUpdateError;
+
+    }
+
+    /* =================================================
+       6. INSERT STATUS HISTORY
+    ================================================= */
+
+    const {
+      error:historyError
+    } =
+      await supabaseClient
+        .from("request_status_history")
+        .insert({
+
+          request_id:
+            requestId,
+
+          old_status:
+            oldStatus,
+
+          new_status:
+            newStatus,
+
+          changed_by:
+            currentUser.id
+
+        });
+
+    /* =================================================
+       7. HISTORY INSERT FAILED
+       ROLLBACK REQUEST STATUS
+    ================================================= */
+
+    if(historyError){
+
+      console.error(
+        "Status history insert error:",
+        historyError
+      );
+
+      /* ---------------------------------------------
+         Rollback lab_requests status
+      --------------------------------------------- */
+
+      const {
+        error:rollbackError
+      } =
+        await supabaseClient
+          .from("lab_requests")
+          .update({
+            status:oldStatus
+          })
+          .eq(
+            "id",
+            requestId
+          );
+
+      if(rollbackError){
+
+        console.error(
+          "Status rollback error:",
+          rollbackError
+        );
+
+      }
+
+      throw new Error(
+        "تغییر وضعیت انجام نشد، چون ثبت تاریخچه وضعیت با خطا مواجه شد: " +
+        historyError.message
+      );
+
+    }
+
+    /* =================================================
+       8. SUCCESS
+    ================================================= */
+
+    console.log(
+      "✅ STATUS HISTORY SAVED:",
+      {
+        request_id:requestId,
+        old_status:oldStatus,
+        new_status:newStatus,
+        changed_by:currentUser.id
+      }
+    );
+
+    showMessage(
+      `وضعیت درخواست از «${
+        getStatusLabel(oldStatus)
+      }» به «${
+        getStatusLabel(newStatus)
+      }» تغییر کرد و تاریخچه آن ثبت شد.`,
+      "success"
+    );
+
+    /* =================================================
+       9. REFRESH REQUESTS
+    ================================================= */
+
+    await loadRequests();
+
+    return true;
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Update status + history error:",
+      error
+    );
+
+    showMessage(
+      "تغییر وضعیت درخواست با خطا مواجه شد: " +
+      (
+        error?.message ||
+        "خطای نامشخص"
+      ),
+      "error"
+    );
+
+    await loadRequests();
+
+    return false;
+
+  }
 
 }
 
